@@ -5,15 +5,11 @@ const Header = () => {
     <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-gradient-primary rounded-md flex items-center justify-center">
-            <span className="text-white font-bold text-sm">C</span>
-          </div>
-          <div>
-            <h1 className="font-display font-bold text-xl">
-              <span className="text-primary">CALISTENIA</span>
-              <span className="text-secondary"> ONLINE</span>
-            </h1>
-          </div>
+          <img 
+            src="/lovable-uploads/f3b95d09-dfd8-4644-9fcb-11a257a02133.png" 
+            alt="Calistenia Online" 
+            className="h-8 w-auto"
+          />
         </div>
         
         <nav className="hidden md:flex items-center space-x-8">

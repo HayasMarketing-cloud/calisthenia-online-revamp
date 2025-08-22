@@ -8,15 +8,17 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-primary rounded-md flex items-center justify-center">
-                <span className="text-white font-bold text-sm">C</span>
-              </div>
-              <div>
-                <h3 className="font-display font-bold text-xl">
-                  <span className="text-primary">CALISTENIA</span>
-                  <span className="text-white"> ONLINE</span>
-                </h3>
-              </div>
+          <img 
+            src="/lovable-uploads/f3b95d09-dfd8-4644-9fcb-11a257a02133.png" 
+            alt="Calistenia Online" 
+            className="h-6 w-auto"
+          />
+          <div>
+            <h3 className="font-display font-bold text-xl">
+              <span className="text-primary">CALISTENIA</span>
+              <span className="text-white"> ONLINE</span>
+            </h3>
+          </div>
             </div>
             <p className="text-gray-300 leading-relaxed">
               Transformando vidas a través de la calistenia y el entrenamiento funcional. 
