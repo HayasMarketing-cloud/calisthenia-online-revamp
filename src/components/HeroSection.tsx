@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Play, ArrowRight } from "lucide-react";
-import heroImage from "@/assets/hero-calisthenics.jpg";
 
 const HeroSection = () => {
   return (
@@ -9,7 +8,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-hero"></div>
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
-        style={{ backgroundImage: `url(${heroImage})` }}
+        style={{ backgroundImage: `url(/lovable-uploads/c5ea670f-5f1c-487a-8efa-8b8dab805415.png)` }}
       ></div>
       
       {/* Content */}
@@ -68,8 +67,8 @@ const HeroSection = () => {
         <div className="hidden lg:block relative">
           <div className="relative rounded-2xl overflow-hidden shadow-2xl">
             <img 
-              src={heroImage} 
-              alt="Calistenia profesional"
+              src="/lovable-uploads/c5ea670f-5f1c-487a-8efa-8b8dab805415.png" 
+              alt="Nicolás Reyero - Entrenador de Calistenia"
               className="w-full h-[600px] object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-secondary/50 to-transparent"></div>
