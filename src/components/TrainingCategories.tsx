@@ -85,7 +85,8 @@ const TrainingCategories = () => {
                     <img 
                       src={category.icon} 
                       alt={`Icono ${category.title}`}
-                      className="w-full h-full object-contain brightness-0 invert"
+                      className="w-full h-full object-contain opacity-90"
+                      style={{ filter: 'brightness(0) invert(1)' }}
                     />
                   </div>
                   
