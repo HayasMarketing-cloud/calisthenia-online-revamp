@@ -81,12 +81,12 @@ const TrainingCategories = () => {
                 className="group hover:shadow-elegant transition-all duration-500 hover:-translate-y-2 bg-gradient-card border-0 overflow-hidden cursor-pointer"
               >
                 <CardContent className="p-8 text-center relative">
-                  <div className={`w-16 h-16 mx-auto mb-6 rounded-xl bg-gradient-to-r ${category.color} flex items-center justify-center shadow-card group-hover:scale-110 transition-transform duration-300 p-3`}>
+                  <div className={`w-16 h-16 mx-auto mb-6 rounded-full border-2 border-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                     <img 
                       src={category.icon} 
                       alt={`Icono ${category.title}`}
-                      className="w-full h-full object-contain opacity-90"
-                      style={{ filter: 'brightness(0) invert(1)' }}
+                      loading="lazy"
+                      className="w-9 h-9 object-contain"
                     />
                   </div>
                   
