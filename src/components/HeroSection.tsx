@@ -18,12 +18,12 @@ const HeroSection = () => {
             <p className="text-primary font-semibold text-lg tracking-wide uppercase">
               Entrenamiento de élite
             </p>
-            <h1 className="font-display font-bold text-5xl lg:text-7xl leading-tight">
+            <h1 className="font-display font-bold text-5xl lg:text-7xl leading-tight" style={{ fontFamily: 'Montserrat, sans-serif' }}>
               ENTRENA
               <br />
               <span className="text-primary">DONDE QUIERAS</span>
             </h1>
-            <p className="text-xl text-gray-300 leading-relaxed max-w-lg">
+            <p className="text-xl text-gray-300 leading-relaxed max-w-lg font-body" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 300 }}>
               Descubre el poder de la calistenia con programas diseñados por Nicolás Reyero. 
               Transforma tu cuerpo sin equipos, solo con tu peso corporal.
             </p>

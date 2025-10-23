@@ -1,42 +1,55 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Dumbbell, Target, Users, Trophy, Heart, Zap } from "lucide-react";
+import FilterChip from "./FilterChip";
 
 const categories = [
   {
     icon: Dumbbell,
     title: "BÍCEPS",
     description: "Desarrolla unos bíceps impresionantes con dominadas y sus variaciones",
-    color: "from-orange-500 to-red-500"
+    color: "from-orange-500 to-red-500",
+    nivel: "Intermedio",
+    lugar: "Parque"
   },
   {
     icon: Target,
     title: "ESPALDA", 
     description: "Fortalece toda tu espalda con ejercicios específicos de tracción",
-    color: "from-blue-500 to-purple-500"
+    color: "from-blue-500 to-purple-500",
+    nivel: "Intermedio",
+    lugar: "Parque"
   },
   {
     icon: Users,
     title: "ABDOMEN",
     description: "Consigue un core de acero con rutinas de abdominales avanzados",
-    color: "from-green-500 to-teal-500"
+    color: "from-green-500 to-teal-500",
+    nivel: "Principiante",
+    lugar: "Casa"
   },
   {
     icon: Trophy,
     title: "PIERNAS",
     description: "Construye unas piernas poderosas sin necesidad de pesas",
-    color: "from-yellow-500 to-orange-500"
+    color: "from-yellow-500 to-orange-500",
+    nivel: "Principiante",
+    lugar: "Casa"
   },
   {
     icon: Heart,
     title: "PECHO",
     description: "Desarrolla un pecho fuerte con flexiones y sus progresiones",
-    color: "from-red-500 to-pink-500"
+    color: "from-red-500 to-pink-500",
+    nivel: "Intermedio",
+    lugar: "Casa"
   },
   {
     icon: Zap,
     title: "FULL BODY",
     description: "Rutinas completas para trabajar todo tu cuerpo de forma integral",
-    color: "from-purple-500 to-blue-500"
+    color: "from-purple-500 to-blue-500",
+    nivel: "Avanzado",
+    lugar: "Parque"
   }
 ];
 
@@ -66,6 +79,11 @@ const TrainingCategories = () => {
                 <CardContent className="p-8 text-center relative">
                   <div className={`w-16 h-16 mx-auto mb-6 rounded-xl bg-gradient-to-r ${category.color} flex items-center justify-center shadow-card group-hover:scale-110 transition-transform duration-300`}>
                     <Icon className="h-8 w-8 text-white" />
+                  </div>
+                  
+                  <div className="flex justify-center gap-2 mb-4">
+                    <FilterChip label={category.nivel} variant="nivel" />
+                    <FilterChip label={category.lugar} variant="lugar" />
                   </div>
                   
                   <h3 className="font-display font-bold text-xl mb-3 text-foreground group-hover:text-primary transition-colors">

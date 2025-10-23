@@ -13,16 +13,16 @@ const Header = () => {
         </div>
         
         <nav className="hidden md:flex items-center space-x-8">
-          <a href="#inicio" className="text-foreground hover:text-primary transition-colors font-medium">
+          <a href="#inicio" className="text-foreground hover:text-primary transition-colors font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-sm">
             Inicio
           </a>
-          <a href="#entrenamientos" className="text-foreground hover:text-primary transition-colors font-medium">
+          <a href="#entrenamientos" className="text-foreground hover:text-primary transition-colors font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-sm">
             Entrenamientos
           </a>
-          <a href="#programas" className="text-foreground hover:text-primary transition-colors font-medium">
+          <a href="#programas" className="text-foreground hover:text-primary transition-colors font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-sm">
             Programas
           </a>
-          <a href="#sobre-mi" className="text-foreground hover:text-primary transition-colors font-medium">
+          <a href="#sobre-mi" className="text-foreground hover:text-primary transition-colors font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-sm">
             Sobre Mí
           </a>
           <Button variant="default" className="bg-gradient-primary hover:shadow-elegant transition-all duration-300">
