@@ -1,10 +1,15 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Dumbbell, Target, Users, Trophy, Heart, Zap } from "lucide-react";
 import FilterChip from "./FilterChip";
+import brazosIcon from "@/assets/calisthenia-brazos.webp";
+import espaldaIcon from "@/assets/calisthenia-espalda.webp";
+import abdomenIcon from "@/assets/calisthenia-abdomen.webp";
+import piernasIcon from "@/assets/calisthenia-piernas.webp";
+import pechoIcon from "@/assets/calisthenia-pecho.webp";
+import fullBodyIcon from "@/assets/calisthenia-full-body.webp";
 
 const categories = [
   {
-    icon: Dumbbell,
+    icon: brazosIcon,
     title: "BÍCEPS",
     description: "Desarrolla unos bíceps impresionantes con dominadas y sus variaciones",
     color: "from-orange-500 to-red-500",
@@ -12,7 +17,7 @@ const categories = [
     lugar: "Parque"
   },
   {
-    icon: Target,
+    icon: espaldaIcon,
     title: "ESPALDA", 
     description: "Fortalece toda tu espalda con ejercicios específicos de tracción",
     color: "from-blue-500 to-purple-500",
@@ -20,7 +25,7 @@ const categories = [
     lugar: "Parque"
   },
   {
-    icon: Users,
+    icon: abdomenIcon,
     title: "ABDOMEN",
     description: "Consigue un core de acero con rutinas de abdominales avanzados",
     color: "from-green-500 to-teal-500",
@@ -28,7 +33,7 @@ const categories = [
     lugar: "Casa"
   },
   {
-    icon: Trophy,
+    icon: piernasIcon,
     title: "PIERNAS",
     description: "Construye unas piernas poderosas sin necesidad de pesas",
     color: "from-yellow-500 to-orange-500",
@@ -36,7 +41,7 @@ const categories = [
     lugar: "Casa"
   },
   {
-    icon: Heart,
+    icon: pechoIcon,
     title: "PECHO",
     description: "Desarrolla un pecho fuerte con flexiones y sus progresiones",
     color: "from-red-500 to-pink-500",
@@ -44,7 +49,7 @@ const categories = [
     lugar: "Casa"
   },
   {
-    icon: Zap,
+    icon: fullBodyIcon,
     title: "FULL BODY",
     description: "Rutinas completas para trabajar todo tu cuerpo de forma integral",
     color: "from-purple-500 to-blue-500",
@@ -70,15 +75,18 @@ const TrainingCategories = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {categories.map((category, index) => {
-            const Icon = category.icon;
             return (
               <Card 
                 key={index}
                 className="group hover:shadow-elegant transition-all duration-500 hover:-translate-y-2 bg-gradient-card border-0 overflow-hidden cursor-pointer"
               >
                 <CardContent className="p-8 text-center relative">
-                  <div className={`w-16 h-16 mx-auto mb-6 rounded-xl bg-gradient-to-r ${category.color} flex items-center justify-center shadow-card group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className="h-8 w-8 text-white" />
+                  <div className={`w-16 h-16 mx-auto mb-6 rounded-xl bg-gradient-to-r ${category.color} flex items-center justify-center shadow-card group-hover:scale-110 transition-transform duration-300 p-3`}>
+                    <img 
+                      src={category.icon} 
+                      alt={`Icono ${category.title}`}
+                      className="w-full h-full object-contain brightness-0 invert"
+                    />
                   </div>
                   
                   <div className="flex justify-center gap-2 mb-4">
