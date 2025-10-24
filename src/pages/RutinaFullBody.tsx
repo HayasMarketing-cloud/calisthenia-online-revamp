@@ -1,72 +1,127 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Separator } from "@/components/ui/separator";
+import VideoEmbed from "@/components/VideoEmbed";
+import ExerciseCard from "@/components/routine/ExerciseCard";
+import RoutineBreadcrumbs from "@/components/routine/RoutineBreadcrumbs";
 import fullBodyImg from "@/assets/calisthenia-full-body.webp";
 
 const RutinaFullBody = () => {
   return (
-    <div className="min-h-screen">
-      <Header />
-      
-      {/* Hero */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-primary/10 to-background">
+    <>
+      <Helmet>
+        <title>Rutina Full Body Calistenia: Ejercicios y Beneficios Esenciales</title>
+        <meta 
+          name="description" 
+          content="Rutina full body de calistenia completa. Aprende ejercicios, beneficios, planificación y progresión para entrenar todo el cuerpo 3x/semana. Video guiado incluido." 
+        />
+        <meta 
+          name="keywords" 
+          content="rutina full body calistenia, ejercicios cuerpo completo, entrenamiento 3 días semana, calistenia en casa, beneficios full body" 
+        />
+        <link rel="canonical" href="https://calisthenia.online/rutina-full-body" />
+        
+        <meta property="og:title" content="Rutina Full Body Calistenia Completa" />
+        <meta property="og:description" content="Entrena todo tu cuerpo con calistenia. Ejercicios, planificación y video guiado completo." />
+        <meta property="og:image" content="https://calisthenia.online/assets/calisthenia-full-body.webp" />
+        <meta property="og:url" content="https://calisthenia.online/rutina-full-body" />
+        <meta property="og:type" content="article" />
+        
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ExercisePlan",
+            "name": "Rutina Full Body Calistenia",
+            "description": "Plan completo de entrenamiento full body con calistenia",
+            "activityFrequency": "3 times per week",
+            "exerciseType": "Calisthenics",
+            "video": {
+              "@type": "VideoObject",
+              "name": "Rutina Full Body Calistenia Completa",
+              "embedUrl": "https://www.youtube.com/embed/PmkNJ7fQhPY"
+            }
+          })}
+        </script>
+      </Helmet>
+
+      {/* Hero Section */}
+      <section className="pt-24 pb-16 bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-background">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <RoutineBreadcrumbs 
+            items={[
+              { label: "Inicio", href: "/" },
+              { label: "Programas", href: "/programas" },
+              { label: "Rutina Full Body", href: "/rutina-full-body" }
+            ]}
+          />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mt-8">
             <div>
               <h1 className="font-display font-bold text-4xl lg:text-6xl mb-6">
-                Rutina <span className="text-primary">Full Body</span> ⚡
+                Rutina <span className="text-primary">Full Body</span> Calistenia ⚡
               </h1>
-              <p className="text-xl text-muted-foreground mb-6">
-                Entrena todo el cuerpo en una sola sesión con ejercicios compuestos de calistenia para máxima eficiencia.
+              
+              <div className="flex flex-wrap gap-3 mb-6">
+                <Badge variant="secondary">💪 Todos los Niveles</Badge>
+                <Badge variant="secondary">⏱️ 30-60 min</Badge>
+                <Badge variant="secondary">🔄 3x/semana</Badge>
+                <Badge variant="secondary">📍 Casa/Parque</Badge>
+              </div>
+              
+              <p className="text-xl text-muted-foreground mb-8">
+                La rutina full body en calistenia es un enfoque de entrenamiento que trabaja todos los grupos musculares en una sola sesión. Desarrolla fuerza, resistencia y equilibrio muscular usando únicamente tu peso corporal.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="bg-gradient-primary">Ver Programa Completo</Button>
-                <Button size="lg" variant="outline">Descargar PDF</Button>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" asChild>
+                  <a href="#video-principal">Ver Video Completo</a>
+                </Button>
+                <Button size="lg" variant="outline" asChild>
+                  <Link to="/programas">Ver Programas</Link>
+                </Button>
               </div>
             </div>
+            
             <div>
               <img 
                 src={fullBodyImg} 
-                alt="Ejercicios full body en calistenia" 
-                className="rounded-lg shadow-elegant w-full"
+                alt="Persona realizando ejercicios de calistenia full body: dominadas, fondos y sentadillas al aire libre" 
+                className="rounded-xl shadow-elegant"
+                loading="eager"
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Beneficios */}
+      {/* Fundamentos */}
       <section className="py-16 bg-secondary/5">
         <div className="container mx-auto px-4">
-          <h2 className="font-display font-bold text-3xl lg:text-4xl mb-12 text-center">
-            Ventajas del Entrenamiento Full Body
+          <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4 text-center">
+            Fundamentos de la Calistenia Full Body
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <Card>
-              <CardContent className="pt-6">
-                <div className="text-4xl mb-4">⚡</div>
-                <h3 className="text-xl font-bold mb-2">Máxima Eficiencia</h3>
-                <p className="text-muted-foreground">
-                  Entrena todo el cuerpo en 45-60 minutos. Perfecto si tienes poco tiempo.
+          <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+            La calistenia full body se centra en el uso del propio peso corporal para trabajar todos los músculos en una misma sesión.
+          </p>
+          
+          <div className="max-w-4xl mx-auto">
+            <Card className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/20 dark:to-blue-950/20">
+              <CardContent className="p-8">
+                <h3 className="font-bold text-2xl mb-4">¿Qué es una rutina full body en calistenia?</h3>
+                <p className="text-muted-foreground mb-4">
+                  Este enfoque de entrenamiento abarca ejercicios que implican el esfuerzo de múltiples grupos musculares, optimizando el tiempo y el rendimiento. En lugar de dividir los entrenamientos por áreas específicas, la rutina full body busca integrar diferentes movimientos en sesiones compactas.
                 </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="pt-6">
-                <div className="text-4xl mb-4">🔥</div>
-                <h3 className="text-xl font-bold mb-2">Alto Gasto Calórico</h3>
                 <p className="text-muted-foreground">
-                  Los ejercicios compuestos queman más calorías y aceleran tu metabolismo.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="pt-6">
-                <div className="text-4xl mb-4">💪</div>
-                <h3 className="text-xl font-bold mb-2">Desarrollo Equilibrado</h3>
-                <p className="text-muted-foreground">
-                  Trabaja todos los grupos musculares con la frecuencia óptima de 3x semana.
+                  Así, es posible lograr un trabajo más completo y armónico en el cuerpo, favoreciendo el desarrollo funcional y la capacidad aeróbica.
                 </p>
               </CardContent>
             </Card>
@@ -74,241 +129,160 @@ const RutinaFullBody = () => {
         </div>
       </section>
 
-      {/* Estructura Rutina */}
+      {/* Ventajas */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4 text-center">
+            Ventajas de Entrenar el Cuerpo Completo
+          </h2>
+          <p className="text-center text-muted-foreground mb-12">
+            Entrenar todos los grupos musculares en una única sesión presenta múltiples beneficios
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {[
+              { emoji: "⚡", title: "Eficiencia de Tiempo", text: "Las sesiones son más cortas sin sacrificar la efectividad del entrenamiento. Ideal para agendas ocupadas." },
+              { emoji: "💪", title: "Desarrollo Equilibrado", text: "Se evita el sobreentrenamiento de ciertas áreas, promoviendo un desarrollo muscular más armónico." },
+              { emoji: "🔄", title: "Mayor Frecuencia", text: "Permite realizar entrenamientos con mayor regularidad, facilitando el avance continuo." },
+              { emoji: "🎯", title: "Ajustes según Objetivos", text: "Las rutinas pueden adaptarse fácilmente a diferentes niveles de habilidad y metas personales." },
+              { emoji: "🔥", title: "Quema de Calorías", text: "Al implicar grandes grupos musculares, se favorece la quema calórica y mejora la composición corporal." },
+              { emoji: "🏃", title: "Desarrollo Funcional", text: "Mejora la coordinación, resistencia corporal y capacidad aeróbica de forma integral." }
+            ].map((benefit, i) => (
+              <Card key={i} className="hover:shadow-elegant transition-shadow">
+                <CardContent className="p-6">
+                  <div className="text-5xl mb-4">{benefit.emoji}</div>
+                  <h4 className="font-bold text-lg mb-2">{benefit.title}</h4>
+                  <p className="text-sm text-muted-foreground">{benefit.text}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Video Principal */}
+      <section id="video-principal" className="py-16 bg-secondary/5">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-8">
+            <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">
+              🎬 Sigue la Rutina Full Body Completa
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Entrena conmigo siguiendo este video guiado. Incluye calentamiento y todos los ejercicios principales.
+            </p>
+          </div>
+          
+          <VideoEmbed 
+            videoId="PmkNJ7fQhPY" 
+            title="Rutina Full Body Calistenia Completa | Entrena Todo el Cuerpo"
+          />
+        </div>
+      </section>
+
+      {/* Estructura del Video */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="font-display font-bold text-3xl lg:text-4xl mb-12 text-center">
             Estructura de la Rutina
           </h2>
-          <div className="max-w-3xl mx-auto mb-12">
-            <Card className="bg-secondary/5">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-4">Ejemplo de Sesión Full Body</h3>
-                <p className="text-muted-foreground mb-6">
-                  Esta rutina trabaja empuje, tracción, piernas y core en una sola sesión. Realízala 3 veces por semana con al menos un día de descanso entre sesiones.
-                </p>
-                <div className="space-y-2 text-sm">
-                  <p><strong>Duración:</strong> 45-60 minutos</p>
-                  <p><strong>Frecuencia:</strong> 3x semana (Lunes, Miércoles, Viernes)</p>
-                  <p><strong>Descanso entre series:</strong> 1-3 minutos</p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          <h3 className="font-display font-bold text-2xl lg:text-3xl mb-8 text-center">
-            Ejercicios de la Rutina
-          </h3>
+          
           <div className="max-w-4xl mx-auto space-y-6">
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">1</div>
-                  <h4 className="text-2xl font-bold">Dominadas</h4>
+            <Card className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20">
+              <CardContent className="p-8">
+                <h3 className="font-bold text-2xl mb-6 text-center">Formato del Entrenamiento</h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                  <div className="text-center">
+                    <div className="text-4xl mb-2">🔥</div>
+                    <p className="text-sm text-muted-foreground mb-1">Calentamiento</p>
+                    <p className="text-xl font-bold">5 ejercicios</p>
+                    <p className="text-sm text-muted-foreground">Baja intensidad</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-4xl mb-2">💪</div>
+                    <p className="text-sm text-muted-foreground mb-1">Parte Principal</p>
+                    <p className="text-xl font-bold">3 series</p>
+                    <p className="text-sm text-muted-foreground">Por ejercicio</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-4xl mb-2">⏱️</div>
+                    <p className="text-sm text-muted-foreground mb-1">Tempo</p>
+                    <p className="text-xl font-bold">30s / 30s</p>
+                    <p className="text-sm text-muted-foreground">Activo / Descanso</p>
+                  </div>
                 </div>
-                <p className="text-muted-foreground mb-4">
-                  <strong>Objetivo:</strong> Espalda, bíceps (ejercicio de tracción)
-                </p>
-                <p className="mb-2"><strong>Series:</strong> 4</p>
-                <p className="mb-4"><strong>Repeticiones:</strong> 6-10</p>
-                <p className="text-sm text-muted-foreground">
-                  Agarre prono, tira hasta barbilla sobre la barra. Si no puedes, usa bandas elásticas.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">2</div>
-                  <h4 className="text-2xl font-bold">Fondos en Paralelas</h4>
+                
+                <Separator className="my-6" />
+                
+                <h4 className="font-bold text-lg mb-4">🧠 Estímulos Trabajados:</h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {['⚡ Fuerza', '💪 Resistencia muscular', '❤️ Activación cardiovascular'].map((e, i) => (
+                    <div key={i} className="flex items-center gap-3 bg-background/50 p-3 rounded-lg">
+                      <span>{e}</span>
+                    </div>
+                  ))}
                 </div>
-                <p className="text-muted-foreground mb-4">
-                  <strong>Objetivo:</strong> Pecho, tríceps, hombros (ejercicio de empuje)
-                </p>
-                <p className="mb-2"><strong>Series:</strong> 4</p>
-                <p className="mb-4"><strong>Repeticiones:</strong> 8-12</p>
-                <p className="text-sm text-muted-foreground">
-                  Inclínate hacia adelante para más pecho. Baja hasta codos a 90 grados.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">3</div>
-                  <h4 className="text-2xl font-bold">Sentadillas Profundas</h4>
-                </div>
-                <p className="text-muted-foreground mb-4">
-                  <strong>Objetivo:</strong> Piernas completas (cuádriceps, glúteos)
-                </p>
-                <p className="mb-2"><strong>Series:</strong> 4</p>
-                <p className="mb-4"><strong>Repeticiones:</strong> 15-20</p>
-                <p className="text-sm text-muted-foreground">
-                  Baja hasta que glúteos toquen pantorrillas. Si es fácil, haz tempo lento o a una pierna.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">4</div>
-                  <h4 className="text-2xl font-bold">Flexiones</h4>
-                </div>
-                <p className="text-muted-foreground mb-4">
-                  <strong>Objetivo:</strong> Pecho, tríceps (empuje horizontal)
-                </p>
-                <p className="mb-2"><strong>Series:</strong> 3</p>
-                <p className="mb-4"><strong>Repeticiones:</strong> 12-20</p>
-                <p className="text-sm text-muted-foreground">
-                  Manos anchura hombros, baja hasta pecho casi toca suelo. Variante: archer, diamante.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">5</div>
-                  <h4 className="text-2xl font-bold">Remo Australiano</h4>
-                </div>
-                <p className="text-muted-foreground mb-4">
-                  <strong>Objetivo:</strong> Espalda media (tracción horizontal)
-                </p>
-                <p className="mb-2"><strong>Series:</strong> 3</p>
-                <p className="mb-4"><strong>Repeticiones:</strong> 10-15</p>
-                <p className="text-sm text-muted-foreground">
-                  Bajo barra baja, tira hacia el pecho. Mantén cuerpo recto como una tabla.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">6</div>
-                  <h4 className="text-2xl font-bold">Nordic Curls</h4>
-                </div>
-                <p className="text-muted-foreground mb-4">
-                  <strong>Objetivo:</strong> Isquiotibiales (piernas posterior)
-                </p>
-                <p className="mb-2"><strong>Series:</strong> 3</p>
-                <p className="mb-4"><strong>Repeticiones:</strong> 5-8</p>
-                <p className="text-sm text-muted-foreground">
-                  Arrodillado, alguien sujeta tobillos. Baja torso controladamente. Usa manos si necesitas ayuda.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">7</div>
-                  <h4 className="text-2xl font-bold">L-Sit / Hollow Body</h4>
-                </div>
-                <p className="text-muted-foreground mb-4">
-                  <strong>Objetivo:</strong> Core completo (isométrico)
-                </p>
-                <p className="mb-2"><strong>Series:</strong> 3</p>
-                <p className="mb-4"><strong>Tiempo:</strong> 15-30 segundos</p>
-                <p className="text-sm text-muted-foreground">
-                  L-sit en suelo o paralelas. Alternativa: hollow body hold tumbado.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">8</div>
-                  <h4 className="text-2xl font-bold">Pike Push-Ups</h4>
-                </div>
-                <p className="text-muted-foreground mb-4">
-                  <strong>Objetivo:</strong> Hombros (empuje vertical)
-                </p>
-                <p className="mb-2"><strong>Series:</strong> 3</p>
-                <p className="mb-4"><strong>Repeticiones:</strong> 8-12</p>
-                <p className="text-sm text-muted-foreground">
-                  Posición V invertida, baja cabeza hacia suelo. Progresión hacia handstand push-ups.
-                </p>
               </CardContent>
             </Card>
           </div>
         </div>
       </section>
 
-      {/* Consejos */}
+      {/* FAQ */}
       <section className="py-16 bg-secondary/5">
         <div className="container mx-auto px-4">
           <h2 className="font-display font-bold text-3xl lg:text-4xl mb-12 text-center">
-            Consejos para Optimizar la Rutina
+            Preguntas Frecuentes sobre Full Body
           </h2>
+          
           <div className="max-w-3xl mx-auto">
-            <Card>
-              <CardContent className="p-8">
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-3">
-                    <span className="text-2xl">✅</span>
-                    <div>
-                      <strong>Calentamiento obligatorio:</strong> 5-10 minutos de movilidad y activación antes de empezar.
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-2xl">✅</span>
-                    <div>
-                      <strong>Orden estratégico:</strong> Empieza con ejercicios más difíciles (dominadas, fondos) cuando estás fresco.
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-2xl">✅</span>
-                    <div>
-                      <strong>Progresión inteligente:</strong> Añade repeticiones primero, luego series, luego dificultad (variantes).
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-2xl">✅</span>
-                    <div>
-                      <strong>Descanso adecuado:</strong> Al menos 48h entre sesiones. Duerme 7-9 horas para recuperación.
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-2xl">✅</span>
-                    <div>
-                      <strong>Nutrición:</strong> Come suficiente proteína (1.6-2g/kg) y mantén superávit calórico para ganar masa.
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-2xl">✅</span>
-                    <div>
-                      <strong>Escucha tu cuerpo:</strong> Si un día estás muy fatigado, reduce volumen o toma día extra de descanso.
-                    </div>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+            <Accordion type="single" collapsible className="space-y-4">
+              <AccordionItem value="item-1" className="bg-background rounded-lg px-6 border">
+                <AccordionTrigger className="text-left font-semibold">
+                  ¿Cuántas veces a la semana se debe entrenar?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  <p>Principiantes: 2-3x/semana • Intermedios: 3-4x/semana • Avanzados: 4-6x/semana</p>
+                </AccordionContent>
+              </AccordionItem>
+              
+              <AccordionItem value="item-2" className="bg-background rounded-lg px-6 border">
+                <AccordionTrigger className="text-left font-semibold">
+                  ¿Puedo hacer full body si soy principiante?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  Sí, es excelente para principiantes. Permite aprender ejercicios fundamentales con alta frecuencia y requiere menos días de entrenamiento.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16">
+      {/* CTA Final */}
+      <section className="py-20 bg-gradient-to-br from-primary/20 via-background to-secondary/20">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="font-display font-bold text-3xl lg:text-4xl mb-6">
-            ¿Listo para tu <span className="text-primary">Transformación</span>?
-          </h2>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Accede a programas personalizados con periodización, planificación de progresiones y coaching individual.
-          </p>
-          <Button size="lg" className="bg-gradient-primary">
-            Ver Programas Personalizados
-          </Button>
+          <div className="max-w-3xl mx-auto">
+            <div className="text-6xl mb-6">💪⚡🔥</div>
+            <h2 className="font-display font-bold text-4xl lg:text-5xl mb-6">
+              ¿Listo para tu <span className="text-primary">Transformación</span>?
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8">
+              Lleva tu entrenamiento al siguiente nivel con programas personalizados y seguimiento profesional.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" asChild>
+                <Link to="/programas">Ver Programas Premium</Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild>
+                <Link to="/quien-soy">Conocer al Entrenador</Link>
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
-
-      <Footer />
-    </div>
+    </>
   );
 };
 
