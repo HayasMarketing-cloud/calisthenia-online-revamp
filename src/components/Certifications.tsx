@@ -1,78 +1,56 @@
 import { Card } from "@/components/ui/card";
-import { Award, GraduationCap, Heart, Dumbbell, Users, Activity } from "lucide-react";
+import { Award, CheckCircle } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 const Certifications = () => {
-  const certifications = [
-    {
-      icon: GraduationCap,
-      title: "Entrenamiento Funcional",
-      institution: "Instituto Nacional de Fitness",
-      year: "2018",
-      color: "from-primary/20 to-accent/20"
-    },
-    {
-      icon: Award,
-      title: "Calistenia Avanzada",
-      institution: "Academia Internacional de Calistenia",
-      year: "2019",
-      color: "from-accent/20 to-primary/20"
-    },
-    {
-      icon: Activity,
-      title: "Biomecánica Deportiva",
-      institution: "Universidad del Deporte",
-      year: "2020",
-      color: "from-primary/20 to-secondary/20"
-    },
-    {
-      icon: Heart,
-      title: "Nutrición Deportiva Aplicada",
-      institution: "Centro de Nutrición Avanzada",
-      year: "2020",
-      color: "from-secondary/20 to-primary/20"
-    },
-    {
-      icon: Users,
-      title: "Instructor Street Workout",
-      institution: "Federación de Street Workout",
-      year: "2021",
-      color: "from-primary/20 to-accent/20"
-    },
-    {
-      icon: Dumbbell,
-      title: "Movilidad y Flexibilidad",
-      institution: "Instituto de Movimiento Funcional",
-      year: "2023",
-      color: "from-accent/20 to-secondary/20"
-    }
-  ];
-
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-      {certifications.map((cert, index) => {
-        const Icon = cert.icon;
-        return (
-          <Card 
-            key={index}
-            className="overflow-hidden hover:border-primary border-2 transition-all duration-300 hover:shadow-elegant group"
-          >
-            <div className={`aspect-[4/3] bg-gradient-to-br ${cert.color} flex items-center justify-center`}>
-              <Icon className="h-20 w-20 text-primary group-hover:scale-110 transition-transform duration-300" />
+    <div className="max-w-3xl mx-auto">
+      <Card className="overflow-hidden border-2 border-primary/20 hover:border-primary transition-all duration-300 hover:shadow-elegant">
+        <div className="grid md:grid-cols-2 gap-0">
+          {/* Left side - Icon/Visual */}
+          <div className="bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center p-12">
+            <div className="text-center">
+              <div className="w-32 h-32 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 shadow-elegant">
+                <Award className="h-16 w-16 text-white" />
+              </div>
+              <Badge className="bg-primary text-white hover:bg-accent">
+                Certificación Oficial
+              </Badge>
             </div>
-            <div className="p-5 bg-white">
-              <h3 className="font-display font-bold text-lg mb-2 text-foreground">
-                {cert.title}
-              </h3>
-              <p className="text-sm text-muted-foreground mb-1">
-                {cert.institution}
-              </p>
-              <p className="text-sm font-semibold text-primary">
-                {cert.year}
-              </p>
+          </div>
+          
+          {/* Right side - Content */}
+          <div className="p-8 flex flex-col justify-center bg-white">
+            <h3 className="font-display font-bold text-2xl mb-4 text-foreground">
+              Certificado por la FESWC
+            </h3>
+            <p className="text-lg text-muted-foreground mb-6">
+              Federación Española de Street Workout y Calistenia
+            </p>
+            
+            <div className="space-y-3">
+              <div className="flex items-start space-x-3">
+                <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm text-muted-foreground">
+                  Formación oficial homologada
+                </span>
+              </div>
+              <div className="flex items-start space-x-3">
+                <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm text-muted-foreground">
+                  Especialista en calistenia y street workout
+                </span>
+              </div>
+              <div className="flex items-start space-x-3">
+                <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-sm text-muted-foreground">
+                  Reconocimiento a nivel nacional
+                </span>
+              </div>
             </div>
-          </Card>
-        );
-      })}
+          </div>
+        </div>
+      </Card>
     </div>
   );
 };

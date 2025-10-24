@@ -143,10 +143,10 @@ const QuienSoy = () => {
         <section className="py-20 bg-background">
           <div className="container mx-auto px-4">
             <h2 className="font-display font-bold text-3xl lg:text-4xl text-center mb-4">
-              Certificaciones <span className="text-primary">Profesionales</span>
+              Certificación <span className="text-primary">Profesional</span>
             </h2>
             <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-              Formación continua para ofrecerte el mejor servicio
+              Avalado por la federación oficial española
             </p>
             <Certifications />
           </div>
