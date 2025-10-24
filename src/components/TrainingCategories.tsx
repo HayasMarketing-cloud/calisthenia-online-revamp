@@ -12,7 +12,7 @@ import fullBodyIcon from "@/assets/calisthenia-full-body.webp";
 const categories = [
   {
     icon: brazosIcon,
-    title: "BÍCEPS",
+    title: "BRAZOS",
     description: "Desarrolla unos bíceps impresionantes con dominadas y sus variaciones",
     link: "/rutina-brazos-calistenia"
   },
