@@ -89,10 +89,15 @@ const AboutSection = () => {
               <Button 
                 size="lg" 
                 className="bg-gradient-primary hover:shadow-elegant transition-all duration-300"
+                onClick={() => window.location.href = '/quien-soy'}
               >
                 Conocer Más Sobre Mí
               </Button>
-              <Button variant="outline" size="lg">
+              <Button 
+                variant="outline" 
+                size="lg"
+                onClick={() => window.location.href = '/quien-soy#certificaciones'}
+              >
                 Ver Certificaciones
               </Button>
             </div>

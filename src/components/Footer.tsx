@@ -54,11 +54,11 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-lg mb-4 text-primary">Compañía</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Sobre Nicolás</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Metodología</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Testimonios</a></li>
+              <li><a href="/quien-soy" className="text-gray-300 hover:text-white transition-colors">Sobre Nicolás</a></li>
+              <li><a href="/quien-soy#metodologia" className="text-gray-300 hover:text-white transition-colors">Metodología</a></li>
+              <li><a href="/#testimonios" className="text-gray-300 hover:text-white transition-colors">Testimonios</a></li>
               <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Blog</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Contacto</a></li>
+              <li><a href="mailto:info@calisthenia.online" className="text-gray-300 hover:text-white transition-colors">Contacto</a></li>
             </ul>
           </div>
 

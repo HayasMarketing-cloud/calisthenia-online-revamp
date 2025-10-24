@@ -22,7 +22,7 @@ const Header = () => {
           <a href="#programas" className="text-foreground hover:text-primary transition-colors font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-sm">
             Programas
           </a>
-          <a href="#sobre-mi" className="text-foreground hover:text-primary transition-colors font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-sm">
+          <a href="/quien-soy" className="text-foreground hover:text-primary transition-colors font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-sm">
             Sobre Mí
           </a>
           <Button variant="default" className="bg-gradient-primary hover:shadow-elegant transition-all duration-300">
