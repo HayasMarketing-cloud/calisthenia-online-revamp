@@ -11,7 +11,7 @@ const AboutSection = () => {
   ];
 
   const stats = [
-    { icon: Users, value: "500+", label: "Estudiantes" },
+    { icon: Users, value: "100+", label: "Estudiantes" },
     { icon: Award, value: "15+", label: "Programas" },
     { icon: Clock, value: "5+", label: "Años Experiencia" },
   ];
