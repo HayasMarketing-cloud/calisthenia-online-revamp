@@ -27,13 +27,13 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-2">
           <img 
             src="/lovable-uploads/f3b95d09-dfd8-4644-9fcb-11a257a02133.png" 
             alt="Calistenia Online" 
-            className="h-8 w-auto"
+            className="h-16 w-auto"
           />
         </Link>
         
