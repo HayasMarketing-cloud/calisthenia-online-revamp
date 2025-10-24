@@ -1,11 +1,21 @@
 import { Card, CardContent } from "@/components/ui/card";
 import FilterChip from "./FilterChip";
-import brazosIcon from "@/assets/calisthenia-brazos.webp";
-import espaldaIcon from "@/assets/calisthenia-espalda.webp";
-import abdomenIcon from "@/assets/calisthenia-abdomen.webp";
-import piernasIcon from "@/assets/calisthenia-piernas.webp";
-import pechoIcon from "@/assets/calisthenia-pecho.webp";
-import fullBodyIcon from "@/assets/calisthenia-full-body.webp";
+
+// Iconos generados con IA (Nano banana) - Actuales
+import brazosIcon from "@/assets/icon-zona-brazos.png";
+import espaldaIcon from "@/assets/icon-zona-espalda.png";
+import abdomenIcon from "@/assets/icon-zona-abdomen.png";
+import piernasIcon from "@/assets/icon-zona-piernas.png";
+import pechoIcon from "@/assets/icon-zona-pecho.png";
+import fullBodyIcon from "@/assets/icon-zona-fullbody.png";
+
+// Iconos originales (respaldo) - Descomentar para usar
+// import brazosIcon from "@/assets/calisthenia-brazos.webp";
+// import espaldaIcon from "@/assets/calisthenia-espalda.webp";
+// import abdomenIcon from "@/assets/calisthenia-abdomen.webp";
+// import piernasIcon from "@/assets/calisthenia-piernas.webp";
+// import pechoIcon from "@/assets/calisthenia-pecho.webp";
+// import fullBodyIcon from "@/assets/calisthenia-full-body.webp";
 
 const categories = [
   {
