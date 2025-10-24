@@ -1,78 +1,41 @@
 import { Card, CardContent } from "@/components/ui/card";
-import FilterChip from "./FilterChip";
-
-// Iconos anatómicos transparentes (Nano banana) - ACTIVOS
-import brazosIcon from "@/assets/icon-transparente-brazos.png";
-import espaldaIcon from "@/assets/icon-transparente-espalda.png";
-import abdomenIcon from "@/assets/icon-transparente-abdomen.png";
-import piernasIcon from "@/assets/icon-transparente-piernas.png";
-import pechoIcon from "@/assets/icon-transparente-pecho.png";
-import fullBodyIcon from "@/assets/icon-transparente-fullbody.png";
-
-// Iconos híbridos (primera generación) - Descomentar para usar
-// import brazosIcon from "@/assets/icon-zona-brazos.png";
-// import espaldaIcon from "@/assets/icon-zona-espalda.png";
-// import abdomenIcon from "@/assets/icon-zona-abdomen.png";
-// import piernasIcon from "@/assets/icon-zona-piernas.png";
-// import pechoIcon from "@/assets/icon-zona-pecho.png";
-// import fullBodyIcon from "@/assets/icon-zona-fullbody.png";
-
-// Iconos originales webp (respaldo) - Descomentar para usar
-// import brazosIcon from "@/assets/calisthenia-brazos.webp";
-// import espaldaIcon from "@/assets/calisthenia-espalda.webp";
-// import abdomenIcon from "@/assets/calisthenia-abdomen.webp";
-// import piernasIcon from "@/assets/calisthenia-piernas.webp";
-// import pechoIcon from "@/assets/calisthenia-pecho.webp";
-// import fullBodyIcon from "@/assets/calisthenia-full-body.webp";
+import brazosIcon from "@/assets/calisthenia-brazos.webp";
+import espaldaIcon from "@/assets/calisthenia-espalda.webp";
+import abdomenIcon from "@/assets/calisthenia-abdomen.webp";
+import piernasIcon from "@/assets/calisthenia-piernas.webp";
+import pechoIcon from "@/assets/calisthenia-pecho.webp";
+import fullBodyIcon from "@/assets/calisthenia-full-body.webp";
 
 const categories = [
   {
     icon: brazosIcon,
     title: "BÍCEPS",
-    description: "Desarrolla unos bíceps impresionantes con dominadas y sus variaciones",
-    color: "from-orange-500 to-red-500",
-    nivel: "Intermedio",
-    lugar: "Parque"
+    description: "Desarrolla unos bíceps impresionantes con dominadas y sus variaciones"
   },
   {
     icon: espaldaIcon,
     title: "ESPALDA", 
-    description: "Fortalece toda tu espalda con ejercicios específicos de tracción",
-    color: "from-blue-500 to-purple-500",
-    nivel: "Intermedio",
-    lugar: "Parque"
+    description: "Fortalece toda tu espalda con ejercicios específicos de tracción"
   },
   {
     icon: abdomenIcon,
     title: "ABDOMEN",
-    description: "Consigue un core de acero con rutinas de abdominales avanzados",
-    color: "from-green-500 to-teal-500",
-    nivel: "Principiante",
-    lugar: "Casa"
+    description: "Consigue un core de acero con rutinas de abdominales avanzados"
   },
   {
     icon: piernasIcon,
     title: "PIERNAS",
-    description: "Construye unas piernas poderosas sin necesidad de pesas",
-    color: "from-yellow-500 to-orange-500",
-    nivel: "Principiante",
-    lugar: "Casa"
+    description: "Construye unas piernas poderosas sin necesidad de pesas"
   },
   {
     icon: pechoIcon,
     title: "PECHO",
-    description: "Desarrolla un pecho fuerte con flexiones y sus progresiones",
-    color: "from-red-500 to-pink-500",
-    nivel: "Intermedio",
-    lugar: "Casa"
+    description: "Desarrolla un pecho fuerte con flexiones y sus progresiones"
   },
   {
     icon: fullBodyIcon,
     title: "FULL BODY",
-    description: "Rutinas completas para trabajar todo tu cuerpo de forma integral",
-    color: "from-purple-500 to-blue-500",
-    nivel: "Avanzado",
-    lugar: "Parque"
+    description: "Rutinas completas para trabajar todo tu cuerpo de forma integral"
   }
 ];
 
@@ -82,12 +45,12 @@ const TrainingCategories = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="font-display font-bold text-4xl lg:text-5xl mb-6">
-            ENTRENAMIENTOS DE 
-            <span className="text-primary"> CALISTENIA</span>
+            ENTRENAMIENTO DE CALISTENIA POR
+            <span className="text-primary"> ZONAS MUSCULARES</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Programas especializados para cada grupo muscular. Desde principiante hasta avanzado, 
-            encuentra el entrenamiento perfecto para ti.
+            Programas especializados para cada grupo muscular. 
+            Encuentra el entrenamiento perfecto para ti.
           </p>
         </div>
 
@@ -99,18 +62,13 @@ const TrainingCategories = () => {
                 className="group hover:shadow-elegant transition-all duration-500 hover:-translate-y-2 bg-gradient-card border-0 overflow-hidden cursor-pointer"
               >
                 <CardContent className="p-8 text-center relative">
-                  <div className={`w-32 h-32 mx-auto mb-6 rounded-full border-2 border-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                  <div className="w-32 h-32 mx-auto mb-6 rounded-full border-2 border-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <img 
                       src={category.icon} 
                       alt={`Icono ${category.title}`}
                       loading="lazy"
                       className="w-18 h-18 object-contain"
                     />
-                  </div>
-                  
-                  <div className="flex justify-center gap-2 mb-4">
-                    <FilterChip label={category.nivel} variant="nivel" />
-                    <FilterChip label={category.lugar} variant="lugar" />
                   </div>
                   
                   <h3 className="font-display font-bold text-xl mb-3 text-foreground group-hover:text-primary transition-colors">
