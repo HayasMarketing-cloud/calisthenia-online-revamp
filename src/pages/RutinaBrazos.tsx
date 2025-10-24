@@ -179,7 +179,7 @@ const RutinaBrazos = () => {
                   <li className="flex items-start gap-3">
                     <span className="text-2xl">✅</span>
                     <div>
-                      <strong>Técnica primero:</strong> Prioriza la forma correcta sobre las repeticiones. La calidad > cantidad.
+                      <strong>Técnica primero:</strong> Prioriza la forma correcta sobre las repeticiones. La calidad {'>'} cantidad.
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
