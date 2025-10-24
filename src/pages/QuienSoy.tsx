@@ -7,6 +7,7 @@ import Philosophy from "@/components/Philosophy";
 import Certifications from "@/components/Certifications";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import VideoEmbed from "@/components/VideoEmbed";
 
 const QuienSoy = () => {
   useEffect(() => {
@@ -113,6 +114,22 @@ const QuienSoy = () => {
         {/* Hero Section */}
         <PersonalHero />
         
+        {/* Video: Transformación Física */}
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <h2 className="font-display font-bold text-3xl lg:text-4xl text-center mb-4">
+              Mi <span className="text-primary">Transformación</span>
+            </h2>
+            <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Un viaje de constancia, disciplina y pasión por la calistenia
+            </p>
+            <VideoEmbed 
+              videoId="WLlCsJeKXhA" 
+              title="Transformación física de Nicolás Reyero - Calistenia"
+            />
+          </div>
+        </section>
+        
         {/* Timeline Section */}
         <section className="py-20 bg-background">
           <div className="container mx-auto px-4">
@@ -149,6 +166,22 @@ const QuienSoy = () => {
               Avalado por la federación oficial española
             </p>
             <Certifications />
+          </div>
+        </section>
+        
+        {/* Video: Presentación Calistenia Online */}
+        <section className="py-16 bg-secondary/5">
+          <div className="container mx-auto px-4">
+            <h2 className="font-display font-bold text-3xl lg:text-4xl text-center mb-4">
+              El Proyecto <span className="text-primary">Calistenia Online</span>
+            </h2>
+            <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Conoce la visión y el propósito detrás de este proyecto
+            </p>
+            <VideoEmbed 
+              videoId="xF5HbjQFXlk" 
+              title="Presentación del proyecto Calistenia Online"
+            />
           </div>
         </section>
         
