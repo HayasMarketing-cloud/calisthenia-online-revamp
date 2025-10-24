@@ -14,7 +14,7 @@ const locations = [
   },
   {
     image: parqueImg,
-    title: "ENTRENA EN EL PARQUE",
+    title: "CALISTENIA EN EL PARQUE",
     description: "Aprovecha los parques y espacios al aire libre para entrenar. Barras, paralelas y el entorno perfecto.",
     features: ["Aire libre", "Equipamiento público", "Comunidad activa"],
     link: "/entrenar-en-parque"
