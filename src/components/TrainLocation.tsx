@@ -7,7 +7,7 @@ import parqueImg from "@/assets/entrena-parque.jpg";
 const locations = [
   {
     image: casaImg,
-    title: "ENTRENA EN CASA",
+    title: "CALISTENIA EN CASA",
     description: "Rutinas completas que puedes hacer en la comodidad de tu hogar. Solo necesitas tu cuerpo y un poco de espacio.",
     features: ["Sin equipo necesario", "Cualquier momento", "Máxima comodidad"],
     link: "/entrenar-en-casa"
