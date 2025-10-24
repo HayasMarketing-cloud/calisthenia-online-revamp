@@ -6,6 +6,7 @@ import espaldaIcon from "@/assets/calisthenia-espalda.webp";
 import abdomenIcon from "@/assets/calisthenia-abdomen.webp";
 import piernasIcon from "@/assets/calisthenia-piernas.webp";
 import pechoIcon from "@/assets/calisthenia-pecho.webp";
+import hombroIcon from "@/assets/calisthenia-hombro.webp";
 import fullBodyIcon from "@/assets/calisthenia-full-body.webp";
 
 const categories = [
@@ -40,6 +41,12 @@ const categories = [
     link: "/rutina-pecho-calistenia"
   },
   {
+    icon: hombroIcon,
+    title: "HOMBRO",
+    description: "Fortalece tus deltoides y estabiliza el manguito rotador",
+    link: "/rutina-hombro-calistenia"
+  },
+  {
     icon: fullBodyIcon,
     title: "FULL BODY",
     description: "Rutinas completas para trabajar todo tu cuerpo de forma integral",
@@ -62,7 +69,7 @@ const TrainingCategories = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {categories.map((category, index) => {
             return (
               <Card 
@@ -89,7 +96,7 @@ const TrainingCategories = () => {
                   
                   <Link to={category.link}>
                     <Button variant="outline" className="w-full">
-                      Ver Rutina
+                      Ver Rutinas
                     </Button>
                   </Link>
                   

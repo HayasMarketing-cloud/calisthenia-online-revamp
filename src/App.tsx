@@ -13,6 +13,7 @@ import RutinaAbdominales from "./pages/RutinaAbdominales";
 import RutinaPiernas from "./pages/RutinaPiernas";
 import RutinaPecho from "./pages/RutinaPecho";
 import RutinaFullBody from "./pages/RutinaFullBody";
+import RutinaHombro from "./pages/RutinaHombro";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/rutina-abdominales-calistenia" element={<RutinaAbdominales />} />
           <Route path="/rutina-piernas-calistenia" element={<RutinaPiernas />} />
           <Route path="/rutina-pecho-calistenia" element={<RutinaPecho />} />
+          <Route path="/rutina-hombro-calistenia" element={<RutinaHombro />} />
           <Route path="/rutina-full-body" element={<RutinaFullBody />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
