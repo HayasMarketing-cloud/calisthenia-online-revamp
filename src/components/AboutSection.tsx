@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Award, Users, Clock } from "lucide-react";
+import nicolasAbout from "@/assets/nicolas-about.jpg";
 const AboutSection = () => {
   const achievements = ["Certificado en Entrenamiento Funcional", "Más de 5 años de experiencia", "500+ estudiantes transformados", "Especialista en Calistenia Avanzada"];
   const stats = [{
@@ -22,17 +23,12 @@ const AboutSection = () => {
           {/* Image Section */}
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              <div className="aspect-[4/5] bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                <div className="text-center text-muted-foreground">
-                  <Users className="h-24 w-24 mx-auto mb-4 opacity-50" />
-                  <p className="text-lg">Nicolás Reyero</p>
-                  <p className="text-sm">Entrenador Personal</p>
-                </div>
-              </div>
+              <img 
+                src={nicolasAbout} 
+                alt="Nicolás Reyero - Entrenador Personal de Calistenia"
+                className="w-full h-full object-cover aspect-[4/5]"
+              />
             </div>
-            
-            {/* Floating badge */}
-            
           </div>
 
           {/* Content Section */}
