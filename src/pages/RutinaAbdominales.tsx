@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import VideoGallery from "@/components/VideoGallery";
 import { allVideos } from "@/data/videoLibrary";
 import { getVideosByZone } from "@/lib/videoUtils";
-import abdomenImg from "@/assets/calisthenia-abdomen.webp";
 
 const RutinaAbdominales = () => {
   return (
@@ -15,25 +14,16 @@ const RutinaAbdominales = () => {
       {/* Hero */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-primary/10 to-background">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="font-display font-bold text-4xl lg:text-6xl mb-6">
-                Rutina de <span className="text-primary">Abdominales</span> 🔥
-              </h1>
-              <p className="text-xl text-muted-foreground mb-6">
-                Desarrolla un core fuerte y definido con ejercicios funcionales de calistenia que trabajan todo el abdomen.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="bg-gradient-primary">Ver Programa Completo</Button>
-                <Button size="lg" variant="outline">Descargar PDF</Button>
-              </div>
-            </div>
-            <div>
-              <img 
-                src={abdomenImg} 
-                alt="Ejercicios de abdominales en calistenia" 
-                className="rounded-lg shadow-elegant w-full"
-              />
+          <div className="max-w-4xl mx-auto">
+            <h1 className="font-display font-bold text-4xl lg:text-6xl mb-6 text-center">
+              Rutina de <span className="text-primary">Abdominales</span> 🔥
+            </h1>
+            <p className="text-xl text-muted-foreground mb-6 text-center">
+              Desarrolla un core fuerte y definido con ejercicios funcionales de calistenia que trabajan todo el abdomen.
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Button size="lg" className="bg-gradient-primary">Ver Programa Completo</Button>
+              <Button size="lg" variant="outline">Descargar PDF</Button>
             </div>
           </div>
         </div>

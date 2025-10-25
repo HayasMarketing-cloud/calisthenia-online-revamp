@@ -16,7 +16,6 @@ import { allVideos } from "@/data/videoLibrary";
 import { getVideosByZone } from "@/lib/videoUtils";
 import ExerciseCard from "@/components/routine/ExerciseCard";
 import RoutineBreadcrumbs from "@/components/routine/RoutineBreadcrumbs";
-import fullBodyImg from "@/assets/calisthenia-full-body.webp";
 
 const RutinaFullBody = () => {
   return (
@@ -62,45 +61,34 @@ const RutinaFullBody = () => {
           <RoutineBreadcrumbs 
             items={[
               { label: "Inicio", href: "/" },
-              { label: "Programas", href: "/programas" },
+              { label: "Rutinas", href: "/programas" },
               { label: "Rutina Full Body", href: "/rutina-full-body" }
             ]}
           />
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mt-8">
-            <div>
-              <h1 className="font-display font-bold text-4xl lg:text-6xl mb-6">
-                Rutina <span className="text-primary">Full Body</span> Calistenia ⚡
-              </h1>
-              
-              <div className="flex flex-wrap gap-3 mb-6">
-                <Badge variant="secondary">💪 Todos los Niveles</Badge>
-                <Badge variant="secondary">⏱️ 30-60 min</Badge>
-                <Badge variant="secondary">🔄 3x/semana</Badge>
-                <Badge variant="secondary">📍 Casa/Parque</Badge>
-              </div>
-              
-              <p className="text-xl text-muted-foreground mb-8">
-                La rutina full body en calistenia es un enfoque de entrenamiento que trabaja todos los grupos musculares en una sola sesión. Desarrolla fuerza, resistencia y equilibrio muscular usando únicamente tu peso corporal.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" asChild>
-                  <a href="#video-principal">Ver Video Completo</a>
-                </Button>
-                <Button size="lg" variant="outline" asChild>
-                  <Link to="/programas">Ver Programas</Link>
-                </Button>
-              </div>
+          <div className="max-w-4xl mx-auto mt-8">
+            <h1 className="font-display font-bold text-4xl lg:text-6xl mb-6 text-center">
+              Rutina <span className="text-primary">Full Body</span> Calistenia ⚡
+            </h1>
+            
+            <div className="flex flex-wrap gap-3 mb-6 justify-center">
+              <Badge variant="secondary">💪 Todos los Niveles</Badge>
+              <Badge variant="secondary">⏱️ 30-60 min</Badge>
+              <Badge variant="secondary">🔄 3x/semana</Badge>
+              <Badge variant="secondary">📍 Casa/Parque</Badge>
             </div>
             
-            <div>
-              <img 
-                src={fullBodyImg} 
-                alt="Persona realizando ejercicios de calistenia full body: dominadas, fondos y sentadillas al aire libre" 
-                className="rounded-xl shadow-elegant"
-                loading="eager"
-              />
+            <p className="text-xl text-muted-foreground mb-8 text-center">
+              La rutina full body en calistenia es un enfoque de entrenamiento que trabaja todos los grupos musculares en una sola sesión. Desarrolla fuerza, resistencia y equilibrio muscular usando únicamente tu peso corporal.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" asChild>
+                <a href="#video-principal">Ver Video Completo</a>
+              </Button>
+              <Button size="lg" variant="outline" asChild>
+                <Link to="/programas">Ver Programas</Link>
+              </Button>
             </div>
           </div>
         </div>
