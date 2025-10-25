@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Award, Users } from "lucide-react";
+import { Award } from "lucide-react";
+import nicolasPhoto from "@/assets/nicolas-reyero.jpg";
 const PersonalHero = () => {
   return <section className="py-32 bg-secondary/5">
       <div className="container mx-auto px-4">
@@ -8,13 +9,11 @@ const PersonalHero = () => {
           {/* Image Section */}
           <div className="relative order-2 lg:order-1">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              <div className="aspect-[4/5] bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                <div className="text-center text-muted-foreground">
-                  <Users className="h-32 w-32 mx-auto mb-4 opacity-50" />
-                  <p className="text-xl">Nicolás Reyero</p>
-                  <p className="text-base mt-2">Entrenador Personal de Calistenia</p>
-                </div>
-              </div>
+              <img 
+                src={nicolasPhoto} 
+                alt="Nicolás Reyero - Entrenador Personal de Calistenia"
+                className="w-full h-full object-cover aspect-[4/5]"
+              />
             </div>
             
             {/* Floating badge */}
