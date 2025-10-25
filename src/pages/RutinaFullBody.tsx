@@ -411,8 +411,7 @@ const RutinaFullBody = () => {
           <div className="max-w-5xl mx-auto space-y-16">
             {/* Ejercicios de Empuje */}
             <div>
-              <h3 className="font-bold text-2xl mb-8 flex items-center gap-3">
-                <span className="text-4xl">🚀</span>
+              <h3 className="font-bold text-2xl mb-8">
                 Ejercicios de Empuje
               </h3>
               <p className="text-muted-foreground mb-8">
@@ -423,7 +422,6 @@ const RutinaFullBody = () => {
                 <ExerciseCard
                   number={1}
                   title="Flexiones y Variantes"
-                  emoji="💪"
                   targetMuscles="Pecho, Tríceps, Hombros"
                   sets={3-4}
                   reps="10-20"
@@ -439,7 +437,6 @@ const RutinaFullBody = () => {
                 <ExerciseCard
                   number={2}
                   title="Fondos en Paralelas y en Barra"
-                  emoji="⚡"
                   targetMuscles="Pectoral mayor, Tríceps, Deltoides"
                   sets={3-4}
                   reps="8-12"
@@ -456,8 +453,7 @@ const RutinaFullBody = () => {
 
             {/* Ejercicios de Tracción */}
             <div>
-              <h3 className="font-bold text-2xl mb-8 flex items-center gap-3">
-                <span className="text-4xl">🦾</span>
+              <h3 className="font-bold text-2xl mb-8">
                 Ejercicios de Tracción
               </h3>
               <p className="text-muted-foreground mb-8">
@@ -468,7 +464,6 @@ const RutinaFullBody = () => {
                 <ExerciseCard
                   number={3}
                   title="Dominadas Pronas, Supinas y Australianas"
-                  emoji="🦾"
                   targetMuscles="Espalda, Bíceps"
                   sets={3-4}
                   reps="6-12"
@@ -484,7 +479,6 @@ const RutinaFullBody = () => {
                 <ExerciseCard
                   number={4}
                   title="Remo Invertido y Agarres Variados"
-                  emoji="🚣"
                   targetMuscles="Espalda media y baja"
                   sets={3}
                   reps="10-15"
@@ -501,8 +495,7 @@ const RutinaFullBody = () => {
 
             {/* Trabajo de Piernas */}
             <div>
-              <h3 className="font-bold text-2xl mb-8 flex items-center gap-3">
-                <span className="text-4xl">🦵</span>
+              <h3 className="font-bold text-2xl mb-8">
                 Trabajo de Piernas y Tren Inferior
               </h3>
               <p className="text-muted-foreground mb-8">
@@ -513,7 +506,6 @@ const RutinaFullBody = () => {
                 <ExerciseCard
                   number={5}
                   title="Sentadillas, Sentadillas Búlgaras y Pistol Squat"
-                  emoji="🦵"
                   targetMuscles="Cuádriceps, Glúteos, Isquiotibiales"
                   sets={4}
                   reps="15-20"
@@ -529,7 +521,6 @@ const RutinaFullBody = () => {
                 <ExerciseCard
                   number={6}
                   title="Elevaciones de Gemelos y Variantes"
-                  emoji="💎"
                   targetMuscles="Pantorrillas (Gemelos y Sóleo)"
                   sets={3}
                   reps="15-25"
@@ -546,8 +537,7 @@ const RutinaFullBody = () => {
 
             {/* Ejercicios Core */}
             <div>
-              <h3 className="font-bold text-2xl mb-8 flex items-center gap-3">
-                <span className="text-4xl">🔥</span>
+              <h3 className="font-bold text-2xl mb-8">
                 Ejercicios para Abdominales y Core
               </h3>
               <p className="text-muted-foreground mb-8">
@@ -558,7 +548,6 @@ const RutinaFullBody = () => {
                 <ExerciseCard
                   number={7}
                   title="L-Sit, Elevaciones de Rodillas y Abdominales Escalador"
-                  emoji="🧘"
                   targetMuscles="Abdominales, Flexores de cadera"
                   sets={3}
                   time="15-30s (L-sit) / 10-15 reps (otros)"
@@ -574,7 +563,6 @@ const RutinaFullBody = () => {
                 <ExerciseCard
                   number={8}
                   title="Plancha y Hollow Plank"
-                  emoji="🏋️"
                   targetMuscles="Core completo, Estabilizadores"
                   sets={3}
                   time="30-60s"

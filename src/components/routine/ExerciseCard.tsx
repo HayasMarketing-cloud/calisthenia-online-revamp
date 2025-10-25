@@ -10,7 +10,7 @@ import {
 interface ExerciseCardProps {
   number: number;
   title: string;
-  emoji: string;
+  emoji?: string;
   targetMuscles: string;
   sets?: number;
   reps?: string;
@@ -51,7 +51,7 @@ const ExerciseCard = ({
           <div className="flex-1">
             {/* Title and Emoji */}
             <div className="flex items-center gap-3 mb-3">
-              <span className="text-4xl">{emoji}</span>
+              {emoji && <span className="text-4xl">{emoji}</span>}
               <h4 className="font-bold text-xl">{title}</h4>
             </div>
 
