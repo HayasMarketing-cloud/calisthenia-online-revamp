@@ -20,6 +20,17 @@ const VideoCard = ({ video, onClick, showStats = false }: VideoCardProps) => {
     'Avanzado': 'bg-red-500/10 text-red-700 dark:text-red-400 border-red-500/20'
   };
 
+  // Color del badge según zona muscular
+  const zonaColor = {
+    'Espalda': 'bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-500/20',
+    'Pecho': 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/20',
+    'Brazos': 'bg-orange-500/10 text-orange-700 dark:text-orange-400 border-orange-500/20',
+    'Piernas': 'bg-purple-500/10 text-purple-700 dark:text-purple-400 border-purple-500/20',
+    'Core': 'bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-500/20',
+    'Hombros': 'bg-pink-500/10 text-pink-700 dark:text-pink-400 border-pink-500/20',
+    'Full Body': 'bg-gradient-to-r from-primary/10 to-accent/10 text-primary dark:text-primary border-primary/20'
+  };
+
   return (
     <Card 
       className="group cursor-pointer hover:shadow-elegant transition-all duration-300 overflow-hidden"
@@ -58,8 +69,19 @@ const VideoCard = ({ video, onClick, showStats = false }: VideoCardProps) => {
             {video.titulo}
           </h3>
           
+          {/* Descripción */}
+          <p className="text-xs text-muted-foreground line-clamp-2">
+            {video.descripcion}
+          </p>
+          
           {/* Badges */}
           <div className="flex flex-wrap gap-2">
+            <Badge 
+              variant="outline" 
+              className={zonaColor[video.zonaMuscular]}
+            >
+              {video.zonaMuscular}
+            </Badge>
             <Badge 
               variant="outline" 
               className={nivelColor[video.nivel]}
