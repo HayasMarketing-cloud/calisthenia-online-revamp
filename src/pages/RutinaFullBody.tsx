@@ -1076,6 +1076,50 @@ const RutinaFullBody = () => {
                   </ul>
                 </AccordionContent>
               </AccordionItem>
+
+              <AccordionItem value="item-5" className="bg-background rounded-lg px-6 border">
+                <AccordionTrigger className="text-left font-semibold">
+                  ¿Qué zonas musculares incluye Full Body?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  <p className="mb-2">Una rutina Full Body trabaja todos los grupos musculares principales en una misma sesión:</p>
+                  <ul className="list-disc list-inside space-y-1 ml-4">
+                    <li><strong>Pecho:</strong> Flexiones y variantes</li>
+                    <li><strong>Espalda:</strong> Dominadas, remos y tracciones</li>
+                    <li><strong>Hombros:</strong> Pinos, elevaciones y press</li>
+                    <li><strong>Brazos:</strong> Bíceps y tríceps mediante ejercicios compuestos</li>
+                    <li><strong>Piernas:</strong> Sentadillas, zancadas y trabajo de pantorrillas</li>
+                    <li><strong>Core:</strong> Abdominales, oblicuos y zona lumbar</li>
+                  </ul>
+                  <p className="mt-2">Esta distribución garantiza un desarrollo equilibrado de todo el cuerpo.</p>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-6" className="bg-background rounded-lg px-6 border">
+                <AccordionTrigger className="text-left font-semibold">
+                  ¿Es lo mismo Core que Full Body?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  <p className="mb-2">No, son conceptos diferentes:</p>
+                  <div className="mb-3">
+                    <p className="font-semibold mb-1">Core (Abdomen):</p>
+                    <ul className="list-disc list-inside space-y-1 ml-4">
+                      <li>Se enfoca específicamente en la zona central del cuerpo</li>
+                      <li>Trabaja abdominales, oblicuos, lumbares y estabilizadores</li>
+                      <li>Ideal para fortalecer el centro y mejorar la postura</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-semibold mb-1">Full Body (Cuerpo Completo):</p>
+                    <ul className="list-disc list-inside space-y-1 ml-4">
+                      <li>Entrena TODOS los grupos musculares en la misma sesión</li>
+                      <li>Incluye pecho, espalda, hombros, brazos, piernas y core</li>
+                      <li>Perfecto para desarrollo equilibrado y maximizar tiempo</li>
+                    </ul>
+                  </div>
+                  <p className="mt-2">El Full Body incluye trabajo de core, pero va mucho más allá.</p>
+                </AccordionContent>
+              </AccordionItem>
             </Accordion>
           </div>
         </div>
