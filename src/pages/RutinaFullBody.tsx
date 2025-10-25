@@ -18,6 +18,7 @@ import ExerciseCard from "@/components/routine/ExerciseCard";
 import RoutineBreadcrumbs from "@/components/routine/RoutineBreadcrumbs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import VideoWithStructure from "@/components/VideoWithStructure";
 import pechoIcon from "@/assets/calisthenia-pecho.webp";
 import espaldaIcon from "@/assets/calisthenia-espalda.webp";
 import piernasIcon from "@/assets/calisthenia-piernas.webp";
@@ -194,73 +195,41 @@ const RutinaFullBody = () => {
         </div>
       </section>
 
-      {/* Video Principal */}
-      <section id="video-principal" className="py-16 bg-secondary/5">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-8">
-            <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">
-              🎬 Sigue la Rutina Full Body Completa
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Entrena conmigo siguiendo este video guiado. Incluye calentamiento y todos los ejercicios principales.
-            </p>
-          </div>
-          
-          <VideoEmbed 
-            videoId="PmkNJ7fQhPY" 
-            title="Rutina Full Body Calistenia Completa | Entrena Todo el Cuerpo"
-          />
-        </div>
-      </section>
-
-      {/* Estructura del Video */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="font-display font-bold text-3xl lg:text-4xl mb-12 text-center">
-            Estructura de la Rutina
-          </h2>
-          
-          <div className="max-w-4xl mx-auto space-y-6">
-            <Card className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20">
-              <CardContent className="p-8">
-                <h3 className="font-bold text-2xl mb-6 text-center">Formato del Entrenamiento</h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                  <div className="text-center">
-                    <div className="text-4xl mb-2">🔥</div>
-                    <p className="text-sm text-muted-foreground mb-1">Calentamiento</p>
-                    <p className="text-xl font-bold">5 ejercicios</p>
-                    <p className="text-sm text-muted-foreground">Baja intensidad</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-4xl mb-2">💪</div>
-                    <p className="text-sm text-muted-foreground mb-1">Parte Principal</p>
-                    <p className="text-xl font-bold">3 series</p>
-                    <p className="text-sm text-muted-foreground">Por ejercicio</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-4xl mb-2">⏱️</div>
-                    <p className="text-sm text-muted-foreground mb-1">Tempo</p>
-                    <p className="text-xl font-bold">30s / 30s</p>
-                    <p className="text-sm text-muted-foreground">Activo / Descanso</p>
-                  </div>
-                </div>
-                
-                <Separator className="my-6" />
-                
-                <h4 className="font-bold text-lg mb-4">🧠 Estímulos Trabajados:</h4>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {['⚡ Fuerza', '💪 Resistencia muscular', '❤️ Activación cardiovascular'].map((e, i) => (
-                    <div key={i} className="flex items-center gap-3 bg-background/50 p-3 rounded-lg">
-                      <span>{e}</span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+      {/* Video con Estructura */}
+      <VideoWithStructure
+        videoId="PmkNJ7fQhPY"
+        videoTitle="🎬 Sigue la Rutina Full Body Completa"
+        videoDescription="Entrena conmigo siguiendo este video guiado. Incluye calentamiento y todos los ejercicios principales."
+        insights={[
+          "Calentamiento dinámico de 5 minutos",
+          "Ejercicios para todo el cuerpo en circuito",
+          "Ideal para entrenar en casa o en el parque",
+          "No requiere material adicional"
+        ]}
+        nivel="Principiante"
+        zonaMuscular="Full Body"
+        material="Casa"
+        formato={{
+          calentamiento: {
+            ejercicios: 5,
+            intensidad: "Baja intensidad"
+          },
+          partePrincipal: {
+            series: 3,
+            descripcion: "Por ejercicio"
+          },
+          tempo: {
+            activo: "30s",
+            descanso: "30s"
+          }
+        }}
+        estimulos={[
+          "⚡ Fuerza",
+          "💪 Resistencia muscular",
+          "❤️ Activación cardiovascular"
+        ]}
+        detalles="Esta rutina full body trabaja todos los grupos musculares principales en una sola sesión. Perfecta para quienes tienen poco tiempo o prefieren entrenar todo el cuerpo en un solo día."
+      />
 
       {/* Planificación y Estructura */}
       <section className="py-16 bg-secondary/5">
