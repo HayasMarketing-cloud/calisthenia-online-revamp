@@ -16,6 +16,8 @@ import { allVideos } from "@/data/videoLibrary";
 import { getVideosByZone } from "@/lib/videoUtils";
 import ExerciseCard from "@/components/routine/ExerciseCard";
 import RoutineBreadcrumbs from "@/components/routine/RoutineBreadcrumbs";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const RutinaFullBody = () => {
   return (
@@ -54,6 +56,8 @@ const RutinaFullBody = () => {
           })}
         </script>
       </Helmet>
+
+      <Header />
 
       {/* Hero Section */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-background">
@@ -1135,6 +1139,8 @@ const RutinaFullBody = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </>
   );
 };
