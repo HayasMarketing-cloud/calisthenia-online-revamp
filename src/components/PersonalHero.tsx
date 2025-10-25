@@ -35,9 +35,7 @@ const PersonalHero = () => {
               <span className="text-primary"> Entrenador</span>
             </h1>
             
-            <p className="text-xl text-primary font-semibold">
-              Un 1% mejor cada día
-            </p>
+            <p className="text-xl text-primary font-semibold">Un 0,1% mejor cada día</p>
             
             <p className="text-lg text-muted-foreground leading-relaxed">
               Mi camino en la calistenia comenzó como el de muchos: buscando una forma de entrenar 
