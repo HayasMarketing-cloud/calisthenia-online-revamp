@@ -9,7 +9,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { Menu, User, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import iconBrazos from "@/assets/calisthenia-brazos.webp";
@@ -19,6 +19,8 @@ import iconPiernas from "@/assets/calisthenia-piernas.webp";
 import iconPecho from "@/assets/calisthenia-pecho.webp";
 import iconHombro from "@/assets/calisthenia-hombro.webp";
 import iconFullBody from "@/assets/calisthenia-full-body.webp";
+import entrenaCase from "@/assets/entrena-casa.jpg";
+import entrenaParque from "@/assets/entrena-parque.jpg";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,6 +33,16 @@ const Header = () => {
     { name: "Pecho", path: "/rutina-pecho-calistenia", icon: iconPecho },
     { name: "Hombro", path: "/rutina-hombro-calistenia", icon: iconHombro },
     { name: "Full Body", path: "/rutina-full-body", icon: iconFullBody },
+  ];
+
+  const lugares = [
+    { name: "Casa", path: "/rutina-calistenia-en-casa", icon: entrenaCase },
+    { name: "Parque", path: "/calistenia-en-parque", icon: entrenaParque },
+  ];
+
+  const niveles = [
+    { name: "Principiante", path: "/calistenia-principiantes", icon: User },
+    { name: "Intermedio", path: "/calistenia-nivel-avanzado", icon: Users },
   ];
 
   return (
@@ -74,6 +86,51 @@ const Header = () => {
                       </Link>
                     </li>
                   ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
+            {/* Lugar con Dropdown */}
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Lugar</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[300px] gap-3 p-4 bg-popover">
+                  {lugares.map((lugar) => (
+                    <li key={lugar.path}>
+                      <Link to={lugar.path}>
+                        <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                          <div className="text-sm font-medium leading-none flex items-center gap-2">
+                            <img src={lugar.icon} alt={lugar.name} className="w-6 h-6 object-cover rounded" />
+                            {lugar.name}
+                          </div>
+                        </NavigationMenuLink>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
+            {/* Nivel con Dropdown */}
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Nivel</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[300px] gap-3 p-4 bg-popover">
+                  {niveles.map((nivel) => {
+                    const IconComponent = nivel.icon;
+                    return (
+                      <li key={nivel.path}>
+                        <Link to={nivel.path}>
+                          <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                            <div className="text-sm font-medium leading-none flex items-center gap-2">
+                              <IconComponent className="w-4 h-4" />
+                              {nivel.name}
+                            </div>
+                          </NavigationMenuLink>
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
@@ -132,6 +189,43 @@ const Header = () => {
                       {routine.name}
                     </Link>
                   ))}
+                </div>
+              </div>
+
+              <div>
+                <p className="text-lg font-medium mb-2">Lugar</p>
+                <div className="flex flex-col gap-2 ml-4">
+                  {lugares.map((lugar) => (
+                    <Link 
+                      key={lugar.path}
+                      to={lugar.path} 
+                      onClick={() => setIsOpen(false)}
+                      className="text-sm hover:text-primary transition-colors flex items-center gap-2"
+                    >
+                      <img src={lugar.icon} alt={lugar.name} className="w-6 h-6 object-cover rounded" />
+                      {lugar.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <p className="text-lg font-medium mb-2">Nivel</p>
+                <div className="flex flex-col gap-2 ml-4">
+                  {niveles.map((nivel) => {
+                    const IconComponent = nivel.icon;
+                    return (
+                      <Link 
+                        key={nivel.path}
+                        to={nivel.path} 
+                        onClick={() => setIsOpen(false)}
+                        className="text-sm hover:text-primary transition-colors flex items-center gap-2"
+                      >
+                        <IconComponent className="w-4 h-4" />
+                        {nivel.name}
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
 

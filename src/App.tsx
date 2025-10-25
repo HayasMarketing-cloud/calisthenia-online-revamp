@@ -14,6 +14,10 @@ import RutinaPiernas from "./pages/RutinaPiernas";
 import RutinaPecho from "./pages/RutinaPecho";
 import RutinaFullBody from "./pages/RutinaFullBody";
 import RutinaHombro from "./pages/RutinaHombro";
+import RutinaCasa from "./pages/RutinaCasa";
+import CalisteniaParque from "./pages/CalisteniaParque";
+import CalisteniaPrincipiantes from "./pages/CalisteniaPrincipiantes";
+import CallisteniaNivelAvanzado from "./pages/CallisteniaNivelAvanzado";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +40,10 @@ const App = () => (
           <Route path="/rutina-pecho-calistenia" element={<RutinaPecho />} />
           <Route path="/rutina-hombro-calistenia" element={<RutinaHombro />} />
           <Route path="/rutina-full-body" element={<RutinaFullBody />} />
+          <Route path="/rutina-calistenia-en-casa" element={<RutinaCasa />} />
+          <Route path="/calistenia-en-parque" element={<CalisteniaParque />} />
+          <Route path="/calistenia-principiantes" element={<CalisteniaPrincipiantes />} />
+          <Route path="/calistenia-nivel-avanzado" element={<CallisteniaNivelAvanzado />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
