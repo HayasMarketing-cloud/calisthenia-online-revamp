@@ -2,6 +2,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import VideoGallery from "@/components/VideoGallery";
+import { allVideos } from "@/data/videoLibrary";
+import { getVideosByZone } from "@/lib/videoUtils";
 import espaldaImg from "@/assets/calisthenia-espalda.webp";
 
 const RutinaEspalda = () => {
@@ -192,6 +195,17 @@ const RutinaEspalda = () => {
               </CardContent>
             </Card>
           </div>
+        </div>
+      </section>
+
+      {/* Galería de Videos */}
+      <section className="py-16 bg-secondary/5">
+        <div className="container mx-auto px-4">
+          <VideoGallery 
+            videos={getVideosByZone(allVideos, 'Espalda', { limit: 6, sortBy: 'engagement' })}
+            title="📹 Videos de Entrenamiento de Espalda"
+            showStats={true}
+          />
         </div>
       </section>
 

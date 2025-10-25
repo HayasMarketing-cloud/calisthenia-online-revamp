@@ -11,6 +11,9 @@ import {
 } from "@/components/ui/accordion";
 import { Separator } from "@/components/ui/separator";
 import VideoEmbed from "@/components/VideoEmbed";
+import VideoGallery from "@/components/VideoGallery";
+import { allVideos } from "@/data/videoLibrary";
+import { getVideosByZone } from "@/lib/videoUtils";
 import ExerciseCard from "@/components/routine/ExerciseCard";
 import RoutineBreadcrumbs from "@/components/routine/RoutineBreadcrumbs";
 import fullBodyImg from "@/assets/calisthenia-full-body.webp";
@@ -1075,6 +1078,17 @@ const RutinaFullBody = () => {
               </AccordionItem>
             </Accordion>
           </div>
+        </div>
+      </section>
+
+      {/* Galería de Videos */}
+      <section className="py-16 bg-secondary/5">
+        <div className="container mx-auto px-4">
+          <VideoGallery 
+            videos={getVideosByZone(allVideos, 'Full Body', { limit: 6, sortBy: 'engagement' })}
+            title="📹 Videos de Entrenamiento Full Body"
+            showStats={true}
+          />
         </div>
       </section>
 
