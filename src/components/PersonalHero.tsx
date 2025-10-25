@@ -1,10 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Award, Users } from "lucide-react";
-
 const PersonalHero = () => {
-  return (
-    <section className="py-32 bg-secondary/5">
+  return <section className="py-32 bg-secondary/5">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Image Section */}
@@ -34,7 +32,7 @@ const PersonalHero = () => {
             
             <h1 className="font-display font-bold text-4xl lg:text-5xl leading-tight">
               Mi Historia: De Principiante a 
-              <span className="text-primary"> Entrenador Profesional</span>
+              <span className="text-primary"> Entrenador</span>
             </h1>
             
             <p className="text-xl text-primary font-semibold">
@@ -54,27 +52,16 @@ const PersonalHero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button 
-                size="lg" 
-                className="bg-gradient-primary hover:shadow-elegant transition-all duration-300 min-h-[44px]"
-                onClick={() => window.location.href = '/#entrenamientos'}
-              >
+              <Button size="lg" className="bg-gradient-primary hover:shadow-elegant transition-all duration-300 min-h-[44px]" onClick={() => window.location.href = '/#entrenamientos'}>
                 Conocer Mis Programas
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="min-h-[44px]"
-                onClick={() => window.location.href = 'mailto:info@calisthenia.online'}
-              >
+              <Button variant="outline" size="lg" className="min-h-[44px]" onClick={() => window.location.href = 'mailto:info@calisthenia.online'}>
                 Contactar Ahora
               </Button>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default PersonalHero;
