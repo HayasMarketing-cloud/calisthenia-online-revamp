@@ -21,7 +21,7 @@ const Timeline = () => {
       icon: Target,
       year: "2021-Presente",
       title: "Calistenia Online Hoy",
-      description: "La evolución natural fue crear Calistenia Online, una plataforma completa para llevar mi metodología a cualquier persona del mundo. Hoy lidero una comunidad de más de 500 estudiantes, ofrezco programas estructurados y continúo formándome para ofrecer el mejor servicio. Mi objetivo: democratizar el acceso a entrenamiento profesional de calistenia.",
+      description: "La evolución natural fue crear Calistenia Online, una plataforma completa para llevar mi metodología a cualquier persona del mundo. Hoy lidero una comunidad de más de 100 estudiantes, ofrezco programas estructurados y continúo formándome para ofrecer el mejor servicio. Mi objetivo: democratizar el acceso a entrenamiento profesional de calistenia.",
       color: "primary"
     }
   ];
