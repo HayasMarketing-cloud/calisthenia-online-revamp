@@ -982,8 +982,12 @@ const RutinaAbdominales = () => {
       <section className="py-16 bg-secondary/5">
         <div className="container mx-auto px-4">
           <VideoGallery 
-            videos={getVideosByZone(allVideos, 'Core', { limit: 6, sortBy: 'engagement' })}
-            title="📹 Videos de Entrenamiento de Core"
+            videos={getVideosByZone(allVideos, 'Core', { 
+              limit: 9, 
+              sortBy: 'vistas',
+              minVistas: 1000
+            }).filter(video => video.id !== 'MnbNx2x-RY8')}
+            title="📹 Más Videos de Entrenamiento de Abdominales"
             showStats={true}
           />
         </div>
