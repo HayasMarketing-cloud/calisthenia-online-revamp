@@ -19,6 +19,7 @@ import RoutineBreadcrumbs from "@/components/routine/RoutineBreadcrumbs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import VideoWithStructure from "@/components/VideoWithStructure";
+import QuickJumpBanner from "@/components/QuickJumpBanner";
 import pechoIcon from "@/assets/calisthenia-pecho.webp";
 import espaldaIcon from "@/assets/calisthenia-espalda.webp";
 import piernasIcon from "@/assets/calisthenia-piernas.webp";
@@ -65,6 +66,15 @@ const RutinaFullBody = () => {
       </Helmet>
 
       <Header />
+
+      {/* Quick Jump Banner */}
+      <QuickJumpBanner 
+        text="¿Quieres ir directo a la práctica?"
+        linkText="Ver Rutina Completa"
+        href="#video-rutina"
+        icon="🎯"
+        variant="primary"
+      />
 
       {/* Hero Section */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-background">
@@ -197,6 +207,7 @@ const RutinaFullBody = () => {
 
       {/* Video con Estructura */}
       <VideoWithStructure
+        id="video-rutina"
         videoId="PmkNJ7fQhPY"
         videoTitle="🎬 Sigue la Rutina Full Body Completa"
         videoDescription="Entrena conmigo siguiendo este video guiado. Incluye calentamiento y todos los ejercicios principales."

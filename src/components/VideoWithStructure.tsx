@@ -1,4 +1,5 @@
 interface VideoWithStructureProps {
+  id?: string;
   // Video data
   videoId: string;
   videoTitle: string;
@@ -38,6 +39,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
 const VideoWithStructure = ({
+  id,
   videoId,
   videoTitle,
   videoDescription,
@@ -50,7 +52,7 @@ const VideoWithStructure = ({
   detalles
 }: VideoWithStructureProps) => {
   return (
-    <section className="py-16 bg-gradient-to-b from-background to-secondary/5">
+    <section id={id} className="py-16 bg-gradient-to-b from-background to-secondary/5">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
