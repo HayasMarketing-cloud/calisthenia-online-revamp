@@ -67,15 +67,6 @@ const RutinaFullBody = () => {
 
       <Header />
 
-      {/* Quick Jump Banner */}
-      <QuickJumpBanner 
-        text="¿Quieres ir directo a la práctica?"
-        linkText="Ver Rutina Completa"
-        href="#video-rutina"
-        icon="🎯"
-        variant="primary"
-      />
-
       {/* Hero Section */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-background">
         <div className="container mx-auto px-4">
@@ -114,6 +105,15 @@ const RutinaFullBody = () => {
           </div>
         </div>
       </section>
+
+      {/* Quick Jump Banner */}
+      <QuickJumpBanner 
+        text="¿Quieres ir directo a la práctica?"
+        linkText="Ver Rutina Completa"
+        href="#video-rutina"
+        icon="🎯"
+        variant="primary"
+      />
 
       {/* Fundamentos */}
       <section className="py-16 bg-secondary/5">
