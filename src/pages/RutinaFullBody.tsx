@@ -18,6 +18,12 @@ import ExerciseCard from "@/components/routine/ExerciseCard";
 import RoutineBreadcrumbs from "@/components/routine/RoutineBreadcrumbs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import pechoIcon from "@/assets/calisthenia-pecho.webp";
+import espaldaIcon from "@/assets/calisthenia-espalda.webp";
+import piernasIcon from "@/assets/calisthenia-piernas.webp";
+import abdomenIcon from "@/assets/calisthenia-abdomen.webp";
+import hombroIcon from "@/assets/calisthenia-hombro.webp";
+import brazosIcon from "@/assets/calisthenia-brazos.webp";
 
 const RutinaFullBody = () => {
   return (
@@ -124,17 +130,25 @@ const RutinaFullBody = () => {
             {/* Grupos Musculares */}
             <div>
               <h3 className="font-bold text-2xl mb-6 text-center">Grupos Musculares Implicados</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
-                  { emoji: "💯", title: "Pecho", desc: "Implicado en movimientos como las flexiones y fondos" },
-                  { emoji: "🦾", title: "Espalda", desc: "Fortalecido a través de dominadas y ejercicios de tracción" },
-                  { emoji: "🦵", title: "Piernas", desc: "Trabajadas con sentadillas y variaciones, así como ejercicios de extensión y elevación" },
-                  { emoji: "🔥", title: "Abdominales", desc: "Activados durante la mayoría de los ejercicios, contribuyendo a la estabilización del core" },
-                  { emoji: "🤸", title: "Hombros", desc: "Activados en ejercicios de empuje como las flexiones y los fondos" }
+                  { icon: pechoIcon, title: "Pecho", desc: "Implicado en movimientos como las flexiones y fondos" },
+                  { icon: espaldaIcon, title: "Espalda", desc: "Fortalecido a través de dominadas y ejercicios de tracción" },
+                  { icon: piernasIcon, title: "Piernas", desc: "Trabajadas con sentadillas y variaciones, así como ejercicios de extensión y elevación" },
+                  { icon: abdomenIcon, title: "Abdominales", desc: "Activados durante la mayoría de los ejercicios, contribuyendo a la estabilización del core" },
+                  { icon: hombroIcon, title: "Hombros", desc: "Activados en ejercicios de empuje como las flexiones y los fondos" },
+                  { icon: brazosIcon, title: "Brazos", desc: "Desarrollados con dominadas, fondos y ejercicios de tracción que fortalecen bíceps y tríceps" }
                 ].map((muscle, i) => (
-                  <Card key={i}>
+                  <Card key={i} className="hover:shadow-elegant transition-shadow">
                     <CardContent className="p-6 text-center">
-                      <div className="text-4xl mb-3">{muscle.emoji}</div>
+                      <div className="w-24 h-24 mx-auto mb-4 rounded-full border-2 border-primary/20 flex items-center justify-center bg-gradient-to-br from-primary/5 to-secondary/5">
+                        <img 
+                          src={muscle.icon} 
+                          alt={`Icono ${muscle.title}`}
+                          loading="lazy"
+                          className="w-16 h-16 object-contain"
+                        />
+                      </div>
                       <h4 className="font-bold text-lg mb-2">{muscle.title}</h4>
                       <p className="text-sm text-muted-foreground">{muscle.desc}</p>
                     </CardContent>
