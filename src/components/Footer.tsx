@@ -12,7 +12,7 @@ const Footer = () => {
               <img 
                 src={logoFooter} 
                 alt="Calistenia Online" 
-                className="h-8 w-auto"
+                className="h-16 w-auto"
               />
             </div>
             <p className="text-gray-300 leading-relaxed">
