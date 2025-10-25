@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Award, Users, Clock } from "lucide-react";
-import nicolasAbout from "@/assets/nicolas-about.jpg";
 const AboutSection = () => {
   const achievements = ["Certificado en Entrenamiento Funcional", "Más de 5 años de experiencia", "500+ estudiantes transformados", "Especialista en Calistenia Avanzada"];
   const stats = [{
@@ -23,12 +22,17 @@ const AboutSection = () => {
           {/* Image Section */}
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              <img 
-                src={nicolasAbout} 
-                alt="Nicolás Reyero - Entrenador Personal de Calistenia"
-                className="w-full h-full object-cover aspect-[4/5]"
-              />
+              <div className="aspect-[4/5] bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                <div className="text-center text-muted-foreground">
+                  <Users className="h-24 w-24 mx-auto mb-4 opacity-50" />
+                  <p className="text-lg">Nicolás Reyero</p>
+                  <p className="text-sm">Entrenador Personal</p>
+                </div>
+              </div>
             </div>
+            
+            {/* Floating badge */}
+            
           </div>
 
           {/* Content Section */}
@@ -54,19 +58,14 @@ const AboutSection = () => {
             </div>
 
             {/* Achievements */}
-            <div className="space-y-3">
-              {achievements.map((achievement, index) => <div key={index} className="flex items-center space-x-3">
-                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span className="text-foreground font-medium">{achievement}</span>
-                </div>)}
-            </div>
+            
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-6 py-6">
               {stats.map((stat, index) => {
               const Icon = stat.icon;
               return <div key={index} className="text-center">
-                    <Icon className="h-8 w-8 text-primary mx-auto mb-2" />
+                    
                     <p className="font-bold text-2xl text-foreground">{stat.value}</p>
                     <p className="text-sm text-muted-foreground">{stat.label}</p>
                   </div>;
