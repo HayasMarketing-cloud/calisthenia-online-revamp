@@ -12,12 +12,13 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import iconBrazos from "@/assets/icon-zona-brazos.png";
-import iconEspalda from "@/assets/icon-zona-espalda.png";
-import iconAbdomen from "@/assets/icon-zona-abdomen.png";
-import iconPiernas from "@/assets/icon-zona-piernas.png";
-import iconPecho from "@/assets/icon-zona-pecho.png";
-import iconFullBody from "@/assets/icon-zona-fullbody.png";
+import iconBrazos from "@/assets/calisthenia-brazos.webp";
+import iconEspalda from "@/assets/calisthenia-espalda.webp";
+import iconAbdomen from "@/assets/calisthenia-abdomen.webp";
+import iconPiernas from "@/assets/calisthenia-piernas.webp";
+import iconPecho from "@/assets/calisthenia-pecho.webp";
+import iconHombro from "@/assets/calisthenia-hombro.webp";
+import iconFullBody from "@/assets/calisthenia-full-body.webp";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,6 +29,7 @@ const Header = () => {
     { name: "Abdomen", path: "/rutina-abdominales-calistenia", icon: iconAbdomen },
     { name: "Piernas", path: "/rutina-piernas-calistenia", icon: iconPiernas },
     { name: "Pecho", path: "/rutina-pecho-calistenia", icon: iconPecho },
+    { name: "Hombro", path: "/rutina-hombro-calistenia", icon: iconHombro },
     { name: "Full Body", path: "/rutina-full-body", icon: iconFullBody },
   ];
 
@@ -65,7 +67,7 @@ const Header = () => {
                       <Link to={routine.path}>
                         <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                           <div className="text-sm font-medium leading-none flex items-center gap-2">
-                            <img src={routine.icon} alt={routine.name} className="w-5 h-5 object-contain" />
+                            <img src={routine.icon} alt={routine.name} className="w-6 h-6 object-contain" />
                             {routine.name}
                           </div>
                         </NavigationMenuLink>
@@ -126,7 +128,7 @@ const Header = () => {
                       onClick={() => setIsOpen(false)}
                       className="text-sm hover:text-primary transition-colors flex items-center gap-2"
                     >
-                      <img src={routine.icon} alt={routine.name} className="w-5 h-5 object-contain" />
+                      <img src={routine.icon} alt={routine.name} className="w-6 h-6 object-contain" />
                       {routine.name}
                     </Link>
                   ))}
