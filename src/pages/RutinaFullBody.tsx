@@ -205,9 +205,11 @@ const RutinaFullBody = () => {
         </div>
       </section>
 
+      {/* Ancla para scroll suave con espacio arriba */}
+      <div id="video-rutina" className="relative -top-20"></div>
+
       {/* Video con Estructura */}
       <VideoWithStructure
-        id="video-rutina"
         videoId="PmkNJ7fQhPY"
         videoTitle="🎬 Sigue la Rutina Full Body Completa"
         videoDescription="Entrena conmigo siguiendo este video guiado. Incluye calentamiento y todos los ejercicios principales."
