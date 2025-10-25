@@ -1,4 +1,5 @@
 import { Instagram, Youtube, Mail, MapPin } from "lucide-react";
+import logoFooter from "@/assets/logo-footer.webp";
 
 const Footer = () => {
   return (
@@ -7,18 +8,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-          <img 
-            src="/lovable-uploads/f3b95d09-dfd8-4644-9fcb-11a257a02133.png" 
-            alt="Calistenia Online" 
-            className="h-6 w-auto"
-          />
-          <div>
-            <h3 className="font-display font-bold text-xl">
-              <span className="text-primary">CALISTENIA</span>
-              <span className="text-white"> ONLINE</span>
-            </h3>
-          </div>
+            <div className="mb-2">
+              <img 
+                src={logoFooter} 
+                alt="Calistenia Online" 
+                className="h-8 w-auto"
+              />
             </div>
             <p className="text-gray-300 leading-relaxed">
               Transformando vidas a través de la calistenia y el entrenamiento funcional. 
