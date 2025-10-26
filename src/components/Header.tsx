@@ -155,13 +155,6 @@ const Header = () => {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <Button 
-          variant="default" 
-          className="hidden md:flex bg-gradient-primary hover:shadow-elegant transition-all duration-300"
-        >
-          Empezar Ahora
-        </Button>
-
         {/* Mobile Menu */}
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>
@@ -236,10 +229,6 @@ const Header = () => {
               <Link to="/quien-soy" onClick={() => setIsOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">
                 Quién Soy
               </Link>
-
-              <Button className="mt-4 bg-gradient-primary">
-                Empezar Ahora
-              </Button>
             </nav>
           </SheetContent>
         </Sheet>
