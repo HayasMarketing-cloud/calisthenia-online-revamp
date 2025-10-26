@@ -1,33 +1,27 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import VideoGallery from "@/components/VideoGallery";
 import { allVideos } from "@/data/videoLibrary";
 import { getVideosByZone } from "@/lib/videoUtils";
+import RoutineHero from "@/components/routine/RoutineHero";
 
 const RutinaEspalda = () => {
   return (
     <div className="min-h-screen">
       <Header />
       
-      {/* Hero */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-primary/10 to-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="font-display font-bold text-4xl lg:text-6xl mb-6 text-center">
-              Rutina de <span className="text-primary">Espalda</span> 🦾
-            </h1>
-            <p className="text-xl text-muted-foreground mb-6 text-center">
-              Construye una espalda fuerte y definida con dominadas, remos y ejercicios de calistenia avanzados.
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Button size="lg" className="bg-gradient-primary">Ver Programa Completo</Button>
-              <Button size="lg" variant="outline">Descargar PDF</Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <RoutineHero
+        breadcrumbs={[
+          { label: "Inicio", href: "/" },
+          { label: "Rutinas", href: "/programas" },
+          { label: "Rutina Espalda", href: "/rutina-espalda" }
+        ]}
+        title="Rutina de"
+        titleHighlight="Espalda"
+        emoji="🦾"
+        description="Construye una espalda fuerte y definida con dominadas, remos y ejercicios de calistenia avanzados."
+      />
 
       {/* Beneficios */}
       <section className="py-16 bg-secondary/5">
@@ -199,20 +193,6 @@ const RutinaEspalda = () => {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="font-display font-bold text-3xl lg:text-4xl mb-6">
-            Domina las <span className="text-primary">Habilidades Avanzadas</span>
-          </h2>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Accede a programas completos para conseguir front lever, muscle-up y otras skills impresionantes.
-          </p>
-          <Button size="lg" className="bg-gradient-primary">
-            Ver Programas Avanzados
-          </Button>
-        </div>
-      </section>
 
       <Footer />
     </div>

@@ -16,6 +16,7 @@ import RoutineBreadcrumbs from "@/components/routine/RoutineBreadcrumbs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import VideoWithStructure from "@/components/VideoWithStructure";
+import RoutineHero from "@/components/routine/RoutineHero";
 import QuickJumpBanner from "@/components/QuickJumpBanner";
 
 const RutinaAbdominales = () => {
@@ -58,44 +59,20 @@ const RutinaAbdominales = () => {
 
       <Header />
 
-      {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-primary/10 to-background">
-        <div className="container mx-auto px-4">
-          <RoutineBreadcrumbs 
-            items={[
-              { label: "Inicio", href: "/" },
-              { label: "Rutinas", href: "/programas" },
-              { label: "Rutina Abdominales", href: "/rutina-abdominales-calistenia" }
-            ]}
-          />
-          
-          <div className="max-w-4xl mx-auto mt-8">
-            <h1 className="font-display font-bold text-4xl lg:text-6xl mb-6 text-center">
-              Rutina de <span className="text-primary">Abdominales</span> Calistenia 🔥
-            </h1>
-            
-            <div className="flex flex-wrap gap-3 mb-6 justify-center">
-              <Badge variant="secondary">💪 Todos los Niveles</Badge>
-              <Badge variant="secondary">⏱️ 10-30 min</Badge>
-              <Badge variant="secondary">🔄 3-4x/semana</Badge>
-              <Badge variant="secondary">📍 Casa/Parque</Badge>
-            </div>
-            
-            <p className="text-xl text-muted-foreground mb-8 text-center">
-              Una rutina abdominal adecuada es esencial para fortalecer el core y mejorar la funcionalidad en los entrenamientos. Desarrolla un six pack definido con ejercicios funcionales que trabajan todo el abdomen y previenen lesiones.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild>
-                <a href="#video-rutina">Ver Rutina Completa</a>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link to="/programas">Ver Programas</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <RoutineHero
+        breadcrumbs={[
+          { label: "Inicio", href: "/" },
+          { label: "Rutinas", href: "/programas" },
+          { label: "Rutina Abdominales", href: "/rutina-abdominales-calistenia" }
+        ]}
+        title="Rutina de"
+        titleHighlight="Abdominales"
+        emoji="Calistenia 🔥"
+        description="Una rutina abdominal adecuada es esencial para fortalecer el core y mejorar la funcionalidad en los entrenamientos. Desarrolla un six pack definido con ejercicios funcionales que trabajan todo el abdomen y previenen lesiones."
+        nivel="Todos los Niveles"
+        duracion="10-30 min"
+        lugar="Casa/Parque"
+      />
 
       {/* Quick Jump Banner */}
       <QuickJumpBanner 

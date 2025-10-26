@@ -1,33 +1,27 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import VideoGallery from "@/components/VideoGallery";
 import { allVideos } from "@/data/videoLibrary";
 import { getVideosByZone } from "@/lib/videoUtils";
+import RoutineHero from "@/components/routine/RoutineHero";
 
 const RutinaHombro = () => {
   return (
     <div className="min-h-screen">
       <Header />
       
-      {/* Hero */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-primary/10 to-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="font-display font-bold text-4xl lg:text-6xl mb-6 text-center">
-              Rutina de <span className="text-primary">Hombros</span> 💪
-            </h1>
-            <p className="text-xl text-muted-foreground mb-6 text-center">
-              Fortalece y desarrolla hombros potentes y estables con ejercicios de calistenia específicos para deltoides y manguito rotador.
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Button size="lg" className="bg-gradient-primary">Ver Programa Completo</Button>
-              <Button size="lg" variant="outline">Descargar PDF</Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <RoutineHero
+        breadcrumbs={[
+          { label: "Inicio", href: "/" },
+          { label: "Rutinas", href: "/programas" },
+          { label: "Rutina Hombros", href: "/rutina-hombro" }
+        ]}
+        title="Rutina de"
+        titleHighlight="Hombros"
+        emoji="💪"
+        description="Fortalece y desarrolla hombros potentes y estables con ejercicios de calistenia específicos para deltoides y manguito rotador."
+      />
 
       {/* Beneficios */}
       <section className="py-16 bg-secondary/5">
@@ -205,20 +199,6 @@ const RutinaHombro = () => {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="font-display font-bold text-3xl lg:text-4xl mb-6">
-            ¿Quieres un Programa <span className="text-primary">Personalizado</span>?
-          </h2>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Accede a rutinas completas, planes de progresión detallados y coaching personalizado para alcanzar tus objetivos más rápido.
-          </p>
-          <Button size="lg" className="bg-gradient-primary">
-            Ver Programas de Entrenamiento
-          </Button>
-        </div>
-      </section>
 
       <Footer />
     </div>
