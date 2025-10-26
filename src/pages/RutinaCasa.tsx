@@ -1,31 +1,46 @@
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import HeroSection from "@/components/HeroSection";
 import VideoGallery from "@/components/VideoGallery";
+import VideoWithStructure from "@/components/VideoWithStructure";
+import QuickJumpBanner from "@/components/QuickJumpBanner";
+import RoutineBreadcrumbs from "@/components/routine/RoutineBreadcrumbs";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { allVideos } from "@/data/videoLibrary";
-import { getVideosByZone } from "@/lib/videoUtils";
 import entrenaCase from "@/assets/entrena-casa.jpg";
-import { Home, CheckCircle } from "lucide-react";
+import { Home, CheckCircle, Target, Shield, Zap, Heart, Clock, TrendingUp, AlertCircle, Calendar, Activity, Dumbbell } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const RutinaCasa = () => {
-  // Filtrar videos para entrenamiento en casa (sin equipamiento o peso corporal)
-  const videosEnCasa = allVideos.filter(
-    video => 
-      video.material === "Sin equipamiento" || 
-      video.material === "Peso corporal"
-  ).sort((a, b) => b.vistas - a.vistas);
+  // Filtrar videos para entrenamiento en casa (excluir video principal)
+  const mainVideoId = "2PVk2wUY04k";
+  const videosEnCasa = allVideos
+    .filter(
+      video => 
+        (video.material === "Sin equipamiento" || video.material === "Peso corporal") &&
+        video.id !== mainVideoId
+    )
+    .sort((a, b) => b.vistas - a.vistas)
+    .slice(0, 9);
+
+  const breadcrumbItems = [
+    { label: "Inicio", href: "/" },
+    { label: "Lugar", href: "/programas" },
+    { label: "Calistenia en Casa", href: "/rutina-calistenia-en-casa" }
+  ];
 
   return (
     <>
       <Helmet>
-        <title>Rutina de Calistenia en Casa | Entrena sin Equipamiento</title>
+        <title>Calistenia en Casa: Rutina Completa sin Equipamiento | Guía 2025</title>
         <meta 
           name="description" 
-          content="Rutinas completas de calistenia para entrenar en casa sin equipamiento. Ejercicios efectivos con tu propio peso corporal desde cualquier lugar." 
+          content="Rutina completa de calistenia en casa sin equipamiento. Ejercicios, planificación y técnicas para entrenar desde tu hogar. Video guiado incluido." 
         />
-        <meta property="og:title" content="Rutina de Calistenia en Casa | Entrena sin Equipamiento" />
-        <meta property="og:description" content="Rutinas completas de calistenia para entrenar en casa sin equipamiento. Ejercicios efectivos con tu propio peso corporal." />
+        <meta name="keywords" content="calistenia para principiantes en casa, rutina calistenia en casa, entrenamiento funcional en casa, ejercicios peso corporal" />
+        <meta property="og:title" content="Calistenia en Casa: Rutina Completa sin Equipamiento" />
+        <meta property="og:description" content="Rutina completa de calistenia en casa sin equipamiento. Ejercicios efectivos con video guiado." />
         <link rel="canonical" href="https://calisthenia.online/rutina-calistenia-en-casa/" />
       </Helmet>
 
@@ -53,7 +68,23 @@ const RutinaCasa = () => {
             </div>
           </section>
 
-          {/* Beneficios */}
+          {/* Breadcrumbs */}
+          <div className="container mx-auto px-4 pt-8">
+            <RoutineBreadcrumbs items={breadcrumbItems} />
+          </div>
+
+          {/* Quick Jump Banner */}
+          <div className="container mx-auto px-4 py-4">
+            <QuickJumpBanner
+              text="¿Quieres empezar a entrenar ya?"
+              linkText="Ver Rutina Completa"
+              href="#video-rutina"
+              icon="🏠"
+              variant="primary"
+            />
+          </div>
+
+          {/* Por Qué Entrenar en Casa */}
           <section className="py-16 bg-muted/30">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
@@ -88,52 +119,949 @@ const RutinaCasa = () => {
             </div>
           </section>
 
-          {/* Galería de Videos */}
+          {/* ¿Qué es la Calistenia en Casa? */}
           <section className="py-16">
             <div className="container mx-auto px-4">
+              <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
+                ¿Qué es la Calistenia para Principiantes en Casa?
+              </h2>
+              
+              <div className="max-w-4xl mx-auto">
+                <Card className="border-primary/20 hover:shadow-elegant transition-all duration-300">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-3">
+                      <Target className="w-8 h-8 text-primary" />
+                      Entrenamiento con Peso Corporal
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4 text-muted-foreground">
+                    <p>
+                      La <strong>calistenia en casa</strong> es un método de entrenamiento que utiliza el propio peso del cuerpo como herramienta principal. 
+                      Movimientos como flexiones, sentadillas y dominadas te permiten trabajar diversos grupos musculares de manera efectiva sin necesidad de equipos adicionales.
+                    </p>
+                    <p>
+                      La eficacia de este entrenamiento radica en su capacidad para activar la musculatura y mejorar la funcionalidad del cuerpo. 
+                      Puedes entrenar en cualquier espacio de tu hogar, desde tu habitación hasta el salón, solo necesitas aproximadamente 2 metros cuadrados.
+                    </p>
+                    <div className="bg-muted/50 p-4 rounded-lg mt-4">
+                      <p className="text-sm font-semibold text-foreground mb-2">💡 Diferencia vs Gimnasio Tradicional:</p>
+                      <p className="text-sm">
+                        Mientras el gimnasio requiere máquinas y pesas, la calistenia convierte tu cuerpo en tu propia resistencia. 
+                        Esto no solo ahorra dinero, sino que también desarrolla fuerza funcional más aplicable a movimientos del día a día.
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+
+          {/* Beneficios de la Calistenia en Casa */}
+          <section className="py-16 bg-muted/30">
+            <div className="container mx-auto px-4">
+              <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
+                Beneficios de la Rutina Calistenia en Casa
+              </h2>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <Card className="hover:shadow-elegant transition-all duration-300">
+                  <CardHeader>
+                    <Dumbbell className="w-10 h-10 text-primary mb-2" />
+                    <CardTitle>Desarrollo de Fuerza Funcional</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      Al trabajar con tu propio peso, desarrollas músculos de manera equilibrada y aumentas la fuerza aplicable a situaciones reales.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-elegant transition-all duration-300">
+                  <CardHeader>
+                    <Heart className="w-10 h-10 text-primary mb-2" />
+                    <CardTitle>Mejora Cardiovascular</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      Los movimientos dinámicos elevan tu ritmo cardíaco, mejorando la salud cardiovascular y la capacidad pulmonar.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-elegant transition-all duration-300">
+                  <CardHeader>
+                    <Activity className="w-10 h-10 text-primary mb-2" />
+                    <CardTitle>Coordinación y Equilibrio</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      Ejercicios que requieren balance promueven la conexión mente-cuerpo y mejoran tu estabilidad general.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-elegant transition-all duration-300">
+                  <CardHeader>
+                    <Shield className="w-10 h-10 text-primary mb-2" />
+                    <CardTitle>Prevención de Lesiones</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      Fortaleces músculos, tendones y ligamentos, creando una base sólida que reduce el riesgo de lesiones.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-elegant transition-all duration-300">
+                  <CardHeader>
+                    <Clock className="w-10 h-10 text-primary mb-2" />
+                    <CardTitle>Entrenamientos Eficientes</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      Sesiones de 20-45 minutos son suficientes para obtener resultados, perfecto para agendas ocupadas.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-elegant transition-all duration-300">
+                  <CardHeader>
+                    <TrendingUp className="w-10 h-10 text-primary mb-2" />
+                    <CardTitle>Adaptable a Todos los Niveles</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      Desde principiantes hasta avanzados, cada ejercicio se puede modificar según tus capacidades.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+
+          {/* Video Principal Estructurado */}
+          <div id="video-rutina" className="relative -top-20"></div>
+          <section className="py-16">
+            <div className="container mx-auto px-4">
+              <VideoWithStructure
+                videoId={mainVideoId}
+                videoTitle="🎬 Entrena Conmigo: Rutina Completa en Casa"
+                videoDescription="Sigue esta rutina guiada sin necesidad de material. Perfecta para empezar en calistenia desde tu hogar."
+                nivel="Principiante"
+                zonaMuscular="Full Body"
+                material="Peso corporal"
+                formato={{
+                  calentamiento: {
+                    ejercicios: 5,
+                    intensidad: "Baja intensidad"
+                  },
+                  partePrincipal: {
+                    series: 3,
+                    descripcion: "Cada ejercicio con descanso controlado"
+                  },
+                  tempo: {
+                    activo: "40 segundos",
+                    descanso: "20 segundos"
+                  }
+                }}
+                estimulos={[
+                  "⚡ Fuerza funcional",
+                  "💪 Resistencia muscular",
+                  "🔥 Quema de calorías"
+                ]}
+                insights={[
+                  "Solo necesitas 2 metros cuadrados de espacio",
+                  "Ejercicios progresivos para todos los niveles",
+                  "30 minutos de entrenamiento efectivo",
+                  "Incluye calentamiento y estiramiento final"
+                ]}
+                detalles="Esta rutina trabaja todos los grupos musculares desde casa sin equipamiento. Ideal para quienes empiezan o buscan entrenar de forma efectiva en espacios reducidos."
+              />
+            </div>
+          </section>
+
+          {/* Preparación para el Entrenamiento Funcional en Casa */}
+          <section className="py-16 bg-muted/30">
+            <div className="container mx-auto px-4">
+              <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
+                Preparación para tu Entrenamiento Funcional en Casa
+              </h2>
+              
+              <div className="max-w-5xl mx-auto space-y-8">
+                <Card className="hover:shadow-elegant transition-all duration-300">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-3">
+                      <Zap className="w-8 h-8 text-primary" />
+                      Calentamiento Obligatorio (5-10 minutos)
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <p className="text-muted-foreground">
+                      Un calentamiento adecuado incrementa la circulación sanguínea y eleva la temperatura muscular, reduciendo el riesgo de lesiones.
+                    </p>
+                    <div className="grid md:grid-cols-3 gap-4">
+                      <div className="bg-muted/50 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">Movilidad Articular</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Rotaciones de brazos, muñecas, caderas y tobillos para soltar las articulaciones
+                        </p>
+                      </div>
+                      <div className="bg-muted/50 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">Estiramientos Dinámicos</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Lunges, giros de torso y elevaciones de rodillas
+                        </p>
+                      </div>
+                      <div className="bg-muted/50 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">Activación Cardiovascular</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Marcha en el lugar o trote suave durante 3-5 minutos
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-3">
+                        <Home className="w-6 h-6 text-primary" />
+                        Elección del Espacio
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <p className="text-muted-foreground">
+                        Necesitas un mínimo de <strong>2x2 metros</strong> de espacio libre de obstáculos para permitir movimientos amplios y seguros.
+                      </p>
+                      <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
+                        <li>Superficie plana y estable</li>
+                        <li>Buena ventilación</li>
+                        <li>Iluminación adecuada</li>
+                        <li>Sin muebles cerca</li>
+                      </ul>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-3">
+                        <CheckCircle className="w-6 h-6 text-primary" />
+                        Equipo Básico Opcional
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <p className="text-muted-foreground">
+                        Aunque no son necesarios, estos elementos pueden mejorar tu comodidad:
+                      </p>
+                      <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
+                        <li><strong>Esterilla</strong>: comodidad en ejercicios de suelo</li>
+                        <li><strong>Silla o banco</strong>: para fondos de tríceps</li>
+                        <li><strong>Toalla</strong>: para higiene y soporte</li>
+                        <li><strong>Botella de agua</strong>: hidratación constante</li>
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Ejercicios Básicos de Calistenia en Casa */}
+          <section className="py-16">
+            <div className="container mx-auto px-4">
+              <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
+                Ejercicios Básicos de Calistenia en Casa
+              </h2>
+              
+              <div className="max-w-4xl mx-auto">
+                <Accordion type="single" collapsible className="space-y-4">
+                  <AccordionItem value="sentadillas" className="border rounded-lg px-6 bg-card">
+                    <AccordionTrigger className="hover:no-underline">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">🦵</span>
+                        <span className="font-semibold text-lg">Sentadillas (Squats)</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="space-y-4 pt-4">
+                      <div className="bg-muted/50 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">✅ Técnica Correcta:</h4>
+                        <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                          <li>Pies a la altura de los hombros</li>
+                          <li>Baja como si te sentaras en una silla</li>
+                          <li>Rodillas alineadas con los pies (no las sobrepases)</li>
+                          <li>Espalda recta durante todo el movimiento</li>
+                          <li>Peso en los talones</li>
+                        </ul>
+                      </div>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="font-semibold mb-2">📊 Series Recomendadas:</h4>
+                          <p className="text-sm text-muted-foreground">3-4 series × 12-15 repeticiones</p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">💪 Músculos Trabajados:</h4>
+                          <p className="text-sm text-muted-foreground">Piernas, glúteos, core</p>
+                        </div>
+                      </div>
+                      <div className="bg-primary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">🔄 Variaciones:</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Sentadilla sumo • Sentadilla búlgara • Sentadilla con salto • Sentadilla pistol (avanzado)
+                        </p>
+                      </div>
+                      <div className="bg-destructive/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2 flex items-center gap-2">
+                          <AlertCircle className="w-4 h-4" />
+                          Errores Comunes:
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          Rodillas hacia dentro • Espalda encorvada • Elevarse sobre las puntas de los pies
+                        </p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="flexiones" className="border rounded-lg px-6 bg-card">
+                    <AccordionTrigger className="hover:no-underline">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">💪</span>
+                        <span className="font-semibold text-lg">Flexiones (Push-ups)</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="space-y-4 pt-4">
+                      <div className="bg-muted/50 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">✅ Técnica Correcta:</h4>
+                        <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                          <li>Manos a la altura de los hombros</li>
+                          <li>Cuerpo en línea recta desde cabeza hasta pies</li>
+                          <li>Codos a 45° del cuerpo al bajar</li>
+                          <li>Bajar hasta que el pecho casi toque el suelo</li>
+                          <li>Subir extendiendo completamente los brazos</li>
+                        </ul>
+                      </div>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="font-semibold mb-2">📊 Series Recomendadas:</h4>
+                          <p className="text-sm text-muted-foreground">3-4 series × 8-12 repeticiones</p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">💪 Músculos Trabajados:</h4>
+                          <p className="text-sm text-muted-foreground">Pecho, tríceps, hombros, core</p>
+                        </div>
+                      </div>
+                      <div className="bg-primary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">🔄 Variaciones:</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Flexiones inclinadas (principiantes) • Flexiones diamante • Flexiones declinadas • Flexiones archer (avanzado)
+                        </p>
+                      </div>
+                      <div className="bg-destructive/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2 flex items-center gap-2">
+                          <AlertCircle className="w-4 h-4" />
+                          Errores Comunes:
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          Caderas hundidas • Codos muy abiertos • Rango de movimiento incompleto
+                        </p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="planchas" className="border rounded-lg px-6 bg-card">
+                    <AccordionTrigger className="hover:no-underline">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">🏋️</span>
+                        <span className="font-semibold text-lg">Planchas (Planks)</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="space-y-4 pt-4">
+                      <div className="bg-muted/50 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">✅ Posición Correcta:</h4>
+                        <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                          <li>Apoyado en antebrazos y puntas de pies</li>
+                          <li>Codos justo debajo de los hombros</li>
+                          <li>Cuerpo en línea recta desde cabeza hasta talones</li>
+                          <li>Core activado (ombligo hacia columna)</li>
+                          <li>Mirada hacia el suelo</li>
+                        </ul>
+                      </div>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="font-semibold mb-2">📊 Series Recomendadas:</h4>
+                          <p className="text-sm text-muted-foreground">3-4 series × 30-60 segundos</p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">💪 Músculos Trabajados:</h4>
+                          <p className="text-sm text-muted-foreground">Core completo, estabilizadores</p>
+                        </div>
+                      </div>
+                      <div className="bg-primary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">🔄 Variaciones:</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Plancha lateral • Plancha con tap shoulders • Plancha RKC (avanzado) • Plancha con elevación de pierna
+                        </p>
+                      </div>
+                      <div className="bg-destructive/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2 flex items-center gap-2">
+                          <AlertCircle className="w-4 h-4" />
+                          Errores Comunes:
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          Caderas hundidas o elevadas • Hombros adelantados • Aguantar la respiración
+                        </p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="zancadas" className="border rounded-lg px-6 bg-card">
+                    <AccordionTrigger className="hover:no-underline">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">🚶</span>
+                        <span className="font-semibold text-lg">Zancadas (Lunges)</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="space-y-4 pt-4">
+                      <div className="bg-muted/50 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">✅ Ejecución Controlada:</h4>
+                        <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                          <li>Paso adelante con una pierna</li>
+                          <li>Rodilla delantera alineada con el tobillo</li>
+                          <li>Rodilla trasera baja hacia el suelo (sin tocarlo)</li>
+                          <li>Torso erguido durante todo el movimiento</li>
+                          <li>Empujar con el talón delantero para volver</li>
+                        </ul>
+                      </div>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="font-semibold mb-2">📊 Series Recomendadas:</h4>
+                          <p className="text-sm text-muted-foreground">3 series × 10-12 por pierna</p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">💪 Músculos Trabajados:</h4>
+                          <p className="text-sm text-muted-foreground">Piernas, glúteos, equilibrio</p>
+                        </div>
+                      </div>
+                      <div className="bg-primary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">🔄 Variaciones:</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Zancadas estáticas • Zancadas caminando • Zancadas inversas • Zancadas con salto (avanzado)
+                        </p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="mountain-climbers" className="border rounded-lg px-6 bg-card">
+                    <AccordionTrigger className="hover:no-underline">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">⛰️</span>
+                        <span className="font-semibold text-lg">Mountain Climbers</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="space-y-4 pt-4">
+                      <div className="bg-muted/50 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">✅ Técnica Dinámica:</h4>
+                        <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                          <li>Posición inicial de plancha alta</li>
+                          <li>Llevar una rodilla hacia el pecho</li>
+                          <li>Alternar rápidamente entre piernas</li>
+                          <li>Mantener caderas bajas y estables</li>
+                          <li>Respiración continua y controlada</li>
+                        </ul>
+                      </div>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="font-semibold mb-2">📊 Series Recomendadas:</h4>
+                          <p className="text-sm text-muted-foreground">3 series × 30-40 segundos</p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">💪 Músculos Trabajados:</h4>
+                          <p className="text-sm text-muted-foreground">Core, cardio, estabilidad</p>
+                        </div>
+                      </div>
+                      <div className="bg-primary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">🔄 Variaciones:</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Mountain climbers lentos • Mountain climbers cruzados • Spiderman climbers
+                        </p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="bird-dog" className="border rounded-lg px-6 bg-card">
+                    <AccordionTrigger className="hover:no-underline">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">🐕</span>
+                        <span className="font-semibold text-lg">Bird-Dog</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="space-y-4 pt-4">
+                      <div className="bg-muted/50 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">✅ Coordinación y Estabilidad:</h4>
+                        <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                          <li>Posición en cuatro patas (cuadrupedia)</li>
+                          <li>Extender brazo y pierna opuesta simultáneamente</li>
+                          <li>Mantener espalda neutral (sin arquear)</li>
+                          <li>Sostener la posición 2-3 segundos</li>
+                          <li>Alternar lados de forma controlada</li>
+                        </ul>
+                      </div>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="font-semibold mb-2">📊 Series Recomendadas:</h4>
+                          <p className="text-sm text-muted-foreground">3 series × 10-12 por lado</p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">💪 Músculos Trabajados:</h4>
+                          <p className="text-sm text-muted-foreground">Core, espalda baja, glúteos</p>
+                        </div>
+                      </div>
+                      <div className="bg-primary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">💡 Beneficios Clave:</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Excelente para prevenir dolor lumbar y mejorar la postura. Ideal para principiantes.
+                        </p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
+            </div>
+          </section>
+
+          {/* Galería de Videos */}
+          <section className="py-16 bg-muted/30">
+            <div className="container mx-auto px-4">
               <VideoGallery 
-                videos={videosEnCasa.slice(0, 12)}
-                title="Videos de Entrenamiento en Casa"
+                videos={videosEnCasa}
+                title="Más Videos de Entrenamiento en Casa"
                 showStats={true}
               />
             </div>
           </section>
 
-          {/* Ejercicios Recomendados */}
+          {/* Cómo Diseñar tu Rutina Semanal */}
+          <section className="py-16">
+            <div className="container mx-auto px-4">
+              <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
+                Cómo Diseñar tu Rutina Semanal en Casa
+              </h2>
+              
+              <div className="max-w-5xl mx-auto space-y-8">
+                <Card className="border-primary/20 hover:shadow-elegant transition-all duration-300">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-3">
+                      <Calendar className="w-8 h-8 text-primary" />
+                      Planificación Según tu Nivel
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid md:grid-cols-3 gap-6">
+                      <div className="bg-muted/50 p-6 rounded-lg">
+                        <h4 className="font-semibold text-lg mb-3 text-primary">Principiantes</h4>
+                        <ul className="space-y-2 text-sm text-muted-foreground">
+                          <li><strong>Frecuencia:</strong> 3 días/semana</li>
+                          <li><strong>Duración:</strong> 20-30 minutos</li>
+                          <li><strong>Enfoque:</strong> Técnica y adaptación</li>
+                          <li><strong>Descanso:</strong> 48h entre sesiones</li>
+                        </ul>
+                        <div className="mt-4 p-3 bg-background rounded text-xs">
+                          <p className="font-semibold mb-1">Ejemplo semanal:</p>
+                          <p>Lun: Full Body</p>
+                          <p>Mié: Full Body</p>
+                          <p>Vie: Full Body</p>
+                        </div>
+                      </div>
+
+                      <div className="bg-muted/50 p-6 rounded-lg">
+                        <h4 className="font-semibold text-lg mb-3 text-primary">Intermedios</h4>
+                        <ul className="space-y-2 text-sm text-muted-foreground">
+                          <li><strong>Frecuencia:</strong> 4-5 días/semana</li>
+                          <li><strong>Duración:</strong> 30-45 minutos</li>
+                          <li><strong>Enfoque:</strong> División muscular</li>
+                          <li><strong>Descanso:</strong> 24-48h por grupo</li>
+                        </ul>
+                        <div className="mt-4 p-3 bg-background rounded text-xs">
+                          <p className="font-semibold mb-1">Ejemplo semanal:</p>
+                          <p>Lun: Tren Superior</p>
+                          <p>Mar: Tren Inferior</p>
+                          <p>Jue: Core + HIIT</p>
+                          <p>Vie: Full Body</p>
+                        </div>
+                      </div>
+
+                      <div className="bg-muted/50 p-6 rounded-lg">
+                        <h4 className="font-semibold text-lg mb-3 text-primary">Avanzados</h4>
+                        <ul className="space-y-2 text-sm text-muted-foreground">
+                          <li><strong>Frecuencia:</strong> 5-6 días/semana</li>
+                          <li><strong>Duración:</strong> 45-60 minutos</li>
+                          <li><strong>Enfoque:</strong> Especialización</li>
+                          <li><strong>Descanso:</strong> Activo o completo</li>
+                        </ul>
+                        <div className="mt-4 p-3 bg-background rounded text-xs">
+                          <p className="font-semibold mb-1">Ejemplo semanal:</p>
+                          <p>Lun: Empuje</p>
+                          <p>Mar: Tracción</p>
+                          <p>Mié: Piernas</p>
+                          <p>Jue: Core + Skills</p>
+                          <p>Vie: HIIT</p>
+                          <p>Sáb: Full Body</p>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-3">
+                      <Clock className="w-8 h-8 text-primary" />
+                      Estructura de una Sesión Efectiva
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-4 p-4 bg-muted/50 rounded-lg">
+                        <div className="bg-primary text-primary-foreground font-bold rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">1</div>
+                        <div>
+                          <h4 className="font-semibold mb-1">Calentamiento (5-10 min)</h4>
+                          <p className="text-sm text-muted-foreground">Movilidad articular + estiramientos dinámicos + activación cardiovascular</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-4 p-4 bg-muted/50 rounded-lg">
+                        <div className="bg-primary text-primary-foreground font-bold rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">2</div>
+                        <div>
+                          <h4 className="font-semibold mb-1">Ejercicios Principales (20-40 min)</h4>
+                          <p className="text-sm text-muted-foreground">4-6 ejercicios de calistenia enfocados en tu objetivo del día</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-4 p-4 bg-muted/50 rounded-lg">
+                        <div className="bg-primary text-primary-foreground font-bold rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">3</div>
+                        <div>
+                          <h4 className="font-semibold mb-1">Estiramiento (5 min)</h4>
+                          <p className="text-sm text-muted-foreground">Estiramientos estáticos para los grupos musculares trabajados</p>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+
+          {/* Progresión sin Equipamiento */}
           <section className="py-16 bg-muted/30">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Ejercicios Básicos para Casa
+                Progresión sin Equipamiento
               </h2>
               
-              <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                <div className="bg-card p-6 rounded-lg border">
-                  <h3 className="font-semibold text-xl mb-3">Push-ups (Flexiones)</h3>
-                  <p className="text-muted-foreground">
-                    Trabaja pecho, hombros y tríceps. Perfectas para empezar.
-                  </p>
-                </div>
+              <div className="max-w-5xl mx-auto">
+                <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+                  Avanza en tus entrenamientos sin necesidad de pesas o máquinas. Estas estrategias te permitirán seguir desafiando tu cuerpo con solo tu peso corporal.
+                </p>
                 
-                <div className="bg-card p-6 rounded-lg border">
-                  <h3 className="font-semibold text-xl mb-3">Squats (Sentadillas)</h3>
-                  <p className="text-muted-foreground">
-                    Fortalece piernas y glúteos con el ejercicio rey para tren inferior.
-                  </p>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <Card className="hover:shadow-elegant transition-all duration-300">
+                    <CardHeader>
+                      <TrendingUp className="w-10 h-10 text-primary mb-2" />
+                      <CardTitle>Aumentar Repeticiones</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <p className="text-muted-foreground">
+                        Progresa gradualmente el volumen de entrenamiento para estimular el crecimiento muscular.
+                      </p>
+                      <div className="bg-muted/50 p-3 rounded text-sm">
+                        <p className="font-semibold mb-1">Progresión típica:</p>
+                        <p className="text-muted-foreground">8 reps → 12 reps → 15 reps → 20 reps</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="hover:shadow-elegant transition-all duration-300">
+                    <CardHeader>
+                      <Clock className="w-10 h-10 text-primary mb-2" />
+                      <CardTitle>Reducir Descansos</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <p className="text-muted-foreground">
+                        Disminuye los tiempos de recuperación entre series para aumentar la intensidad.
+                      </p>
+                      <div className="bg-muted/50 p-3 rounded text-sm">
+                        <p className="font-semibold mb-1">Progresión típica:</p>
+                        <p className="text-muted-foreground">90s → 60s → 45s → 30s</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="hover:shadow-elegant transition-all duration-300">
+                    <CardHeader>
+                      <Zap className="w-10 h-10 text-primary mb-2" />
+                      <CardTitle>Variaciones Más Difíciles</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <p className="text-muted-foreground">
+                        Evoluciona hacia versiones más exigentes de cada ejercicio.
+                      </p>
+                      <div className="bg-muted/50 p-3 rounded text-sm">
+                        <p className="font-semibold mb-1">Ejemplo flexiones:</p>
+                        <p className="text-muted-foreground">Inclinadas → Normales → Diamante → Archer → One-arm</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="hover:shadow-elegant transition-all duration-300">
+                    <CardHeader>
+                      <Activity className="w-10 h-10 text-primary mb-2" />
+                      <CardTitle>Tempo Lento (Control)</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <p className="text-muted-foreground">
+                        Ralentiza la ejecución para incrementar el tiempo bajo tensión.
+                      </p>
+                      <div className="bg-muted/50 p-3 rounded text-sm">
+                        <p className="font-semibold mb-1">Tempo 3-1-3:</p>
+                        <p className="text-muted-foreground">3s bajar • 1s pausa • 3s subir</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="hover:shadow-elegant transition-all duration-300 md:col-span-2">
+                    <CardHeader>
+                      <Target className="w-10 h-10 text-primary mb-2" />
+                      <CardTitle>Combinar Ejercicios (Superseries & Circuitos)</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <p className="text-muted-foreground">
+                        Agrupa ejercicios sin descanso para aumentar la densidad del entrenamiento.
+                      </p>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div className="bg-muted/50 p-3 rounded text-sm">
+                          <p className="font-semibold mb-1">Ejemplo Superserie:</p>
+                          <p className="text-muted-foreground">Flexiones + Dominadas (sin descanso entre ejercicios)</p>
+                        </div>
+                        <div className="bg-muted/50 p-3 rounded text-sm">
+                          <p className="font-semibold mb-1">Ejemplo Circuito:</p>
+                          <p className="text-muted-foreground">Sentadillas → Flexiones → Planchas → Repeat x3</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
-                
-                <div className="bg-card p-6 rounded-lg border">
-                  <h3 className="font-semibold text-xl mb-3">Planks (Planchas)</h3>
-                  <p className="text-muted-foreground">
-                    Desarrolla un core fuerte y estable desde cero.
-                  </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Prevención de Lesiones */}
+          <section className="py-16">
+            <div className="container mx-auto px-4">
+              <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
+                Prevención de Lesiones y Cuidado Corporal
+              </h2>
+              
+              <div className="max-w-5xl mx-auto space-y-6">
+                <Card className="border-primary/20">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-3">
+                      <Shield className="w-8 h-8 text-primary" />
+                      Escuchar al Cuerpo
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <p className="text-muted-foreground">
+                      Prestar atención a las señales que envía tu cuerpo es esencial para prevenir lesiones. 
+                      El dolor es un indicador que no debe ignorarse.
+                    </p>
+                    <div className="bg-destructive/10 p-4 rounded-lg">
+                      <h4 className="font-semibold mb-3 flex items-center gap-2">
+                        <AlertCircle className="w-5 h-5" />
+                        Señales de Sobreentrenamiento:
+                      </h4>
+                      <ul className="grid md:grid-cols-2 gap-2 text-sm text-muted-foreground">
+                        <li>• Fatiga constante y falta de energía</li>
+                        <li>• Dificultad para dormir o insomnio</li>
+                        <li>• Disminución del rendimiento físico</li>
+                        <li>• Aumento de lesiones o dolores musculares</li>
+                        <li>• Irritabilidad o cambios de humor</li>
+                        <li>• Pérdida de motivación para entrenar</li>
+                      </ul>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-3">
+                        <CheckCircle className="w-6 h-6 text-primary" />
+                        Técnica Antes que Cantidad
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <p className="text-muted-foreground">
+                        Una ejecución perfecta con menos repeticiones es siempre mejor que muchas repeticiones con mala forma.
+                      </p>
+                      <ul className="space-y-2 text-sm text-muted-foreground list-disc list-inside">
+                        <li>Domina el movimiento básico primero</li>
+                        <li>Aumenta la dificultad gradualmente</li>
+                        <li>Si pierdes la forma, detente y descansa</li>
+                      </ul>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-3">
+                        <Activity className="w-6 h-6 text-primary" />
+                        Descanso Activo
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <p className="text-muted-foreground">
+                        La recuperación es cuando el cuerpo se fortalece. Incluye días de descanso activo en tu rutina.
+                      </p>
+                      <ul className="space-y-2 text-sm text-muted-foreground list-disc list-inside">
+                        <li>Caminatas suaves de 20-30 minutos</li>
+                        <li>Sesiones de estiramientos o yoga</li>
+                        <li>Movilidad articular ligera</li>
+                      </ul>
+                    </CardContent>
+                  </Card>
                 </div>
-                
-                <div className="bg-card p-6 rounded-lg border">
-                  <h3 className="font-semibold text-xl mb-3">Lunges (Zancadas)</h3>
-                  <p className="text-muted-foreground">
-                    Mejora equilibrio y fuerza unilateral de piernas.
-                  </p>
-                </div>
+
+                <Card className="bg-primary/5 border-primary/20">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-3">
+                      <Target className="w-8 h-8 text-primary" />
+                      Checklist de Postura Correcta
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid md:grid-cols-3 gap-4">
+                      <div className="bg-card p-4 rounded-lg border">
+                        <h4 className="font-semibold mb-2">Sentadillas</h4>
+                        <ul className="text-sm text-muted-foreground space-y-1">
+                          <li>✓ Rodillas alineadas con pies</li>
+                          <li>✓ Peso en talones</li>
+                          <li>✓ Espalda recta</li>
+                          <li>✓ Mirada al frente</li>
+                        </ul>
+                      </div>
+                      <div className="bg-card p-4 rounded-lg border">
+                        <h4 className="font-semibold mb-2">Flexiones</h4>
+                        <ul className="text-sm text-muted-foreground space-y-1">
+                          <li>✓ Cuerpo en línea recta</li>
+                          <li>✓ Codos a 45°</li>
+                          <li>✓ Core activado</li>
+                          <li>✓ Rango completo</li>
+                        </ul>
+                      </div>
+                      <div className="bg-card p-4 rounded-lg border">
+                        <h4 className="font-semibold mb-2">Planchas</h4>
+                        <ul className="text-sm text-muted-foreground space-y-1">
+                          <li>✓ Codos bajo hombros</li>
+                          <li>✓ Caderas alineadas</li>
+                          <li>✓ Glúteos activos</li>
+                          <li>✓ Respiración continua</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </section>
+
+          {/* FAQ Section */}
+          <section className="py-16 bg-muted/30">
+            <div className="container mx-auto px-4">
+              <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
+                Preguntas Frecuentes sobre Calistenia en Casa
+              </h2>
+              
+              <div className="max-w-3xl mx-auto">
+                <Accordion type="single" collapsible className="space-y-4">
+                  <AccordionItem value="faq-1" className="border rounded-lg px-6 bg-card">
+                    <AccordionTrigger className="hover:no-underline">
+                      ¿Cuánto espacio necesito para entrenar en casa?
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">
+                      Solo necesitas aproximadamente 2x2 metros de espacio libre. Esto es suficiente para realizar sentadillas, flexiones, planchas y la mayoría de ejercicios de calistenia sin restricciones.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="faq-2" className="border rounded-lg px-6 bg-card">
+                    <AccordionTrigger className="hover:no-underline">
+                      ¿Puedo ganar músculo sin pesas?
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">
+                      Sí, absolutamente. La calistenia permite desarrollar masa muscular mediante progresiones: aumentando repeticiones, reduciendo descansos, haciendo variaciones más difíciles y controlando el tempo. Muchos atletas de calistenia tienen físicos impresionantes entrenando solo con su peso corporal.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="faq-3" className="border rounded-lg px-6 bg-card">
+                    <AccordionTrigger className="hover:no-underline">
+                      ¿Cuántas veces debo entrenar por semana?
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">
+                      Depende de tu nivel: principiantes 3 días/semana, intermedios 4-5 días/semana, avanzados 5-6 días/semana. Es importante incluir al menos 1-2 días de descanso completo o activo para permitir la recuperación muscular.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="faq-4" className="border rounded-lg px-6 bg-card">
+                    <AccordionTrigger className="hover:no-underline">
+                      ¿Es mejor entrenar por la mañana o por la noche?
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">
+                      El mejor momento es cuando puedas ser más consistente. La mañana puede aumentar tu energía para el día, mientras que la noche permite desestresarte después del trabajo. Lo importante es mantener la constancia en el horario elegido.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="faq-5" className="border rounded-lg px-6 bg-card">
+                    <AccordionTrigger className="hover:no-underline">
+                      ¿Necesito una esterilla para entrenar?
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">
+                      No es estrictamente necesaria, pero sí muy recomendable. Una esterilla proporciona comodidad en ejercicios de suelo (planchas, estiramientos), protege tus articulaciones y mejora el agarre en ciertos movimientos. Puedes encontrarlas desde 15-20€.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="faq-6" className="border rounded-lg px-6 bg-card">
+                    <AccordionTrigger className="hover:no-underline">
+                      ¿Cuánto tiempo hasta ver resultados?
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">
+                      Los primeros cambios en fuerza se notan en 2-3 semanas. Los cambios físicos visibles aparecen en 4-8 semanas con entrenamiento constante y alimentación adecuada. La clave es la paciencia y la consistencia a largo plazo.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
+            </div>
+          </section>
+
+          {/* CTA Final */}
+          <section className="py-16">
+            <div className="container mx-auto px-4">
+              <div className="max-w-3xl mx-auto text-center">
+                <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10">
+                  <CardHeader>
+                    <CardTitle className="text-2xl md:text-3xl">
+                      ¿Quieres un Plan Personalizado?
+                    </CardTitle>
+                    <CardDescription className="text-base">
+                      Descubre nuestros programas de entrenamiento adaptados a tus objetivos y nivel
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Link to="/programas">
+                      <button className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-elegant">
+                        Ver Programas de Entrenamiento
+                      </button>
+                    </Link>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </section>
