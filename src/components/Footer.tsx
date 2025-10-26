@@ -38,8 +38,9 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><a href="/rutina-brazos-calistenia" className="text-gray-300 hover:text-white transition-colors">Brazos</a></li>
               <li><a href="/rutina-espalda-calistenia" className="text-gray-300 hover:text-white transition-colors">Espalda</a></li>
-              <li><a href="/rutina-abdominales-calistenia" className="text-gray-300 hover:text-white transition-colors">Abdomen</a></li>
-              <li><a href="/rutina-piernas-calistenia" className="text-gray-300 hover:text-white transition-colors">Piernas</a></li>
+                <li><a href="/rutina-abdominales-calistenia" className="text-gray-300 hover:text-white transition-colors">Abdomen</a></li>
+                <li><a href="/rutina-core-calistenia" className="text-gray-300 hover:text-white transition-colors">Core</a></li>
+                <li><a href="/rutina-piernas-calistenia" className="text-gray-300 hover:text-white transition-colors">Piernas</a></li>
               <li><a href="/rutina-pecho-calistenia" className="text-gray-300 hover:text-white transition-colors">Pecho</a></li>
               <li><a href="/rutina-full-body" className="text-gray-300 hover:text-white transition-colors">Full Body</a></li>
             </ul>

@@ -10,6 +10,7 @@ import Programas from "./pages/Programas";
 import RutinaBrazos from "./pages/RutinaBrazos";
 import RutinaEspalda from "./pages/RutinaEspalda";
 import RutinaAbdominales from "./pages/RutinaAbdominales";
+import RutinaCore from "./pages/RutinaCore";
 import RutinaPiernas from "./pages/RutinaPiernas";
 import RutinaPecho from "./pages/RutinaPecho";
 import RutinaFullBody from "./pages/RutinaFullBody";
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/rutina-brazos-calistenia" element={<RutinaBrazos />} />
           <Route path="/rutina-espalda-calistenia" element={<RutinaEspalda />} />
           <Route path="/rutina-abdominales-calistenia" element={<RutinaAbdominales />} />
+          <Route path="/rutina-core-calistenia" element={<RutinaCore />} />
           <Route path="/rutina-piernas-calistenia" element={<RutinaPiernas />} />
           <Route path="/rutina-pecho-calistenia" element={<RutinaPecho />} />
           <Route path="/rutina-hombro-calistenia" element={<RutinaHombro />} />

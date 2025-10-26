@@ -15,6 +15,7 @@ import { useState } from "react";
 import iconBrazos from "@/assets/calisthenia-brazos.webp";
 import iconEspalda from "@/assets/calisthenia-espalda.webp";
 import iconAbdomen from "@/assets/calisthenia-abdomen.webp";
+import iconCore from "@/assets/calisthenia-core.webp";
 import iconPiernas from "@/assets/calisthenia-piernas.webp";
 import iconPecho from "@/assets/calisthenia-pecho.webp";
 import iconHombro from "@/assets/calisthenia-hombro.webp";
@@ -29,6 +30,7 @@ const Header = () => {
     { name: "Brazos", path: "/rutina-brazos-calistenia", icon: iconBrazos },
     { name: "Espalda", path: "/rutina-espalda-calistenia", icon: iconEspalda },
     { name: "Abdomen", path: "/rutina-abdominales-calistenia", icon: iconAbdomen },
+    { name: "Core", path: "/rutina-core-calistenia", icon: iconCore },
     { name: "Piernas", path: "/rutina-piernas-calistenia", icon: iconPiernas },
     { name: "Pecho", path: "/rutina-pecho-calistenia", icon: iconPecho },
     { name: "Hombro", path: "/rutina-hombro-calistenia", icon: iconHombro },

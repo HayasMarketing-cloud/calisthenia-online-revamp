@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import brazosIcon from "@/assets/calisthenia-brazos.webp";
 import espaldaIcon from "@/assets/calisthenia-espalda.webp";
 import abdomenIcon from "@/assets/calisthenia-abdomen.webp";
+import coreIcon from "@/assets/calisthenia-core.webp";
 import piernasIcon from "@/assets/calisthenia-piernas.webp";
 import pechoIcon from "@/assets/calisthenia-pecho.webp";
 import hombroIcon from "@/assets/calisthenia-hombro.webp";
@@ -27,6 +28,12 @@ const categories = [
     title: "ABDOMEN",
     description: "Consigue un core de acero con rutinas de abdominales avanzados",
     link: "/rutina-abdominales-calistenia"
+  },
+  {
+    icon: coreIcon,
+    title: "CORE",
+    description: "Fortalece tu zona media con ejercicios de estabilización funcional",
+    link: "/rutina-core-calistenia"
   },
   {
     icon: piernasIcon,
