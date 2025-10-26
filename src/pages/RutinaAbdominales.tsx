@@ -9,6 +9,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { ArrowRight } from "lucide-react";
 import VideoGallery from "@/components/VideoGallery";
 import { allVideos } from "@/data/videoLibrary";
 import { getVideosByZone } from "@/lib/videoUtils";
@@ -952,6 +953,28 @@ const RutinaAbdominales = () => {
               </CardContent>
             </Card>
           </div>
+        </div>
+      </section>
+
+      {/* Banner Enlace Interno a Rutina Core */}
+      <section className="py-8 bg-gradient-to-r from-blue-50 via-indigo-50 to-blue-50 border-y border-blue-200/50">
+        <div className="container mx-auto px-4">
+          <Link 
+            to="/rutina-core-calistenia"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 hover:opacity-90 transition-all group"
+          >
+            <span className="text-base sm:text-lg font-medium flex items-center gap-2 text-foreground">
+              <span className="text-2xl">🎯</span>
+              Visita la página de Rutinas de Core para profundizar en esta zona muscular
+            </span>
+            <Button 
+              variant="ghost" 
+              className="gap-2 group-hover:gap-3 transition-all hover:bg-blue-500/10 hover:text-blue-600 border border-blue-200"
+            >
+              Ir a Rutina Core
+              <ArrowRight className="w-4 h-4 text-blue-600" />
+            </Button>
+          </Link>
         </div>
       </section>
 
