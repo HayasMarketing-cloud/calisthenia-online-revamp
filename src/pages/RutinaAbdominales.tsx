@@ -24,19 +24,19 @@ const RutinaAbdominales = () => {
   return (
     <>
       <Helmet>
-        <title>Rutina Abdominales Calistenia: Ejercicios Core para Six Pack | Calistenia Online</title>
+        <title>Rutina Abdominales Calistenia: Six Pack Definido | Calistenia Online</title>
         <meta 
           name="description" 
-          content="Rutina abdominales calistenia completa. Ejercicios core efectivos, planificación semanal y técnicas para lograr un six pack definido. Video guiado incluido." 
+          content="Rutina abdominales calistenia completa. Ejercicios abdominales efectivos, planificación semanal y técnicas para conseguir un six pack definido naturalmente." 
         />
         <meta 
           name="keywords" 
-          content="rutina abdominales, ejercicios core, rutina core calistenia, six pack, abdominales definidos, hollow hold, plancha abdominal" 
+          content="rutina abdominales, ejercicios abdominales, six pack, abdomen definido, plancha abdominal, crunches, entrenamiento abdominal, recto abdominal" 
         />
         <link rel="canonical" href="https://calisthenia.online/rutina-abdominales-calistenia" />
         
         <meta property="og:title" content="Rutina Abdominales Calistenia Completa" />
-        <meta property="og:description" content="Ejercicios core efectivos para conseguir abdominales definidos. Planificación, técnicas y video guiado." />
+        <meta property="og:description" content="Ejercicios abdominales efectivos para conseguir abdominales definidos. Planificación, técnicas y video guiado." />
         <meta property="og:image" content="https://calisthenia.online/assets/calisthenia-abdomen.webp" />
         <meta property="og:url" content="https://calisthenia.online/rutina-abdominales-calistenia" />
         <meta property="og:type" content="article" />
@@ -46,7 +46,7 @@ const RutinaAbdominales = () => {
             "@context": "https://schema.org",
             "@type": "ExercisePlan",
             "name": "Rutina Abdominales Calistenia",
-            "description": "Plan completo de entrenamiento de core con calistenia",
+            "description": "Plan completo de entrenamiento abdominal con calistenia para desarrollar abdominales fuertes y definidos",
             "activityFrequency": "3-4 times per week",
             "exerciseType": "Calisthenics Core Training",
             "video": {
@@ -69,7 +69,7 @@ const RutinaAbdominales = () => {
         title="Rutina de"
         titleHighlight="Abdominales"
         emoji="Calistenia 🔥"
-        description="Una rutina abdominal adecuada es esencial para fortalecer el core y mejorar la funcionalidad en los entrenamientos. Desarrolla un six pack definido con ejercicios funcionales que trabajan todo el abdomen y previenen lesiones."
+        description="Una rutina abdominal adecuada es esencial para fortalecer los abdominales y mejorar la funcionalidad en los entrenamientos. Desarrolla un six pack definido con ejercicios funcionales que trabajan todo el abdomen y previenen lesiones."
         nivel="Todos los Niveles"
         duracion="10-30 min"
         lugar="Casa/Parque"
@@ -84,23 +84,23 @@ const RutinaAbdominales = () => {
         variant="primary"
       />
 
-      {/* Importancia de un Core Fuerte */}
+      {/* Importancia de los Abdominales */}
       <section className="py-16 bg-secondary/5">
         <div className="container mx-auto px-4">
           <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4 text-center">
-            La Importancia de un Core Fuerte en el Entrenamiento Abdominal
+            La Importancia de Abdominales Fuertes en el Entrenamiento
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Contar con un core robusto es fundamental para el rendimiento físico. Un abdomen tonificado no solo contribuye a la estética, sino que también juega un papel esencial en la dinámica del cuerpo.
+            Contar con abdominales fuertes es fundamental para el rendimiento físico. Un abdomen tonificado no solo contribuye a la estética, sino que también juega un papel esencial en la postura y el soporte de la columna.
           </p>
           
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="hover:shadow-elegant transition-shadow">
               <CardContent className="p-8">
                 <div className="text-5xl mb-4 text-center">🎯</div>
-                <h3 className="font-bold text-xl mb-3 text-center">Función del Core en la Postura y Movimientos</h3>
+                <h3 className="font-bold text-xl mb-3 text-center">Función de los Abdominales en la Postura</h3>
                 <p className="text-muted-foreground mb-4">
-                  El core, que incluye los músculos abdominales, la zona lumbar y los oblicuos, actúa como un estabilizador central del cuerpo. Una buena activación de estos músculos permite mantener la postura correcta en diversas actividades.
+                  Los abdominales actúan como soporte fundamental de tu columna vertebral. Unos abdominales fuertes mantienen la columna alineada y mejoran la postura, reduciendo dolores de espalda y mejorando tu rendimiento en todos los ejercicios.
                 </p>
                 <ul className="text-sm text-muted-foreground space-y-2 list-disc list-inside">
                   <li>Reducción del riesgo de caídas</li>
@@ -126,9 +126,9 @@ const RutinaAbdominales = () => {
             <Card className="hover:shadow-elegant transition-shadow">
               <CardContent className="p-8">
                 <div className="text-5xl mb-4 text-center">🛡️</div>
-                <h3 className="font-bold text-xl mb-3 text-center">Prevención de Lesiones mediante Fuerza Muscular</h3>
+                <h3 className="font-bold text-xl mb-3 text-center">Prevención de Lesiones mediante Abdominales Fuertes</h3>
                 <p className="text-muted-foreground mb-4">
-                  Un core fuerte no es solo un objetivo estético, sino una necesidad para prevenir lesiones. Los músculos abdominales actúan como soporte para la columna y ayudan a mantener la estabilidad en la pelvis.
+                  Unos abdominales fuertes actúan como una armadura natural para tu cuerpo. Protegen la zona lumbar durante levantamientos pesados y movimientos explosivos, previniendo lesiones comunes en entrenamientos intensos.
                 </p>
                 <ul className="text-sm text-muted-foreground space-y-2 list-disc list-inside">
                   <li>Un abdomen tonificado distribuye mejor las cargas</li>
@@ -141,14 +141,14 @@ const RutinaAbdominales = () => {
         </div>
       </section>
 
-      {/* Ejercicios Abdominales para Core Fuerte */}
+      {/* Ejercicios Abdominales para Six Pack Definido */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4 text-center">
-            Ejercicios Abdominales para un Core Fuerte
+            Ejercicios Abdominales para un Six Pack Definido
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Los ejercicios abdominales deben ser variados y bien estructurados. Incluir diferentes movimientos permite un trabajo completo de los músculos del abdomen, optimizando así los resultados deseados.
+            Estos ejercicios fundamentales te ayudarán a construir unos abdominales fuertes y definidos, trabajando todas las zonas del abdomen de manera efectiva.
           </p>
           
           <div className="max-w-5xl mx-auto space-y-6">
@@ -157,14 +157,14 @@ const RutinaAbdominales = () => {
               <CardContent className="p-8">
                 <h3 className="font-bold text-2xl mb-4">1. Plancha Isométrica y sus Variantes</h3>
                 <p className="text-muted-foreground mb-4">
-                  <strong>Objetivo:</strong> Core completo, estabilizadores, recto abdominal y transverso
+                  <strong>Objetivo:</strong> Abdomen completo, recto abdominal y transverso
                 </p>
                 
                 <div className="mb-6">
                   <p className="mb-2"><strong>Series:</strong> 3-4</p>
                   <p className="mb-4"><strong>Tiempo:</strong> 30-60 segundos (principiantes) / 60-120 segundos (avanzados)</p>
                   <p className="text-muted-foreground mb-4">
-                    La plancha isométrica es esencial para fortalecer el core y trabajar múltiples grupos musculares al mismo tiempo. Posición de push-up pero sobre antebrazos. Mantén línea recta de cabeza a talones, glúteos apretados.
+                    La plancha isométrica es esencial para fortalecer toda la zona abdominal y trabajar múltiples grupos musculares al mismo tiempo. Posición de push-up pero sobre antebrazos. Mantén línea recta de cabeza a talones, glúteos apretados.
                   </p>
                 </div>
 
@@ -264,9 +264,9 @@ const RutinaAbdominales = () => {
             {/* Bicicletas y Russian Twists */}
             <Card>
               <CardContent className="p-8">
-                <h3 className="font-bold text-2xl mb-4">5. Bicicletas y Giros Rusos para Oblicuos y Todo el Core</h3>
+                <h3 className="font-bold text-2xl mb-4">5. Bicicletas y Giros Rusos para Oblicuos y Abdomen Completo</h3>
                 <p className="text-muted-foreground mb-4">
-                  <strong>Objetivo:</strong> Oblicuos, rotación de core, coordinación
+                  <strong>Objetivo:</strong> Oblicuos, rotación abdominal, coordinación
                 </p>
                 
                 <p className="mb-2"><strong>Series:</strong> 3</p>
@@ -299,21 +299,21 @@ const RutinaAbdominales = () => {
               <CardContent className="p-8">
                 <h3 className="font-bold text-2xl mb-4">6. Mountain Climbers como Ejercicio Cardiovascular y Abdominal</h3>
                 <p className="text-muted-foreground mb-4">
-                  <strong>Objetivo:</strong> Core dinámico, cardio, quema de grasa
+                  <strong>Objetivo:</strong> Abdomen dinámico, cardio, quema de grasa
                 </p>
                 
                 <p className="mb-2"><strong>Series:</strong> 3</p>
                 <p className="mb-4"><strong>Tiempo:</strong> 30-45 segundos</p>
                 
                 <p className="text-muted-foreground mb-4">
-                  Este ejercicio es perfecto para combinar trabajo cardiovascular y abdominal en un solo movimiento dinámico. Activa el core mientras mejora la resistencia.
+                  Este ejercicio es perfecto para combinar trabajo cardiovascular y abdominal en un solo movimiento dinámico. Activa los abdominales mientras mejora la resistencia.
                 </p>
                 
                 <div className="space-y-3">
                   <div>
                     <p className="font-semibold mb-2">Técnica y Postura para Máxima Eficacia:</p>
                     <p className="text-sm text-muted-foreground mb-3">
-                      Iniciar en posición de flexión, manteniendo la espalda recta. Llevar rápidamente las rodillas hacia el pecho de forma alternada es clave para un buen desempeño. Mantén core estable en todo momento.
+                      Iniciar en posición de flexión, manteniendo la espalda recta. Llevar rápidamente las rodillas hacia el pecho de forma alternada es clave para un buen desempeño. Mantén los abdominales activados en todo momento.
                     </p>
                   </div>
                   
@@ -337,7 +337,7 @@ const RutinaAbdominales = () => {
                 <p className="mb-2"><strong>Series:</strong> 3-4</p>
                 <p className="mb-4"><strong>Tiempo:</strong> 10-30 segundos</p>
                 <p className="text-muted-foreground">
-                  Sentado en el suelo, manos a los lados, empuja y eleva las piernas rectas formando una "L". Rodillas dobladas si es necesario para principiantes. Ejercicio fundamental para fuerza de core y compresión.
+                  Sentado en el suelo, manos a los lados, empuja y eleva las piernas rectas formando una "L". Rodillas dobladas si es necesario para principiantes. Ejercicio fundamental para fuerza abdominal y compresión.
                 </p>
               </CardContent>
             </Card>
@@ -352,7 +352,7 @@ const RutinaAbdominales = () => {
                 <p className="mb-2"><strong>Series:</strong> 3-4</p>
                 <p className="mb-4"><strong>Repeticiones:</strong> 8-15</p>
                 <p className="text-muted-foreground">
-                  Colgado de la barra, eleva las piernas hasta tocar la barra con los pies (o lo más alto posible). Sin balanceo excesivo. Ejercicio avanzado que requiere gran fuerza de core y control corporal.
+                  Colgado de la barra, eleva las piernas hasta tocar la barra con los pies (o lo más alto posible). Sin balanceo excesivo. Ejercicio avanzado que requiere gran fuerza abdominal y control corporal.
                 </p>
               </CardContent>
             </Card>
@@ -367,9 +367,9 @@ const RutinaAbdominales = () => {
       <VideoWithStructure
         videoId="MnbNx2x-RY8"
         videoTitle="🎬 Rutina de Abdominales Completa (10 Minutos)"
-        videoDescription="Entrena conmigo tu core en solo 10 minutos. Sin material necesario, perfecto para casa o parque."
+        videoDescription="Entrena conmigo tus abdominales en solo 10 minutos. Sin material necesario, perfecto para casa o parque."
         insights={[
-          "Rutina completa de core en 10 minutos",
+          "Rutina completa de abdominales en 10 minutos",
           "Trabaja abdomen superior, inferior y oblicuos",
           "Sin material, solo peso corporal",
           "Perfecto para casa o parque"
@@ -394,9 +394,9 @@ const RutinaAbdominales = () => {
         estimulos={[
           "💪 Fuerza isométrica",
           "🔥 Resistencia muscular",
-          "⚡ Estabilización del core"
+          "⚡ Estabilización abdominal"
         ]}
-        detalles="Rutina intensa de 10 minutos diseñada para fortalecer todo el core: abdomen superior, inferior, oblicuos y zona lumbar. Ideal para realizar 3-4 veces por semana como complemento o como entrenamiento principal de abdominales."
+        detalles="Rutina intensa de 10 minutos diseñada para fortalecer toda la zona abdominal: abdomen superior, inferior, oblicuos y zona lumbar. Ideal para realizar 3-4 veces por semana como complemento o como entrenamiento principal de abdominales."
       />
 
       {/* Rutinas Efectivas en Casa */}
@@ -586,7 +586,7 @@ const RutinaAbdominales = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4 text-center">
-            Ejercicios Core para Definición Abdominal
+            Estrategias para Definir los Abdominales: Cómo Quemar Grasa Abdominal
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
             Existen múltiples enfoques para optimizar la quema de grasa abdominal y conseguir una mayor definición muscular. La combinación de entrenamientos y el conocimiento de ciertos mitos puede ser clave en este proceso.
@@ -614,7 +614,7 @@ const RutinaAbdominales = () => {
                     <div>
                       <p className="font-semibold mb-2">Impacto del Full Body:</p>
                       <p className="text-sm text-muted-foreground">
-                        Los ejercicios compuestos involucran múltiples grupos musculares, lo que genera un mayor gasto calórico y mejora el desarrollo general del core.
+                        Los ejercicios compuestos involucran múltiples grupos musculares, lo que genera un mayor gasto calórico y mejora el desarrollo general de la zona abdominal.
                       </p>
                     </div>
                   </div>
@@ -676,7 +676,7 @@ const RutinaAbdominales = () => {
                     <div className="text-4xl mb-3 text-center">🦵</div>
                     <h4 className="font-bold text-lg mb-3 text-center">Sentadillas</h4>
                     <p className="text-sm text-muted-foreground text-center">
-                      Fortalecen las piernas y el core, resultando en un gran gasto energético y activación del abdomen durante el movimiento.
+                      Fortalecen las piernas y los abdominales, resultando en un gran gasto energético y activación del abdomen durante el movimiento.
                     </p>
                   </CardContent>
                 </Card>
@@ -879,10 +879,10 @@ const RutinaAbdominales = () => {
       <section className="py-16 bg-secondary/5">
         <div className="container mx-auto px-4">
           <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4 text-center">
-            Ejercicios Complementarios para un Core Equilibrado
+            Ejercicios Complementarios para Abdominales Completos
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Incorporar variaciones en la rutina de abdominales y ejercicios complementarios es fundamental para desarrollar un core equilibrado y funcional.
+            Incorporar variaciones en la rutina de abdominales y ejercicios complementarios es fundamental para desarrollar un trabajo abdominal completo y funcional.
           </p>
 
           <div className="max-w-6xl mx-auto space-y-8">
@@ -892,7 +892,7 @@ const RutinaAbdominales = () => {
                   <div className="text-4xl mb-4 text-center">🍑</div>
                   <h3 className="font-bold text-xl mb-4 text-center">Incorporación de Glúteos y Espalda</h3>
                   <p className="text-muted-foreground mb-4">
-                    Integrar ejercicios que trabajen los glúteos y la espalda es clave para un desarrollo completo del core. Un core fuerte incluye estabilidad en la zona lumbar, que es crucial para prevenir lesiones.
+                    Integrar ejercicios que trabajen los glúteos y la espalda es clave para un desarrollo abdominal completo y equilibrado. La zona lumbar está directamente relacionada con los abdominales, y mantener esta área fuerte es crucial para prevenir lesiones.
                   </p>
                   
                   <div className="bg-secondary/30 p-4 rounded-lg">
@@ -912,13 +912,13 @@ const RutinaAbdominales = () => {
                   <div className="text-4xl mb-4 text-center">🏋️</div>
                   <h3 className="font-bold text-xl mb-4 text-center">Ejercicios Funcionales</h3>
                   <p className="text-muted-foreground mb-4">
-                    Los ejercicios funcionales son muy útiles para fortalecer el core, ya que imitan movimientos de la vida diaria. Estas inclusiones proporcionan un entrenamiento más efectivo y completo.
+                    Los ejercicios funcionales son muy útiles para fortalecer los abdominales, ya que imitan movimientos de la vida diaria. Estas inclusiones proporcionan un entrenamiento más efectivo y completo.
                   </p>
                   
                   <div className="space-y-3">
                     <div className="bg-secondary/30 p-3 rounded-lg">
                       <p className="font-semibold mb-1">Sentadillas:</p>
-                      <p className="text-sm text-muted-foreground">Excelente para trabajar el core y la parte inferior del cuerpo simultáneamente</p>
+                      <p className="text-sm text-muted-foreground">Excelente para trabajar los abdominales y la parte inferior del cuerpo simultáneamente</p>
                     </div>
                     <div className="bg-secondary/30 p-3 rounded-lg">
                       <p className="font-semibold mb-1">Peso Muerto (con barra o kettlebell):</p>
@@ -933,13 +933,13 @@ const RutinaAbdominales = () => {
               <CardContent className="p-8">
                 <h3 className="font-bold text-xl mb-4 text-center">Combinación de Movimientos para Rutina Full Body</h3>
                 <p className="text-muted-foreground text-center mb-6">
-                  Combinar diferentes ejercicios en una rutina funcional maximiza el rendimiento y el desarrollo del core. Movimientos compuestos que integran trabajo de abdomen:
+                  Combinar diferentes ejercicios en una rutina funcional maximiza el rendimiento y el desarrollo abdominal. Movimientos compuestos que integran trabajo de abdomen:
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="bg-background/50 p-4 rounded-lg text-center">
                     <p className="font-semibold mb-2">Sentadilla + Press</p>
-                    <p className="text-sm text-muted-foreground">Core activo durante todo el movimiento</p>
+                    <p className="text-sm text-muted-foreground">Abdominales activos durante todo el movimiento</p>
                   </div>
                   <div className="bg-background/50 p-4 rounded-lg text-center">
                     <p className="font-semibold mb-2">Peso Muerto + Remo</p>
@@ -947,7 +947,7 @@ const RutinaAbdominales = () => {
                   </div>
                   <div className="bg-background/50 p-4 rounded-lg text-center">
                     <p className="font-semibold mb-2">Dominadas + Toes to Bar</p>
-                    <p className="text-sm text-muted-foreground">Transición directa a trabajo de core</p>
+                    <p className="text-sm text-muted-foreground">Transición directa a trabajo abdominal</p>
                   </div>
                 </div>
               </CardContent>
@@ -965,7 +965,7 @@ const RutinaAbdominales = () => {
           >
             <span className="text-base sm:text-lg font-medium flex items-center gap-2 text-foreground">
               <span className="text-2xl">🎯</span>
-              Visita la página de Rutinas de Core para profundizar en esta zona muscular
+              ¿Buscas trabajo de estabilización y fuerza funcional completa? Visita la página de Rutinas de Core
             </span>
             <Button 
               variant="ghost" 
@@ -1001,7 +1001,7 @@ const RutinaAbdominales = () => {
               Consigue un <span className="text-primary">Six Pack Definido</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
-              Accede a programas completos con progresiones para dragon flag, ab wheel rollout y otras skills avanzadas de core. Incluye planificación alimentaria y seguimiento personalizado.
+              Accede a programas completos con progresiones para dragon flag, ab wheel rollout y otras skills avanzadas abdominales. Incluye planificación alimentaria y seguimiento personalizado.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
