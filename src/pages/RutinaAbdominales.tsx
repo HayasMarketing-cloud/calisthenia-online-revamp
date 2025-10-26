@@ -863,7 +863,7 @@ const RutinaAbdominales = () => {
               <CardContent className="p-8">
                 <div className="text-center">
                   <div className="text-5xl mb-4">💡</div>
-                  <h3 className="font-bold text-2xl mb-4">se hacen</h3>
+                  <h3 className="font-bold text-2xl mb-4">Las Abdominlaes se hacen en la Cocina</h3>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
                     Puedes entrenar abdominales todos los días, pero si no mantienes un <strong>déficit calórico</strong> y una <strong>alimentación balanceada</strong>, no verás la definición deseada. La dieta representa aproximadamente el 70% del éxito en conseguir un six pack visible.
                   </p>
