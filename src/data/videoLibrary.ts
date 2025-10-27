@@ -32,8 +32,10 @@ const rawVideos: Omit<VideoMetadata, 'engagementScore' | 'durationSeconds'>[] = 
   { id: 'RH7wEFKQ95M', titulo: 'CÓMO HACER LA PISTOL SQUAT. Progresión paso a paso', descripcion: 'Progresión completa para conseguir tu primera pistol squat de forma segura', duracion: 'PT10M34S', vistas: 750, likes: 59, comentarios: 7, zonaMuscular: 'Piernas', nivel: 'Avanzado', material: 'Peso corporal' },
   { id: 'LleBD7YMt9o', titulo: 'ENTRENAMIENTO DE GLÚTEOS con PESO CORPORAL y SIN MATERIAL', descripcion: 'Rutina perfecta para activar y trabajar tu tren inferior de forma efectiva', duracion: 'PT8M58S', vistas: 1114, likes: 77, comentarios: 7, zonaMuscular: 'Piernas', nivel: 'Intermedio', material: 'Peso corporal' },
 
+  // === PECHO VIDEOS (continuación) ===
+  { id: 'QmNx-kydmn0', titulo: 'NO HAGAS LOS FONDOS❌ así', descripcion: 'Errores comunes en fondos y cómo corregirlos para maximizar el trabajo de pecho', duracion: 'PT34S', vistas: 29248, likes: 2007, comentarios: 6, zonaMuscular: 'Pecho', nivel: 'Intermedio', material: 'Peso corporal' },
+
   // === BRAZOS VIDEOS ===
-  { id: 'QmNx-kydmn0', titulo: 'NO HAGAS LOS FONDOS❌ así', descripcion: 'Errores comunes en fondos y cómo corregirlos', duracion: 'PT34S', vistas: 29248, likes: 2007, comentarios: 6, zonaMuscular: 'Brazos', nivel: 'Intermedio', material: 'Peso corporal' },
 
   // === HOMBROS VIDEOS ===
   { id: 'GUJQMuINySc', titulo: 'TUS HOMBROS CRUJEN POR ESTO👆🥶🦴', descripcion: 'Por qué crujen tus hombros y cómo solucionarlo', duracion: 'PT45S', vistas: 15231, likes: 866, comentarios: 4, zonaMuscular: 'Hombros', nivel: 'Principiante', material: 'Peso corporal' },
