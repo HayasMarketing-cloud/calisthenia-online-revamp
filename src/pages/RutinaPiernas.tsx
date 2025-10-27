@@ -934,25 +934,45 @@ const RutinaPiernas = () => {
       </section>
 
       {/* CTA Final */}
-      <section className="py-20 bg-gradient-to-br from-primary/20 via-background to-secondary/20">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto">
-            <div className="text-6xl mb-6">💪⚡🔥</div>
-            <h2 className="font-display font-bold text-4xl lg:text-5xl mb-6">
-              ¿Listo para tu <span className="text-primary">Transformación</span>?
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="font-display font-bold text-3xl lg:text-5xl mb-6">
+              Construye <span className="text-primary">Piernas de Acero</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
-              Lleva tu entrenamiento al siguiente nivel con programas personalizados y seguimiento profesional.
+              Domina pistol squats, nordic curls y todos los ejercicios avanzados para tren inferior. Programas completos para desarrollar fuerza, potencia y estética en tus piernas.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild>
-                <Link to="/programas">Ver Programas Premium</Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link to="/quien-soy">Conocer al Entrenador</Link>
-              </Button>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-3">🦵</div>
+                  <h3 className="font-bold mb-2">Progresiones Completas</h3>
+                  <p className="text-sm text-muted-foreground">Desde sentadillas básicas hasta pistol squats</p>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-3">⚡</div>
+                  <h3 className="font-bold mb-2">Potencia Explosiva</h3>
+                  <p className="text-sm text-muted-foreground">Ejercicios pliométricos y balísticos</p>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-3">💪</div>
+                  <h3 className="font-bold mb-2">Fuerza Funcional</h3>
+                  <p className="text-sm text-muted-foreground">Desarrollo equilibrado de todo el tren inferior</p>
+                </CardContent>
+              </Card>
             </div>
+            
+            <Button size="lg" className="bg-gradient-primary" asChild>
+              <Link to="/programas">Acceder a Programas de Piernas</Link>
+            </Button>
           </div>
         </div>
       </section>

@@ -1092,25 +1092,45 @@ const RutinaFullBody = () => {
       </section>
 
       {/* CTA Final */}
-      <section className="py-20 bg-gradient-to-br from-primary/20 via-background to-secondary/20">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto">
-            <div className="text-6xl mb-6">💪⚡🔥</div>
-            <h2 className="font-display font-bold text-4xl lg:text-5xl mb-6">
-              ¿Listo para tu <span className="text-primary">Transformación</span>?
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="font-display font-bold text-3xl lg:text-5xl mb-6">
+              Maximiza tu <span className="text-primary">Desarrollo Completo</span>
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
-              Lleva tu entrenamiento al siguiente nivel con programas personalizados y seguimiento profesional.
+              Entrena eficientemente todo tu cuerpo con programas estructurados. Ideal para maximizar resultados en mínimo tiempo, perfecto para agendas ocupadas.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild>
-                <Link to="/programas">Ver Programas Premium</Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link to="/quien-soy">Conocer al Entrenador</Link>
-              </Button>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-3">⚡</div>
+                  <h3 className="font-bold mb-2">Eficiencia Máxima</h3>
+                  <p className="text-sm text-muted-foreground">Trabaja todo el cuerpo en cada sesión</p>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-3">📊</div>
+                  <h3 className="font-bold mb-2">Periodización Inteligente</h3>
+                  <p className="text-sm text-muted-foreground">Programas adaptados a tu nivel y objetivos</p>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-3">🎯</div>
+                  <h3 className="font-bold mb-2">Desarrollo Equilibrado</h3>
+                  <p className="text-sm text-muted-foreground">Fuerza, resistencia y estética en un solo plan</p>
+                </CardContent>
+              </Card>
             </div>
+            
+            <Button size="lg" className="bg-gradient-primary" asChild>
+              <Link to="/programas">Acceder a Programas Full Body</Link>
+            </Button>
           </div>
         </div>
       </section>

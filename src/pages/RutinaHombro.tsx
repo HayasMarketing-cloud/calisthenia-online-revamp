@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import VideoGallery from "@/components/VideoGallery";
 import { allVideos } from "@/data/videoLibrary";
@@ -199,6 +201,49 @@ const RutinaHombro = () => {
         </div>
       </section>
 
+      {/* CTA Final */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="font-display font-bold text-3xl lg:text-5xl mb-6">
+              Desarrolla <span className="text-primary">Hombros Fuertes y Estéticos</span>
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8">
+              Accede a programas completos con progresiones para handstand push-ups, pino a pared y plancha. Incluye ejercicios específicos para prevenir lesiones en el manguito rotador.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-3">🎯</div>
+                  <h3 className="font-bold mb-2">Progresiones Estructuradas</h3>
+                  <p className="text-sm text-muted-foreground">Desde pike push-ups hasta handstand push-ups</p>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-3">🛡️</div>
+                  <h3 className="font-bold mb-2">Prevención de Lesiones</h3>
+                  <p className="text-sm text-muted-foreground">Ejercicios específicos para manguito rotador</p>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-3">💪</div>
+                  <h3 className="font-bold mb-2">Desarrollo Completo</h3>
+                  <p className="text-sm text-muted-foreground">Trabajo de los tres deltoides equilibradamente</p>
+                </CardContent>
+              </Card>
+            </div>
+            
+            <Button size="lg" className="bg-gradient-primary" asChild>
+              <Link to="/programas">Acceder a Programas de Hombros</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>

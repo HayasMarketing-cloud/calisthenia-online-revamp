@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import VideoGallery from "@/components/VideoGallery";
 import { allVideos } from "@/data/videoLibrary";
@@ -213,6 +215,49 @@ const RutinaPecho = () => {
         </div>
       </section>
 
+      {/* CTA Final */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="font-display font-bold text-3xl lg:text-5xl mb-6">
+              Construye un <span className="text-primary">Pecho Poderoso</span>
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8">
+              Domina progresiones avanzadas como fondos en anillas, flexiones a una mano y planche leans. Programas estructurados para maximizar hipertrofia y fuerza en pecho.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-3">📈</div>
+                  <h3 className="font-bold mb-2">Progresión Avanzada</h3>
+                  <p className="text-sm text-muted-foreground">Desde flexiones básicas hasta planche</p>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-3">🎥</div>
+                  <h3 className="font-bold mb-2">Técnica Perfecta</h3>
+                  <p className="text-sm text-muted-foreground">Videos detallados de cada variante</p>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-3">💥</div>
+                  <h3 className="font-bold mb-2">Máxima Hipertrofia</h3>
+                  <p className="text-sm text-muted-foreground">Volumen optimizado para crecimiento</p>
+                </CardContent>
+              </Card>
+            </div>
+            
+            <Button size="lg" className="bg-gradient-primary" asChild>
+              <Link to="/programas">Acceder a Programas de Pecho</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>

@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import VideoGallery from "@/components/VideoGallery";
 import { allVideos } from "@/data/videoLibrary";
@@ -193,6 +195,49 @@ const RutinaEspalda = () => {
         </div>
       </section>
 
+      {/* CTA Final */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="font-display font-bold text-3xl lg:text-5xl mb-6">
+              Desarrolla una <span className="text-primary">Espalda en V</span>
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8">
+              Domina muscle-ups, front lever y todas las variantes de dominadas. Programas completos para construir una espalda ancha, gruesa y definida con calistenia.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-3">🎯</div>
+                  <h3 className="font-bold mb-2">Skills Avanzadas</h3>
+                  <p className="text-sm text-muted-foreground">Front lever, muscle-up y one arm pull-up</p>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-3">📊</div>
+                  <h3 className="font-bold mb-2">Programación Periodizada</h3>
+                  <p className="text-sm text-muted-foreground">12 semanas de progresión estructurada</p>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-3">💪</div>
+                  <h3 className="font-bold mb-2">Fuerza Funcional</h3>
+                  <p className="text-sm text-muted-foreground">Desarrollo equilibrado de toda la espalda</p>
+                </CardContent>
+              </Card>
+            </div>
+            
+            <Button size="lg" className="bg-gradient-primary" asChild>
+              <Link to="/programas">Acceder a Programas de Espalda</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>
