@@ -12,7 +12,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import VideoGallery from "@/components/VideoGallery";
 import { allVideos } from "@/data/videoLibrary";
-import { getVideosByZone } from "@/lib/videoUtils";
+import { getVideosByIds } from "@/lib/videoUtils";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import VideoWithStructure from "@/components/VideoWithStructure";
@@ -573,7 +573,14 @@ const RutinaBrazos = () => {
       <section className="py-16 bg-secondary/5">
         <div className="container mx-auto px-4">
           <VideoGallery 
-            videos={getVideosByZone(allVideos, 'Brazos', { limit: 6, sortBy: 'engagement' })}
+            videos={getVideosByIds(allVideos, [
+              'bSYhg5i28kg', // Súper dominada - bíceps avanzado
+              'j1VaM6CNazM', // 10 dominadas - bíceps avanzado
+              'qa00fnGijEo', // 5 dominadas - bíceps intermedio
+              '15T6TRnJ63Y', // Primera dominada - bíceps principiante
+              'QmNx-kydmn0', // Fondos - tríceps intermedio
+              'IWqIZk3hF14'  // Fullbody principiantes - brazos general
+            ])}
             title="📹 Videos de Entrenamiento de Brazos"
             showStats={true}
           />
