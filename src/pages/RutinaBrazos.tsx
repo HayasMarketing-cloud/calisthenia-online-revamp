@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -568,13 +570,37 @@ const RutinaBrazos = () => {
       </section>
 
       {/* Galería de Videos */}
-      <section className="py-16">
+      <section className="py-16 bg-secondary/5">
         <div className="container mx-auto px-4">
           <VideoGallery 
             videos={getVideosByZone(allVideos, 'Brazos', { limit: 6, sortBy: 'engagement' })}
             title="📹 Más Videos de Entrenamiento de Brazos"
             showStats={true}
           />
+        </div>
+      </section>
+
+      {/* CTA Final */}
+      <section className="py-20 bg-gradient-to-br from-primary/20 via-background to-secondary/20">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-6xl mb-6">💪⚡🔥</div>
+            <h2 className="font-display font-bold text-4xl lg:text-5xl mb-6">
+              ¿Listo para tu <span className="text-primary">Transformación</span>?
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8">
+              Lleva tu entrenamiento al siguiente nivel con programas personalizados y seguimiento profesional.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" asChild>
+                <Link to="/programas">Ver Programas Premium</Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild>
+                <Link to="/quien-soy">Conocer al Entrenador</Link>
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
 
