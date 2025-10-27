@@ -14,7 +14,11 @@ import RoutineHero from "@/components/routine/RoutineHero";
 import QuickJumpBanner from "@/components/QuickJumpBanner";
 
 const RutinaCore = () => {
-  const coreVideos = getVideosByZone(allVideos, 'Core', { limit: 6, sortBy: 'engagement' });
+  const coreVideos = getVideosByZone(allVideos, 'Core', { 
+    limit: 9, 
+    sortBy: 'vistas',
+    minVistas: 1000
+  }).filter(video => video.id !== 'MnbNx2x-RY8');
 
   return (
     <>
@@ -745,7 +749,7 @@ const RutinaCore = () => {
         <div className="container mx-auto px-4">
           <VideoGallery 
             videos={coreVideos}
-            title="Más Videos de Entrenamiento Core"
+            title="📹 Más Videos de Entrenamiento de Abdominales"
             showStats={true}
           />
         </div>

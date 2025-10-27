@@ -983,11 +983,10 @@ const RutinaAbdominales = () => {
         <div className="container mx-auto px-4">
           <VideoGallery 
             videos={getVideosByZone(allVideos, 'Core', { 
-              limit: 9, 
-              sortBy: 'vistas',
-              minVistas: 1000
-            }).filter(video => video.id !== 'MnbNx2x-RY8')}
-            title="📹 Más Videos de Entrenamiento de Abdominales"
+              limit: 6, 
+              sortBy: 'engagement'
+            })}
+            title="Más Videos de Entrenamiento Core"
             showStats={true}
           />
         </div>
