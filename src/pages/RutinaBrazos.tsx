@@ -574,7 +574,7 @@ const RutinaBrazos = () => {
         <div className="container mx-auto px-4">
           <VideoGallery 
             videos={getVideosByZone(allVideos, 'Brazos', { limit: 6, sortBy: 'engagement' })}
-            title="📹 Más Videos de Entrenamiento de Brazos"
+            title="📹 Videos de Entrenamiento de Brazos"
             showStats={true}
           />
         </div>
