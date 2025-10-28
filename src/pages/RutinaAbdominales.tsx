@@ -19,6 +19,8 @@ import Footer from "@/components/Footer";
 import VideoWithStructure from "@/components/VideoWithStructure";
 import RoutineHero from "@/components/routine/RoutineHero";
 import QuickJumpBanner from "@/components/QuickJumpBanner";
+import CommunityCTA from "@/components/CommunityCTA";
+import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 
 const RutinaAbdominales = () => {
   return (
@@ -59,6 +61,7 @@ const RutinaAbdominales = () => {
       </Helmet>
 
       <Header />
+      <CommunityStickyBanner />
 
       <RoutineHero
         breadcrumbs={[
@@ -991,6 +994,9 @@ const RutinaAbdominales = () => {
           />
         </div>
       </section>
+
+      {/* CTA Comunidad */}
+      <CommunityCTA />
 
       {/* CTA Final */}
       <section className="py-16">

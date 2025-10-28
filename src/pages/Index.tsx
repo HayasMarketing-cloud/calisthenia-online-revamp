@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 import HeroSection from "@/components/HeroSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import TrainingCategories from "@/components/TrainingCategories";
@@ -14,6 +15,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Header />
+      <CommunityStickyBanner />
       <HeroSection />
       <BenefitsSection />
       <TrainingCategories />

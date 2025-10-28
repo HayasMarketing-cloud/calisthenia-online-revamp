@@ -6,6 +6,7 @@ import VideoWithStructure from "@/components/VideoWithStructure";
 import QuickJumpBanner from "@/components/QuickJumpBanner";
 import RoutineBreadcrumbs from "@/components/routine/RoutineBreadcrumbs";
 import FAQSection from "@/components/FAQSection";
+import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 import { allVideos } from "@/data/videoLibrary";
 import { getVideosByIds } from "@/lib/videoUtils";
 import entrenaParque from "@/assets/entrena-parque.jpg";
@@ -44,6 +45,7 @@ const CalisteniaParque = () => {
 
       <div className="min-h-screen flex flex-col">
         <Header />
+        <CommunityStickyBanner />
         
         <main className="flex-grow pt-20">
           {/* Breadcrumbs */}

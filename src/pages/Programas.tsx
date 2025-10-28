@@ -3,11 +3,13 @@ import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
+import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 
 const Programas = () => {
   return (
     <div className="min-h-screen">
       <Header />
+      <CommunityStickyBanner />
       
       {/* Hero */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-primary/10 to-background">

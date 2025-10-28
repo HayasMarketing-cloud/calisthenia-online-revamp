@@ -7,11 +7,14 @@ import VideoGallery from "@/components/VideoGallery";
 import { allVideos } from "@/data/videoLibrary";
 import { getVideosByZone } from "@/lib/videoUtils";
 import RoutineHero from "@/components/routine/RoutineHero";
+import CommunityCTA from "@/components/CommunityCTA";
+import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 
 const RutinaPecho = () => {
   return (
     <div className="min-h-screen">
       <Header />
+      <CommunityStickyBanner />
       
       <RoutineHero
         breadcrumbs={[
@@ -214,6 +217,9 @@ const RutinaPecho = () => {
           />
         </div>
       </section>
+
+      {/* CTA Comunidad */}
+      <CommunityCTA />
 
       {/* CTA Final */}
       <section className="py-16">

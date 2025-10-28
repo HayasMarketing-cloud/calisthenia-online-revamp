@@ -8,6 +8,7 @@ import Certifications from "@/components/Certifications";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import VideoEmbed from "@/components/VideoEmbed";
+import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 
 const QuienSoy = () => {
   useEffect(() => {
@@ -109,6 +110,7 @@ const QuienSoy = () => {
       />
       
       <Header />
+      <CommunityStickyBanner />
       
       <main>
         {/* Hero Section */}

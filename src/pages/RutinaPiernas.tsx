@@ -13,6 +13,8 @@ import VideoWithStructure from "@/components/VideoWithStructure";
 import RoutineHero from "@/components/routine/RoutineHero";
 import QuickJumpBanner from "@/components/QuickJumpBanner";
 import ExerciseCard from "@/components/routine/ExerciseCard";
+import CommunityCTA from "@/components/CommunityCTA";
+import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 
 const RutinaPiernas = () => {
   return (
@@ -52,6 +54,7 @@ const RutinaPiernas = () => {
       </Helmet>
 
       <Header />
+      <CommunityStickyBanner />
 
       <RoutineHero
         breadcrumbs={[
@@ -932,6 +935,9 @@ const RutinaPiernas = () => {
           />
         </div>
       </section>
+
+      {/* CTA Comunidad */}
+      <CommunityCTA />
 
       {/* CTA Final */}
       <section className="py-16">

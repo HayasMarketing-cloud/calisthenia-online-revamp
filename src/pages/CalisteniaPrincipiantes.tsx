@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import VideoGallery from "@/components/VideoGallery";
 import { allVideos } from "@/data/videoLibrary";
 import { User, CheckCircle, TrendingUp } from "lucide-react";
+import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 
 const CalisteniaPrincipiantes = () => {
   // Filtrar videos para principiantes
@@ -26,6 +27,7 @@ const CalisteniaPrincipiantes = () => {
 
       <div className="min-h-screen flex flex-col">
         <Header />
+        <CommunityStickyBanner />
         
         <main className="flex-grow pt-20">
           {/* Hero Section */}

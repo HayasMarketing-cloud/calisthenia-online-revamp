@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import VideoGallery from "@/components/VideoGallery";
 import { allVideos } from "@/data/videoLibrary";
 import { Users, Zap, Target } from "lucide-react";
+import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 
 const CallisteniaNivelAvanzado = () => {
   // Filtrar videos para nivel intermedio y avanzado
@@ -26,6 +27,7 @@ const CallisteniaNivelAvanzado = () => {
 
       <div className="min-h-screen flex flex-col">
         <Header />
+        <CommunityStickyBanner />
         
         <main className="flex-grow pt-20">
           {/* Hero Section */}

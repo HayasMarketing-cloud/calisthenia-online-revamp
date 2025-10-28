@@ -13,6 +13,8 @@ import { Separator } from "@/components/ui/separator";
 import VideoGallery from "@/components/VideoGallery";
 import { allVideos } from "@/data/videoLibrary";
 import { getVideosByIds } from "@/lib/videoUtils";
+import CommunityCTA from "@/components/CommunityCTA";
+import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import VideoWithStructure from "@/components/VideoWithStructure";
@@ -54,6 +56,7 @@ const RutinaBrazos = () => {
       </Helmet>
 
       <Header />
+      <CommunityStickyBanner />
 
       <RoutineHero
         breadcrumbs={[
@@ -586,6 +589,9 @@ const RutinaBrazos = () => {
           />
         </div>
       </section>
+
+      {/* CTA Comunidad */}
+      <CommunityCTA />
 
       {/* CTA Final */}
       <section className="py-16">

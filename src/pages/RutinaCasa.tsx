@@ -5,6 +5,8 @@ import VideoGallery from "@/components/VideoGallery";
 import VideoWithStructure from "@/components/VideoWithStructure";
 import QuickJumpBanner from "@/components/QuickJumpBanner";
 import RoutineBreadcrumbs from "@/components/routine/RoutineBreadcrumbs";
+import CommunityCTA from "@/components/CommunityCTA";
+import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { allVideos } from "@/data/videoLibrary";
@@ -46,6 +48,7 @@ const RutinaCasa = () => {
 
       <div className="min-h-screen flex flex-col">
         <Header />
+        <CommunityStickyBanner />
         
         <main className="flex-grow pt-20">
           {/* Hero Section */}
@@ -639,6 +642,9 @@ const RutinaCasa = () => {
               />
             </div>
           </section>
+
+          {/* CTA Comunidad */}
+          <CommunityCTA />
 
           {/* Cómo Diseñar tu Rutina Semanal */}
           <section className="py-16">

@@ -21,6 +21,8 @@ import Footer from "@/components/Footer";
 import VideoWithStructure from "@/components/VideoWithStructure";
 import RoutineHero from "@/components/routine/RoutineHero";
 import QuickJumpBanner from "@/components/QuickJumpBanner";
+import CommunityCTA from "@/components/CommunityCTA";
+import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 import pechoIcon from "@/assets/calisthenia-pecho.webp";
 import espaldaIcon from "@/assets/calisthenia-espalda.webp";
 import piernasIcon from "@/assets/calisthenia-piernas.webp";
@@ -67,6 +69,7 @@ const RutinaFullBody = () => {
       </Helmet>
 
       <Header />
+      <CommunityStickyBanner />
 
       <RoutineHero
         breadcrumbs={[
@@ -1090,6 +1093,9 @@ const RutinaFullBody = () => {
           />
         </div>
       </section>
+
+      {/* CTA Comunidad */}
+      <CommunityCTA />
 
       {/* CTA Final */}
       <section className="py-16">
