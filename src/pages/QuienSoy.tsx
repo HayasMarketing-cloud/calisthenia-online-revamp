@@ -129,19 +129,6 @@ const QuienSoy = () => {
           </div>
         </section>
         
-        {/* Certifications Section */}
-        <section className="py-20 bg-secondary/5">
-          <div className="container mx-auto px-4">
-            <h2 className="font-display font-bold text-3xl lg:text-4xl text-center mb-4">
-              Certificación <span className="text-primary">Profesional</span>
-            </h2>
-            <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-              Avalado por la federación oficial española
-            </p>
-            <Certifications />
-          </div>
-        </section>
-        
         {/* Presentación del Proyecto */}
         <section className="py-20 bg-background">
           <div className="container mx-auto px-4 max-w-4xl">
@@ -276,6 +263,19 @@ const QuienSoy = () => {
                 Si entrenas con mis rutinas, si comentas mis vídeos o si simplemente te motivas con mi historia, ya formas parte de esta comunidad. Y mi compromiso es seguir aquí, ayudándote a superarte cada día. 🚀💪
               </p>
             </div>
+          </div>
+        </section>
+        
+        {/* Certifications Section */}
+        <section className="py-20 bg-secondary/5">
+          <div className="container mx-auto px-4">
+            <h2 className="font-display font-bold text-3xl lg:text-4xl text-center mb-4">
+              Certificación <span className="text-primary">Profesional</span>
+            </h2>
+            <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
+              Avalado por la federación oficial española
+            </p>
+            <Certifications />
           </div>
         </section>
         

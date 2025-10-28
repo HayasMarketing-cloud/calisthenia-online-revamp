@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
-import { Award, CheckCircle } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import feswcLogo from "@/assets/feswc-logo.jpg";
 
 const Certifications = () => {
   return (
@@ -10,8 +11,12 @@ const Certifications = () => {
           {/* Left side - Icon/Visual */}
           <div className="bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center p-12">
             <div className="text-center">
-              <div className="w-32 h-32 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 shadow-elegant">
-                <Award className="h-16 w-16 text-white" />
+              <div className="w-32 h-32 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 shadow-elegant overflow-hidden">
+                <img 
+                  src={feswcLogo} 
+                  alt="FESWC - Federación Española de Street Workout y Calistenia" 
+                  className="w-24 h-24 object-contain"
+                />
               </div>
               <Badge className="bg-primary text-white hover:bg-accent">
                 Certificación Oficial
