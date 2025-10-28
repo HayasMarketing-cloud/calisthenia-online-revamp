@@ -103,24 +103,26 @@ const UnifiedRoutineFinder = () => {
           <TabsContent value="zonas">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
               {muscleCategories.map((category, idx) => (
-                <Card key={idx} className="group hover:shadow-lg transition-all hover:-translate-y-1">
+                <Card key={idx} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 border-transparent hover:border-primary/20">
                   <CardContent className="p-6 text-center space-y-4">
-                    <div className="w-24 h-24 mx-auto mb-4 rounded-full border-2 border-primary/20 overflow-hidden">
+                    <div className="w-24 h-24 mx-auto mb-4 rounded-full border-2 border-primary/20 group-hover:border-primary/40 overflow-hidden transition-all duration-300 group-hover:scale-105">
                       <img 
                         src={category.image} 
                         alt={category.title} 
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                       />
                     </div>
-                    <div>
+                    <div className="pb-2">
                       <h3 className="font-bold text-lg mb-2">{category.title}</h3>
                       <p className="text-sm text-muted-foreground mb-3">{category.description}</p>
                     </div>
-                    <Link to={category.link}>
-                      <Button variant="outline" size="sm" className="w-full">
-                        Ver Rutinas
-                      </Button>
-                    </Link>
+                    <div className="pt-2">
+                      <Link to={category.link}>
+                        <Button variant="outline" size="sm" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                          Ver Rutinas
+                        </Button>
+                      </Link>
+                    </div>
                   </CardContent>
                 </Card>
               ))}
@@ -131,31 +133,35 @@ const UnifiedRoutineFinder = () => {
           <TabsContent value="lugar">
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {locations.map((location, idx) => (
-                <Card key={idx} className="group hover:shadow-elegant transition-all overflow-hidden">
+                <Card key={idx} className="group hover:shadow-elegant transition-all duration-300 overflow-hidden hover:-translate-y-1">
                   <div className="relative h-48 overflow-hidden">
                     <img 
                       src={location.image} 
                       alt={location.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/50 to-transparent" />
                     <div className="absolute bottom-4 left-4">
-                      <h3 className="font-bold text-2xl text-white">{location.title}</h3>
+                      <h3 className="font-bold text-2xl text-white drop-shadow-lg">{location.title}</h3>
                     </div>
                   </div>
                   <CardContent className="p-6 space-y-4">
-                    <p className="text-muted-foreground">{location.description}</p>
-                    <ul className="space-y-2">
+                    <p className="text-muted-foreground font-medium">{location.description}</p>
+                    <ul className="space-y-2 pb-2">
                       {location.features.map((feature, i) => (
                         <li key={i} className="flex items-center gap-2 text-sm">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0" />
                           <span>{feature}</span>
                         </li>
                       ))}
                     </ul>
-                    <Link to={location.link}>
-                      <Button className="w-full">Ver Rutinas</Button>
-                    </Link>
+                    <div className="pt-4">
+                      <Link to={location.link}>
+                        <Button className="w-full group-hover:shadow-lg transition-shadow" size="lg">
+                          Ver Rutinas
+                        </Button>
+                      </Link>
+                    </div>
                   </CardContent>
                 </Card>
               ))}
@@ -166,10 +172,10 @@ const UnifiedRoutineFinder = () => {
           <TabsContent value="nivel">
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {levels.map((level, idx) => (
-                <Card key={idx} className="group hover:shadow-elegant transition-all">
+                <Card key={idx} className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 border-2 border-transparent hover:border-primary/20">
                   <CardContent className="p-8 space-y-4">
                     <div className="flex items-center gap-3 mb-4">
-                      <span className="text-4xl">{level.emoji}</span>
+                      <span className="text-5xl group-hover:scale-110 transition-transform duration-300">{level.emoji}</span>
                       <div>
                         <span className="px-3 py-1 bg-primary/20 text-primary text-xs font-semibold rounded-full">
                           {level.badge}
@@ -177,18 +183,22 @@ const UnifiedRoutineFinder = () => {
                         <h3 className="font-bold text-2xl mt-2">{level.title}</h3>
                       </div>
                     </div>
-                    <p className="text-muted-foreground">{level.description}</p>
-                    <ul className="space-y-2">
+                    <p className="text-muted-foreground font-medium">{level.description}</p>
+                    <ul className="space-y-2 pb-2">
                       {level.features.map((feature, i) => (
                         <li key={i} className="flex items-center gap-2 text-sm">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0" />
                           <span>{feature}</span>
                         </li>
                       ))}
                     </ul>
-                    <Link to={level.link}>
-                      <Button className="w-full" size="lg">Ver Rutinas</Button>
-                    </Link>
+                    <div className="pt-4">
+                      <Link to={level.link}>
+                        <Button className="w-full group-hover:shadow-lg transition-shadow" size="lg">
+                          Ver Rutinas
+                        </Button>
+                      </Link>
+                    </div>
                   </CardContent>
                 </Card>
               ))}
