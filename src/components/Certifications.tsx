@@ -11,13 +11,11 @@ const Certifications = () => {
           {/* Left side - Icon/Visual */}
           <div className="bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center p-12">
             <div className="text-center">
-              <div className="w-48 h-48 flex items-center justify-center mx-auto mb-4">
-                <img 
-                  src={feswcSeal} 
-                  alt="FESWC - Certificación Oficial - Federación Española de Street Workout y Calistenia" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
+              <img 
+                src={feswcSeal} 
+                alt="FESWC - Certificación Oficial - Federación Española de Street Workout y Calistenia" 
+                className="w-48 h-48 mx-auto mb-4 object-contain"
+              />
               <Badge className="bg-primary text-white hover:bg-accent">
                 Certificación Oficial
               </Badge>
