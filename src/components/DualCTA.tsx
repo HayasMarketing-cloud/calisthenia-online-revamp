@@ -24,13 +24,13 @@ const DualCTA = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {/* Opción 1: Programas */}
             <Card className="bg-white hover:shadow-2xl transition-all group">
-              <CardContent className="p-8 text-center space-y-4">
-                <div className="text-5xl mb-4">🎯</div>
+              <CardContent className="p-8 text-center space-y-6">
+                <div className="text-5xl mb-2">🎯</div>
                 <h3 className="font-bold text-2xl">Entrena con Nico</h3>
                 <p className="text-muted-foreground">
                   Programa 100% personalizado con seguimiento directo
                 </p>
-                <ul className="text-sm space-y-2 text-left">
+                <ul className="text-sm space-y-2 text-left pb-2">
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-primary rounded-full" />
                     <span>Evaluación inicial completa</span>
@@ -48,12 +48,14 @@ const DualCTA = () => {
                     <span>Corrección de técnica</span>
                   </li>
                 </ul>
-                <Link to="/programas">
-                  <Button className="w-full" size="lg">
-                    Ver Programas
-                    <ArrowRight className="ml-2" />
-                  </Button>
-                </Link>
+                <div className="pt-4">
+                  <Link to="/programas">
+                    <Button className="w-full" size="lg">
+                      Ver Programas
+                      <ArrowRight className="ml-2" />
+                    </Button>
+                  </Link>
+                </div>
                 <p className="text-xs text-muted-foreground">
                   Desde 49€/mes
                 </p>
@@ -62,13 +64,13 @@ const DualCTA = () => {
             
             {/* Opción 2: Rutinas Gratis */}
             <Card className="bg-white/95 hover:shadow-2xl transition-all group">
-              <CardContent className="p-8 text-center space-y-4">
-                <div className="text-5xl mb-4">📚</div>
+              <CardContent className="p-8 text-center space-y-6">
+                <div className="text-5xl mb-2">📚</div>
                 <h3 className="font-bold text-2xl">Explora Rutinas Gratis</h3>
                 <p className="text-muted-foreground">
                   Accede a rutinas gratuitas por zonas musculares
                 </p>
-                <ul className="text-sm space-y-2 text-left">
+                <ul className="text-sm space-y-2 text-left pb-2">
                   <li className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 bg-primary rounded-full" />
                     <span>Rutinas para todos los niveles</span>
@@ -86,14 +88,16 @@ const DualCTA = () => {
                     <span>Sin registros ni pagos</span>
                   </li>
                 </ul>
-                <Button 
-                  className="w-full" 
-                  variant="outline" 
-                  size="lg"
-                  onClick={scrollToRutinas}
-                >
-                  Ver Rutinas
-                </Button>
+                <div className="pt-4">
+                  <Button 
+                    className="w-full" 
+                    variant="outline" 
+                    size="lg"
+                    onClick={scrollToRutinas}
+                  >
+                    Ver Rutinas
+                  </Button>
+                </div>
                 <p className="text-xs text-muted-foreground font-semibold text-primary">
                   100% Gratis
                 </p>

@@ -74,11 +74,11 @@ const QuickPathSelector = () => {
                   <Badge className="bg-primary text-white">Recomendado</Badge>
                 </div>
               )}
-              <CardContent className="p-8 text-center space-y-4">
-                <div className="text-6xl mb-4">{path.emoji}</div>
+              <CardContent className="p-8 text-center space-y-6">
+                <div className="text-6xl mb-2">{path.emoji}</div>
                 <h3 className="font-bold text-2xl">{path.title}</h3>
                 <p className="text-muted-foreground">{path.description}</p>
-                <ul className="text-sm text-left space-y-2">
+                <ul className="text-sm text-left space-y-2 pb-2">
                   {path.features.map((feature, i) => (
                     <li key={i} className="flex items-center gap-2">
                       <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0" />
@@ -86,15 +86,17 @@ const QuickPathSelector = () => {
                     </li>
                   ))}
                 </ul>
-                <Link to={path.link}>
-                  <Button 
-                    className="w-full" 
-                    variant={path.variant}
-                    size="lg"
-                  >
-                    {path.buttonText}
-                  </Button>
-                </Link>
+                <div className="pt-4">
+                  <Link to={path.link}>
+                    <Button 
+                      className="w-full" 
+                      variant={path.variant}
+                      size="lg"
+                    >
+                      {path.buttonText}
+                    </Button>
+                  </Link>
+                </div>
               </CardContent>
             </Card>
           ))}
