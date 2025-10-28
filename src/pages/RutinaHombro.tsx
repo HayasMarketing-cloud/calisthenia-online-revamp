@@ -688,25 +688,45 @@ const RutinaHombro = () => {
       <CommunityCTA />
 
       {/* CTA Final */}
-      <section className="py-20 bg-gradient-to-br from-primary/10 via-secondary/10 to-background">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="font-display font-bold text-3xl lg:text-5xl mb-6">
-            ¿Listo para Desarrollar Hombros Potentes?
-          </h2>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Únete a nuestros programas personalizados y accede a rutinas estructuradas con seguimiento profesional
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/programas">
-              <Button size="lg" className="text-lg px-8">
-                Ver Programas de Entrenamiento
-              </Button>
-            </Link>
-            <Link to="/">
-              <Button size="lg" variant="outline" className="text-lg px-8">
-                Explorar Más Rutinas
-              </Button>
-            </Link>
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="font-display font-bold text-3xl lg:text-5xl mb-6">
+              Desarrolla <span className="text-primary">Hombros de Acero</span>
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8">
+              Accede a programas estructurados con progresiones específicas para deltoides. Desde pike push-ups hasta flexiones en pino, desarrolla fuerza y estabilidad real.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-3">💪</div>
+                  <h3 className="font-bold mb-2">Deltoides Completos</h3>
+                  <p className="text-sm text-muted-foreground">Trabaja las 3 cabezas de forma equilibrada</p>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-3">🎯</div>
+                  <h3 className="font-bold mb-2">Prevención de Lesiones</h3>
+                  <p className="text-sm text-muted-foreground">Fortalece el manguito rotador y estabilizadores</p>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl mb-3">📈</div>
+                  <h3 className="font-bold mb-2">Progresión Clara</h3>
+                  <p className="text-sm text-muted-foreground">Del nivel básico al pino asistido y más allá</p>
+                </CardContent>
+              </Card>
+            </div>
+            
+            <Button size="lg" className="bg-gradient-primary" asChild>
+              <Link to="/programas">Acceder a Programas de Hombros</Link>
+            </Button>
           </div>
         </div>
       </section>
