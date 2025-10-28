@@ -22,7 +22,7 @@ const muscleCategories = [
   { image: coreImg, title: "CORE", description: "Estabilidad y fuerza central", link: "/rutina-core-calistenia" },
   { image: piernasImg, title: "PIERNAS", description: "Cuádriceps, glúteos y gemelos", link: "/rutina-piernas-calistenia" },
   { image: pechoImg, title: "PECHO", description: "Pectorales y torso", link: "/rutina-pecho-calistenia" },
-  { image: hombroImg, title: "HOMBRO", description: "Deltoides y manguito rotador", link: "/rutina-hombro-calistenia" },
+  { image: hombroImg, title: "HOMBRO", description: "Deltoides y manguito rotador", link: "/rutinas-de-hombro-calistenia" },
   { image: fullBodyImg, title: "FULL BODY", description: "Entrenamiento completo", link: "/rutina-full-body" }
 ];
 

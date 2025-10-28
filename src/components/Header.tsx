@@ -33,7 +33,7 @@ const Header = () => {
     { name: "Core", path: "/rutina-core-calistenia", icon: iconCore },
     { name: "Piernas", path: "/rutina-piernas-calistenia", icon: iconPiernas },
     { name: "Pecho", path: "/rutina-pecho-calistenia", icon: iconPecho },
-    { name: "Hombro", path: "/rutina-hombro-calistenia", icon: iconHombro },
+    { name: "Hombro", path: "/rutinas-de-hombro-calistenia", icon: iconHombro },
     { name: "Full Body", path: "/rutina-full-body", icon: iconFullBody },
   ];
 

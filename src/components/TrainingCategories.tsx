@@ -51,7 +51,7 @@ const categories = [
     icon: hombroIcon,
     title: "HOMBRO",
     description: "Fortalece tus deltoides y estabiliza el manguito rotador",
-    link: "/rutina-hombro-calistenia"
+    link: "/rutinas-de-hombro-calistenia"
   },
   {
     icon: fullBodyIcon,

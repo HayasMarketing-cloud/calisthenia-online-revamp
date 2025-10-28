@@ -42,7 +42,7 @@ const App = () => (
           <Route path="/rutina-core-calistenia" element={<RutinaCore />} />
           <Route path="/rutina-piernas-calistenia" element={<RutinaPiernas />} />
           <Route path="/rutina-pecho-calistenia" element={<RutinaPecho />} />
-          <Route path="/rutina-hombro-calistenia" element={<RutinaHombro />} />
+          <Route path="/rutinas-de-hombro-calistenia" element={<RutinaHombro />} />
           <Route path="/rutina-full-body" element={<RutinaFullBody />} />
           <Route path="/rutina-calistenia-en-casa" element={<RutinaCasa />} />
           <Route path="/calistenia-en-parque" element={<CalisteniaParque />} />

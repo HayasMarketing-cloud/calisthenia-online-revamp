@@ -42,12 +42,12 @@ const RutinaHombro = () => {
           name="keywords" 
           content="rutina hombros, ejercicios deltoides, calistenia hombros, pike push-ups, flexiones pino, entrenar hombros casa" 
         />
-        <link rel="canonical" href="https://calisthenia.online/rutina-hombro-calistenia" />
+        <link rel="canonical" href="https://calisthenia.online/rutinas-de-hombro-calistenia/" />
         
         <meta property="og:title" content="Rutina de Hombros: Fortalece y Define tus Deltoides" />
         <meta property="og:description" content="Desarrolla hombros fuertes con ejercicios de calistenia. Anatomía, ejercicios clave y rutina completa en video." />
         <meta property="og:image" content="https://calisthenia.online/assets/calisthenia-hombro.webp" />
-        <meta property="og:url" content="https://calisthenia.online/rutina-hombro-calistenia" />
+        <meta property="og:url" content="https://calisthenia.online/rutinas-de-hombro-calistenia/" />
         <meta property="og:type" content="article" />
         
         <script type="application/ld+json">
@@ -74,7 +74,7 @@ const RutinaHombro = () => {
         breadcrumbs={[
           { label: "Inicio", href: "/" },
           { label: "Rutinas", href: "/programas" },
-          { label: "Rutina Hombros", href: "/rutina-hombro-calistenia" }
+          { label: "Rutina Hombros", href: "/rutinas-de-hombro-calistenia" }
         ]}
         title="Rutina de"
         titleHighlight="Hombros"
