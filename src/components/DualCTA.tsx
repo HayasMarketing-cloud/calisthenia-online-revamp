@@ -17,7 +17,7 @@ const DualCTA = () => {
             ¿Listo para <span className="text-primary">empezar</span>?
           </h2>
           
-          <p className="text-xl text-gray-300 text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-300 text-center mb-10 max-w-2xl mx-auto">
             Elige tu camino: entrenamiento personalizado o rutinas gratuitas
           </p>
           

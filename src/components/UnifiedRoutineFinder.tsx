@@ -76,7 +76,7 @@ const UnifiedRoutineFinder = () => {
   return (
     <section id="rutinas" className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-10">
           <h2 className="font-display font-bold text-4xl lg:text-5xl mb-4">
             ENCUENTRA TU <span className="text-primary">RUTINA PERFECTA</span>
           </h2>

@@ -80,7 +80,7 @@ const RutinaPecho = () => {
         text="¿Quieres ver la rutina en acción?"
         linkText="Ver Video Principal"
         href="#video-principal"
-        icon="Play"
+        icon="▶️"
         variant="primary"
       />
 
