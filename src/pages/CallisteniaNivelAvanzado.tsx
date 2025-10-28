@@ -402,21 +402,50 @@ const CallisteniaNivelAvanzado = () => {
           </section>
 
           {/* CTA Final */}
-          <section className="py-16 bg-primary/5">
-            <div className="container mx-auto px-4 text-center">
-              <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">
-                ¿Listo para Dar el <span className="text-primary">Siguiente Paso</span>?
-              </h2>
-              <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                En Calisthenia.online no estás solo. Compartimos entrenamientos, retos semanales, progresiones y apoyo constante para que sigas avanzando con motivación y seguridad.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg" className="text-lg px-8">
-                  <Link to="/programas">Ver Todos los Programas</Link>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="text-lg px-8">
-                  <Link to="/">Volver al Inicio</Link>
-                </Button>
+          <section className="py-16 bg-secondary/5">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="font-display font-bold text-3xl lg:text-5xl mb-6">
+                  Lleva Tu Entrenamiento <span className="text-primary">Al Siguiente Nivel</span>
+                </h2>
+                <p className="text-xl text-muted-foreground mb-8">
+                  Con constancia, técnica correcta y progresiones bien planificadas, dominarás skills avanzados. Da el siguiente paso hoy.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                  <Card>
+                    <CardContent className="p-6 text-center">
+                      <div className="text-4xl mb-3">🎯</div>
+                      <h3 className="font-bold mb-2">Programas Personalizados</h3>
+                      <p className="text-sm text-muted-foreground">Entrenamiento adaptado a tu nivel con seguimiento de Nico</p>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card>
+                    <CardContent className="p-6 text-center">
+                      <div className="text-4xl mb-3">📚</div>
+                      <h3 className="font-bold mb-2">Rutinas Gratuitas</h3>
+                      <p className="text-sm text-muted-foreground">Accede a rutinas completas sin costo alguno</p>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card>
+                    <CardContent className="p-6 text-center">
+                      <div className="text-4xl mb-3">👥</div>
+                      <h3 className="font-bold mb-2">Comunidad Activa</h3>
+                      <p className="text-sm text-muted-foreground">Únete a otros que están en tu mismo camino</p>
+                    </CardContent>
+                  </Card>
+                </div>
+                
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button size="lg" className="bg-gradient-primary" asChild>
+                    <Link to="/programas">Ver Programas Personalizados</Link>
+                  </Button>
+                  <Button size="lg" variant="outline" asChild>
+                    <Link to="/">Explorar Rutinas Gratuitas</Link>
+                  </Button>
+                </div>
               </div>
             </div>
           </section>
