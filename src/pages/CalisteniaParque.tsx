@@ -7,21 +7,26 @@ import QuickJumpBanner from "@/components/QuickJumpBanner";
 import RoutineBreadcrumbs from "@/components/routine/RoutineBreadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import { allVideos } from "@/data/videoLibrary";
+import { getVideosByIds } from "@/lib/videoUtils";
 import entrenaParque from "@/assets/entrena-parque.jpg";
 import { TreePine, CheckCircle, Home, Dumbbell, Target, Shield, Users, Zap, Sun, DollarSign, TrendingUp, MapPin, Clock, Heart, AlertCircle, Brain } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card } from "@/components/ui/card";
 
 const CalisteniaParque = () => {
-  // Filtrar videos para entrenamiento en parque (con barras, paralelas, anillas)
-  // Excluir el video principal
-  const videosParque = allVideos.filter(
-    video => 
-      (video.material === "Barra dominadas" || 
-       video.material === "Paralelas" ||
-       video.material === "Anillas") &&
-      video.id !== "EqS3CCu0qDY"
-  ).sort((a, b) => b.vistas - a.vistas).slice(0, 9);
+  // Selección curada de los mejores videos para entrenamiento en parques
+  // Ordenados por nivel (principiante → avanzado) y engagement
+  const videosParque = getVideosByIds(allVideos, [
+    'IWqIZk3hF14',  // 1. Rutina fullbody principiantes (36K vistas) - Ideal inicio
+    'joOoHh_P5RM',  // 2. Primera dominada - retracción (608 vistas) - Técnica barra
+    'pwjUl5FQLCg',  // 3. Empezar calistenia sin material (24K vistas) - Base
+    'WupvTaI9Zg0',  // 4. Dominadas sin lesionarte (40K vistas) 🔥 MÁS VIRAL
+    'QmNx-kydmn0',  // 5. Fondos correctos (29K vistas) - Paralelas parque
+    'nj6C3Mwe_aI',  // 6. Dominadas motivacional (13K vistas) - Técnica
+    '7kPvnjZwN9Q',  // 7. Abdominales casa (54K vistas) 🔥 MÁS VISTO - Core
+    'bSYhg5i28kg',  // 8. Súper dominada muscle up (295 vistas) - Avanzado
+    'j1VaM6CNazM',  // 9. Superar 10 dominadas (422 vistas) - Avanzado
+  ]);
 
   return (
     <>
