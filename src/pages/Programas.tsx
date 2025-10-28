@@ -351,25 +351,31 @@ const Programas = () => {
               Mis programas están diseñados para personas que buscan transformación real
             </p>
             
+            {/* Comprometidos - Card Destacada */}
+            <Card className="mb-8 bg-gradient-to-r from-primary/5 to-accent/5 border-2 border-primary/20 shadow-md hover:shadow-elegant transition-all">
+              <div className="p-8 text-center">
+                <h3 className="font-bold text-2xl mb-3">💯 Comprometidos</h3>
+                <p className="text-gray-700 text-lg mb-4">
+                  Que valoran tener un entrenador personal de calistenia que los motive y acompañe
+                </p>
+                <Badge variant="default" className="mt-2">Transversal a todos los niveles</Badge>
+              </div>
+            </Card>
+            
+            {/* Principiantes e Intermedios */}
             <div className="grid md:grid-cols-2 gap-6">
               <Card className="p-8 border-l-4 border-l-primary hover:shadow-elegant transition-all">
                 <h3 className="font-bold text-xl mb-3">🌱 Principiantes</h3>
-                <p className="text-gray-700">Que quieren empezar con buen pie y evitar errores comunes</p>
+                <p className="text-gray-700">
+                  Que quieren empezar con buen pie y evitar errores comunes
+                </p>
               </Card>
               
               <Card className="p-8 border-l-4 border-l-primary hover:shadow-elegant transition-all">
                 <h3 className="font-bold text-xl mb-3">📈 Intermedios</h3>
-                <p className="text-gray-700">Que sienten que ya no progresan y necesitan un enfoque estructurado</p>
-              </Card>
-              
-              <Card className="p-8 border-l-4 border-l-primary hover:shadow-elegant transition-all">
-                <h3 className="font-bold text-xl mb-3">🚀 Avanzados</h3>
-                <p className="text-gray-700">Que quieren dominar skills como el muscle-up, planche o pino</p>
-              </Card>
-              
-              <Card className="p-8 border-l-4 border-l-primary hover:shadow-elegant transition-all">
-                <h3 className="font-bold text-xl mb-3">💯 Comprometidos</h3>
-                <p className="text-gray-700">Que valoran tener un entrenador personal de calistenia que los motive y acompañe</p>
+                <p className="text-gray-700">
+                  Que sienten que ya no progresan y necesitan un enfoque estructurado
+                </p>
               </Card>
             </div>
           </div>
