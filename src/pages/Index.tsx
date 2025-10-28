@@ -1,13 +1,12 @@
 import Header from "@/components/Header";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
-import HeroSection from "@/components/HeroSection";
+import HeroSectionImproved from "@/components/HeroSectionImproved";
+import QuickPathSelector from "@/components/QuickPathSelector";
 import BenefitsSection from "@/components/BenefitsSection";
-import TrainingCategories from "@/components/TrainingCategories";
-import TrainLocation from "@/components/TrainLocation";
-import TrainingLevels from "@/components/TrainingLevels";
-import AboutSection from "@/components/AboutSection";
+import UnifiedRoutineFinder from "@/components/UnifiedRoutineFinder";
+import CoachIntro from "@/components/CoachIntro";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import CallToAction from "@/components/CallToAction";
+import DualCTA from "@/components/DualCTA";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 
@@ -16,14 +15,13 @@ const Index = () => {
     <div className="min-h-screen">
       <Header />
       <CommunityStickyBanner />
-      <HeroSection />
+      <HeroSectionImproved />
+      <QuickPathSelector />
       <BenefitsSection />
-      <TrainingCategories />
-      <TrainLocation />
-      <TrainingLevels />
-      <AboutSection />
+      <UnifiedRoutineFinder />
+      <CoachIntro />
       <TestimonialsSection />
-      <CallToAction />
+      <DualCTA />
       <FAQSection />
       <Footer />
     </div>

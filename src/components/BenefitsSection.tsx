@@ -1,25 +1,25 @@
-import { Smartphone, MapPin, TrendingUp, Users2 } from "lucide-react";
+import { Dumbbell, Target, Trophy, Users2 } from "lucide-react";
 
 const benefits = [
   {
-    icon: Smartphone,
-    title: "Sin Equipos Necesarios",
-    description: "Solo necesitas tu peso corporal para transformarte"
+    icon: Dumbbell,
+    title: "Sin Equipos, Sin Excusas",
+    description: "Solo tu peso corporal. Entrena en casa, parque o donde quieras"
   },
   {
-    icon: MapPin,
-    title: "Entrena Donde Quieras",
-    description: "Casa, parque o gimnasio. Tú decides dónde entrenar"
+    icon: Target,
+    title: "Adaptado a Tu Nivel",
+    description: "Desde cero hasta skills avanzados. Progresión garantizada"
   },
   {
-    icon: TrendingUp,
-    title: "Progresión Personalizada",
-    description: "Programas adaptados a tu nivel y objetivos"
+    icon: Trophy,
+    title: "Metodología Probada",
+    description: "Certificado FESWC. Más de 10 años de experiencia"
   },
   {
     icon: Users2,
     title: "Comunidad Activa",
-    description: "Únete a cientos de personas en tu mismo viaje"
+    description: "Únete a +500 personas en tu mismo viaje"
   }
 ];
 
