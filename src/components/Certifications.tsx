@@ -14,7 +14,7 @@ const Certifications = () => {
               <img 
                 src={feswcSeal} 
                 alt="FESWC - Certificación Oficial - Federación Española de Street Workout y Calistenia" 
-                className="w-48 h-48 mx-auto mb-4 object-contain"
+                className="w-48 h-48 mx-auto mb-4 object-contain mix-blend-multiply"
               />
               <Badge className="bg-primary text-white hover:bg-accent">
                 Certificación Oficial
