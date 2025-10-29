@@ -1,6 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 
 const paths = [
@@ -14,7 +13,7 @@ const paths = [
       "Sin equipos necesarios"
     ],
     link: "/calistenia-principiantes",
-    buttonText: "Empezar Ahora",
+    buttonText: "Ver Rutinas",
     variant: "outline" as const
   },
   {
@@ -41,8 +40,7 @@ const paths = [
     ],
     link: "/programas",
     buttonText: "Ver Programas",
-    variant: "default" as const,
-    highlighted: true
+    variant: "outline" as const
   }
 ];
 
@@ -63,17 +61,8 @@ const QuickPathSelector = () => {
           {paths.map((path, idx) => (
             <Card 
               key={idx} 
-              className={`group hover:shadow-2xl transition-all hover:-translate-y-1 ${
-                path.highlighted 
-                  ? "relative overflow-hidden bg-gradient-to-br from-primary/5 to-accent/5 border-2 border-primary/30" 
-                  : "border-2 border-transparent hover:border-primary/20"
-              }`}
+              className="group hover:shadow-2xl transition-all hover:-translate-y-1 border-2 border-transparent hover:border-primary/20"
             >
-              {path.highlighted && (
-                <div className="absolute top-4 right-4 z-10">
-                  <Badge className="bg-primary text-white">Recomendado</Badge>
-                </div>
-              )}
               <CardContent className="p-8 text-center space-y-6">
                 <div className="text-6xl mb-2">{path.emoji}</div>
                 <h3 className="font-bold text-2xl">{path.title}</h3>
