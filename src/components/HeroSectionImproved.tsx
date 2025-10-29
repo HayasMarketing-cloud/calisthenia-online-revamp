@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import heroImage from "@/assets/hero-calisthenics.jpg";
+import heroImage from "@/assets/hero-wellness-calisthenics.jpg";
 const HeroSectionImproved = () => {
   const scrollToRutinas = () => {
     const element = document.getElementById('rutinas');
@@ -22,14 +22,14 @@ const HeroSectionImproved = () => {
           
           
           <h1 className="font-display font-bold text-5xl lg:text-7xl text-white leading-tight">
-            TRANSFORMA TU CUERPO
+            TRANSFORMA TU VIDA
             <br />
-            <span className="text-primary">SIN EQUIPOS</span>
+            <span className="text-primary">CON BIENESTAR</span>
           </h1>
           
           <p className="text-xl lg:text-2xl text-gray-200 leading-relaxed max-w-2xl">
-            Descubre el poder de la calistenia. Entrena donde quieras, cuando quieras.
-            Solo necesitas tu cuerpo y la metodología correcta.
+            Descubre una forma natural de moverte y sentirte mejor. Entrena a tu ritmo, 
+            mejora tu salud y bienestar con solo tu cuerpo.
           </p>
           
           {/* CTAs claros */}
@@ -46,21 +46,6 @@ const HeroSectionImproved = () => {
             </Button>
           </div>
           
-          {/* Stats sin foto de Nico */}
-          <div className="flex flex-wrap gap-8 pt-8">
-            <div className="backdrop-blur-sm bg-white/10 px-6 py-3 rounded-lg">
-              <p className="text-3xl font-bold text-primary">500+</p>
-              <p className="text-sm text-gray-300">Alumnos</p>
-            </div>
-            <div className="backdrop-blur-sm bg-white/10 px-6 py-3 rounded-lg">
-              <p className="text-3xl font-bold text-primary">10+</p>
-              <p className="text-sm text-gray-300">Años Experiencia</p>
-            </div>
-            <div className="backdrop-blur-sm bg-white/10 px-6 py-3 rounded-lg">
-              <p className="text-3xl font-bold text-primary">4.9⭐</p>
-              <p className="text-sm text-gray-300">Valoración</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>;
