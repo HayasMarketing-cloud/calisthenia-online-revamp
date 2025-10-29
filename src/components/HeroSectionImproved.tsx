@@ -22,14 +22,11 @@ const HeroSectionImproved = () => {
           
           
           <h1 className="font-display font-bold text-5xl lg:text-7xl text-white leading-tight">
-            TRANSFORMA TU VIDA
-            <br />
-            <span className="text-primary">CON BIENESTAR</span>
+            Calistenia para transformar tu cuerpo y tu vida
           </h1>
           
           <p className="text-xl lg:text-2xl text-gray-200 leading-relaxed max-w-2xl">
-            Descubre una forma natural de moverte y sentirte mejor. Entrena a tu ritmo, 
-            mejora tu salud y bienestar con solo tu cuerpo.
+            Entrena donde quieras, con rutinas adaptadas a tu nivel y objetivos. Encuentra tu ritmo, mejora tu salud y bienestar con solo tu cuerpo
           </p>
           
           {/* CTAs claros */}
