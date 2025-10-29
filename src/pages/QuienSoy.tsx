@@ -292,7 +292,7 @@ const QuienSoy = () => {
               <Button 
                 size="lg" 
                 variant="secondary"
-                onClick={() => window.location.href = '/#entrenamientos'}
+                onClick={() => window.location.href = '/programas'}
                 className="min-h-[44px]"
               >
                 Ver Programas de Entrenamiento

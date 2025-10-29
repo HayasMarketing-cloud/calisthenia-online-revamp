@@ -49,7 +49,7 @@ const PersonalHero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button size="lg" className="bg-gradient-primary hover:shadow-elegant transition-all duration-300 min-h-[44px]" onClick={() => window.location.href = '/#entrenamientos'}>
+              <Button size="lg" className="bg-gradient-primary hover:shadow-elegant transition-all duration-300 min-h-[44px]" onClick={() => window.location.href = '/programas'}>
                 Conocer Mis Programas
               </Button>
               <Button variant="outline" size="lg" className="min-h-[44px]" onClick={() => window.location.href = 'mailto:info@calisthenia.online'}>
