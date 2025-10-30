@@ -154,6 +154,15 @@ const Header = () => {
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
+
+            {/* Contacto */}
+            <NavigationMenuItem>
+              <Link to="/contacto">
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Contacto
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
 
@@ -230,6 +239,10 @@ const Header = () => {
               
               <Link to="/quien-soy" onClick={() => setIsOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">
                 Quién Soy
+              </Link>
+
+              <Link to="/contacto" onClick={() => setIsOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">
+                Contacto
               </Link>
             </nav>
           </SheetContent>
