@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { BookOpen, Target, Dumbbell, Users } from "lucide-react";
 import { COMMUNITY_CONFIG } from "@/config/community";
 
@@ -11,6 +13,7 @@ const iconMap = {
 };
 
 const CommunityCTA = () => {
+  const [isFormOpen, setIsFormOpen] = useState(false);
   return (
     <section className="py-20 bg-gradient-to-br from-primary/5 via-white to-accent/5 relative overflow-hidden">
       {/* Decoración de fondo */}
@@ -54,12 +57,7 @@ const CommunityCTA = () => {
           <Button
             size="lg"
             className="text-lg px-8 py-6 shadow-xl hover:shadow-2xl transition-all"
-            onClick={() => {
-              const openPopup = (window as any).openGHLPopup;
-              if (typeof openPopup === 'function') {
-                openPopup();
-              }
-            }}
+            onClick={() => setIsFormOpen(true)}
           >
             <Users className="mr-2 h-5 w-5" />
             {COMMUNITY_CONFIG.buttonText}
@@ -71,6 +69,22 @@ const CommunityCTA = () => {
           </p>
         </div>
       </div>
+
+      {/* Modal con el formulario */}
+      <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
+        <DialogContent className="sm:max-w-[900px] w-[96vw] h-[90vh] p-0">
+          <DialogHeader className="px-6 pt-6">
+            <DialogTitle>Únete a la comunidad</DialogTitle>
+          </DialogHeader>
+          <div className="px-6 pb-6 h-[calc(90vh-80px)]">
+            <iframe
+              src="https://links.hayasmarketing.com/widget/form/uaqsd4f4NziDmIzcwX1Q"
+              title="Alta Comunidad"
+              style={{ width: '100%', height: '100%', border: 'none', borderRadius: 8 }}
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
