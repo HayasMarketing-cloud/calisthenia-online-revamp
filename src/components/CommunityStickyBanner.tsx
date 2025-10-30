@@ -51,7 +51,12 @@ const CommunityStickyBanner = () => {
             variant="secondary"
             size="sm"
             className="flex-shrink-0 bg-white text-primary hover:bg-gray-100"
-            onClick={() => window.location.href = COMMUNITY_CONFIG.chatbotUrl}
+            onClick={() => {
+              const openPopup = (window as any).openGHLPopup;
+              if (typeof openPopup === 'function') {
+                openPopup();
+              }
+            }}
           >
             Unirme
           </Button>

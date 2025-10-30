@@ -1,7 +1,8 @@
 // Configuración centralizada de la CTA de Comunidad
 export const COMMUNITY_CONFIG = {
-  // URL del chatbot de Go High Level (actualizar cuando esté listo)
-  chatbotUrl: "#unete-comunidad", // Placeholder - ancla temporal
+  // ID del formulario de Go High Level
+  formId: "uaqsd4f4NziDmIzcwX1Q",
+  chatbotUrl: "javascript:void(0)", // Se maneja con onClick
   
   // Texto del CTA
   title: "¡Únete a la comunidad!",
