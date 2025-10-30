@@ -31,10 +31,10 @@
       style="display:none;width:100%;height:100%;border:none;border-radius:4px"
       id="popup-uaqsd4f4NziDmIzcwX1Q" 
       data-layout="{'id':'POPUP'}"
-      data-trigger-type="manual"
+      data-trigger-type="alwaysShow"
       data-trigger-value=""
-      data-activation-type="neverActivate"
-      data-activation-value=""
+      data-activation-type="timer"
+      data-activation-value="999999"
       data-deactivation-type="neverDeactivate"
       data-deactivation-value=""
       data-form-name="Alta Comunidad"
@@ -49,15 +49,40 @@
     <!-- Función para abrir el popup manualmente -->
     <script>
       window.openGHLPopup = function() {
+        // Buscar el contenedor del popup que crea GHL
         const iframe = document.getElementById('popup-uaqsd4f4NziDmIzcwX1Q');
         if (iframe) {
+          // El script de GHL envuelve el iframe en un contenedor
+          const container = iframe.parentElement;
+          if (container) {
+            container.style.display = 'block';
+            container.style.visibility = 'visible';
+            container.style.opacity = '1';
+          }
+          // También mostrar el iframe directamente
           iframe.style.display = 'block';
+          iframe.style.visibility = 'visible';
+          iframe.style.opacity = '1';
           iframe.style.position = 'fixed';
           iframe.style.top = '0';
           iframe.style.left = '0';
+          iframe.style.width = '100%';
+          iframe.style.height = '100%';
           iframe.style.zIndex = '999999';
         }
       };
+
+      // Cerrar popup si se hace click en el overlay
+      document.addEventListener('click', function(e) {
+        const iframe = document.getElementById('popup-uaqsd4f4NziDmIzcwX1Q');
+        if (iframe && e.target === iframe) {
+          iframe.style.display = 'none';
+          const container = iframe.parentElement;
+          if (container && container !== document.body) {
+            container.style.display = 'none';
+          }
+        }
+      });
     </script>
   </body>
 </html>
