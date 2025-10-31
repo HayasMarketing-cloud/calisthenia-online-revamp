@@ -155,6 +155,15 @@ const Header = () => {
               </Link>
             </NavigationMenuItem>
 
+            {/* Blog */}
+            <NavigationMenuItem>
+              <Link to="/blog/">
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Blog
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+
             {/* Contacto */}
             <NavigationMenuItem>
               <Link to="/contacto/">
@@ -239,6 +248,10 @@ const Header = () => {
               
               <Link to="/quien-soy/" onClick={() => setIsOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">
                 Quién Soy
+              </Link>
+
+              <Link to="/blog/" onClick={() => setIsOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">
+                Blog
               </Link>
 
               <Link to="/contacto/" onClick={() => setIsOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">

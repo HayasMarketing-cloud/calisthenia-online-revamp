@@ -21,6 +21,8 @@ import CalisteniaParque from "./pages/CalisteniaParque";
 import CalisteniaPrincipiantes from "./pages/CalisteniaPrincipiantes";
 import CallisteniaNivelAvanzado from "./pages/CallisteniaNivelAvanzado";
 import Contacto from "./pages/Contacto";
+import Blog from "./pages/Blog";
+import QueEsLaCalistenia from "./pages/blog/QueEsLaCalistenia";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -50,6 +52,8 @@ const App = () => (
           <Route path="/calistenia-principiantes/" element={<CalisteniaPrincipiantes />} />
           <Route path="/calistenia-nivel-avanzado/" element={<CallisteniaNivelAvanzado />} />
           <Route path="/contacto/" element={<Contacto />} />
+          <Route path="/blog/" element={<Blog />} />
+          <Route path="/blog/que-es-la-calistenia/" element={<QueEsLaCalistenia />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

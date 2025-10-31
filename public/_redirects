@@ -17,7 +17,9 @@
 /category/estiramientos/ /programas/ 301
 /category/calistenia-nivel-intermedio/ /calistenia-nivel-avanzado/ 301
 /category/calistenia/ /programas/ 301
-/calistenia/ /programas/ 301
+
+# Redirect del post de blog a su nueva ubicación
+/calistenia/ /blog/que-es-la-calistenia/ 301
 
 # URLs de WordPress que necesitan redirección
 /rutina-calistenia-en-casa-de-30-minutos/ /rutina-calistenia-en-casa/ 301
