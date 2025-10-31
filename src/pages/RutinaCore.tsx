@@ -28,12 +28,12 @@ const RutinaCore = () => {
         <title>Rutina Core Calistenia: Fortalece tu Centro con Ejercicios Funcionales | Calistenia Online</title>
         <meta name="description" content="Rutina core completa con ejercicios de calistenia para fortalecer tu zona media. Mejora estabilización, postura y previene lesiones con planificación semanal efectiva." />
         <meta name="keywords" content="rutina core, core ejercicios, que es el core, estabilización core, fuerza funcional, transverso abdominal, plancha core, entrenamiento funcional" />
-        <link rel="canonical" href="https://calisthenia.online/rutina-core-calistenia" />
+        <link rel="canonical" href="https://calisthenia.online/rutina-core-calistenia/" />
         
         <meta property="og:title" content="Rutina Core Calistenia: Ejercicios para Fortalecer tu Centro" />
         <meta property="og:description" content="Fortalece tu core con ejercicios funcionales. Mejora estabilización, postura y previene lesiones." />
         <meta property="og:image" content="https://calisthenia.online/assets/calisthenia-core.webp" />
-        <meta property="og:url" content="https://calisthenia.online/rutina-core-calistenia" />
+        <meta property="og:url" content="https://calisthenia.online/rutina-core-calistenia/" />
         <meta property="og:type" content="article" />
         
         <script type="application/ld+json">
@@ -54,8 +54,8 @@ const RutinaCore = () => {
       <RoutineHero
         breadcrumbs={[
           { label: "Inicio", href: "/" },
-          { label: "Rutinas", href: "/programas" },
-          { label: "Rutina Core", href: "/rutina-core-calistenia" }
+          { label: "Rutinas", href: "/programas/" },
+          { label: "Rutina Core", href: "/rutina-core-calistenia/" }
         ]}
         title="Rutina de"
         titleHighlight="Core"
@@ -321,7 +321,7 @@ const RutinaCore = () => {
       <section className="py-8 bg-gradient-to-r from-blue-50 via-indigo-50 to-blue-50 border-y border-blue-200/50">
         <div className="container mx-auto px-4">
           <Link 
-            to="/rutina-abdominales-calistenia"
+            to="/rutina-abdominales-calistenia/"
             className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 hover:opacity-90 transition-all group"
           >
             <span className="text-base sm:text-lg font-medium flex items-center gap-2 text-foreground">

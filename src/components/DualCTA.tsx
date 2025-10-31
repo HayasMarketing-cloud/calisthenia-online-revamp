@@ -49,7 +49,7 @@ const DualCTA = () => {
                   </li>
                 </ul>
                 <div className="pt-4">
-                  <Link to="/programas">
+                  <Link to="/programas/">
                     <Button className="w-full" size="lg">
                       Ver Programas
                       <ArrowRight className="ml-2" />

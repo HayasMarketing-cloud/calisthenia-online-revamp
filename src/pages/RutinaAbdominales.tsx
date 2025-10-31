@@ -35,12 +35,12 @@ const RutinaAbdominales = () => {
           name="keywords" 
           content="rutina abdominales, ejercicios abdominales, six pack, abdomen definido, plancha abdominal, crunches, entrenamiento abdominal, recto abdominal" 
         />
-        <link rel="canonical" href="https://calisthenia.online/rutina-abdominales-calistenia" />
+        <link rel="canonical" href="https://calisthenia.online/rutina-abdominales-calistenia/" />
         
         <meta property="og:title" content="Rutina Abdominales Calistenia Completa" />
         <meta property="og:description" content="Ejercicios abdominales efectivos para conseguir abdominales definidos. Planificación, técnicas y video guiado." />
         <meta property="og:image" content="https://calisthenia.online/assets/calisthenia-abdomen.webp" />
-        <meta property="og:url" content="https://calisthenia.online/rutina-abdominales-calistenia" />
+        <meta property="og:url" content="https://calisthenia.online/rutina-abdominales-calistenia/" />
         <meta property="og:type" content="article" />
         
         <script type="application/ld+json">
@@ -66,8 +66,8 @@ const RutinaAbdominales = () => {
       <RoutineHero
         breadcrumbs={[
           { label: "Inicio", href: "/" },
-          { label: "Rutinas", href: "/programas" },
-          { label: "Rutina Abdominales", href: "/rutina-abdominales-calistenia" }
+          { label: "Rutinas", href: "/programas/" },
+          { label: "Rutina Abdominales", href: "/rutina-abdominales-calistenia/" }
         ]}
         title="Rutina de"
         titleHighlight="Abdominales"

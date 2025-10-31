@@ -12,7 +12,7 @@ const paths = [
       "Ejercicios básicos explicados",
       "Sin equipos necesarios"
     ],
-    link: "/calistenia-principiantes",
+    link: "/calistenia-principiantes/",
     buttonText: "Ver Rutinas",
     variant: "outline" as const
   },
@@ -25,7 +25,7 @@ const paths = [
       "Skills y progresiones",
       "Entrenamientos avanzados"
     ],
-    link: "/calistenia-nivel-avanzado",
+    link: "/calistenia-nivel-avanzado/",
     buttonText: "Ver Rutinas",
     variant: "outline" as const
   },
@@ -38,7 +38,7 @@ const paths = [
       "Seguimiento directo con Nico",
       "Corrección de técnica"
     ],
-    link: "/programas",
+    link: "/programas/",
     buttonText: "Ver Programas",
     variant: "outline" as const
   }

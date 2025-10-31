@@ -54,7 +54,7 @@ const CalisteniaParque = () => {
               items={[
                 { label: "Inicio", href: "/" },
                 { label: "Lugar", href: "/#entrenar" },
-                { label: "Calistenia en Parque", href: "/calistenia-en-parque" }
+                { label: "Calistenia en Parque", href: "/calistenia-en-parque/" }
               ]}
             />
           </div>

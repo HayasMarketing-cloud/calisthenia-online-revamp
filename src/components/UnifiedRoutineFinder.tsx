@@ -16,14 +16,14 @@ import casaImg from "@/assets/entrena-casa.jpg";
 import parqueImg from "@/assets/entrena-parque.jpg";
 
 const muscleCategories = [
-  { image: brazosImg, title: "BRAZOS", description: "Bíceps, tríceps y antebrazos", link: "/rutina-brazos-calistenia" },
-  { image: espaldaImg, title: "ESPALDA", description: "Dorsales y trapecio", link: "/rutina-espalda-calistenia" },
-  { image: abdomenImg, title: "ABDOMEN", description: "Core y abdominales", link: "/rutina-abdominales-calistenia" },
-  { image: coreImg, title: "CORE", description: "Estabilidad y fuerza central", link: "/rutina-core-calistenia" },
-  { image: piernasImg, title: "PIERNAS", description: "Cuádriceps, glúteos y gemelos", link: "/rutina-piernas-calistenia" },
-  { image: pechoImg, title: "PECHO", description: "Pectorales y torso", link: "/rutina-pecho-calistenia" },
-  { image: hombroImg, title: "HOMBRO", description: "Deltoides y manguito rotador", link: "/rutinas-de-hombro-calistenia" },
-  { image: fullBodyImg, title: "FULL BODY", description: "Entrenamiento completo", link: "/rutina-full-body" }
+  { image: brazosImg, title: "BRAZOS", description: "Bíceps, tríceps y antebrazos", link: "/rutina-brazos-calistenia/" },
+  { image: espaldaImg, title: "ESPALDA", description: "Dorsales y trapecio", link: "/rutina-espalda-calistenia/" },
+  { image: abdomenImg, title: "ABDOMEN", description: "Core y abdominales", link: "/rutina-abdominales-calistenia/" },
+  { image: coreImg, title: "CORE", description: "Estabilidad y fuerza central", link: "/rutina-core-calistenia/" },
+  { image: piernasImg, title: "PIERNAS", description: "Cuádriceps, glúteos y gemelos", link: "/rutina-piernas-calistenia/" },
+  { image: pechoImg, title: "PECHO", description: "Pectorales y torso", link: "/rutina-pecho-calistenia/" },
+  { image: hombroImg, title: "HOMBRO", description: "Deltoides y manguito rotador", link: "/rutinas-de-hombro-calistenia/" },
+  { image: fullBodyImg, title: "FULL BODY", description: "Entrenamiento completo", link: "/rutina-full-body/" }
 ];
 
 const locations = [
@@ -32,14 +32,14 @@ const locations = [
     title: "EN CASA",
     description: "Sin equipos, solo tu cuerpo",
     features: ["Sin necesidad de barras", "Entrena en tu habitación", "Rutinas adaptadas"],
-    link: "/rutina-calistenia-en-casa"
+    link: "/rutina-calistenia-en-casa/"
   },
   {
     image: parqueImg,
     title: "EN EL PARQUE",
     description: "Barras y aire libre",
     features: ["Aprovecha las barras públicas", "Entrena al aire libre", "Skills avanzados"],
-    link: "/calistenia-en-parque"
+    link: "/calistenia-en-parque/"
   }
 ];
 
@@ -55,7 +55,7 @@ const levels = [
       "Ejercicios de core básico",
       "Progresión gradual"
     ],
-    link: "/calistenia-principiantes"
+    link: "/calistenia-principiantes/"
   },
   {
     badge: "Nivel 2+",
@@ -68,7 +68,7 @@ const levels = [
       "Skills como muscle-up",
       "Entrenamiento periodizado"
     ],
-    link: "/calistenia-nivel-avanzado"
+    link: "/calistenia-nivel-avanzado/"
   }
 ];
 

@@ -36,13 +36,13 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-lg mb-4 text-primary">Entrenamientos</h4>
             <ul className="space-y-2">
-              <li><a href="/rutina-brazos-calistenia" className="text-gray-300 hover:text-white transition-colors">Brazos</a></li>
-              <li><a href="/rutina-espalda-calistenia" className="text-gray-300 hover:text-white transition-colors">Espalda</a></li>
-                <li><a href="/rutina-abdominales-calistenia" className="text-gray-300 hover:text-white transition-colors">Abdomen</a></li>
-                <li><a href="/rutina-core-calistenia" className="text-gray-300 hover:text-white transition-colors">Core</a></li>
-                <li><a href="/rutina-piernas-calistenia" className="text-gray-300 hover:text-white transition-colors">Piernas</a></li>
-              <li><a href="/rutina-pecho-calistenia" className="text-gray-300 hover:text-white transition-colors">Pecho</a></li>
-              <li><a href="/rutina-full-body" className="text-gray-300 hover:text-white transition-colors">Full Body</a></li>
+              <li><a href="/rutina-brazos-calistenia/" className="text-gray-300 hover:text-white transition-colors">Brazos</a></li>
+              <li><a href="/rutina-espalda-calistenia/" className="text-gray-300 hover:text-white transition-colors">Espalda</a></li>
+                <li><a href="/rutina-abdominales-calistenia/" className="text-gray-300 hover:text-white transition-colors">Abdomen</a></li>
+                <li><a href="/rutina-core-calistenia/" className="text-gray-300 hover:text-white transition-colors">Core</a></li>
+                <li><a href="/rutina-piernas-calistenia/" className="text-gray-300 hover:text-white transition-colors">Piernas</a></li>
+              <li><a href="/rutina-pecho-calistenia/" className="text-gray-300 hover:text-white transition-colors">Pecho</a></li>
+              <li><a href="/rutina-full-body/" className="text-gray-300 hover:text-white transition-colors">Full Body</a></li>
             </ul>
           </div>
 
@@ -50,9 +50,9 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-lg mb-4 text-primary">Compañía</h4>
             <ul className="space-y-2">
-              <li><a href="/quien-soy" className="text-gray-300 hover:text-white transition-colors">Sobre Nicolás</a></li>
-              <li><a href="/programas" className="text-gray-300 hover:text-white transition-colors">Programas</a></li>
-              <li><a href="/quien-soy#metodologia" className="text-gray-300 hover:text-white transition-colors">Metodología</a></li>
+              <li><a href="/quien-soy/" className="text-gray-300 hover:text-white transition-colors">Sobre Nicolás</a></li>
+              <li><a href="/programas/" className="text-gray-300 hover:text-white transition-colors">Programas</a></li>
+              <li><a href="/quien-soy/#metodologia" className="text-gray-300 hover:text-white transition-colors">Metodología</a></li>
               <li><a href="/#testimonios" className="text-gray-300 hover:text-white transition-colors">Testimonios</a></li>
               <li><a href="mailto:info@calisthenia.online" className="text-gray-300 hover:text-white transition-colors">Contacto</a></li>
             </ul>

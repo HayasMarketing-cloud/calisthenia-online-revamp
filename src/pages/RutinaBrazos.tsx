@@ -34,12 +34,12 @@ const RutinaBrazos = () => {
           name="keywords" 
           content="rutina brazos calistenia, ejercicios bíceps, ejercicios tríceps, brazos fuertes, entrenamiento brazos sin pesas, curl australiano, fondos paralelas" 
         />
-        <link rel="canonical" href="https://calisthenia.online/rutina-brazos-calistenia" />
+        <link rel="canonical" href="https://calisthenia.online/rutina-brazos-calistenia/" />
         
         <meta property="og:title" content="Rutina de Brazos Calistenia: Fuerza y Definición" />
         <meta property="og:description" content="Entrena bíceps y tríceps con ejercicios de calistenia efectivos. Técnicas, progresión y video guiado completo." />
         <meta property="og:image" content="https://calisthenia.online/assets/calisthenia-brazos.webp" />
-        <meta property="og:url" content="https://calisthenia.online/rutina-brazos-calistenia" />
+        <meta property="og:url" content="https://calisthenia.online/rutina-brazos-calistenia/" />
         <meta property="og:type" content="article" />
         
         <script type="application/ld+json">
@@ -61,8 +61,8 @@ const RutinaBrazos = () => {
       <RoutineHero
         breadcrumbs={[
           { label: "Inicio", href: "/" },
-          { label: "Rutinas", href: "/programas" },
-          { label: "Rutina Brazos", href: "/rutina-brazos-calistenia" }
+          { label: "Rutinas", href: "/programas/" },
+          { label: "Rutina Brazos", href: "/rutina-brazos-calistenia/" }
         ]}
         title="Rutina de"
         titleHighlight="Brazos"

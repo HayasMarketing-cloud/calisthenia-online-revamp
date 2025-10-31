@@ -59,7 +59,7 @@ const CalisteniaPrincipiantes = () => {
         breadcrumbs={[
           { label: "Inicio", href: "/" },
           { label: "Niveles", href: "/" },
-          { label: "Principiantes", href: "/calistenia-principiantes" }
+          { label: "Principiantes", href: "/calistenia-principiantes/" }
         ]}
         title="Calistenia para"
         titleHighlight="Principiantes"

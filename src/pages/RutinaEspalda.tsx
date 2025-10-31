@@ -64,8 +64,8 @@ const RutinaEspalda = () => {
       <RoutineHero
         breadcrumbs={[
           { label: "Inicio", href: "/" },
-          { label: "Rutinas", href: "/programas" },
-          { label: "Rutina Espalda", href: "/rutina-espalda" }
+          { label: "Rutinas", href: "/programas/" },
+          { label: "Rutina Espalda", href: "/rutina-espalda-calistenia/" }
         ]}
         title="Rutina de"
         titleHighlight="Espalda"

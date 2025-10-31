@@ -27,24 +27,24 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const routines = [
-    { name: "Brazos", path: "/rutina-brazos-calistenia", icon: iconBrazos },
-    { name: "Espalda", path: "/rutina-espalda-calistenia", icon: iconEspalda },
-    { name: "Abdomen", path: "/rutina-abdominales-calistenia", icon: iconAbdomen },
-    { name: "Core", path: "/rutina-core-calistenia", icon: iconCore },
-    { name: "Piernas", path: "/rutina-piernas-calistenia", icon: iconPiernas },
-    { name: "Pecho", path: "/rutina-pecho-calistenia", icon: iconPecho },
-    { name: "Hombro", path: "/rutinas-de-hombro-calistenia", icon: iconHombro },
-    { name: "Full Body", path: "/rutina-full-body", icon: iconFullBody },
+    { name: "Brazos", path: "/rutina-brazos-calistenia/", icon: iconBrazos },
+    { name: "Espalda", path: "/rutina-espalda-calistenia/", icon: iconEspalda },
+    { name: "Abdomen", path: "/rutina-abdominales-calistenia/", icon: iconAbdomen },
+    { name: "Core", path: "/rutina-core-calistenia/", icon: iconCore },
+    { name: "Piernas", path: "/rutina-piernas-calistenia/", icon: iconPiernas },
+    { name: "Pecho", path: "/rutina-pecho-calistenia/", icon: iconPecho },
+    { name: "Hombro", path: "/rutinas-de-hombro-calistenia/", icon: iconHombro },
+    { name: "Full Body", path: "/rutina-full-body/", icon: iconFullBody },
   ];
 
   const lugares = [
-    { name: "Casa", path: "/rutina-calistenia-en-casa", icon: entrenaCase },
-    { name: "Parque", path: "/calistenia-en-parque", icon: entrenaParque },
+    { name: "Casa", path: "/rutina-calistenia-en-casa/", icon: entrenaCase },
+    { name: "Parque", path: "/calistenia-en-parque/", icon: entrenaParque },
   ];
 
   const niveles = [
-    { name: "Principiante", path: "/calistenia-principiantes", icon: User },
-    { name: "Intermedio", path: "/calistenia-nivel-avanzado", icon: Users },
+    { name: "Principiante", path: "/calistenia-principiantes/", icon: User },
+    { name: "Intermedio", path: "/calistenia-nivel-avanzado/", icon: Users },
   ];
 
   return (
@@ -139,7 +139,7 @@ const Header = () => {
 
             {/* Programas */}
             <NavigationMenuItem>
-              <Link to="/programas">
+              <Link to="/programas/">
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Programas
                 </NavigationMenuLink>
@@ -148,7 +148,7 @@ const Header = () => {
 
             {/* Quién Soy */}
             <NavigationMenuItem>
-              <Link to="/quien-soy">
+              <Link to="/quien-soy/">
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Quién Soy
                 </NavigationMenuLink>
@@ -157,7 +157,7 @@ const Header = () => {
 
             {/* Contacto */}
             <NavigationMenuItem>
-              <Link to="/contacto">
+              <Link to="/contacto/">
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Contacto
                 </NavigationMenuLink>
@@ -233,15 +233,15 @@ const Header = () => {
                 </div>
               </div>
 
-              <Link to="/programas" onClick={() => setIsOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">
+              <Link to="/programas/" onClick={() => setIsOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">
                 Programas
               </Link>
               
-              <Link to="/quien-soy" onClick={() => setIsOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">
+              <Link to="/quien-soy/" onClick={() => setIsOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">
                 Quién Soy
               </Link>
 
-              <Link to="/contacto" onClick={() => setIsOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">
+              <Link to="/contacto/" onClick={() => setIsOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">
                 Contacto
               </Link>
             </nav>

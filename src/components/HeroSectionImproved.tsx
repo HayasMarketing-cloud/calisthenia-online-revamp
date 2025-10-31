@@ -32,7 +32,7 @@ const HeroSectionImproved = () => {
           {/* CTAs claros */}
           <div className="flex flex-col sm:flex-row gap-4">
             <Button size="lg" asChild className="text-lg px-8">
-              <Link to="/programas">
+              <Link to="/programas/">
                 Entrenar con Guía Profesional
                 <ArrowRight className="ml-2" />
               </Link>

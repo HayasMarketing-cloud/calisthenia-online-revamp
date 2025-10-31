@@ -29,12 +29,12 @@ const RutinaPiernas = () => {
           name="keywords" 
           content="rutina piernas calistenia, entrenamiento piernas casa, sentadillas pistol squat, ejercicios piernas sin material, rutina glúteos" 
         />
-        <link rel="canonical" href="https://calisthenia.online/rutina-piernas" />
+        <link rel="canonical" href="https://calisthenia.online/rutina-piernas-calistenia/" />
         
         <meta property="og:title" content="Rutina de Piernas: Mejora Tu Fuerza y Estética Muscular" />
         <meta property="og:description" content="Guía completa de entrenamiento de piernas con calistenia. Ejercicios para casa, gimnasio y parque." />
         <meta property="og:image" content="https://calisthenia.online/assets/calisthenia-piernas.webp" />
-        <meta property="og:url" content="https://calisthenia.online/rutina-piernas" />
+        <meta property="og:url" content="https://calisthenia.online/rutina-piernas-calistenia/" />
         <meta property="og:type" content="article" />
         
         <script type="application/ld+json">
@@ -59,8 +59,8 @@ const RutinaPiernas = () => {
       <RoutineHero
         breadcrumbs={[
           { label: "Inicio", href: "/" },
-          { label: "Rutinas", href: "/programas" },
-          { label: "Rutina Piernas", href: "/rutina-piernas" }
+          { label: "Rutinas", href: "/programas/" },
+          { label: "Rutina Piernas", href: "/rutina-piernas-calistenia/" }
         ]}
         title="Rutina de"
         titleHighlight="Piernas"

@@ -35,21 +35,21 @@ const App = () => (
           <ScrollToTop />
           <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/quien-soy" element={<QuienSoy />} />
-          <Route path="/programas" element={<Programas />} />
-          <Route path="/rutina-brazos-calistenia" element={<RutinaBrazos />} />
-          <Route path="/rutina-espalda-calistenia" element={<RutinaEspalda />} />
-          <Route path="/rutina-abdominales-calistenia" element={<RutinaAbdominales />} />
-          <Route path="/rutina-core-calistenia" element={<RutinaCore />} />
-          <Route path="/rutina-piernas-calistenia" element={<RutinaPiernas />} />
-          <Route path="/rutina-pecho-calistenia" element={<RutinaPecho />} />
-          <Route path="/rutinas-de-hombro-calistenia" element={<RutinaHombro />} />
-          <Route path="/rutina-full-body" element={<RutinaFullBody />} />
-          <Route path="/rutina-calistenia-en-casa" element={<RutinaCasa />} />
-          <Route path="/calistenia-en-parque" element={<CalisteniaParque />} />
-          <Route path="/calistenia-principiantes" element={<CalisteniaPrincipiantes />} />
-          <Route path="/calistenia-nivel-avanzado" element={<CallisteniaNivelAvanzado />} />
-          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/quien-soy/" element={<QuienSoy />} />
+          <Route path="/programas/" element={<Programas />} />
+          <Route path="/rutina-brazos-calistenia/" element={<RutinaBrazos />} />
+          <Route path="/rutina-espalda-calistenia/" element={<RutinaEspalda />} />
+          <Route path="/rutina-abdominales-calistenia/" element={<RutinaAbdominales />} />
+          <Route path="/rutina-core-calistenia/" element={<RutinaCore />} />
+          <Route path="/rutina-piernas-calistenia/" element={<RutinaPiernas />} />
+          <Route path="/rutina-pecho-calistenia/" element={<RutinaPecho />} />
+          <Route path="/rutinas-de-hombro-calistenia/" element={<RutinaHombro />} />
+          <Route path="/rutina-full-body/" element={<RutinaFullBody />} />
+          <Route path="/rutina-calistenia-en-casa/" element={<RutinaCasa />} />
+          <Route path="/calistenia-en-parque/" element={<CalisteniaParque />} />
+          <Route path="/calistenia-principiantes/" element={<CalisteniaPrincipiantes />} />
+          <Route path="/calistenia-nivel-avanzado/" element={<CallisteniaNivelAvanzado />} />
+          <Route path="/contacto/" element={<Contacto />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

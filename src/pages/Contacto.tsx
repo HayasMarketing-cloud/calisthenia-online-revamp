@@ -30,13 +30,13 @@ const Contacto = () => {
           content="¿Tienes dudas sobre los programas de entrenamiento? Ponte en contacto con Nicolás Reyero. Respondo personalmente todas tus consultas sobre calistenia y entrenamiento funcional." 
         />
         <meta name="keywords" content="contacto calistenia, consulta entrenamiento, asesoría calistenia, nicolás reyero contacto" />
-        <link rel="canonical" href="https://calisthenia.online/contacto" />
+        <link rel="canonical" href="https://calisthenia.online/contacto/" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Contacto | Calistenia Online - Nicolás Reyero" />
         <meta property="og:description" content="Ponte en contacto conmigo para resolver tus dudas sobre programas de entrenamiento de calistenia." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://calisthenia.online/contacto" />
+        <meta property="og:url" content="https://calisthenia.online/contacto/" />
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />

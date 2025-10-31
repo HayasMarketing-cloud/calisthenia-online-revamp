@@ -49,13 +49,13 @@ const CoachIntro = () => {
               
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button asChild size="lg">
-                  <Link to="/quien-soy">
+                  <Link to="/quien-soy/">
                     Conoce Mi Historia
                     <ArrowRight className="ml-2" />
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
-                  <Link to="/programas">Ver Programas</Link>
+                  <Link to="/programas/">Ver Programas</Link>
                 </Button>
               </div>
             </div>

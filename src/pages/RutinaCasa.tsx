@@ -28,8 +28,8 @@ const RutinaCasa = () => {
 
   const breadcrumbItems = [
     { label: "Inicio", href: "/" },
-    { label: "Lugar", href: "/programas" },
-    { label: "Calistenia en Casa", href: "/rutina-calistenia-en-casa" }
+    { label: "Lugar", href: "/programas/" },
+    { label: "Calistenia en Casa", href: "/rutina-calistenia-en-casa/" }
   ];
 
   return (

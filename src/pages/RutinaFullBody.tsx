@@ -43,12 +43,12 @@ const RutinaFullBody = () => {
           name="keywords" 
           content="rutina full body calistenia, ejercicios cuerpo completo, entrenamiento 3 días semana, calistenia en casa, beneficios full body" 
         />
-        <link rel="canonical" href="https://calisthenia.online/rutina-full-body" />
+        <link rel="canonical" href="https://calisthenia.online/rutina-full-body/" />
         
         <meta property="og:title" content="Rutina Full Body Calistenia Completa" />
         <meta property="og:description" content="Entrena todo tu cuerpo con calistenia. Ejercicios, planificación y video guiado completo." />
         <meta property="og:image" content="https://calisthenia.online/assets/calisthenia-full-body.webp" />
-        <meta property="og:url" content="https://calisthenia.online/rutina-full-body" />
+        <meta property="og:url" content="https://calisthenia.online/rutina-full-body/" />
         <meta property="og:type" content="article" />
         
         <script type="application/ld+json">
@@ -74,8 +74,8 @@ const RutinaFullBody = () => {
       <RoutineHero
         breadcrumbs={[
           { label: "Inicio", href: "/" },
-          { label: "Rutinas", href: "/programas" },
-          { label: "Rutina Full Body", href: "/rutina-full-body" }
+          { label: "Rutinas", href: "/programas/" },
+          { label: "Rutina Full Body", href: "/rutina-full-body/" }
         ]}
         title="Rutina"
         titleHighlight="Full Body"
