@@ -38,7 +38,7 @@ const HeroSectionImproved = () => {
               </Link>
             </Button>
             <Button size="lg" variant="outline" onClick={scrollToRutinas} className="text-lg px-8 bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20">
-              Ver Rutinas Gratis
+              Encuentra tu rutina
               <ChevronDown className="ml-2" />
             </Button>
           </div>
