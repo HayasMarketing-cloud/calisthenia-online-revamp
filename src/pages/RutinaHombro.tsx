@@ -628,7 +628,7 @@ const RutinaHombro = () => {
       {/* Video Principal con Estructura */}
       <VideoWithStructure
         videoId="evORg2Y6LQQ"
-        videoTitle="🎬 Rutina de Hombros Completa con Calistenia"
+        videoTitle="Ejercicio de pino fácil para fortalecer hombros"
         videoDescription="En este video, se presenta una rutina de hombros de aproximadamente 10 minutos, diseñada para trabajar los deltoides utilizando ejercicios de calistenia. La rutina es accesible para todos los niveles y se puede realizar con tan solo unas mini paralelas."
         insights={[
           "Fortalecimiento de los deltoides: Trabaja las 2 porciones del hombro (anterior y lateral)",
