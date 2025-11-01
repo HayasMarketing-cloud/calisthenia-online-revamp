@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import RoutineBreadcrumbs from "@/components/routine/RoutineBreadcrumbs";
 import BlogPostCard from "@/components/blog/BlogPostCard";
+import LatestVideosCarousel from "@/components/LatestVideosCarousel";
 
 const Blog = () => {
   const breadcrumbItems = [
@@ -59,6 +60,12 @@ const Blog = () => {
               <BlogPostCard key={post.slug} {...post} />
             ))}
           </div>
+
+          <section className="py-16 bg-slate-50 mt-16 rounded-xl">
+            <div className="container mx-auto px-4">
+              <LatestVideosCarousel />
+            </div>
+          </section>
         </main>
 
         <Footer />

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import VideoEmbed from "@/components/VideoEmbed";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
+import VideoHeroBanner from "@/components/VideoHeroBanner";
 
 const QuienSoy = () => {
   useEffect(() => {
@@ -309,6 +310,8 @@ const QuienSoy = () => {
           </div>
         </section>
       </main>
+      
+      <VideoHeroBanner />
       
       <Footer />
     </div>
