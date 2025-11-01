@@ -5,14 +5,9 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/integrations/supabase/client';
 import { YouTubeVideo } from '@/types/youtube';
 import { formatNumber, formatDuration, getRelativeTime } from '@/lib/youtubeUtils';
-
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
 
 const CACHE_KEY = 'youtube_latest_videos_cache';
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutos

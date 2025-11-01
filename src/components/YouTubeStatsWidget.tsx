@@ -4,14 +4,9 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/integrations/supabase/client';
 import { YouTubeChannelStats } from '@/types/youtube';
 import { formatNumber } from '@/lib/youtubeUtils';
-
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
 
 const CACHE_KEY = 'youtube_stats_cache';
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutos
