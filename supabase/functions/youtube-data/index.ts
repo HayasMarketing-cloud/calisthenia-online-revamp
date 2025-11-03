@@ -20,10 +20,13 @@ function isCacheValid(cacheKey: string): boolean {
 }
 
 async function getChannelId(): Promise<string> {
-  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(CHANNEL_HANDLE)}&type=channel&maxResults=1&key=${YOUTUBE_API_KEY}`;
+  // Use forHandle endpoint directly - more reliable than search
+  const url = `https://www.googleapis.com/youtube/v3/channels?part=id&forHandle=${CHANNEL_HANDLE.replace('@', '')}&key=${YOUTUBE_API_KEY}`;
   
   const response = await fetch(url);
   if (!response.ok) {
+    const errorText = await response.text();
+    console.error('Failed to get channel ID:', response.status, errorText);
     throw new Error(`Failed to get channel ID: ${response.statusText}`);
   }
   
@@ -32,7 +35,7 @@ async function getChannelId(): Promise<string> {
     throw new Error('Channel not found');
   }
   
-  return data.items[0].snippet.channelId;
+  return data.items[0].id;
 }
 
 async function getChannelStats() {
