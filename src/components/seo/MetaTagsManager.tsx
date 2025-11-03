@@ -1,225 +1,432 @@
 import { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { seoConfig, PageSEO } from "@/config/seoConfig";
-import { Search, Edit, Save, X, AlertCircle, CheckCircle2 } from "lucide-react";
-import { toast } from "sonner";
+import { Badge } from "@/components/ui/badge";
+import {
+  Search,
+  Edit,
+  Save,
+  X,
+  CheckCircle2,
+  AlertCircle,
+  XCircle,
+  ExternalLink,
+} from "lucide-react";
+import { useAllSEOPages, useUpdateSEOPage, SEOPage } from "@/hooks/useSEOData";
+import { useToast } from "@/hooks/use-toast";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Progress } from "@/components/ui/progress";
 
 const MetaTagsManager = () => {
-  const [pages, setPages] = useState<PageSEO[]>(seoConfig.pages);
   const [searchTerm, setSearchTerm] = useState("");
-  const [editingIndex, setEditingIndex] = useState<number | null>(null);
-  const [editForm, setEditForm] = useState<PageSEO | null>(null);
+  const [editingPage, setEditingPage] = useState<SEOPage | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const filteredPages = pages.filter(
-    page =>
+  const { data: pages, isLoading } = useAllSEOPages();
+  const updateMutation = useUpdateSEOPage();
+  const { toast } = useToast();
+
+  const filteredPages = pages?.filter(
+    (page) =>
       page.path.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      page.title.toLowerCase().includes(searchTerm.toLowerCase())
+      page.title?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleEdit = (index: number) => {
-    setEditingIndex(index);
-    setEditForm({ ...pages[index] });
+  const calculateSEOScore = (page: SEOPage) => {
+    let score = 0;
+    const checks = [
+      { condition: !!page.title, weight: 20 },
+      {
+        condition: page.title && page.title.length >= 50 && page.title.length <= 60,
+        weight: 10,
+      },
+      { condition: !!page.description, weight: 20 },
+      {
+        condition:
+          page.description &&
+          page.description.length >= 150 &&
+          page.description.length <= 160,
+        weight: 10,
+      },
+      { condition: !!page.h1, weight: 15 },
+      { condition: !!page.h2_primary, weight: 10 },
+      { condition: !!page.h2_secondary_1, weight: 5 },
+      { condition: !!page.canonical, weight: 5 },
+      { condition: !!page.keywords && page.keywords.length > 0, weight: 5 },
+    ];
+
+    checks.forEach((check) => {
+      if (check.condition) score += check.weight;
+    });
+
+    return score;
   };
 
-  const handleSave = () => {
-    if (editingIndex !== null && editForm) {
-      const newPages = [...pages];
-      newPages[editingIndex] = editForm;
-      setPages(newPages);
-      setEditingIndex(null);
-      setEditForm(null);
-      toast.success("Cambios guardados");
+  const getStatusBadge = (page: SEOPage) => {
+    const score = calculateSEOScore(page);
+
+    if (score >= 80) {
+      return (
+        <Badge variant="default" className="gap-1">
+          <CheckCircle2 className="w-3 h-3" />
+          Completo ({score}%)
+        </Badge>
+      );
+    } else if (score >= 50) {
+      return (
+        <Badge variant="secondary" className="gap-1">
+          <AlertCircle className="w-3 h-3" />
+          Básico ({score}%)
+        </Badge>
+      );
+    } else {
+      return (
+        <Badge variant="destructive" className="gap-1">
+          <XCircle className="w-3 h-3" />
+          Incompleto ({score}%)
+        </Badge>
+      );
     }
   };
 
-  const handleCancel = () => {
-    setEditingIndex(null);
-    setEditForm(null);
+  const handleEdit = (page: SEOPage) => {
+    setEditingPage({
+      ...page,
+      keywords: page.keywords || [],
+    });
+    setIsDialogOpen(true);
   };
 
-  const getTitleLength = (title: string) => title.length;
-  const getDescriptionLength = (desc: string) => desc.length;
+  const handleSave = async () => {
+    if (!editingPage) return;
 
-  const isValidTitle = (title: string) => {
-    const len = getTitleLength(title);
-    return len >= 50 && len <= 60;
+    try {
+      await updateMutation.mutateAsync(editingPage);
+      toast({
+        title: "SEO actualizado",
+        description: "Los cambios se han guardado correctamente.",
+      });
+      setIsDialogOpen(false);
+      setEditingPage(null);
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "No se pudieron guardar los cambios.",
+        variant: "destructive",
+      });
+    }
   };
 
-  const isValidDescription = (desc: string) => {
-    const len = getDescriptionLength(desc);
-    return len >= 150 && len <= 160;
+  const handleKeywordChange = (value: string) => {
+    if (!editingPage) return;
+    const keywords = value.split(",").map((k) => k.trim()).filter(Boolean);
+    setEditingPage({ ...editingPage, keywords });
   };
+
+  if (isLoading) {
+    return <div>Cargando...</div>;
+  }
 
   return (
-    <div className="space-y-6">
-      <Card>
-        <CardHeader>
-          <CardTitle>Gestor de Meta Tags</CardTitle>
-          <CardDescription>
-            Gestiona los meta tags, títulos y encabezados de todas las páginas
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="mb-6">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Buscar por ruta o título..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
-              />
-            </div>
+    <>
+      <Card className="p-6">
+        <div className="space-y-6">
+          <div>
+            <h2 className="text-2xl font-bold mb-2">Gestión de Meta Tags</h2>
+            <p className="text-muted-foreground">
+              Edita los meta tags, títulos y descripciones SEO de cada página
+            </p>
           </div>
 
-          <div className="space-y-4">
-            {filteredPages.map((page, index) => (
-              <Card key={index}>
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <CardTitle className="text-lg">{page.path}</CardTitle>
-                      <CardDescription className="mt-1">
-                        {editingIndex === index ? "Editando página" : page.title}
-                      </CardDescription>
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+            <Input
+              placeholder="Buscar por ruta o título..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+
+          <div className="space-y-3">
+            {filteredPages?.map((page) => {
+              const score = calculateSEOScore(page);
+
+              return (
+                <Card key={page.path} className="p-4">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1 space-y-2">
+                      <div className="flex items-center gap-2">
+                        <code className="text-sm bg-muted px-2 py-1 rounded">
+                          {page.path}
+                        </code>
+                        {getStatusBadge(page)}
+                        <a
+                          href={page.path}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-foreground"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      </div>
+
+                      <Progress value={score} className="h-2" />
+
+                      <div className="text-sm space-y-1">
+                        <div>
+                          <span className="font-medium">Título:</span>{" "}
+                          {page.title || "Sin definir"}{" "}
+                          {page.title && (
+                            <span
+                              className={
+                                page.title.length >= 50 && page.title.length <= 60
+                                  ? "text-green-600"
+                                  : "text-orange-600"
+                              }
+                            >
+                              ({page.title.length} chars)
+                            </span>
+                          )}
+                        </div>
+                        <div>
+                          <span className="font-medium">Descripción:</span>{" "}
+                          {page.description || "Sin definir"}{" "}
+                          {page.description && (
+                            <span
+                              className={
+                                page.description.length >= 150 &&
+                                page.description.length <= 160
+                                  ? "text-green-600"
+                                  : "text-orange-600"
+                              }
+                            >
+                              ({page.description.length} chars)
+                            </span>
+                          )}
+                        </div>
+                        <div>
+                          <span className="font-medium">H1:</span>{" "}
+                          {page.h1 || "Sin definir"}
+                        </div>
+                        {page.h2_primary && (
+                          <div>
+                            <span className="font-medium">H2 Principal:</span>{" "}
+                            {page.h2_primary}
+                          </div>
+                        )}
+                      </div>
                     </div>
-                    <div className="flex gap-2">
-                      {editingIndex === index ? (
-                        <>
-                          <Button size="sm" onClick={handleSave}>
-                            <Save className="h-4 w-4 mr-2" />
-                            Guardar
-                          </Button>
-                          <Button size="sm" variant="outline" onClick={handleCancel}>
-                            <X className="h-4 w-4 mr-2" />
-                            Cancelar
-                          </Button>
-                        </>
-                      ) : (
-                        <Button size="sm" variant="outline" onClick={() => handleEdit(index)}>
-                          <Edit className="h-4 w-4 mr-2" />
-                          Editar
-                        </Button>
-                      )}
-                    </div>
+
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleEdit(page)}
+                    >
+                      <Edit className="w-4 h-4" />
+                    </Button>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  {editingIndex === index && editForm ? (
-                    <div className="space-y-4">
-                      <div>
-                        <label className="text-sm font-medium mb-2 block">
-                          Title Tag {getTitleLength(editForm.title)}/60
-                          {!isValidTitle(editForm.title) && (
-                            <span className="text-orange-500 ml-2">
-                              <AlertCircle className="h-4 w-4 inline" />
-                            </span>
-                          )}
-                        </label>
-                        <Input
-                          value={editForm.title}
-                          onChange={(e) => setEditForm({ ...editForm, title: e.target.value })}
-                          placeholder="Título SEO (50-60 caracteres)"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="text-sm font-medium mb-2 block">
-                          Meta Description {getDescriptionLength(editForm.description)}/160
-                          {!isValidDescription(editForm.description) && (
-                            <span className="text-orange-500 ml-2">
-                              <AlertCircle className="h-4 w-4 inline" />
-                            </span>
-                          )}
-                        </label>
-                        <Textarea
-                          value={editForm.description}
-                          onChange={(e) => setEditForm({ ...editForm, description: e.target.value })}
-                          placeholder="Descripción meta (150-160 caracteres)"
-                          rows={3}
-                        />
-                      </div>
-
-                      <div>
-                        <label className="text-sm font-medium mb-2 block">H1</label>
-                        <Input
-                          value={editForm.h1}
-                          onChange={(e) => setEditForm({ ...editForm, h1: e.target.value })}
-                          placeholder="Encabezado principal H1"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="text-sm font-medium mb-2 block">H2s (hasta 3)</label>
-                        {[0, 1, 2].map((i) => (
-                          <Input
-                            key={i}
-                            value={editForm.h2s[i] || ""}
-                            onChange={(e) => {
-                              const newH2s = [...editForm.h2s];
-                              newH2s[i] = e.target.value;
-                              setEditForm({ ...editForm, h2s: newH2s });
-                            }}
-                            placeholder={`H2 #${i + 1} (opcional)`}
-                            className="mb-2"
-                          />
-                        ))}
-                      </div>
-
-                      <div>
-                        <label className="text-sm font-medium mb-2 block">Canonical URL</label>
-                        <Input
-                          value={editForm.canonical}
-                          onChange={(e) => setEditForm({ ...editForm, canonical: e.target.value })}
-                          placeholder="https://calisthenia.online/..."
-                        />
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="space-y-3 text-sm">
-                      <div>
-                        <span className="font-medium">Title:</span>
-                        <span className="ml-2 text-muted-foreground">{page.title}</span>
-                        {isValidTitle(page.title) ? (
-                          <CheckCircle2 className="h-4 w-4 inline text-green-500 ml-2" />
-                        ) : (
-                          <AlertCircle className="h-4 w-4 inline text-orange-500 ml-2" />
-                        )}
-                      </div>
-                      <div>
-                        <span className="font-medium">Description:</span>
-                        <span className="ml-2 text-muted-foreground">{page.description}</span>
-                        {isValidDescription(page.description) ? (
-                          <CheckCircle2 className="h-4 w-4 inline text-green-500 ml-2" />
-                        ) : (
-                          <AlertCircle className="h-4 w-4 inline text-orange-500 ml-2" />
-                        )}
-                      </div>
-                      <div>
-                        <span className="font-medium">H1:</span>
-                        <span className="ml-2 text-muted-foreground">{page.h1}</span>
-                      </div>
-                      <div>
-                        <span className="font-medium">H2s:</span>
-                        <ul className="ml-6 mt-1 list-disc">
-                          {page.h2s.map((h2, i) => (
-                            <li key={i} className="text-muted-foreground">{h2}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
+                </Card>
+              );
+            })}
           </div>
-        </CardContent>
+        </div>
       </Card>
-    </div>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Editar SEO de {editingPage?.path}</DialogTitle>
+            <DialogDescription>
+              Configura los meta tags y contenido SEO de esta página
+            </DialogDescription>
+          </DialogHeader>
+
+          {editingPage && (
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="title">Título (50-60 caracteres óptimo)</Label>
+                <Input
+                  id="title"
+                  value={editingPage.title || ""}
+                  onChange={(e) =>
+                    setEditingPage({ ...editingPage, title: e.target.value })
+                  }
+                  placeholder="Título de la página"
+                />
+                <span
+                  className={`text-sm ${
+                    editingPage.title &&
+                    editingPage.title.length >= 50 &&
+                    editingPage.title.length <= 60
+                      ? "text-green-600"
+                      : "text-orange-600"
+                  }`}
+                >
+                  {editingPage.title?.length || 0} caracteres
+                </span>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="description">
+                  Meta Description (150-160 caracteres óptimo)
+                </Label>
+                <Textarea
+                  id="description"
+                  value={editingPage.description || ""}
+                  onChange={(e) =>
+                    setEditingPage({
+                      ...editingPage,
+                      description: e.target.value,
+                    })
+                  }
+                  placeholder="Descripción breve para motores de búsqueda"
+                  rows={3}
+                />
+                <span
+                  className={`text-sm ${
+                    editingPage.description &&
+                    editingPage.description.length >= 150 &&
+                    editingPage.description.length <= 160
+                      ? "text-green-600"
+                      : "text-orange-600"
+                  }`}
+                >
+                  {editingPage.description?.length || 0} caracteres
+                </span>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="h1">H1 (Título principal)</Label>
+                <Input
+                  id="h1"
+                  value={editingPage.h1 || ""}
+                  onChange={(e) =>
+                    setEditingPage({ ...editingPage, h1: e.target.value })
+                  }
+                  placeholder="Título H1 de la página"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="h2_primary">H2 Principal</Label>
+                <Input
+                  id="h2_primary"
+                  value={editingPage.h2_primary || ""}
+                  onChange={(e) =>
+                    setEditingPage({
+                      ...editingPage,
+                      h2_primary: e.target.value,
+                    })
+                  }
+                  placeholder="Primer subtítulo H2"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="h2_secondary_1">H2 Secundario 1</Label>
+                <Input
+                  id="h2_secondary_1"
+                  value={editingPage.h2_secondary_1 || ""}
+                  onChange={(e) =>
+                    setEditingPage({
+                      ...editingPage,
+                      h2_secondary_1: e.target.value,
+                    })
+                  }
+                  placeholder="Segundo subtítulo H2"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="h2_secondary_2">H2 Secundario 2</Label>
+                <Input
+                  id="h2_secondary_2"
+                  value={editingPage.h2_secondary_2 || ""}
+                  onChange={(e) =>
+                    setEditingPage({
+                      ...editingPage,
+                      h2_secondary_2: e.target.value,
+                    })
+                  }
+                  placeholder="Tercer subtítulo H2"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="keywords">
+                  Keywords (separadas por comas)
+                </Label>
+                <Input
+                  id="keywords"
+                  value={editingPage.keywords?.join(", ") || ""}
+                  onChange={(e) => handleKeywordChange(e.target.value)}
+                  placeholder="calistenia, ejercicios, entrenamiento"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="canonical">URL Canónica</Label>
+                <Input
+                  id="canonical"
+                  value={editingPage.canonical || ""}
+                  onChange={(e) =>
+                    setEditingPage({
+                      ...editingPage,
+                      canonical: e.target.value,
+                    })
+                  }
+                  placeholder="https://calisteniaonline.com/ruta"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="og_image">Open Graph Image URL</Label>
+                <Input
+                  id="og_image"
+                  value={editingPage.og_image || ""}
+                  onChange={(e) =>
+                    setEditingPage({
+                      ...editingPage,
+                      og_image: e.target.value,
+                    })
+                  }
+                  placeholder="https://calisteniaonline.com/imagen.jpg"
+                />
+              </div>
+
+              <div className="flex gap-2 pt-4">
+                <Button
+                  onClick={handleSave}
+                  disabled={updateMutation.isPending}
+                  className="flex-1"
+                >
+                  <Save className="w-4 h-4 mr-2" />
+                  Guardar Cambios
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => setIsDialogOpen(false)}
+                  disabled={updateMutation.isPending}
+                >
+                  <X className="w-4 h-4 mr-2" />
+                  Cancelar
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 

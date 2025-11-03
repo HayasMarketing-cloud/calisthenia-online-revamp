@@ -14,7 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      seo_pages: {
+        Row: {
+          canonical: string | null
+          created_at: string
+          description: string | null
+          h1: string | null
+          h2_primary: string | null
+          h2_secondary_1: string | null
+          h2_secondary_2: string | null
+          id: string
+          keywords: string[] | null
+          og_image: string | null
+          path: string
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          canonical?: string | null
+          created_at?: string
+          description?: string | null
+          h1?: string | null
+          h2_primary?: string | null
+          h2_secondary_1?: string | null
+          h2_secondary_2?: string | null
+          id?: string
+          keywords?: string[] | null
+          og_image?: string | null
+          path: string
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          canonical?: string | null
+          created_at?: string
+          description?: string | null
+          h1?: string | null
+          h2_primary?: string | null
+          h2_secondary_1?: string | null
+          h2_secondary_2?: string | null
+          id?: string
+          keywords?: string[] | null
+          og_image?: string | null
+          path?: string
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
