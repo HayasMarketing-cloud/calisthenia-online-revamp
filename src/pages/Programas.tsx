@@ -152,10 +152,6 @@ const Programas = () => {
                   alt="Nico Reyero - Entrenador personal de calistenia"
                   className="rounded-2xl shadow-elegant w-full h-auto object-cover"
                 />
-                <div className="absolute -bottom-6 -right-6 bg-primary text-white p-6 rounded-xl shadow-lg">
-                  <p className="font-bold text-2xl">+500</p>
-                  <p className="text-sm">Alumnos transformados</p>
-                </div>
               </div>
               
               {/* Contenido */}
