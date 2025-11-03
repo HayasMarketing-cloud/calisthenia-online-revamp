@@ -499,9 +499,11 @@ const Programas = () => {
                 
                 <div className="text-center pt-4">
                   <p className="text-sm text-gray-600 mb-4">O si lo prefieres:</p>
-                  <Button type="button" variant="outline" size="lg" className="w-full">
+                <Button type="button" variant="outline" size="lg" className="w-full" asChild>
+                  <a href="https://wa.me/message/D3ZNQKWSUDUVJ1" target="_blank" rel="noopener noreferrer">
                     📱 Escríbeme por WhatsApp
-                  </Button>
+                  </a>
+                </Button>
                 </div>
               </form>
             </Card>
