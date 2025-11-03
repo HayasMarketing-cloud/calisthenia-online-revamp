@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 import nicolasImage from "@/assets/nicolas-reyero.jpg";
 
@@ -18,6 +19,21 @@ const Programas = () => {
         'Entrena con Nico Reyero, entrenador personal de calistenia certificado. Programas personalizados online y presencial en Madrid. Transforma tu cuerpo sin equipos.'
       );
     }
+  }, []);
+
+  // Load Go High Level form embed script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://link.calisthenia.online/js/form_embed.js';
+    script.type = 'text/javascript';
+    script.async = true;
+    document.body.appendChild(script);
+    
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
   }, []);
 
   return (
@@ -435,80 +451,74 @@ const Programas = () => {
         </div>
       </section>
 
-      {/* CTA Final con Formulario */}
+      {/* Contact Section - Dual System with Go High Level */}
       <section id="contacto-form" className="py-20 bg-gradient-to-br from-primary/10 to-accent/10">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="font-display font-bold text-3xl lg:text-5xl mb-4">
                 ¿Listo para llevar tu entrenamiento <span className="text-primary">a otro nivel</span>?
               </h2>
               <p className="text-xl text-gray-700">
-                Rellena este breve formulario y hablemos sobre tus objetivos. 
-                <br/>
-                <strong className="text-primary">En Calisthenia.online no estás solo</strong>.
+                Elige cómo prefieres dar el siguiente paso.
               </p>
             </div>
-            
-            <Card className="p-8 shadow-elegant">
-              <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); alert('Funcionalidad de envío pendiente de implementar'); }}>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-semibold mb-2 text-gray-700">Nombre</label>
-                    <input 
-                      type="text" 
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                      placeholder="Tu nombre"
-                      required
+
+            <Tabs defaultValue="form" className="w-full">
+              <TabsList className="grid w-full grid-cols-2 mb-8 bg-white/50 p-1 rounded-lg">
+                <TabsTrigger 
+                  value="form"
+                  className="data-[state=active]:bg-gradient-primary data-[state=active]:text-white data-[state=active]:shadow-md transition-all"
+                >
+                  📋 Cuéntame tu Situación
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="booking"
+                  className="data-[state=active]:bg-gradient-primary data-[state=active]:text-white data-[state=active]:shadow-md transition-all"
+                >
+                  📅 Agenda una Llamada
+                </TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="form">
+                <Card className="shadow-elegant hover:shadow-xl transition-shadow">
+                  <CardContent className="p-4">
+                    <iframe
+                      src="https://link.calisthenia.online/widget/form/JYFtKJd7tgX86dXtbRhS"
+                      style={{ width: '100%', height: '600px', border: 'none', borderRadius: '8px' }}
+                      id="inline-JYFtKJd7tgX86dXtbRhS"
+                      title="Formulario de contacto"
+                      scrolling="no"
                     />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-semibold mb-2 text-gray-700">Email</label>
-                    <input 
-                      type="email" 
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                      placeholder="tu@email.com"
-                      required
+                  </CardContent>
+                </Card>
+              </TabsContent>
+
+              <TabsContent value="booking">
+                <Card className="shadow-elegant hover:shadow-xl transition-shadow">
+                  <CardContent className="p-4">
+                    <iframe
+                      src="https://link.calisthenia.online/widget/booking/n86ogRPB92XX8JZK01H0"
+                      style={{ width: '100%', height: '700px', border: 'none', borderRadius: '8px' }}
+                      id="n86ogRPB92XX8JZK01H0_booking"
+                      title="Agendar reunión"
+                      scrolling="no"
                     />
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-semibold mb-2 text-gray-700">¿Cuál es tu nivel actual?</label>
-                  <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all bg-white">
-                    <option>Principiante (nunca he entrenado calistenia)</option>
-                    <option>Intermedio (entreno hace meses/1-2 años)</option>
-                    <option>Avanzado (dominio de skills básicos)</option>
-                  </select>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-semibold mb-2 text-gray-700">¿Cuál es tu objetivo principal?</label>
-                  <textarea 
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
-                    rows={4}
-                    placeholder="Ej: Quiero ganar fuerza, mejorar mi físico, aprender muscle-up..."
-                    required
-                  />
-                </div>
-                
-                <Button type="submit" size="lg" className="w-full bg-gradient-primary text-lg py-6">
-                  Enviar Solicitud
-                </Button>
-                
-                <div className="text-center pt-4">
-                  <p className="text-sm text-gray-600 mb-4">O si lo prefieres:</p>
-                <Button type="button" variant="outline" size="lg" className="w-full" asChild>
-                  <a href="https://wa.me/message/D3ZNQKWSUDUVJ1" target="_blank" rel="noopener noreferrer">
-                    📱 Escríbeme por WhatsApp
-                  </a>
-                </Button>
-                </div>
-              </form>
-            </Card>
-            
-            <p className="text-center text-gray-600 mt-8 text-sm">
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            </Tabs>
+
+            <div className="text-center pt-8">
+              <p className="text-sm text-gray-600 mb-4">O si lo prefieres:</p>
+              <Button variant="outline" size="lg" className="w-full max-w-md mx-auto" asChild>
+                <a href="https://wa.me/message/D3ZNQKWSUDUVJ1" target="_blank" rel="noopener noreferrer">
+                  📱 Escríbeme por WhatsApp
+                </a>
+              </Button>
+            </div>
+
+            <p className="text-center text-gray-600 mt-8">
               <strong>Entrena con propósito. Entrena con guía.</strong>
               <br/>
               Entrena con un <strong className="text-primary">entrenador de calistenia</strong> que entienda tu proceso.
