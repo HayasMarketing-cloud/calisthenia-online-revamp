@@ -24,6 +24,7 @@ import Contacto from "./pages/Contacto";
 import Blog from "./pages/Blog";
 import QueEsLaCalistenia from "./pages/blog/QueEsLaCalistenia";
 import NotFound from "./pages/NotFound";
+import SEODashboard from "./pages/SEODashboard";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +55,7 @@ const App = () => (
           <Route path="/contacto/" element={<Contacto />} />
           <Route path="/blog/" element={<Blog />} />
           <Route path="/blog/que-es-la-calistenia/" element={<QueEsLaCalistenia />} />
+          <Route path="/admin/seo-dashboard/" element={<SEODashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
