@@ -1,7 +1,7 @@
 # WordPress URLs que no tienen equivalente exacto
-/core-y-abdomen-de-acero-sin-material-en-10/ /rutina-core-calistenia/ 301
+/core-y-abdomen-de-acero-sin-material-en-10/ /blog 301
 /la-rutina-perfecta-de-empuje-en-casa/ /rutina-pecho-calistenia/ 301
-/rutina-de-fuerza-en-parque-para-empezar-a-entrenar/ /calistenia-en-parque/ 301
+/rutina-de-fuerza-en-parque-para-empezar-a-entrenar/ /blog 301
 /tuck-planche-tutorial-cero-to-full-planche/ /calistenia-nivel-avanzado/ 301
 /la-mejor-rutina-para-empezar-en-calistenia-rutina-fullbody-para-principiantes/ /calistenia-principiantes/ 301
 /rutinas-con-kettlebells/ /programas/ 301
@@ -14,9 +14,9 @@
 # Categorías de WordPress
 /category/hombros/ /rutinas-de-hombro-calistenia/ 301
 /category/espalda/ /rutina-espalda-calistenia/ 301
-/category/estiramientos/ /programas/ 301
+/category/estiramientos/ / 301
 /category/calistenia-nivel-intermedio/ /calistenia-nivel-avanzado/ 301
-/category/calistenia/ /programas/ 301
+/category/calistenia/ / 301
 
 # Redirect del post de blog a su nueva ubicación
 /calistenia/ /blog/que-es-la-calistenia/ 301
@@ -26,8 +26,8 @@
 /entrenar-calistenia-en-el-parque/ /calistenia-en-parque/ 301
 /presentacion/ /quien-soy/ 301
 /rutina-fullbody-en-casa-de-calistenia/ /rutina-full-body/ 301
-/como-empiezo-en-calistenia-sin-material/ /calistenia-principiantes/ 301
-/como-organizar-rutinas-calistenia-semanales/ /programas/ 301
+/como-empiezo-en-calistenia-sin-material/ / 301
+/como-organizar-rutinas-calistenia-semanales/ / 301
 
 # Posts educativos/blog sin equivalente directo
 /corrige-el-valgo-de-rodilla/ /programas/ 301
@@ -42,6 +42,7 @@
 /hiperlordosis-y-3-ejercicios-que-puedes-hacer-para-corregirla/ /programas/ 301
 /rutina-de-fuerza-enfocada-en-hombros-handstand/ /rutinas-de-hombro-calistenia/ 301
 /3-ejercicios-para-fortalecer-el-cuello/ /programas/ 301
-/tipos-dominadas-objetivo/ /rutina-espalda-calistenia/ 301
+/tipos-dominadas-objetivo/ / 301
 /mejores-rutinas-calistenia-para-mejorar/ /programas/ 301
 /empiezo-rutina-de-flexibilidad-diaria/ /programas/ 301
+/rutina-de-pino-facil-para-dominarlo/ /rutinas-de-hombro-calistenia/ 301
