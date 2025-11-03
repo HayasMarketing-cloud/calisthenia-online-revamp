@@ -51,8 +51,8 @@ const Programas = () => {
               <Button size="lg" className="bg-gradient-primary" onClick={() => document.getElementById('contacto-form')?.scrollIntoView({ behavior: 'smooth' })}>
                 Hablemos de Tus Objetivos
               </Button>
-              <Button size="lg" variant="outline" onClick={() => document.getElementById('programas-pricing')?.scrollIntoView({ behavior: 'smooth' })}>
-                Ver Programas
+              <Button size="lg" variant="outline" onClick={() => document.getElementById('contacto-form')?.scrollIntoView({ behavior: 'smooth' })}>
+                Contactar
               </Button>
             </div>
           </div>
@@ -175,8 +175,8 @@ const Programas = () => {
         </div>
       </section>
 
-      {/* Programas de Precios */}
-      <section id="programas-pricing" className="py-20 bg-background">
+      {/* Programas de Precios - TEMPORALMENTE OCULTO */}
+      {/* <section id="programas-pricing" className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <h2 className="font-display font-bold text-3xl lg:text-5xl mb-4">
@@ -188,7 +188,6 @@ const Programas = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Programa Básico */}
             <Card className="border-2 hover:shadow-elegant transition-all duration-300">
               <CardHeader>
                 <CardTitle className="text-2xl">Iniciación</CardTitle>
@@ -220,7 +219,6 @@ const Programas = () => {
               </CardContent>
             </Card>
 
-            {/* Programa Intermedio */}
             <Card className="border-2 border-primary shadow-elegant relative">
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold">
                 Más Popular
@@ -230,7 +228,7 @@ const Programas = () => {
                 <CardDescription>Para dominar habilidades</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="text-3xl font-bold text-primary">99€<span className="text-base text-muted-foreground">/mes</span></div>
+                <div className="text-3xl font-bold text-primary">99€<span className="text-base text-muted-forecaround">/mes</span></div>
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
                     <Check className="h-5 w-5 text-primary mt-0.5" />
@@ -259,7 +257,6 @@ const Programas = () => {
               </CardContent>
             </Card>
 
-            {/* Programa Premium */}
             <Card className="border-2 hover:shadow-elegant transition-all duration-300">
               <CardHeader>
                 <CardTitle className="text-2xl">Elite</CardTitle>
@@ -296,7 +293,7 @@ const Programas = () => {
             </Card>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Dónde puedes entrenar conmigo */}
       <section className="py-16 bg-secondary/5">
