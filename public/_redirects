@@ -20,6 +20,7 @@
 
 # Redirect del post de blog a su nueva ubicación
 /calistenia/ /blog/que-es-la-calistenia/ 301
+/calistenia /blog/que-es-la-calistenia/ 301
 
 # URLs de WordPress que necesitan redirección
 /rutina-calistenia-en-casa-de-30-minutos/ /rutina-calistenia-en-casa/ 301

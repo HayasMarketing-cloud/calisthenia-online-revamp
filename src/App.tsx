@@ -57,7 +57,9 @@ const App = () => (
           <Route path="/blog/que-es-la-calistenia/" element={<QueEsLaCalistenia />} />
           <Route path="/admin/seo-dashboard/" element={<SEODashboard />} />
           {/* Redirects */}
+          <Route path="/calistenia" element={<Navigate to="/blog/que-es-la-calistenia/" replace />} />
           <Route path="/calistenia/" element={<Navigate to="/blog/que-es-la-calistenia/" replace />} />
+          <Route path="/calistenia/*" element={<Navigate to="/blog/que-es-la-calistenia/" replace />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
