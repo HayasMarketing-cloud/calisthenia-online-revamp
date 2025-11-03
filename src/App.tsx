@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import ScrollToTop from "./components/ScrollToTop";
+import { RedirectHandler } from "./components/seo/RedirectHandler";
 import Index from "./pages/Index";
 import QuienSoy from "./pages/QuienSoy";
 import Programas from "./pages/Programas";
@@ -37,6 +38,9 @@ const App = () => (
         <BrowserRouter>
           <ScrollToTop />
           <Routes>
+          {/* Sistema de redirecciones 301 */}
+          <Route path="*" element={<RedirectHandler />} />
+          
           <Route path="/" element={<Index />} />
           <Route path="/quien-soy/" element={<QuienSoy />} />
           <Route path="/programas/" element={<Programas />} />
@@ -56,10 +60,6 @@ const App = () => (
           <Route path="/blog/" element={<Blog />} />
           <Route path="/blog/que-es-la-calistenia/" element={<QueEsLaCalistenia />} />
           <Route path="/admin/seo-dashboard/" element={<SEODashboard />} />
-          {/* Redirects */}
-          <Route path="/calistenia" element={<Navigate to="/blog/que-es-la-calistenia/" replace />} />
-          <Route path="/calistenia/" element={<Navigate to="/blog/que-es-la-calistenia/" replace />} />
-          <Route path="/calistenia/*" element={<Navigate to="/blog/que-es-la-calistenia/" replace />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
