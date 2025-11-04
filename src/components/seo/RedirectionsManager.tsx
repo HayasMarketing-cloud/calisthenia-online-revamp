@@ -3,55 +3,71 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { seoConfig, Redirect } from "@/config/seoConfig";
 import { Search, Download, Plus, Trash2, Edit, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
+import { useRedirects, useCreateRedirect, useUpdateRedirect, useDeleteRedirect } from "@/hooks/useSEOData";
 
 const RedirectionsManager = () => {
-  const [redirects, setRedirects] = useState<Redirect[]>(seoConfig.redirects);
+  const { data: redirects, isLoading } = useRedirects();
+  const createRedirect = useCreateRedirect();
+  const updateRedirect = useUpdateRedirect();
+  const deleteRedirect = useDeleteRedirect();
+  
   const [searchTerm, setSearchTerm] = useState("");
-  const [editingIndex, setEditingIndex] = useState<number | null>(null);
-  const [editForm, setEditForm] = useState<Redirect>({ from: "", to: "", code: 301 });
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editForm, setEditForm] = useState({ from_path: "", to_path: "", code: 301 });
+  const [newForm, setNewForm] = useState({ from_path: "", to_path: "", code: 301 });
 
-  const filteredRedirects = redirects.filter(
+  const filteredRedirects = redirects?.filter(
     redirect =>
-      redirect.from.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      redirect.to.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+      redirect.from_path.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      redirect.to_path.toLowerCase().includes(searchTerm.toLowerCase())
+  ) || [];
 
-  const handleDelete = (index: number) => {
-    const newRedirects = redirects.filter((_, i) => i !== index);
-    setRedirects(newRedirects);
-    toast.success("Redirección eliminada");
-  };
-
-  const handleEdit = (index: number) => {
-    setEditingIndex(index);
-    setEditForm(redirects[index]);
-  };
-
-  const handleSaveEdit = () => {
-    if (editingIndex !== null) {
-      const newRedirects = [...redirects];
-      newRedirects[editingIndex] = editForm;
-      setRedirects(newRedirects);
-      setEditingIndex(null);
-      toast.success("Redirección actualizada");
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteRedirect.mutateAsync(id);
+      toast.success("Redirección eliminada");
+    } catch (error) {
+      toast.error("Error al eliminar redirección");
     }
   };
 
-  const handleAdd = () => {
-    if (editForm.from && editForm.to) {
-      setRedirects([...redirects, editForm]);
-      setEditForm({ from: "", to: "", code: 301 });
-      toast.success("Redirección añadida");
+  const handleEdit = (redirect: any) => {
+    setEditingId(redirect.id);
+    setEditForm({
+      from_path: redirect.from_path,
+      to_path: redirect.to_path,
+      code: redirect.code
+    });
+  };
+
+  const handleSaveEdit = async (id: string) => {
+    try {
+      await updateRedirect.mutateAsync({ id, ...editForm });
+      setEditingId(null);
+      toast.success("Redirección actualizada");
+    } catch (error) {
+      toast.error("Error al actualizar redirección");
+    }
+  };
+
+  const handleAdd = async () => {
+    if (newForm.from_path && newForm.to_path) {
+      try {
+        await createRedirect.mutateAsync(newForm);
+        setNewForm({ from_path: "", to_path: "", code: 301 });
+        toast.success("Redirección añadida");
+      } catch (error) {
+        toast.error("Error al añadir redirección");
+      }
     } else {
       toast.error("Completa todos los campos");
     }
   };
 
   const handleExport = () => {
-    const content = redirects.map(r => `${r.from} ${r.to} ${r.code}`).join('\n');
+    const content = redirects?.map(r => `${r.from_path} ${r.to_path} ${r.code}`).join('\n') || '';
     const blob = new Blob([content], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -61,13 +77,17 @@ const RedirectionsManager = () => {
     toast.success("Archivo exportado");
   };
 
+  if (isLoading) {
+    return <div className="text-center py-8">Cargando redirecciones...</div>;
+  }
+
   return (
     <div className="space-y-6">
       <Card>
         <CardHeader>
           <CardTitle>Gestor de Redirecciones</CardTitle>
           <CardDescription>
-            Gestiona las {redirects.length} redirecciones 301 configuradas en tu sitio
+            Gestiona las {redirects?.length || 0} redirecciones 301 configuradas en tu sitio
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -98,28 +118,28 @@ const RedirectionsManager = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {filteredRedirects.map((redirect, index) => (
-                  <TableRow key={index}>
+                {filteredRedirects.map((redirect) => (
+                  <TableRow key={redirect.id}>
                     <TableCell className="font-mono text-sm">
-                      {editingIndex === index ? (
+                      {editingId === redirect.id ? (
                         <Input
-                          value={editForm.from}
-                          onChange={(e) => setEditForm({ ...editForm, from: e.target.value })}
+                          value={editForm.from_path}
+                          onChange={(e) => setEditForm({ ...editForm, from_path: e.target.value })}
                           className="h-8"
                         />
                       ) : (
-                        redirect.from
+                        redirect.from_path
                       )}
                     </TableCell>
                     <TableCell className="font-mono text-sm">
-                      {editingIndex === index ? (
+                      {editingId === redirect.id ? (
                         <Input
-                          value={editForm.to}
-                          onChange={(e) => setEditForm({ ...editForm, to: e.target.value })}
+                          value={editForm.to_path}
+                          onChange={(e) => setEditForm({ ...editForm, to_path: e.target.value })}
                           className="h-8"
                         />
                       ) : (
-                        redirect.to
+                        redirect.to_path
                       )}
                     </TableCell>
                     <TableCell>
@@ -128,11 +148,11 @@ const RedirectionsManager = () => {
                       </span>
                     </TableCell>
                     <TableCell className="text-right">
-                      {editingIndex === index ? (
+                      {editingId === redirect.id ? (
                         <Button
                           size="sm"
                           variant="ghost"
-                          onClick={handleSaveEdit}
+                          onClick={() => handleSaveEdit(redirect.id)}
                         >
                           <CheckCircle2 className="h-4 w-4" />
                         </Button>
@@ -141,14 +161,14 @@ const RedirectionsManager = () => {
                           <Button
                             size="sm"
                             variant="ghost"
-                            onClick={() => handleEdit(index)}
+                            onClick={() => handleEdit(redirect)}
                           >
                             <Edit className="h-4 w-4" />
                           </Button>
                           <Button
                             size="sm"
                             variant="ghost"
-                            onClick={() => handleDelete(index)}
+                            onClick={() => handleDelete(redirect.id)}
                           >
                             <Trash2 className="h-4 w-4 text-red-500" />
                           </Button>
@@ -174,13 +194,13 @@ const RedirectionsManager = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Input
               placeholder="/url-antigua/"
-              value={editForm.from}
-              onChange={(e) => setEditForm({ ...editForm, from: e.target.value })}
+              value={newForm.from_path}
+              onChange={(e) => setNewForm({ ...newForm, from_path: e.target.value })}
             />
             <Input
               placeholder="/url-nueva/"
-              value={editForm.to}
-              onChange={(e) => setEditForm({ ...editForm, to: e.target.value })}
+              value={newForm.to_path}
+              onChange={(e) => setNewForm({ ...newForm, to_path: e.target.value })}
             />
             <Button onClick={handleAdd}>
               <Plus className="h-4 w-4 mr-2" />

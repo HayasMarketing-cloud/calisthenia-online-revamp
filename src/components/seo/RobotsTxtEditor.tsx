@@ -1,27 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Download, Copy, CheckCircle2 } from "lucide-react";
+import { Download, Copy, CheckCircle2, Save } from "lucide-react";
 import { toast } from "sonner";
+import { useRobotsTxt, useUpdateRobotsTxt } from "@/hooks/useSEOData";
 
 const RobotsTxtEditor = () => {
-  const [robotsContent, setRobotsContent] = useState(`User-agent: Googlebot
-Allow: /
+  const { data: dbContent, isLoading } = useRobotsTxt();
+  const updateRobotsTxt = useUpdateRobotsTxt();
+  const [robotsContent, setRobotsContent] = useState("");
 
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: *
-Allow: /
-
-Sitemap: https://calisthenia.online/sitemap.xml`);
+  useEffect(() => {
+    if (dbContent) {
+      setRobotsContent(dbContent);
+    }
+  }, [dbContent]);
 
   const handleDownload = () => {
     const blob = new Blob([robotsContent], { type: 'text/plain' });
@@ -37,6 +31,19 @@ Sitemap: https://calisthenia.online/sitemap.xml`);
     navigator.clipboard.writeText(robotsContent);
     toast.success("Contenido copiado al portapapeles");
   };
+
+  const handleSave = async () => {
+    try {
+      await updateRobotsTxt.mutateAsync(robotsContent);
+      toast.success("Robots.txt actualizado correctamente");
+    } catch (error) {
+      toast.error("Error al guardar robots.txt");
+    }
+  };
+
+  if (isLoading) {
+    return <div className="text-center py-8">Cargando robots.txt...</div>;
+  }
 
   const templates = [
     {
@@ -73,6 +80,10 @@ Sitemap: https://calisthenia.online/sitemap.xml`
         <CardContent>
           <div className="space-y-4">
             <div className="flex gap-4 mb-4">
+              <Button onClick={handleSave}>
+                <Save className="h-4 w-4 mr-2" />
+                Guardar Cambios
+              </Button>
               <Button onClick={handleDownload} variant="outline">
                 <Download className="h-4 w-4 mr-2" />
                 Descargar

@@ -156,3 +156,121 @@ export const useDeleteSEOPage = () => {
     },
   });
 };
+
+// Hook to get all redirects
+export const useRedirects = () => {
+  return useQuery({
+    queryKey: ["seo-redirects"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("seo_redirects")
+        .select("*")
+        .order("from_path");
+      
+      if (error) throw error;
+      return data;
+    },
+  });
+};
+
+// Hook to create redirect
+export const useCreateRedirect = () => {
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: async (redirect: { from_path: string; to_path: string; code: number }) => {
+      const { error } = await supabase
+        .from("seo_redirects")
+        .insert(redirect);
+      
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["seo-redirects"] });
+    },
+  });
+};
+
+// Hook to update redirect
+export const useUpdateRedirect = () => {
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: async (redirect: { id: string; from_path: string; to_path: string; code: number }) => {
+      const { error } = await supabase
+        .from("seo_redirects")
+        .update({
+          from_path: redirect.from_path,
+          to_path: redirect.to_path,
+          code: redirect.code,
+        })
+        .eq("id", redirect.id);
+      
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["seo-redirects"] });
+    },
+  });
+};
+
+// Hook to delete redirect
+export const useDeleteRedirect = () => {
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const { error } = await supabase
+        .from("seo_redirects")
+        .delete()
+        .eq("id", id);
+      
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["seo-redirects"] });
+    },
+  });
+};
+
+// Hook to get robots.txt content
+export const useRobotsTxt = () => {
+  return useQuery({
+    queryKey: ["seo-robots"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("seo_robots")
+        .select("*")
+        .eq("is_active", true)
+        .maybeSingle();
+      
+      if (error) throw error;
+      return data?.content || "";
+    },
+  });
+};
+
+// Hook to update robots.txt
+export const useUpdateRobotsTxt = () => {
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: async (content: string) => {
+      // Desactivar versiones anteriores
+      await supabase
+        .from("seo_robots")
+        .update({ is_active: false })
+        .eq("is_active", true);
+      
+      // Insertar nueva versión
+      const { error } = await supabase
+        .from("seo_robots")
+        .insert({ content, is_active: true });
+      
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["seo-robots"] });
+    },
+  });
+};

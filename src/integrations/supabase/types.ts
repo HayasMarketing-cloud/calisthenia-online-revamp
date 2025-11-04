@@ -62,6 +62,57 @@ export type Database = {
         }
         Relationships: []
       }
+      seo_redirects: {
+        Row: {
+          code: number
+          created_at: string
+          from_path: string
+          id: string
+          to_path: string
+          updated_at: string
+        }
+        Insert: {
+          code?: number
+          created_at?: string
+          from_path: string
+          id?: string
+          to_path: string
+          updated_at?: string
+        }
+        Update: {
+          code?: number
+          created_at?: string
+          from_path?: string
+          id?: string
+          to_path?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      seo_robots: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          is_active: boolean
+          updated_at: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          updated_at?: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

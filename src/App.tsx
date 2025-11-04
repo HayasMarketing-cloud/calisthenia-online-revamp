@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import ScrollToTop from "./components/ScrollToTop";
 import { RedirectHandler } from "./components/seo/RedirectHandler";
+import DynamicRobotsTxt from "./components/seo/DynamicRobotsTxt";
+import DynamicSitemap from "./components/seo/DynamicSitemap";
 import Index from "./pages/Index";
 import QuienSoy from "./pages/QuienSoy";
 import Programas from "./pages/Programas";
@@ -38,8 +40,9 @@ const App = () => (
         <BrowserRouter>
           <ScrollToTop />
           <Routes>
-          {/* Sistema de redirecciones 301 */}
-          <Route path="*" element={<RedirectHandler />} />
+          {/* SEO Routes - Must be before other routes */}
+          <Route path="/robots.txt" element={<DynamicRobotsTxt />} />
+          <Route path="/sitemap.xml" element={<DynamicSitemap />} />
           
           <Route path="/" element={<Index />} />
           <Route path="/quien-soy/" element={<QuienSoy />} />
@@ -61,7 +64,7 @@ const App = () => (
           <Route path="/blog/que-es-la-calistenia/" element={<QueEsLaCalistenia />} />
           <Route path="/admin/seo-dashboard/" element={<SEODashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<><RedirectHandler /><NotFound /></>} />
         </Routes>
       </BrowserRouter>
       </TooltipProvider>
