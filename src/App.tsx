@@ -29,8 +29,6 @@ import BlogPost from "./pages/BlogPost";
 import BlogEditor from "./pages/admin/BlogEditor";
 import BlogManager from "./pages/admin/BlogManager";
 import Auth from "./pages/Auth";
-import BlogManager from "./pages/admin/BlogManager";
-import BlogEditor from "./pages/admin/BlogEditor";
 import QueEsLaCalistenia from "./pages/blog/QueEsLaCalistenia";
 import NotFound from "./pages/NotFound";
 import SEODashboard from "./pages/SEODashboard";
