@@ -21,13 +21,46 @@ import QuickJumpBanner from "@/components/QuickJumpBanner";
 import CommunityCTA from "@/components/CommunityCTA";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 import { AlertCircle, CheckCircle2, TrendingUp, Dumbbell } from "lucide-react";
+import StructuredData from "@/components/seo/StructuredData";
+import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
 
 const RutinaHombro = () => {
-  // Obtener videos de Hombros (si no hay, usaremos ejercicios que trabajen hombros o Full Body)
   const shoulderVideos = getVideosByZone(allVideos, "Hombros", { 
     limit: 12, 
     sortBy: 'engagement',
     minVistas: 100 
+  });
+
+  const schemas = useRoutineSchemas({
+    routineName: "Rutina de Hombros con Calistenia",
+    routineDescription: "Rutina completa de hombros con calistenia. Ejercicios para deltoides, anatomía, progresiones y consejos para desarrollar hombros fuertes y estables.",
+    videoId: "evORg2Y6LQQ",
+    videoTitle: "Rutina de Hombros con Calistenia",
+    videoDuration: "PT10M45S",
+    uploadDate: "2024-02-20",
+    totalTime: "PT35M",
+    steps: [
+      {
+        name: "Calentamiento articular",
+        text: "Realiza 5 minutos de círculos de hombros, rotaciones escapulares y movilidad de manguito rotador."
+      },
+      {
+        name: "Pike push-ups",
+        text: "Ejecuta pike push-ups para trabajar el deltoides anterior y medio. Progresa hacia handstand push-ups. 3-4 series de 8-12 reps."
+      },
+      {
+        name: "Elevaciones laterales",
+        text: "Realiza elevaciones laterales en posición de plank o con bandas para trabajar el deltoides medio."
+      },
+      {
+        name: "Deltoides posterior",
+        text: "Incluye face pulls, rear delt fly en posición inclinada y remos altos para equilibrar el desarrollo."
+      },
+      {
+        name: "Estabilización y estiramiento",
+        text: "Finaliza con ejercicios de estabilización del manguito rotador y estiramientos de hombros durante 5 minutos."
+      }
+    ]
   });
 
   return (
@@ -49,23 +82,9 @@ const RutinaHombro = () => {
         <meta property="og:image" content="https://calisthenia.online/assets/calisthenia-hombro.webp" />
         <meta property="og:url" content="https://calisthenia.online/rutinas-de-hombro-calistenia/" />
         <meta property="og:type" content="article" />
-        
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ExercisePlan",
-            "name": "Rutina de Hombros Calistenia",
-            "description": "Plan completo de entrenamiento de hombros con calistenia para fortalecer deltoides",
-            "activityFrequency": "2-3 times per week",
-            "exerciseType": "Calisthenics",
-            "video": {
-              "@type": "VideoObject",
-              "name": "Rutina de Hombros con Calistenia",
-              "embedUrl": "https://www.youtube.com/embed/evORg2Y6LQQ"
-            }
-          })}
-        </script>
       </Helmet>
+
+      <StructuredData data={schemas.allSchemas} />
 
       <Header />
       <CommunityStickyBanner />

@@ -23,6 +23,8 @@ import RoutineHero from "@/components/routine/RoutineHero";
 import QuickJumpBanner from "@/components/QuickJumpBanner";
 import CommunityCTA from "@/components/CommunityCTA";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
+import StructuredData from "@/components/seo/StructuredData";
+import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
 import pechoIcon from "@/assets/calisthenia-pecho.webp";
 import espaldaIcon from "@/assets/calisthenia-espalda.webp";
 import piernasIcon from "@/assets/calisthenia-piernas.webp";
@@ -31,6 +33,38 @@ import hombroIcon from "@/assets/calisthenia-hombro.webp";
 import brazosIcon from "@/assets/calisthenia-brazos.webp";
 
 const RutinaFullBody = () => {
+  const schemas = useRoutineSchemas({
+    routineName: "Rutina Full Body con Calistenia",
+    routineDescription: "Rutina full body de calistenia completa. Ejercicios, beneficios, planificación y progresión para entrenar todo el cuerpo 3 veces por semana.",
+    videoId: "PmkNJ7fQhPY",
+    videoTitle: "Rutina Full Body Calistenia Completa",
+    videoDuration: "PT18M40S",
+    uploadDate: "2024-01-20",
+    totalTime: "PT50M",
+    steps: [
+      {
+        name: "Calentamiento general",
+        text: "Realiza 5-10 minutos de movilidad articular completa: muñecas, codos, hombros, cadera, rodillas y tobillos."
+      },
+      {
+        name: "Empuje superior",
+        text: "Ejecuta flexiones y sus variaciones (diamante, archer, declinadas) para trabajar pecho, hombros y tríceps. 3-4 series."
+      },
+      {
+        name: "Tirón superior",
+        text: "Realiza dominadas y remos para desarrollar espalda y bíceps. Alterna entre dominadas pronadas y supinas. 3-4 series."
+      },
+      {
+        name: "Tren inferior",
+        text: "Incluye sentadillas, zancadas y pistol squats progresivas para trabajar piernas de forma completa. 3-4 series."
+      },
+      {
+        name: "Core y enfriamiento",
+        text: "Finaliza con planchas, hollow body y estiramientos completos de todo el cuerpo durante 10 minutos."
+      }
+    ]
+  });
+
   return (
     <>
       <Helmet>
@@ -50,23 +84,9 @@ const RutinaFullBody = () => {
         <meta property="og:image" content="https://calisthenia.online/assets/calisthenia-full-body.webp" />
         <meta property="og:url" content="https://calisthenia.online/rutina-full-body/" />
         <meta property="og:type" content="article" />
-        
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ExercisePlan",
-            "name": "Rutina Full Body Calistenia",
-            "description": "Plan completo de entrenamiento full body con calistenia",
-            "activityFrequency": "3 times per week",
-            "exerciseType": "Calisthenics",
-            "video": {
-              "@type": "VideoObject",
-              "name": "Rutina Full Body Calistenia Completa",
-              "embedUrl": "https://www.youtube.com/embed/PmkNJ7fQhPY"
-            }
-          })}
-        </script>
       </Helmet>
+
+      <StructuredData data={schemas.allSchemas} />
 
       <Header />
       <CommunityStickyBanner />
