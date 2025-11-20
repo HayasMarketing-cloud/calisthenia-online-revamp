@@ -27,13 +27,14 @@ const SEODashboard = () => {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-7 mb-8">
+          <TabsList className="grid w-full grid-cols-8 mb-8">
             <TabsTrigger value="stats">Estadísticas</TabsTrigger>
             <TabsTrigger value="redirects">Redirecciones</TabsTrigger>
             <TabsTrigger value="metatags">Meta Tags</TabsTrigger>
             <TabsTrigger value="sitemap">Sitemap</TabsTrigger>
             <TabsTrigger value="analyzer">Analyzer</TabsTrigger>
             <TabsTrigger value="robots">Robots.txt</TabsTrigger>
+            <TabsTrigger value="blog">Blog</TabsTrigger>
             <TabsTrigger value="media">Biblioteca</TabsTrigger>
           </TabsList>
 
@@ -59,6 +60,23 @@ const SEODashboard = () => {
 
           <TabsContent value="robots">
             <RobotsTxtEditor />
+          </TabsContent>
+
+          <TabsContent value="blog">
+            <div className="bg-card border rounded-lg p-6">
+              <div className="mb-4">
+                <h2 className="text-2xl font-semibold mb-2">Gestor de Blog</h2>
+                <p className="text-muted-foreground">
+                  Administra todos los artículos del blog
+                </p>
+              </div>
+              <a 
+                href="/admin/blog" 
+                className="inline-flex items-center justify-center rounded-md bg-primary text-white px-4 py-2 hover:bg-accent transition-colors"
+              >
+                Abrir Gestor de Blog
+              </a>
+            </div>
           </TabsContent>
 
           <TabsContent value="media">

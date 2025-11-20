@@ -14,6 +14,107 @@ export type Database = {
   }
   public: {
     Tables: {
+      blog_categories: {
+        Row: {
+          color: string | null
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          slug: string
+          updated_at: string
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          slug: string
+          updated_at?: string
+        }
+        Update: {
+          color?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          slug?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      blog_posts: {
+        Row: {
+          author_id: string | null
+          category_id: string | null
+          content: string
+          created_at: string
+          excerpt: string | null
+          featured_image: string | null
+          id: string
+          publish_date: string | null
+          read_time: number | null
+          seo_description: string | null
+          seo_keywords: string[] | null
+          seo_title: string | null
+          slug: string
+          status: Database["public"]["Enums"]["blog_status"]
+          tags: string[] | null
+          title: string
+          updated_at: string
+          views: number
+        }
+        Insert: {
+          author_id?: string | null
+          category_id?: string | null
+          content: string
+          created_at?: string
+          excerpt?: string | null
+          featured_image?: string | null
+          id?: string
+          publish_date?: string | null
+          read_time?: number | null
+          seo_description?: string | null
+          seo_keywords?: string[] | null
+          seo_title?: string | null
+          slug: string
+          status?: Database["public"]["Enums"]["blog_status"]
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+          views?: number
+        }
+        Update: {
+          author_id?: string | null
+          category_id?: string | null
+          content?: string
+          created_at?: string
+          excerpt?: string | null
+          featured_image?: string | null
+          id?: string
+          publish_date?: string | null
+          read_time?: number | null
+          seo_description?: string | null
+          seo_keywords?: string[] | null
+          seo_title?: string | null
+          slug?: string
+          status?: Database["public"]["Enums"]["blog_status"]
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+          views?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blog_posts_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "blog_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       seo_pages: {
         Row: {
           canonical: string | null
@@ -121,7 +222,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      blog_status: "draft" | "published" | "scheduled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -248,6 +349,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      blog_status: ["draft", "published", "scheduled"],
+    },
   },
 } as const
