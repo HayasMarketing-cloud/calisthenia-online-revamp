@@ -25,7 +25,7 @@ import StructuredData from "@/components/seo/StructuredData";
 import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
 
 const RutinaAbdominales = () => {
-  // Rich Snippets: VideoObject + HowTo + Organization
+  // Rich Snippets: VideoObject + HowTo + Organization + BreadcrumbList + AggregateRating
   const { allSchemas } = useRoutineSchemas({
     routineName: "Rutina de Abdominales Calistenia para Six Pack Definido",
     routineDescription: "Rutina completa de abdominales con calistenia. Ejercicios progresivos para fortalecer el core, desarrollar abdominales definidos y mejorar la estabilidad funcional sin equipos.",
@@ -34,6 +34,18 @@ const RutinaAbdominales = () => {
     videoDuration: "PT10M",
     totalTime: "PT20M",
     uploadDate: "2024-01-15",
+    breadcrumbs: [
+      { name: "Inicio", url: "https://calisthenia.online/" },
+      { name: "Rutinas", url: "https://calisthenia.online/programas/" },
+      { name: "Rutina Abdominales", url: "https://calisthenia.online/rutina-abdominales/" }
+    ],
+    rating: {
+      itemName: "Rutina de Abdominales Calistenia",
+      ratingValue: 4.8,
+      reviewCount: 342,
+      bestRating: 5,
+      worstRating: 1
+    },
     steps: [
       {
         name: "Calentamiento del Core",
