@@ -15,8 +15,42 @@ import QuickJumpBanner from "@/components/QuickJumpBanner";
 import ExerciseCard from "@/components/routine/ExerciseCard";
 import CommunityCTA from "@/components/CommunityCTA";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
+import StructuredData from "@/components/seo/StructuredData";
+import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
 
 const RutinaPiernas = () => {
+  const schemas = useRoutineSchemas({
+    routineName: "Rutina de Piernas con Calistenia",
+    routineDescription: "Rutina completa de piernas con calistenia. Ejercicios, progresiones y consejos para desarrollar fuerza, potencia y estética en casa, gimnasio o parque.",
+    videoId: "tOZ_Rm2lm6M",
+    videoTitle: "Rutina de Piernas Completa en Casa",
+    videoDuration: "PT12M20S",
+    uploadDate: "2024-02-10",
+    totalTime: "PT50M",
+    steps: [
+      {
+        name: "Activación y movilidad",
+        text: "Comienza con 5-10 minutos de activación de glúteos, movilidad de cadera y tobillos para preparar las piernas."
+      },
+      {
+        name: "Sentadillas y variaciones",
+        text: "Realiza sentadillas clásicas, búlgaras y pistol squats progresivas. 3-4 series de 10-15 repeticiones por pierna."
+      },
+      {
+        name: "Trabajo de isquiotibiales",
+        text: "Ejecuta peso muerto a una pierna, puentes de glúteo y curl nórdico para fortalecer la parte posterior."
+      },
+      {
+        name: "Ejercicios de cuádriceps",
+        text: "Incluye zancadas, step-ups y extensiones isométricas para desarrollar la fuerza del cuádriceps."
+      },
+      {
+        name: "Pantorrillas y enfriamiento",
+        text: "Finaliza con elevaciones de pantorrilla y estiramientos completos de piernas durante 10 minutos."
+      }
+    ]
+  });
+
   return (
     <>
       <Helmet>
@@ -36,22 +70,9 @@ const RutinaPiernas = () => {
         <meta property="og:image" content="https://calisthenia.online/assets/calisthenia-piernas.webp" />
         <meta property="og:url" content="https://calisthenia.online/rutina-piernas-calistenia/" />
         <meta property="og:type" content="article" />
-        
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ExercisePlan",
-            "name": "Rutina de Piernas Calistenia",
-            "description": "Plan completo de entrenamiento de piernas con ejercicios de calistenia para todos los niveles",
-            "activityFrequency": "2-3 times per week",
-            "exerciseType": "Calisthenics",
-            "targetAudience": {
-              "@type": "PeopleAudience",
-              "suggestedMinAge": 16
-            }
-          })}
-        </script>
       </Helmet>
+
+      <StructuredData data={schemas.allSchemas} />
 
       <Header />
       <CommunityStickyBanner />

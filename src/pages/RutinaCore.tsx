@@ -14,6 +14,8 @@ import RoutineHero from "@/components/routine/RoutineHero";
 import QuickJumpBanner from "@/components/QuickJumpBanner";
 import CommunityCTA from "@/components/CommunityCTA";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
+import StructuredData from "@/components/seo/StructuredData";
+import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
 
 const RutinaCore = () => {
   const coreVideos = getVideosByZone(allVideos, 'Core', { 
@@ -21,6 +23,38 @@ const RutinaCore = () => {
     sortBy: 'vistas',
     minVistas: 1000
   }).filter(video => video.id !== 'MnbNx2x-RY8');
+
+  const schemas = useRoutineSchemas({
+    routineName: "Rutina Core con Calistenia",
+    routineDescription: "Rutina core completa con ejercicios de calistenia para fortalecer tu zona media. Mejora estabilización, postura y previene lesiones con entrenamiento funcional.",
+    videoId: "MnbNx2x-RY8",
+    videoTitle: "Rutina Core Completa para Principiantes",
+    videoDuration: "PT15M30S",
+    uploadDate: "2024-03-05",
+    totalTime: "PT30M",
+    steps: [
+      {
+        name: "Activación del transverso",
+        text: "Comienza con ejercicios de respiración diafragmática y activación del transverso abdominal para conectar con tu core."
+      },
+      {
+        name: "Planchas y variaciones",
+        text: "Realiza planchas frontales, laterales y dinámicas. Mantén 30-60 segundos por serie. 3-4 series por variación."
+      },
+      {
+        name: "Anti-rotación y estabilidad",
+        text: "Ejecuta ejercicios como dead bug, bird dog y pallof press para mejorar la estabilidad anti-rotacional del core."
+      },
+      {
+        name: "Trabajo dinámico",
+        text: "Incluye mountain climbers, russian twists y hollow body rocks para fortalecer en movimiento."
+      },
+      {
+        name: "Enfriamiento funcional",
+        text: "Finaliza con estiramientos de psoas, abdominales y zona lumbar durante 5 minutos."
+      }
+    ]
+  });
 
   return (
     <>
@@ -35,18 +69,9 @@ const RutinaCore = () => {
         <meta property="og:image" content="https://calisthenia.online/assets/calisthenia-core.webp" />
         <meta property="og:url" content="https://calisthenia.online/rutina-core-calistenia/" />
         <meta property="og:type" content="article" />
-        
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ExercisePlan",
-            "name": "Rutina Core Calistenia",
-            "description": "Plan completo de entrenamiento core funcional con calistenia para fortalecer la zona media, mejorar estabilización y prevenir lesiones",
-            "activityFrequency": "3-4 times per week",
-            "exerciseType": "Functional Core Training"
-          })}
-        </script>
       </Helmet>
+
+      <StructuredData data={schemas.allSchemas} />
 
       <Header />
       <CommunityStickyBanner />

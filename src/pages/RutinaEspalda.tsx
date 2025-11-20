@@ -12,9 +12,43 @@ import RoutineHero from "@/components/routine/RoutineHero";
 import CommunityCTA from "@/components/CommunityCTA";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 import QuickJumpBanner from "@/components/QuickJumpBanner";
+import StructuredData from "@/components/seo/StructuredData";
+import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
 
 const RutinaEspalda = () => {
   const espaldaVideos = getVideosByZone(allVideos, 'Espalda', { limit: 9, sortBy: 'engagement' });
+
+  const schemas = useRoutineSchemas({
+    routineName: "Rutina de Espalda con Calistenia",
+    routineDescription: "Descubre la mejor rutina de espalda con calistenia. Ejercicios clave como dominadas, remos y front lever para desarrollar una espalda fuerte, ancha y definida en V.",
+    videoId: "joOoHh_P5RM",
+    videoTitle: "Cómo Hacer la Primera Dominada - Retracción Escapular",
+    videoDuration: "PT11M15S",
+    uploadDate: "2024-01-15",
+    totalTime: "PT50M",
+    steps: [
+      {
+        name: "Movilidad escapular",
+        text: "Realiza 5 minutos de ejercicios de retracción y protracción escapular para activar la espalda correctamente."
+      },
+      {
+        name: "Dominadas y variaciones",
+        text: "Ejecuta dominadas pronadas, supinas y neutras. Progresa desde asistidas hasta completas. 3-4 series de 6-12 repeticiones."
+      },
+      {
+        name: "Remos horizontales",
+        text: "Realiza remos australianos en diferentes ángulos para trabajar espesor de la espalda. 3-4 series."
+      },
+      {
+        name: "Trabajo de trapecio",
+        text: "Incluye elevaciones escapulares, face pulls y trabajo isométrico para fortalecer la zona media de la espalda."
+      },
+      {
+        name: "Enfriamiento y movilidad",
+        text: "Estira dorsales, romboides y trapecio durante 5-10 minutos para mejorar la recuperación y flexibilidad."
+      }
+    ]
+  });
 
   return (
     <div className="min-h-screen">
@@ -29,34 +63,9 @@ const RutinaEspalda = () => {
         <meta property="og:description" content="Desarrolla una espalda fuerte y definida con dominadas, remos y ejercicios de calistenia avanzados. Guía completa con técnicas y progresiones." />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://calistenia.online/rutina-espalda" />
-        
-        {/* Schema.org structured data */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ExercisePlan",
-            "name": "Rutina de Espalda Calistenia Completa",
-            "description": "Programa completo de ejercicios de espalda con calistenia para desarrollar fuerza, masa muscular y definición",
-            "exerciseType": "Calistenia",
-            "targetArea": "Espalda, Dorsales, Trapecio",
-            "intensity": "Intermedio a Avanzado",
-            "additionalType": "https://schema.org/PhysicalActivity",
-            "video": {
-              "@type": "VideoObject",
-              "name": "Cómo Hacer la Primera Dominada - Retracción Escapular",
-              "description": "Guía completa para dominar la técnica de dominadas desde cero",
-              "thumbnailUrl": `https://img.youtube.com/vi/joOoHh_P5RM/maxresdefault.jpg`,
-              "uploadDate": "2024-01-15",
-              "contentUrl": `https://www.youtube.com/watch?v=joOoHh_P5RM`
-            },
-            "author": {
-              "@type": "Person",
-              "name": "Nicolás Reyero",
-              "jobTitle": "Entrenador de Calistenia"
-            }
-          })}
-        </script>
       </Helmet>
+
+      <StructuredData data={schemas.allSchemas} />
 
       <Header />
       <CommunityStickyBanner />

@@ -20,8 +20,42 @@ import Footer from "@/components/Footer";
 import VideoWithStructure from "@/components/VideoWithStructure";
 import RoutineHero from "@/components/routine/RoutineHero";
 import QuickJumpBanner from "@/components/QuickJumpBanner";
+import StructuredData from "@/components/seo/StructuredData";
+import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
 
 const RutinaBrazos = () => {
+  const schemas = useRoutineSchemas({
+    routineName: "Cómo entrenar brazos con calistenia",
+    routineDescription: "Desarrolla brazos fuertes y definidos con ejercicios de calistenia. Rutina completa para bíceps, tríceps y antebrazos usando solo tu peso corporal.",
+    videoId: "iwfZkXQRaXU",
+    videoTitle: "Cómo Entrenar Brazos con Calistenia",
+    videoDuration: "PT8M30S",
+    uploadDate: "2024-01-15",
+    totalTime: "PT30M",
+    steps: [
+      {
+        name: "Calentamiento",
+        text: "Realiza 5 minutos de movilidad articular enfocándote en codos, muñecas y hombros para preparar las articulaciones."
+      },
+      {
+        name: "Ejercicios de Bíceps",
+        text: "Ejecuta curl australiano en barra baja, chin-ups y variaciones isométricas para trabajar la flexión del codo."
+      },
+      {
+        name: "Ejercicios de Tríceps",
+        text: "Realiza fondos en paralelas, flexiones diamante y extensiones de tríceps para trabajar la extensión del codo."
+      },
+      {
+        name: "Trabajo de Antebrazos",
+        text: "Incluye ejercicios de agarre como cuelgues en barra y farmer walks para fortalecer los antebrazos."
+      },
+      {
+        name: "Enfriamiento",
+        text: "Finaliza con estiramientos suaves de bíceps, tríceps y antebrazos durante 5 minutos."
+      }
+    ]
+  });
+
   return (
     <>
       <Helmet>
@@ -41,19 +75,9 @@ const RutinaBrazos = () => {
         <meta property="og:image" content="https://calisthenia.online/assets/calisthenia-brazos.webp" />
         <meta property="og:url" content="https://calisthenia.online/rutina-brazos-calistenia/" />
         <meta property="og:type" content="article" />
-        
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ExercisePlan",
-            "name": "Rutina de Brazos con Calistenia",
-            "description": "Plan completo de entrenamiento de brazos: bíceps, tríceps y antebrazos con calistenia",
-            "activityFrequency": "2-3 times per week",
-            "exerciseType": "Calisthenics - Arms",
-            "targetArea": ["Bíceps", "Tríceps", "Antebrazos"]
-          })}
-        </script>
       </Helmet>
+
+      <StructuredData data={schemas.allSchemas} />
 
       <Header />
       <CommunityStickyBanner />

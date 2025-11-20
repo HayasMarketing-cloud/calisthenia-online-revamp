@@ -12,9 +12,43 @@ import RoutineHero from "@/components/routine/RoutineHero";
 import CommunityCTA from "@/components/CommunityCTA";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 import QuickJumpBanner from "@/components/QuickJumpBanner";
+import StructuredData from "@/components/seo/StructuredData";
+import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
 
 const RutinaPecho = () => {
   const pechoVideos = getVideosByZone(allVideos, 'Pecho', { limit: 9, sortBy: 'engagement' });
+
+  const schemas = useRoutineSchemas({
+    routineName: "Rutina de Pecho con Calistenia",
+    routineDescription: "Descubre la mejor rutina de pecho con calistenia. Ejercicios clave como flexiones, fondos y press para desarrollar un pecho fuerte, definido y simétrico.",
+    videoId: "QmNx-kydmn0",
+    videoTitle: "No Hagas los Fondos Así - Errores Comunes",
+    videoDuration: "PT9M45S",
+    uploadDate: "2024-01-15",
+    totalTime: "PT45M",
+    steps: [
+      {
+        name: "Calentamiento dinámico",
+        text: "Realiza 5-10 minutos de movilidad articular para hombros, codos y muñecas. Incluye círculos de brazos y estiramientos dinámicos."
+      },
+      {
+        name: "Flexiones y variaciones",
+        text: "Ejecuta flexiones clásicas, diamante y declinadas para trabajar todo el pectoral. 3-4 series de 8-15 repeticiones."
+      },
+      {
+        name: "Fondos en paralelas",
+        text: "Realiza fondos con inclinación adelante para enfatizar el pecho. Controla el descenso y empuja con potencia. 3-4 series."
+      },
+      {
+        name: "Trabajo de aperturas",
+        text: "Incluye pseudo push-ups o aperturas en anillas para amplitud y definición del pectoral."
+      },
+      {
+        name: "Enfriamiento y estiramiento",
+        text: "Estira el pecho, hombros y tríceps durante 5-10 minutos para mejorar la recuperación."
+      }
+    ]
+  });
 
   return (
     <div className="min-h-screen">
@@ -29,34 +63,9 @@ const RutinaPecho = () => {
         <meta property="og:description" content="Desarrolla un pecho fuerte y definido con flexiones, fondos y ejercicios de calistenia. Guía completa con técnicas y progresiones." />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://calistenia.online/rutina-pecho" />
-        
-        {/* Schema.org structured data */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ExercisePlan",
-            "name": "Rutina de Pecho Calistenia Completa",
-            "description": "Programa completo de ejercicios de pecho con calistenia para desarrollar fuerza, masa muscular y definición",
-            "exerciseType": "Calistenia",
-            "targetArea": "Pecho, Pectoral Mayor, Pectoral Menor",
-            "intensity": "Todos los niveles",
-            "additionalType": "https://schema.org/PhysicalActivity",
-            "video": {
-              "@type": "VideoObject",
-              "name": "No Hagas los Fondos Así - Errores Comunes",
-              "description": "Guía completa para ejecutar fondos correctamente y maximizar el desarrollo del pecho",
-              "thumbnailUrl": "https://img.youtube.com/vi/QmNx-kydmn0/maxresdefault.jpg",
-              "uploadDate": "2024-01-15",
-              "contentUrl": "https://www.youtube.com/watch?v=QmNx-kydmn0"
-            },
-            "author": {
-              "@type": "Person",
-              "name": "Nicolás Reyero",
-              "jobTitle": "Entrenador de Calistenia"
-            }
-          })}
-        </script>
       </Helmet>
+
+      <StructuredData data={schemas.allSchemas} />
 
       <Header />
       <CommunityStickyBanner />
