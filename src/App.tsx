@@ -32,6 +32,7 @@ import Auth from "./pages/Auth";
 import QueEsLaCalistenia from "./pages/blog/QueEsLaCalistenia";
 import NotFound from "./pages/NotFound";
 import SEODashboard from "./pages/SEODashboard";
+import BrandBook from "./pages/BrandBook";
 import MediaLibrary from "./pages/MediaLibrary";
 
 const queryClient = new QueryClient();
@@ -74,6 +75,7 @@ const App = () => (
           <Route path="/blog/que-es-la-calistenia/" element={<QueEsLaCalistenia />} />
           <Route path="/admin/seo-dashboard/" element={<SEODashboard />} />
           <Route path="/admin/media-library/" element={<MediaLibrary />} />
+          <Route path="/brandbook/" element={<BrandBook />} />
           <Route path="/admin/blog/" element={<BlogManager />} />
           <Route path="/admin/blog/nuevo/" element={<BlogEditor />} />
           <Route path="/admin/blog/editar/:id/" element={<BlogEditor />} />

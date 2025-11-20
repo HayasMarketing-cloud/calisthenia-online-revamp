@@ -174,6 +174,14 @@ const Header = () => {
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <Link to="/brandbook/">
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  BrandBook
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
             
             {/* Auth Buttons */}
             <NavigationMenuItem>
@@ -310,6 +318,10 @@ const Header = () => {
 
               <Link to="/contacto/" onClick={() => setIsOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">
                 Contacto
+              </Link>
+
+              <Link to="/brandbook/" onClick={() => setIsOpen(false)} className="text-lg font-medium hover:text-primary transition-colors">
+                BrandBook
               </Link>
             </nav>
           </SheetContent>
