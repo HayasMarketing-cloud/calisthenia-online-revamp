@@ -26,6 +26,9 @@ import CallisteniaNivelAvanzado from "./pages/CallisteniaNivelAvanzado";
 import Contacto from "./pages/Contacto";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import BlogEditor from "./pages/admin/BlogEditor";
+import BlogManager from "./pages/admin/BlogManager";
+import Auth from "./pages/Auth";
 import BlogManager from "./pages/admin/BlogManager";
 import BlogEditor from "./pages/admin/BlogEditor";
 import QueEsLaCalistenia from "./pages/blog/QueEsLaCalistenia";
@@ -65,7 +68,11 @@ const App = () => (
           <Route path="/calistenia-nivel-avanzado/" element={<CallisteniaNivelAvanzado />} />
           <Route path="/contacto/" element={<Contacto />} />
           <Route path="/blog/" element={<Blog />} />
-          <Route path="/blog/:slug/" element={<BlogPost />} />
+            <Route path="/blog/:slug/" element={<BlogPost />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/admin/blog" element={<BlogManager />} />
+            <Route path="/admin/blog/nuevo" element={<BlogEditor />} />
+            <Route path="/admin/blog/:id" element={<BlogEditor />} />
           <Route path="/blog/que-es-la-calistenia/" element={<QueEsLaCalistenia />} />
           <Route path="/admin/seo-dashboard/" element={<SEODashboard />} />
           <Route path="/admin/media-library/" element={<MediaLibrary />} />
