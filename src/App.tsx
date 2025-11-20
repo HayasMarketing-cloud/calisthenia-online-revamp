@@ -25,9 +25,13 @@ import CalisteniaPrincipiantes from "./pages/CalisteniaPrincipiantes";
 import CallisteniaNivelAvanzado from "./pages/CallisteniaNivelAvanzado";
 import Contacto from "./pages/Contacto";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
+import BlogManager from "./pages/admin/BlogManager";
+import BlogEditor from "./pages/admin/BlogEditor";
 import QueEsLaCalistenia from "./pages/blog/QueEsLaCalistenia";
 import NotFound from "./pages/NotFound";
 import SEODashboard from "./pages/SEODashboard";
+import MediaLibrary from "./pages/MediaLibrary";
 
 const queryClient = new QueryClient();
 
@@ -61,8 +65,13 @@ const App = () => (
           <Route path="/calistenia-nivel-avanzado/" element={<CallisteniaNivelAvanzado />} />
           <Route path="/contacto/" element={<Contacto />} />
           <Route path="/blog/" element={<Blog />} />
+          <Route path="/blog/:slug/" element={<BlogPost />} />
           <Route path="/blog/que-es-la-calistenia/" element={<QueEsLaCalistenia />} />
           <Route path="/admin/seo-dashboard/" element={<SEODashboard />} />
+          <Route path="/admin/media-library/" element={<MediaLibrary />} />
+          <Route path="/admin/blog/" element={<BlogManager />} />
+          <Route path="/admin/blog/nuevo/" element={<BlogEditor />} />
+          <Route path="/admin/blog/editar/:id/" element={<BlogEditor />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<><RedirectHandler /><NotFound /></>} />
         </Routes>
