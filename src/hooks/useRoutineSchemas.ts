@@ -2,9 +2,13 @@ import {
   generateOrganizationSchema, 
   generateVideoSchema, 
   generateHowToSchema, 
+  generateBreadcrumbSchema,
+  generateProductWithRatingSchema,
   ORGANIZATION_DATA,
   type VideoData,
-  type HowToData
+  type HowToData,
+  type BreadcrumbItem,
+  type AggregateRatingData
 } from "@/lib/schemas";
 
 interface RoutineSchemaParams {
@@ -20,6 +24,8 @@ interface RoutineSchemaParams {
     image?: string;
   }>;
   totalTime?: string;
+  breadcrumbs?: BreadcrumbItem[];
+  rating?: AggregateRatingData;
 }
 
 export const useRoutineSchemas = (params: RoutineSchemaParams) => {
@@ -49,10 +55,30 @@ export const useRoutineSchemas = (params: RoutineSchemaParams) => {
   const videoSchema = generateVideoSchema(videoData);
   const howToSchema = generateHowToSchema(howToData);
 
+  // Schemas opcionales
+  const breadcrumbSchema = params.breadcrumbs 
+    ? generateBreadcrumbSchema(params.breadcrumbs) 
+    : null;
+
+  const ratingSchema = params.rating
+    ? generateProductWithRatingSchema(
+        params.routineName,
+        params.routineDescription,
+        `https://img.youtube.com/vi/${params.videoId}/maxresdefault.jpg`,
+        params.rating
+      )
+    : null;
+
+  const schemas: any[] = [organizationSchema, videoSchema, howToSchema];
+  if (breadcrumbSchema) schemas.push(breadcrumbSchema);
+  if (ratingSchema) schemas.push(ratingSchema);
+
   return {
     organizationSchema,
     videoSchema,
     howToSchema,
-    allSchemas: [organizationSchema, videoSchema, howToSchema]
+    breadcrumbSchema,
+    ratingSchema,
+    allSchemas: schemas
   };
 };

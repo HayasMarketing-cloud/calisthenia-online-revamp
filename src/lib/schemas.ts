@@ -47,6 +47,19 @@ export interface FAQItem {
   answer: string;
 }
 
+export interface AggregateRatingData {
+  itemName: string;
+  ratingValue: number; // 1-5
+  reviewCount: number;
+  bestRating?: number;
+  worstRating?: number;
+}
+
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
 /**
  * Genera Organization Schema (para todas las páginas)
  */
@@ -144,6 +157,55 @@ export const generateItemListSchema = (items: { name: string; url: string; image
       url: item.url,
       name: item.name,
       ...(item.image && { image: item.image })
+    }))
+  };
+};
+
+/**
+ * Genera AggregateRating Schema (para mostrar estrellas en Google)
+ * Úsalo con Product, Service, o dentro de otros schemas
+ */
+export const generateAggregateRatingSchema = (data: AggregateRatingData) => {
+  return {
+    "@type": "AggregateRating",
+    ratingValue: data.ratingValue.toString(),
+    reviewCount: data.reviewCount.toString(),
+    bestRating: (data.bestRating || 5).toString(),
+    worstRating: (data.worstRating || 1).toString()
+  };
+};
+
+/**
+ * Genera Product Schema con Rating (para rutinas con valoraciones)
+ */
+export const generateProductWithRatingSchema = (
+  productName: string,
+  description: string,
+  image: string,
+  rating: AggregateRatingData
+) => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: productName,
+    description: description,
+    image: image,
+    aggregateRating: generateAggregateRatingSchema(rating)
+  };
+};
+
+/**
+ * Genera BreadcrumbList Schema (para migas de pan en SERP)
+ */
+export const generateBreadcrumbSchema = (breadcrumbs: BreadcrumbItem[]) => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: breadcrumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: crumb.name,
+      item: crumb.url
     }))
   };
 };
