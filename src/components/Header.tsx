@@ -9,9 +9,10 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, User, Users } from "lucide-react";
+import { Menu, User, Users, LogIn, LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
 import iconBrazos from "@/assets/calisthenia-brazos.webp";
 import iconEspalda from "@/assets/calisthenia-espalda.webp";
 import iconAbdomen from "@/assets/calisthenia-abdomen.webp";
@@ -25,6 +26,7 @@ import entrenaParque from "@/assets/entrena-parque.jpg";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, isAdmin, signOut } = useAuth();
 
   const routines = [
     { name: "Brazos", path: "/rutina-brazos-calistenia/", icon: iconBrazos },
@@ -172,6 +174,32 @@ const Header = () => {
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
+            
+            {/* Auth Buttons */}
+            <NavigationMenuItem>
+              {user ? (
+                <div className="flex items-center gap-2">
+                  {isAdmin && (
+                    <Link to="/admin/blog">
+                      <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                        Admin
+                      </NavigationMenuLink>
+                    </Link>
+                  )}
+                  <Button variant="ghost" size="sm" onClick={signOut}>
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Salir
+                  </Button>
+                </div>
+              ) : (
+                <Link to="/auth">
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    <LogIn className="h-4 w-4 mr-2" />
+                    Iniciar Sesión
+                  </NavigationMenuLink>
+                </Link>
+              )}
+            </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
 
@@ -220,6 +248,32 @@ const Header = () => {
                     </Link>
                   ))}
                 </div>
+              </div>
+            
+              {/* Auth Buttons Mobile */}
+              <div className="pt-4 border-t border-border">
+                {user ? (
+                  <div className="space-y-2">
+                    {isAdmin && (
+                      <Link to="/admin/blog" onClick={() => setIsOpen(false)}>
+                        <Button variant="ghost" className="w-full justify-start">
+                          Admin
+                        </Button>
+                      </Link>
+                    )}
+                    <Button variant="ghost" className="w-full justify-start" onClick={() => { signOut(); setIsOpen(false); }}>
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Salir
+                    </Button>
+                  </div>
+                ) : (
+                  <Link to="/auth" onClick={() => setIsOpen(false)}>
+                    <Button variant="ghost" className="w-full justify-start">
+                      <LogIn className="h-4 w-4 mr-2" />
+                      Iniciar Sesión
+                    </Button>
+                  </Link>
+                )}
               </div>
 
               <div>
