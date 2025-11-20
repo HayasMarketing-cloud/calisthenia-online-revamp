@@ -21,8 +21,51 @@ import RoutineHero from "@/components/routine/RoutineHero";
 import QuickJumpBanner from "@/components/QuickJumpBanner";
 import CommunityCTA from "@/components/CommunityCTA";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
+import StructuredData from "@/components/seo/StructuredData";
+import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
 
 const RutinaAbdominales = () => {
+  // Rich Snippets: VideoObject + HowTo + Organization
+  const { allSchemas } = useRoutineSchemas({
+    routineName: "Rutina de Abdominales Calistenia para Six Pack Definido",
+    routineDescription: "Rutina completa de abdominales con calistenia. Ejercicios progresivos para fortalecer el core, desarrollar abdominales definidos y mejorar la estabilidad funcional sin equipos.",
+    videoId: "MnbNx2x-RY8",
+    videoTitle: "Rutina de Abdominales 10 Minutos - Calistenia en Casa",
+    videoDuration: "PT10M",
+    totalTime: "PT20M",
+    uploadDate: "2024-01-15",
+    steps: [
+      {
+        name: "Calentamiento del Core",
+        text: "Comienza con 3-5 minutos de activación del core con movimientos suaves: rotaciones de tronco, flexiones laterales y respiración diafragmática profunda.",
+      },
+      {
+        name: "Plancha Abdominal",
+        text: "Mantén la posición de plancha con codos bajo los hombros, cuerpo alineado y core activado. Realiza 3 series de 30-60 segundos.",
+      },
+      {
+        name: "Crunches Abdominales",
+        text: "Acostado boca arriba, manos detrás de la cabeza, eleva el tronco superior contrayendo abdominales. 3 series de 15-20 repeticiones.",
+      },
+      {
+        name: "Elevaciones de Piernas",
+        text: "Desde posición supina, eleva las piernas extendidas hasta 90 grados manteniendo la zona lumbar pegada al suelo. 3 series de 12-15 repeticiones.",
+      },
+      {
+        name: "Mountain Climbers",
+        text: "En posición de plancha alta, alterna llevando las rodillas hacia el pecho de forma dinámica. 3 series de 20 repeticiones (10 por pierna).",
+      },
+      {
+        name: "Plancha Lateral",
+        text: "Apoyado en un antebrazo, cuerpo lateral alineado, mantén la posición activando oblicuos. 3 series de 20-40 segundos por lado.",
+      },
+      {
+        name: "Estiramientos Finales",
+        text: "Finaliza con estiramientos del core: postura del niño, cobra y rotaciones suaves de columna durante 3-5 minutos.",
+      }
+    ]
+  });
+
   return (
     <>
       <Helmet>
@@ -42,24 +85,10 @@ const RutinaAbdominales = () => {
         <meta property="og:image" content="https://calisthenia.online/assets/calisthenia-abdomen.webp" />
         <meta property="og:url" content="https://calisthenia.online/rutina-abdominales-calistenia/" />
         <meta property="og:type" content="article" />
-        
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ExercisePlan",
-            "name": "Rutina Abdominales Calistenia",
-            "description": "Plan completo de entrenamiento abdominal con calistenia para desarrollar abdominales fuertes y definidos",
-            "activityFrequency": "3-4 times per week",
-            "exerciseType": "Calisthenics Core Training",
-            "video": {
-              "@type": "VideoObject",
-              "name": "Rutina Abdominales 10 Minutos",
-              "embedUrl": "https://www.youtube.com/embed/MnbNx2x-RY8"
-            }
-          })}
-        </script>
       </Helmet>
 
+      <StructuredData data={allSchemas} />
+      
       <Header />
       <CommunityStickyBanner />
 
