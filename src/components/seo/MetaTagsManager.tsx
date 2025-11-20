@@ -12,6 +12,8 @@ import {
   AlertCircle,
   XCircle,
   ExternalLink,
+  Sparkles,
+  Loader2,
 } from "lucide-react";
 import { useAllSEOPages, useUpdateSEOPage, SEOPage } from "@/hooks/useSEOData";
 import { useToast } from "@/hooks/use-toast";
@@ -25,15 +27,19 @@ import {
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Progress } from "@/components/ui/progress";
+import { useSEOAnalysis } from "@/hooks/useSEOAnalysis";
+import SEOAISuggestions from "./SEOAISuggestions";
 
 const MetaTagsManager = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [editingPage, setEditingPage] = useState<SEOPage | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [analyzingPath, setAnalyzingPath] = useState<string | null>(null);
 
   const { data: pages, isLoading } = useAllSEOPages();
   const updateMutation = useUpdateSEOPage();
   const { toast } = useToast();
+  const { analyzePage, isAnalyzing, suggestions, clearSuggestions } = useSEOAnalysis();
 
   const filteredPages = pages?.filter(
     (page) =>
@@ -132,6 +138,83 @@ const MetaTagsManager = () => {
     setEditingPage({ ...editingPage, keywords });
   };
 
+  const handleAnalyzeWithAI = async (page: SEOPage) => {
+    setAnalyzingPath(page.path);
+    setEditingPage({
+      ...page,
+      keywords: page.keywords || [],
+    });
+    setIsDialogOpen(true);
+
+    try {
+      // Generate a simple content summary for analysis
+      const content = `
+        Ruta: ${page.path}
+        Título actual: ${page.title || 'Sin título'}
+        Descripción actual: ${page.description || 'Sin descripción'}
+        H1 actual: ${page.h1 || 'Sin H1'}
+        Tipo de página: ${page.path.includes('rutina') ? 'Rutina de ejercicios' : 'Página general'}
+        ${page.path.includes('brazos') ? 'Enfocada en ejercicios de brazos' : ''}
+        ${page.path.includes('piernas') ? 'Enfocada en ejercicios de piernas' : ''}
+        ${page.path.includes('abdomen') ? 'Enfocada en ejercicios de abdomen' : ''}
+        ${page.path.includes('espalda') ? 'Enfocada en ejercicios de espalda' : ''}
+        ${page.path.includes('pecho') ? 'Enfocada en ejercicios de pecho' : ''}
+        ${page.path.includes('full-body') ? 'Enfocada en ejercicios de cuerpo completo' : ''}
+        ${page.path.includes('principiantes') ? 'Dirigida a principiantes en calistenia' : ''}
+        ${page.path.includes('avanzado') ? 'Dirigida a nivel avanzado en calistenia' : ''}
+        ${page.path.includes('parque') ? 'Ejercicios para hacer en el parque' : ''}
+        ${page.path.includes('casa') ? 'Ejercicios para hacer en casa' : ''}
+      `;
+
+      await analyzePage(page.path, content);
+      
+      toast({
+        title: "Análisis completado",
+        description: "La IA ha generado sugerencias de optimización SEO.",
+      });
+    } catch (error) {
+      console.error('Error analyzing page:', error);
+      // Toast error already shown by the hook
+    } finally {
+      setAnalyzingPath(null);
+    }
+  };
+
+  const handleApplySuggestion = (field: string, value: string | string[]) => {
+    if (!editingPage) return;
+    setEditingPage({ ...editingPage, [field]: value });
+  };
+
+  const handleApplyAllSuggestions = () => {
+    if (!editingPage || !suggestions) return;
+    
+    setEditingPage({
+      ...editingPage,
+      title: suggestions.title,
+      description: suggestions.description,
+      h1: suggestions.h1,
+      h2_primary: suggestions.h2_primary,
+      h2_secondary_1: suggestions.h2_secondary_1,
+      h2_secondary_2: suggestions.h2_secondary_2,
+      keywords: suggestions.keywords,
+    });
+
+    clearSuggestions();
+    
+    toast({
+      title: "Sugerencias aplicadas",
+      description: "Todas las sugerencias de la IA se han aplicado. Recuerda guardar los cambios.",
+    });
+  };
+
+  const handleDiscardSuggestions = () => {
+    clearSuggestions();
+    toast({
+      title: "Sugerencias descartadas",
+      description: "Las sugerencias de la IA han sido descartadas.",
+    });
+  };
+
   if (isLoading) {
     return <div>Cargando...</div>;
   }
@@ -227,13 +310,33 @@ const MetaTagsManager = () => {
                       </div>
                     </div>
 
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleEdit(page)}
-                    >
-                      <Edit className="w-4 h-4" />
-                    </Button>
+                    <div className="flex gap-2">
+                      <Button
+                        variant="default"
+                        size="sm"
+                        onClick={() => handleAnalyzeWithAI(page)}
+                        disabled={isAnalyzing && analyzingPath === page.path}
+                      >
+                        {isAnalyzing && analyzingPath === page.path ? (
+                          <>
+                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                            Analizando...
+                          </>
+                        ) : (
+                          <>
+                            <Sparkles className="w-4 h-4 mr-2" />
+                            Analizar con IA
+                          </>
+                        )}
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleEdit(page)}
+                      >
+                        <Edit className="w-4 h-4" />
+                      </Button>
+                    </div>
                   </div>
                 </Card>
               );
@@ -253,6 +356,16 @@ const MetaTagsManager = () => {
 
           {editingPage && (
             <div className="space-y-4">
+              {suggestions && (
+                <SEOAISuggestions
+                  suggestions={suggestions}
+                  currentData={editingPage}
+                  onApply={handleApplySuggestion}
+                  onApplyAll={handleApplyAllSuggestions}
+                  onDiscard={handleDiscardSuggestions}
+                />
+              )}
+
               <div className="space-y-2">
                 <Label htmlFor="title">Título (50-60 caracteres óptimo)</Label>
                 <Input
