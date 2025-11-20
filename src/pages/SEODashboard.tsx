@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import RedirectionsManager from "@/components/seo/RedirectionsManager";
 import SitemapManager from "@/components/seo/SitemapManager";
+import SitemapAnalyzer from "@/components/seo/SitemapAnalyzer";
 import RobotsTxtEditor from "@/components/seo/RobotsTxtEditor";
 import MetaTagsManager from "@/components/seo/MetaTagsManager";
 import SEOStats from "@/components/seo/SEOStats";
@@ -26,11 +27,12 @@ const SEODashboard = () => {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-5 mb-8">
+          <TabsList className="grid w-full grid-cols-6 mb-8">
             <TabsTrigger value="stats">Estadísticas</TabsTrigger>
             <TabsTrigger value="redirects">Redirecciones</TabsTrigger>
             <TabsTrigger value="metatags">Meta Tags</TabsTrigger>
             <TabsTrigger value="sitemap">Sitemap</TabsTrigger>
+            <TabsTrigger value="analyzer">Analyzer</TabsTrigger>
             <TabsTrigger value="robots">Robots.txt</TabsTrigger>
           </TabsList>
 
@@ -48,6 +50,10 @@ const SEODashboard = () => {
 
           <TabsContent value="sitemap">
             <SitemapManager />
+          </TabsContent>
+
+          <TabsContent value="analyzer">
+            <SitemapAnalyzer />
           </TabsContent>
 
           <TabsContent value="robots">
