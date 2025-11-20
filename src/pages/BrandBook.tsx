@@ -5,6 +5,8 @@ import { ColorCard } from "@/components/brandbook/ColorCard";
 import { TypographyExample } from "@/components/brandbook/TypographyExample";
 import { GradientPreview } from "@/components/brandbook/GradientPreview";
 import { ShadowPreview } from "@/components/brandbook/ShadowPreview";
+import { ComponentShowcase } from "@/components/brandbook/ComponentShowcase";
+import { IconographySection } from "@/components/brandbook/IconographySection";
 
 const BrandBook = () => {
   const colors = [
@@ -226,6 +228,19 @@ const BrandBook = () => {
                 <code className="text-sm bg-muted px-2 py-1 rounded">0.25rem / 4px</code>
               </div>
             </div>
+          </section>
+
+          {/* UI Components Section */}
+          <section className="py-16 bg-muted">
+            <div className="container mx-auto px-4">
+              <h2 className="text-3xl font-bold mb-8">Componentes UI</h2>
+              <ComponentShowcase />
+            </div>
+          </section>
+
+          {/* Iconography Section */}
+          <section className="py-16 container mx-auto px-4">
+            <IconographySection />
           </section>
         </main>
 
