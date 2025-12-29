@@ -34,6 +34,7 @@ import NotFound from "./pages/NotFound";
 import SEODashboard from "./pages/SEODashboard";
 import BrandBook from "./pages/BrandBook";
 import MediaLibrary from "./pages/MediaLibrary";
+import FuncionalBodybuilding from "./pages/FuncionalBodybuilding";
 
 const queryClient = new QueryClient();
 
@@ -76,6 +77,7 @@ const App = () => (
           <Route path="/admin/seo-dashboard/" element={<SEODashboard />} />
           <Route path="/admin/media-library/" element={<MediaLibrary />} />
           <Route path="/brandbook/" element={<BrandBook />} />
+          <Route path="/funcional-bodybuilding/" element={<FuncionalBodybuilding />} />
           <Route path="/admin/blog/" element={<BlogManager />} />
           <Route path="/admin/blog/nuevo/" element={<BlogEditor />} />
           <Route path="/admin/blog/editar/:id/" element={<BlogEditor />} />
