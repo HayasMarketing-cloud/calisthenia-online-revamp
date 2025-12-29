@@ -145,6 +145,7 @@ const BrandBook = () => {
           name="description"
           content="Guía completa de identidad visual con colores corporativos, tipografías y elementos de diseño del sistema de calistenia."
         />
+        <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">
