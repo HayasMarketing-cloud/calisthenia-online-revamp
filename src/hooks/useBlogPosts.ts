@@ -2,7 +2,13 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { BlogPost, BlogPostFormData } from "@/types/blog";
 import { toast } from "sonner";
-import readingTime from "reading-time";
+
+// Simple reading time calculator (browser-compatible replacement for reading-time package)
+const calculateReadingTime = (text: string): number => {
+  const wordsPerMinute = 200;
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  return Math.ceil(words / wordsPerMinute) || 1;
+};
 
 export const useBlogPosts = (status?: string) => {
   return useQuery({
@@ -73,8 +79,7 @@ export const useCreateBlogPost = () => {
 
   return useMutation({
     mutationFn: async (data: BlogPostFormData) => {
-      const stats = readingTime(data.content);
-      const readTime = Math.ceil(stats.minutes);
+      const readTime = calculateReadingTime(data.content);
 
       const { data: post, error } = await supabase
         .from("blog_posts")
@@ -102,8 +107,7 @@ export const useUpdateBlogPost = () => {
     mutationFn: async ({ id, data }: { id: string; data: Partial<BlogPostFormData> }) => {
       let readTime = undefined;
       if (data.content) {
-        const stats = readingTime(data.content);
-        readTime = Math.ceil(stats.minutes);
+        readTime = calculateReadingTime(data.content);
       }
 
       const { data: post, error } = await supabase
