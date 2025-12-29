@@ -314,7 +314,7 @@ const FuncionalBodybuilding = () => {
                   <img 
                     src={carlosPhoto} 
                     alt="Carlos Plaza - Entrenador" 
-                    className="w-full h-full object-cover object-top brightness-125"
+                    className="w-full h-full object-cover object-center brightness-125"
                   />
                 </div>
                 <div className="p-6">
@@ -332,7 +332,7 @@ const FuncionalBodybuilding = () => {
                   <img 
                     src={nicolasPhoto} 
                     alt="Nicolás Reyero - Entrenador" 
-                    className="w-full h-full object-cover object-top"
+                    className="w-full h-full object-cover object-center"
                   />
                 </div>
                 <div className="p-6">
