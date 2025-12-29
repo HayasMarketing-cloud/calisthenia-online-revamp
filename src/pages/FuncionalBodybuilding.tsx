@@ -40,8 +40,8 @@ const FuncionalBodybuilding = () => {
               />
               
               <Badge className="bg-primary/20 text-primary border-primary/30 mb-6 text-sm md:text-base px-4 py-2">
-                <Calendar className="w-4 h-4 mr-2" />
-                Taller Presencial - 17 Enero 2025 - Madrid
+                <Clock className="w-4 h-4 mr-2" />
+                Taller Presencial · 2 horas · 17 Enero 2025 · Madrid
               </Badge>
               
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
