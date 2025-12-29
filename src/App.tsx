@@ -8,6 +8,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import { RedirectHandler } from "./components/seo/RedirectHandler";
 import DynamicRobotsTxt from "./components/seo/DynamicRobotsTxt";
 import DynamicSitemap from "./components/seo/DynamicSitemap";
+import ProtectedRoute from "./components/admin/ProtectedRoute";
 import Index from "./pages/Index";
 import QuienSoy from "./pages/QuienSoy";
 import Programas from "./pages/Programas";
@@ -70,17 +71,20 @@ const App = () => (
           <Route path="/blog/" element={<Blog />} />
             <Route path="/blog/:slug/" element={<BlogPost />} />
             <Route path="/auth" element={<Auth />} />
-            <Route path="/admin/blog" element={<BlogManager />} />
-            <Route path="/admin/blog/nuevo" element={<BlogEditor />} />
-            <Route path="/admin/blog/:id" element={<BlogEditor />} />
+            
+            {/* Admin Routes - Protected with authentication */}
+            <Route path="/admin/blog" element={<ProtectedRoute requireAdmin><BlogManager /></ProtectedRoute>} />
+            <Route path="/admin/blog/nuevo" element={<ProtectedRoute requireAdmin><BlogEditor /></ProtectedRoute>} />
+            <Route path="/admin/blog/:id" element={<ProtectedRoute requireAdmin><BlogEditor /></ProtectedRoute>} />
+            <Route path="/admin/seo-dashboard/" element={<ProtectedRoute requireAdmin><SEODashboard /></ProtectedRoute>} />
+            <Route path="/admin/media-library/" element={<ProtectedRoute requireAdmin><MediaLibrary /></ProtectedRoute>} />
+            <Route path="/admin/blog/" element={<ProtectedRoute requireAdmin><BlogManager /></ProtectedRoute>} />
+            <Route path="/admin/blog/nuevo/" element={<ProtectedRoute requireAdmin><BlogEditor /></ProtectedRoute>} />
+            <Route path="/admin/blog/editar/:id/" element={<ProtectedRoute requireAdmin><BlogEditor /></ProtectedRoute>} />
+            
           <Route path="/blog/que-es-la-calistenia/" element={<QueEsLaCalistenia />} />
-          <Route path="/admin/seo-dashboard/" element={<SEODashboard />} />
-          <Route path="/admin/media-library/" element={<MediaLibrary />} />
           <Route path="/brandbook/" element={<BrandBook />} />
           <Route path="/funcional-bodybuilding/" element={<FuncionalBodybuilding />} />
-          <Route path="/admin/blog/" element={<BlogManager />} />
-          <Route path="/admin/blog/nuevo/" element={<BlogEditor />} />
-          <Route path="/admin/blog/editar/:id/" element={<BlogEditor />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<><RedirectHandler /><NotFound /></>} />
         </Routes>
