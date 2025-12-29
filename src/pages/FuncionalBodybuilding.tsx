@@ -45,8 +45,7 @@ const FuncionalBodybuilding = () => {
               </Badge>
               
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                Funcional Bodybuilding para{" "}
-                <span className="text-primary">hombres +30</span>
+                Funcional Bodybuilding <span className="text-primary">+30</span>
               </h1>
               
               <p className="text-xl md:text-2xl text-white/90 mb-4 font-medium">
