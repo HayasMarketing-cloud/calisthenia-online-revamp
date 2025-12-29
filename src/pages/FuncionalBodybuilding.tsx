@@ -8,7 +8,7 @@ import nicolasPhoto from "@/assets/nicolas-reyero.jpg";
 import carlosPhoto from "@/assets/carlos-plaza.jpg";
 
 const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1W1r_v7pOOP1aGl7NV0OvrqoGk3avRDbAmC0_7A2vVIE/viewform";
-const EVENT_DATE = new Date("2025-01-17T10:00:00+01:00");
+const EVENT_DATE = new Date("2026-01-17T10:00:00+01:00");
 
 const FuncionalBodybuilding = () => {
   const scrollToForm = () => {
