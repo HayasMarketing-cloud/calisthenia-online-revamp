@@ -93,7 +93,7 @@ const FuncionalBodybuilding = () => {
                 </div>
                 <ul className="space-y-4">
                   {[
-                    "Eres hombre a partir de 30 años",
+                    "Si tienes más de 30 años",
                     "Entrenas o has entrenado fuerza (gimnasio, calistenia o ambos)",
                     "Buscas ganar músculo sin dolor, sin lesiones y sin perder movilidad",
                     "Quieres un método sostenible, no competir ni vivir para entrenar"
