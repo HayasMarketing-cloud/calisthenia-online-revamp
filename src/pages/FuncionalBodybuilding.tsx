@@ -310,11 +310,11 @@ const FuncionalBodybuilding = () => {
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {/* Carlos Plaza */}
               <div className="bg-muted rounded-2xl overflow-hidden shadow-lg">
-                <div className="overflow-hidden">
+                <div className="h-80 md:h-96 overflow-hidden">
                   <img 
                     src={carlosPhoto} 
                     alt="Carlos Plaza - Entrenador" 
-                    className="w-full h-auto brightness-125"
+                    className="w-full h-full object-cover object-top brightness-125"
                   />
                 </div>
                 <div className="p-6">
@@ -328,11 +328,11 @@ const FuncionalBodybuilding = () => {
 
               {/* Nicolás Reyero */}
               <div className="bg-muted rounded-2xl overflow-hidden shadow-lg">
-                <div className="overflow-hidden">
+                <div className="h-80 md:h-96 overflow-hidden">
                   <img 
                     src={nicolasPhoto} 
                     alt="Nicolás Reyero - Entrenador" 
-                    className="w-full h-auto"
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
                 <div className="p-6">
