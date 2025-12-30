@@ -5,7 +5,10 @@ import { Gift, Sparkles, Timer, ArrowRight } from "lucide-react";
 
 // Configuración fácil de editar para futuras promociones
 const PROMOTION_CONFIG = {
-  isActive: true, // Cambiar a false para ocultar la promoción
+  // Fechas de activación automática (zona horaria Madrid)
+  startDate: "2025-01-10T00:00:00",
+  endDate: "2025-02-01T00:00:00",
+  forceShow: false, // Cambiar a true para previsualizar antes de la fecha
   badge: "🎁 OFERTA LIMITADA",
   title: "Empieza el año transformando tu cuerpo",
   subtitle: "Aprovecha esta promoción exclusiva antes de que termine",
@@ -31,7 +34,14 @@ const PROMOTION_CONFIG = {
 };
 
 const PromotionBanner = () => {
-  if (!PROMOTION_CONFIG.isActive) return null;
+  // Verificar si la promoción está activa según las fechas (zona horaria Madrid)
+  const now = new Date();
+  const start = new Date(PROMOTION_CONFIG.startDate);
+  const end = new Date(PROMOTION_CONFIG.endDate);
+  
+  const isActive = PROMOTION_CONFIG.forceShow || (now >= start && now < end);
+  
+  if (!isActive) return null;
 
   return (
     <section className="py-16 bg-gradient-to-br from-primary via-primary/90 to-accent relative overflow-hidden">
