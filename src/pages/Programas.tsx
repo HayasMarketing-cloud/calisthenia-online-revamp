@@ -4,10 +4,9 @@ import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check } from "lucide-react";
+import { Check, Target, Search, CalendarDays, Video, MessageCircle, BarChart3, Utensils } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
-import nicolasImage from "@/assets/nicolas-reyero.jpg";
 
 const Programas = () => {
   useEffect(() => {
@@ -139,49 +138,76 @@ const Programas = () => {
       {/* Cómo son mis programas */}
       <section className="py-20 bg-secondary/5">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="font-display font-bold text-3xl lg:text-4xl text-center mb-12">
+          <div className="max-w-5xl mx-auto">
+            {/* Cabecera */}
+            <h2 className="font-display font-bold text-3xl lg:text-4xl text-center mb-6">
               ¿Cómo son mis <span className="text-primary">programas de entrenamiento</span>?
             </h2>
             
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Imagen de Nico */}
-              <div className="relative">
-                <img 
-                  src={nicolasImage} 
-                  alt="Nico Reyero - Entrenador personal de calistenia"
-                  className="rounded-2xl shadow-elegant w-full h-auto object-cover"
-                />
-              </div>
-              
-              {/* Contenido */}
-              <div className="space-y-6">
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  Como <strong>entrenador personal de calistenia</strong>, mi enfoque combina ciencia del entrenamiento, experiencia práctica y cercanía.
-                </p>
-                
-                <p className="text-xl font-semibold text-gray-900">
-                  No trabajo con plantillas. <span className="text-primary">Trabajo contigo</span>.
-                </p>
-                
-                <div className="space-y-4 mt-8">
-                  <h3 className="font-bold text-xl mb-4">🔹 ¿Qué incluye cada programa?</h3>
-                  
-                  {[
-                    "Evaluación inicial online (estado físico, experiencia, objetivos)",
-                    "Rutinas personalizadas por fases (4 semanas cada una)",
-                    "Videos explicativos y correcciones por vídeo",
-                    "Acceso directo a soporte (por mensaje o llamada)",
-                    "Revisión semanal de progresos",
-                    "Acceso opcional a comunidad privada"
-                  ].map((item, idx) => (
-                    <div className="flex items-start gap-3" key={idx}>
-                      <Check className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                      <p className="text-gray-700">{item}</p>
+            <p className="text-center text-lg text-muted-foreground max-w-3xl mx-auto mb-4">
+              Soy Nico Reyero, entrenador personal especializado en calistenia. 
+              Diseño cada plan combinando ciencia del entrenamiento, experiencia real 
+              y una comunicación cercana y constante.
+            </p>
+            
+            <div className="flex justify-center mb-10">
+              <Badge className="bg-primary/10 text-primary border-primary/20 text-sm md:text-base px-4 py-2.5 font-medium">
+                <Target className="w-4 h-4 mr-2" />
+                No uso plantillas. Trabajo contigo, adaptando cada paso a tus objetivos.
+              </Badge>
+            </div>
+            
+            {/* Subtítulo */}
+            <h3 className="text-xl font-bold text-center mb-8 text-foreground">
+              ¿Qué incluye cada programa?
+            </h3>
+            
+            {/* Grid de tarjetas */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  icon: Search,
+                  title: "Evaluación inicial online",
+                  description: "Analizo tu nivel actual, experiencia previa y metas para definir una base sólida desde la que empezar."
+                },
+                {
+                  icon: CalendarDays,
+                  title: "Rutinas personalizadas (nueva cada mes)",
+                  description: "Planes mensuales ajustados a tu progreso, para entrenar en casa, parque o gimnasio, con el enfoque que necesitas en cada etapa."
+                },
+                {
+                  icon: Video,
+                  title: "Videos explicativos y correcciones",
+                  description: "Te explico cómo ejecutar cada ejercicio, y si lo necesitás, corrijo tu técnica a través de vídeo."
+                },
+                {
+                  icon: MessageCircle,
+                  title: "Soporte directo por WhatsApp",
+                  description: "Estamos en contacto constante. Me podés escribir para resolver dudas, ajustar el plan o darte ese empujón extra."
+                },
+                {
+                  icon: BarChart3,
+                  title: "Seguimiento quincenal de avances",
+                  description: "Cada dos semanas revisamos tus progresos y realizamos ajustes para mantenerte siempre avanzando."
+                },
+                {
+                  icon: Utensils,
+                  title: "Plan de nutrición personalizado",
+                  description: "Incluyo una guía nutricional adaptada a tus objetivos (ganar masa, definir, rendir mejor), alineada con tu entrenamiento."
+                }
+              ].map((item, idx) => (
+                <Card key={idx} className="p-6 bg-background border border-border/50 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
+                  <div className="flex flex-col gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <item.icon className="w-6 h-6 text-primary" />
                     </div>
-                  ))}
-                </div>
-              </div>
+                    <div>
+                      <h4 className="font-bold text-lg mb-2 text-foreground">{item.title}</h4>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                </Card>
+              ))}
             </div>
           </div>
         </div>
