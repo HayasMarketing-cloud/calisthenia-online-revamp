@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Check, Target, Search, CalendarDays, Video, MessageCircle, BarChart3, Utensils } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
+import PromotionBanner from "@/components/PromotionBanner";
 
 const Programas = () => {
   useEffect(() => {
@@ -212,6 +213,9 @@ const Programas = () => {
           </div>
         </div>
       </section>
+
+      {/* Banner de Promoción Temporal */}
+      <PromotionBanner />
 
       {/* Programas de Precios - TEMPORALMENTE OCULTO */}
       {/* <section id="programas-pricing" className="py-20 bg-background">
