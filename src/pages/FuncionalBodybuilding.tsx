@@ -41,7 +41,7 @@ const FuncionalBodybuilding = () => {
               
               <Badge className="bg-primary/20 text-primary border-primary/30 mb-6 text-sm md:text-base px-4 py-2">
                 <Clock className="w-4 h-4 mr-2" />
-                Taller Presencial · 2 horas · 17 Enero 2025 · Madrid
+                Taller Presencial · 2 horas · 17 Enero 2026 · Madrid
               </Badge>
               
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
@@ -394,7 +394,7 @@ const FuncionalBodybuilding = () => {
                 <div className="hidden md:block w-1 h-1 bg-white/30 rounded-full" />
                 <div className="flex items-center gap-2">
                   <Calendar className="w-5 h-5 text-primary" />
-                  <span>17 de Enero 2025</span>
+                  <span>17 de Enero 2026</span>
                 </div>
               </div>
             </div>
