@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, MapPin, X } from "lucide-react";
 
-const EVENT_DATE = new Date("2025-01-17T10:00:00");
+const EVENT_DATE = new Date("2026-01-17T10:00:00");
 const STORAGE_KEY = "event-popup-dismissed";
 const DISMISS_DURATION_MS = 24 * 60 * 60 * 1000; // 24 horas
 
@@ -135,7 +135,7 @@ const EventPopup = () => {
           {/* Fecha destacada */}
           <div className="flex items-center justify-center gap-2 mt-6 text-white/90">
             <Calendar className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium">17 de Enero, 2025</span>
+            <span className="text-sm font-medium">17 de Enero, 2026</span>
           </div>
 
           {/* CTA */}
