@@ -178,12 +178,12 @@ const Programas = () => {
                 {
                   icon: Video,
                   title: "Videos explicativos y correcciones",
-                  description: "Te explico cómo ejecutar cada ejercicio, y si lo necesitás, corrijo tu técnica a través de vídeo."
+                  description: "Te explico cómo ejecutar cada ejercicio, y si lo necesitas, corrijo tu técnica a través de vídeo."
                 },
                 {
                   icon: MessageCircle,
                   title: "Soporte directo por WhatsApp",
-                  description: "Estamos en contacto constante. Me podés escribir para resolver dudas, ajustar el plan o darte ese empujón extra."
+                  description: "Estamos en contacto constante. Puedes escribirme para resolver dudas, ajustar el plan o darte ese empujón extra."
                 },
                 {
                   icon: BarChart3,
