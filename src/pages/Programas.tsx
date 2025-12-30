@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check, Target, Search, CalendarDays, Video, MessageCircle, BarChart3, Utensils } from "lucide-react";
+import { Check, Target, Search, CalendarDays, Video, MessageCircle, BarChart3, Utensils, MessageSquare } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 import PromotionBanner from "@/components/PromotionBanner";
@@ -209,6 +209,19 @@ const Programas = () => {
                   </div>
                 </Card>
               ))}
+            </div>
+            
+            {/* Botón WhatsApp */}
+            <div className="flex justify-center mt-10">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="group border-primary text-primary hover:bg-primary/5"
+                onClick={() => window.open('https://wa.me/34644aboramos?text=Hola%20Nico,%20quiero%20información%20sobre%20tus%20programas', '_blank')}
+              >
+                <MessageSquare className="mr-2 h-5 w-5 transition-colors group-hover:text-[#25D366]" />
+                Escríbeme por WhatsApp
+              </Button>
             </div>
           </div>
         </div>
