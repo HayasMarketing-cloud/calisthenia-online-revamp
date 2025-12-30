@@ -28,9 +28,8 @@ const PROMOTION_CONFIG = {
     },
   ],
   cta: {
-    text: "Quiero aprovechar la oferta",
-    // TODO: Añadir URL de WhatsApp con mensaje predefinido
-    url: "#", // Reemplazar con: https://wa.me/34XXXXXXXXX?text=MENSAJE
+    text: "Quiero aprovechar mi oferta",
+    url: "https://api.whatsapp.com/send?phone=34645079692&text=%C2%A1Quiero%20aprovechar%20esta%20oferta%20de%203%20%2B1%20o%206%20%2B%202!",
   },
   urgencyText: "Plazas limitadas · Solo hasta el 31 de enero",
 };
