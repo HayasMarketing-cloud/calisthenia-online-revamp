@@ -11,6 +11,7 @@ import DualCTA from "@/components/DualCTA";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import StructuredData from "@/components/seo/StructuredData";
+import EventPopup from "@/components/EventPopup";
 import { generateOrganizationSchema, generateFAQSchema, ORGANIZATION_DATA } from "@/lib/schemas";
 
 const Index = () => {
@@ -48,6 +49,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <StructuredData data={[organizationSchema, faqSchema]} />
+      <EventPopup />
       <Header />
       <CommunityStickyBanner />
       <HeroSectionImproved />
