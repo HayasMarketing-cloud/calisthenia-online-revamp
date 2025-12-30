@@ -173,7 +173,7 @@ const Programas = () => {
                 },
                 {
                   icon: CalendarDays,
-                  title: "Rutinas personalizadas (nueva cada mes)",
+                  title: "Rutina semanal personalizada",
                   description: "Planes mensuales ajustados a tu progreso, para entrenar en casa, parque o gimnasio, con el enfoque que necesitas en cada etapa."
                 },
                 {
@@ -193,7 +193,7 @@ const Programas = () => {
                 },
                 {
                   icon: Utensils,
-                  title: "Plan de nutrición personalizado",
+                  title: "Plan de nutrición semanal",
                   description: "Incluyo una guía nutricional adaptada a tus objetivos (ganar masa, definir, rendir mejor), alineada con tu entrenamiento."
                 }
               ].map((item, idx) => (
