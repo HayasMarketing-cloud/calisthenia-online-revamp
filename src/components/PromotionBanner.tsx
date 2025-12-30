@@ -118,10 +118,10 @@ const PromotionBanner = () => {
           <Button 
             size="lg" 
             asChild
-            className="bg-white text-primary hover:bg-white/90 hover:text-primary font-bold px-8 py-6 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+            className="group bg-white text-primary hover:bg-white/90 hover:text-primary font-bold px-8 py-6 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
           >
             <a href={PROMOTION_CONFIG.cta.url} target="_blank" rel="noopener noreferrer">
-              <WhatsAppIcon className="mr-2 w-5 h-5" />
+              <WhatsAppIcon className="mr-2 w-5 h-5 transition-colors group-hover:text-[#25D366]" />
               {PROMOTION_CONFIG.cta.text}
             </a>
           </Button>
