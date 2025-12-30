@@ -15,7 +15,7 @@ const PROMOTION_CONFIG = {
   // Fechas de activación automática (zona horaria Madrid)
   startDate: "2025-01-10T00:00:00",
   endDate: "2025-02-01T00:00:00",
-  forceShow: true, // Cambiar a false para ocultar hasta la fecha de inicio
+  forceShow: false, // Cambiar a true para previsualizar antes de la fecha
   badge: "🎁 OFERTA LIMITADA",
   title: "Empieza el año transformando tu cuerpo",
   subtitle: "Aprovecha esta promoción exclusiva antes de que termine",
