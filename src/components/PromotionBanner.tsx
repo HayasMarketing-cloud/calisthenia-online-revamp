@@ -8,10 +8,11 @@ const PROMOTION_CONFIG = {
   // Fechas de activación automática (zona horaria Madrid)
   startDate: "2025-01-10T00:00:00",
   endDate: "2025-02-01T00:00:00",
-  forceShow: false, // Cambiar a true para previsualizar antes de la fecha
+  forceShow: true, // Cambiar a false para ocultar hasta la fecha de inicio
   badge: "🎁 OFERTA LIMITADA",
   title: "Empieza el año transformando tu cuerpo",
   subtitle: "Aprovecha esta promoción exclusiva antes de que termine",
+  deadline: "Válido hasta el 31 de enero",
   offers: [
     {
       title: "Plan 3 Meses",
@@ -27,10 +28,11 @@ const PROMOTION_CONFIG = {
     },
   ],
   cta: {
-    text: "Aprovecha la oferta",
-    action: () => document.getElementById('contacto-form')?.scrollIntoView({ behavior: 'smooth' }),
+    text: "Quiero aprovechar la oferta",
+    // TODO: Añadir URL de WhatsApp con mensaje predefinido
+    url: "#", // Reemplazar con: https://wa.me/34XXXXXXXXX?text=MENSAJE
   },
-  urgencyText: "Plazas limitadas · Oferta válida hasta agotar cupos",
+  urgencyText: "Plazas limitadas · Solo hasta el 31 de enero",
 };
 
 const PromotionBanner = () => {
@@ -109,18 +111,27 @@ const PromotionBanner = () => {
           {/* CTA Button */}
           <Button 
             size="lg" 
-            onClick={PROMOTION_CONFIG.cta.action}
+            asChild
             className="bg-white text-primary hover:bg-white/90 hover:text-primary font-bold px-8 py-6 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
           >
-            {PROMOTION_CONFIG.cta.text}
-            <ArrowRight className="ml-2 w-5 h-5" />
+            <a href={PROMOTION_CONFIG.cta.url} target="_blank" rel="noopener noreferrer">
+              {PROMOTION_CONFIG.cta.text}
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </a>
           </Button>
 
-          {/* Urgency text */}
-          <div className="flex items-center justify-center gap-2 mt-6 text-white/70 text-sm">
-            <Timer className="w-4 h-4" />
-            <span>{PROMOTION_CONFIG.urgencyText}</span>
+          {/* Deadline badge */}
+          <div className="flex items-center justify-center gap-2 mt-6">
+            <Badge className="bg-white/20 text-white border-white/30 backdrop-blur-sm px-4 py-2">
+              <Timer className="w-4 h-4 mr-2" />
+              {PROMOTION_CONFIG.deadline}
+            </Badge>
           </div>
+
+          {/* Urgency text */}
+          <p className="text-white/70 text-sm mt-4">
+            {PROMOTION_CONFIG.urgencyText}
+          </p>
         </div>
       </div>
     </section>
