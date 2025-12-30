@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import heroImage from "@/assets/hero-wellness-calisthenics.jpg";
+import heroImage from "@/assets/hero-calistenia-parque.png";
 const HeroSectionImproved = () => {
   const scrollToRutinas = () => {
     const element = document.getElementById('rutinas');
