@@ -8,6 +8,9 @@ const CommunityStickyBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
 
+  // Si la comunidad no está habilitada, no renderizar nada
+  if (!COMMUNITY_CONFIG.enabled) return null;
+
   useEffect(() => {
     // Verificar si el banner fue cerrado previamente
     const dismissed = localStorage.getItem(COMMUNITY_CONFIG.stickyBanner.storageKey);
