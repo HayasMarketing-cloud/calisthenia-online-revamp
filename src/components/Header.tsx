@@ -175,8 +175,8 @@ const Header = () => {
               </Link>
             </NavigationMenuItem>
 
-            
-            {/* Auth Buttons */}
+
+            {/* Auth Buttons - Temporarily hidden
             <NavigationMenuItem>
               {user ? (
                 <div className="flex items-center gap-2">
@@ -201,6 +201,7 @@ const Header = () => {
                 </Link>
               )}
             </NavigationMenuItem>
+            */}
           </NavigationMenuList>
         </NavigationMenu>
 
@@ -251,7 +252,7 @@ const Header = () => {
                 </div>
               </div>
             
-              {/* Auth Buttons Mobile */}
+              {/* Auth Buttons Mobile - Temporarily hidden
               <div className="pt-4 border-t border-border">
                 {user ? (
                   <div className="space-y-2">
@@ -276,6 +277,7 @@ const Header = () => {
                   </Link>
                 )}
               </div>
+              */}
 
               <div>
                 <p className="text-lg font-medium mb-2">Nivel</p>
