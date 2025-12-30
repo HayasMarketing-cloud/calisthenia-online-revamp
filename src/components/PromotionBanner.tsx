@@ -21,7 +21,6 @@ const PROMOTION_CONFIG = {
       bonus: "+2 MESES GRATIS",
       description: "8 meses por el precio de 6",
       highlight: true,
-      badge: "MEJOR VALOR",
     },
   ],
   cta: {
@@ -71,13 +70,6 @@ const PromotionBanner = () => {
                     : 'bg-white/95 border-2 border-white/50'
                 }`}
               >
-                {offer.highlight && offer.badge && (
-                  <div className="absolute -top-0 -right-0">
-                    <Badge className="bg-accent text-white rounded-none rounded-bl-lg px-3 py-1.5 text-xs font-bold">
-                      {offer.badge}
-                    </Badge>
-                  </div>
-                )}
                 
                 <div className="flex flex-col items-center gap-4">
                   <div className={`w-16 h-16 rounded-full flex items-center justify-center ${
