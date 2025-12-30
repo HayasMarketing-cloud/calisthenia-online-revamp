@@ -1,5 +1,8 @@
 // Configuración centralizada de la CTA de Comunidad
 export const COMMUNITY_CONFIG = {
+  // Flag para activar/desactivar la funcionalidad de comunidad
+  enabled: false, // Cambiar a true cuando la comunidad esté lista
+  
   // ID del formulario de Go High Level
   formId: "uaqsd4f4NziDmIzcwX1Q",
   chatbotUrl: "javascript:void(0)", // Se maneja con onClick
