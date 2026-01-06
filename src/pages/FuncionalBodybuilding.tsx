@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check, X, AlertTriangle, Dumbbell, Target, Heart, Clock, Users, MapPin, Calendar, Gift, ArrowRight } from "lucide-react";
+import { Check, X, AlertTriangle, Dumbbell, Target, Heart, Clock, Users, MapPin, Calendar, Gift, ArrowRight, Zap } from "lucide-react";
 import CountdownTimer from "@/components/CountdownTimer";
 import logoEntrenaVive from "@/assets/logo-entrena-vive.png";
 import nicolasPhoto from "@/assets/nicolas-reyero.jpg";
@@ -351,19 +351,39 @@ const FuncionalBodybuilding = () => {
         <section className="py-16 md:py-24 bg-gradient-to-br from-primary/10 via-background to-primary/5">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-2xl md:text-4xl font-bold mb-4">
+              <h2 className="text-2xl md:text-4xl font-bold mb-6">
                 ¿Listo para entrenar de forma inteligente?
               </h2>
-              <p className="text-muted-foreground mb-8 text-lg">
-                Plazas limitadas. Reserva tu sitio ahora.
-              </p>
+
+              {/* Precio destacado */}
+              <div className="bg-primary/10 border border-primary/30 rounded-xl p-6 mb-8">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <Gift className="w-5 h-5 text-primary" />
+                  <span className="text-sm uppercase tracking-wider text-primary font-medium">Precio especial</span>
+                </div>
+                <p className="text-5xl md:text-6xl font-bold text-primary">SOLO 10€</p>
+              </div>
+
+              {/* Mensaje de urgencia */}
+              <div className="flex items-center justify-center gap-2 mb-6">
+                <Zap className="w-5 h-5 text-amber-500" />
+                <p className="text-lg font-semibold">Plazas limitadas por estricto orden de reserva</p>
+              </div>
+              <p className="text-muted-foreground mb-8">¡Reserva la tuya antes de que se agoten!</p>
 
               {/* Countdown Timer */}
               <div className="mb-8">
-                <p className="text-sm text-muted-foreground mb-4 uppercase tracking-wider">Quedan:</p>
+                <p className="text-sm text-muted-foreground mb-4 uppercase tracking-wider">El taller comienza en:</p>
                 <CountdownTimer targetDate={EVENT_DATE} />
               </div>
 
+              {/* Botón reservar */}
+              <Button size="lg" className="text-lg px-8 py-6" asChild>
+                <a href="https://forms.gle/yourGoogleFormLink" target="_blank" rel="noopener noreferrer">
+                  Reservar mi plaza
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </a>
+              </Button>
               
             </div>
           </div>
