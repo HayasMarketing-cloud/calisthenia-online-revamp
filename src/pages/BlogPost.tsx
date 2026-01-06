@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import StructuredData from "@/components/seo/StructuredData";
 import { generateVideoSchema } from "@/lib/schemas";
+import { sanitizeHtml } from "@/lib/sanitizer";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -168,7 +169,7 @@ const BlogPost = () => {
 
             <div
               className="prose prose-lg max-w-none mb-12"
-              dangerouslySetInnerHTML={{ __html: post.content }}
+              dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
             />
 
             {post.tags.length > 0 && (
