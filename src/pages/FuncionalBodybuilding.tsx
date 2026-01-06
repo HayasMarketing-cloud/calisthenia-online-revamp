@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check, X, AlertTriangle, Dumbbell, Target, Heart, Clock, Users, MapPin, Calendar, Gift, ArrowRight } from "lucide-react";
+import { Check, X, AlertTriangle, Dumbbell, Target, Heart, Clock, Users, MapPin, Calendar, Gift, ArrowRight, Zap } from "lucide-react";
 import CountdownTimer from "@/components/CountdownTimer";
 import logoEntrenaVive from "@/assets/logo-entrena-vive.png";
 import nicolasPhoto from "@/assets/nicolas-reyero.jpg";
@@ -351,16 +351,38 @@ const FuncionalBodybuilding = () => {
         <section className="py-16 md:py-24 bg-gradient-to-br from-primary/10 via-background to-primary/5">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-2xl md:text-4xl font-bold mb-4">
+              <h2 className="text-2xl md:text-4xl font-bold mb-6">
                 ¿Listo para entrenar de forma inteligente?
               </h2>
-              <p className="text-muted-foreground mb-8 text-lg">
-                Plazas limitadas. Reserva tu sitio ahora.
+
+              {/* Bloque de precio destacado */}
+              <div className="bg-primary/10 border border-primary/30 rounded-2xl p-6 md:p-8 mb-8 max-w-md mx-auto">
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <Gift className="w-5 h-5 text-primary" />
+                  <span className="text-sm font-medium text-primary uppercase tracking-wider">
+                    Precio especial de lanzamiento
+                  </span>
+                </div>
+                <div className="flex items-baseline justify-center gap-1">
+                  <span className="text-lg md:text-xl font-medium text-muted-foreground">SOLO</span>
+                  <span className="text-5xl md:text-6xl font-bold text-primary">10€</span>
+                </div>
+              </div>
+
+              {/* Mensaje de urgencia */}
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <Zap className="w-5 h-5 text-primary" />
+                <p className="text-lg font-semibold text-foreground">
+                  Plazas limitadas por estricto orden de reserva
+                </p>
+              </div>
+              <p className="text-muted-foreground mb-8">
+                ¡Reserva la tuya antes de que se agoten!
               </p>
 
               {/* Countdown Timer */}
               <div className="mb-8">
-                <p className="text-sm text-muted-foreground mb-4 uppercase tracking-wider">Quedan:</p>
+                <p className="text-sm text-muted-foreground mb-4 uppercase tracking-wider">El taller comienza en:</p>
                 <CountdownTimer targetDate={EVENT_DATE} />
               </div>
 
