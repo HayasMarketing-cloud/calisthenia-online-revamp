@@ -36,8 +36,14 @@ const FuncionalBodybuilding = () => {
               <img 
                 src={logoEntrenaVive} 
                 alt="Centro Deportivo ENTRENA Y VIVE" 
-                className="h-16 md:h-20 mx-auto mb-6 object-contain"
+                className="h-16 md:h-20 mx-auto mb-3 object-contain"
               />
+              
+              {/* Dirección debajo del logo */}
+              <div className="flex items-center justify-center gap-2 text-white/80 mb-6">
+                <MapPin className="w-4 h-4 text-primary" />
+                <span className="text-sm md:text-base">C/ Bahía de Almería 7, Madrid</span>
+              </div>
               
               <Badge className="bg-primary/20 text-primary border-primary/30 mb-6 text-sm md:text-base px-4 py-2">
                 <Clock className="w-4 h-4 mr-2" />
