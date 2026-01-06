@@ -379,7 +379,7 @@ const FuncionalBodybuilding = () => {
 
               {/* Botón reservar */}
               <Button size="lg" className="text-lg px-8 py-6" asChild>
-                <a href="https://forms.gle/yourGoogleFormLink" target="_blank" rel="noopener noreferrer">
+                <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener noreferrer">
                   Reservar mi plaza
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </a>
