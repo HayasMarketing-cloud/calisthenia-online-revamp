@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Check, X, AlertTriangle, Dumbbell, Target, Heart, Clock, Users, MapPin, Calendar, Gift, ArrowRight } from "lucide-react";
 import CountdownTimer from "@/components/CountdownTimer";
+import FuncionalBodybuildingFinalCTA from "@/components/FuncionalBodybuildingFinalCTA";
 import logoEntrenaVive from "@/assets/logo-entrena-vive.png";
 import nicolasPhoto from "@/assets/nicolas-reyero.jpg";
 import carlosPhoto from "@/assets/carlos-plaza.jpg";
@@ -348,26 +349,10 @@ const FuncionalBodybuilding = () => {
         </section>
 
         {/* CTA Final Section */}
-        <section className="py-16 md:py-24 bg-gradient-to-br from-primary/10 via-background to-primary/5">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-2xl md:text-4xl font-bold mb-4">
-                ¿Listo para entrenar de forma inteligente?
-              </h2>
-              <p className="text-muted-foreground mb-8 text-lg">
-                Plazas limitadas. Reserva tu sitio ahora.
-              </p>
-
-              {/* Countdown Timer */}
-              <div className="mb-8">
-                <p className="text-sm text-muted-foreground mb-4 uppercase tracking-wider">Quedan:</p>
-                <CountdownTimer targetDate={EVENT_DATE} />
-              </div>
-
-              
-            </div>
-          </div>
-        </section>
+        <FuncionalBodybuildingFinalCTA
+          targetDate={EVENT_DATE}
+          onReserve={scrollToForm}
+        />
       </div>
     </>;
 };
