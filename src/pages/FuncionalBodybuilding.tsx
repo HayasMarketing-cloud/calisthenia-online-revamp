@@ -359,8 +359,8 @@ const FuncionalBodybuilding = () => {
               <div className="bg-primary/10 border border-primary/30 rounded-2xl p-6 md:p-8 mb-8 max-w-md mx-auto">
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <Gift className="w-5 h-5 text-primary" />
-                  <span className="text-sm font-medium text-primary uppercase tracking-wider">
-                    Precio especial de lanzamiento
+                <span className="text-sm font-medium text-primary uppercase tracking-wider">
+                    Precio especial
                   </span>
                 </div>
                 <div className="flex items-baseline justify-center gap-1">
