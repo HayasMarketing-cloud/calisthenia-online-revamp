@@ -6,23 +6,16 @@ import CountdownTimer from "@/components/CountdownTimer";
 import logoEntrenaVive from "@/assets/logo-entrena-vive.png";
 import nicolasPhoto from "@/assets/nicolas-reyero.jpg";
 import carlosPhoto from "@/assets/carlos-plaza.jpg";
-
 const GOOGLE_FORM_URL = "https://forms.gle/ufV4WedTdPFqm87T9";
 const EVENT_DATE = new Date("2026-01-17T10:00:00+01:00");
-
 const FuncionalBodybuilding = () => {
   const scrollToForm = () => {
     window.open(GOOGLE_FORM_URL, "_blank");
   };
-
-  return (
-    <>
+  return <>
       <Helmet>
         <title>Funcional Bodybuilding para Hombres +30 | Taller Presencial Madrid - 17 Enero</title>
-        <meta
-          name="description"
-          content="Taller presencial para combinar gimnasio y calistenia de forma inteligente. Entrena fuerza, músculo y salud sin destrozar tu cuerpo. 17 de enero en Centro ENTRENA Y VIVE, Madrid."
-        />
+        <meta name="description" content="Taller presencial para combinar gimnasio y calistenia de forma inteligente. Entrena fuerza, músculo y salud sin destrozar tu cuerpo. 17 de enero en Centro ENTRENA Y VIVE, Madrid." />
         <meta name="keywords" content="funcional bodybuilding, taller presencial Madrid, entrenamiento +30, calistenia gimnasio, fuerza sostenible" />
       </Helmet>
 
@@ -33,11 +26,7 @@ const FuncionalBodybuilding = () => {
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               {/* Logo ENTRENA Y VIVE */}
-              <img 
-                src={logoEntrenaVive} 
-                alt="Centro Deportivo ENTRENA Y VIVE" 
-                className="h-16 md:h-20 mx-auto mb-3 object-contain"
-              />
+              <img src={logoEntrenaVive} alt="Centro Deportivo ENTRENA Y VIVE" className="h-16 md:h-20 mx-auto mb-3 object-contain" />
               
               {/* Dirección debajo del logo */}
               <div className="flex items-center justify-center gap-2 text-white/80 mb-6">
@@ -59,8 +48,7 @@ const FuncionalBodybuilding = () => {
               </p>
               
               <p className="text-base md:text-lg text-white/70 mb-8 max-w-2xl mx-auto">
-                Un taller presencial para aprender a combinar gimnasio y calistenia de forma inteligente, 
-                pensado para hombres que quieren verse fuertes, moverse bien y rendir mejor a largo plazo.
+                Un taller presencial para que aprendas a combinar gimnasio y calistenia de forma inteligente. Si quieres verte fuerte, moverte mejor y rendir al máximo con el paso del tiempo, este espacio es para ti.
               </p>
 
               {/* Countdown Timer */}
@@ -69,11 +57,7 @@ const FuncionalBodybuilding = () => {
                 <CountdownTimer targetDate={EVENT_DATE} />
               </div>
 
-              <Button 
-                size="lg" 
-                onClick={scrollToForm}
-                className="bg-primary hover:bg-primary/90 text-white text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all"
-              >
+              <Button size="lg" onClick={scrollToForm} className="bg-primary hover:bg-primary/90 text-white text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all">
                 Quiero saber si este taller es para mí
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -98,17 +82,10 @@ const FuncionalBodybuilding = () => {
                   <h3 className="text-xl font-bold text-green-600">Para ti SI...</h3>
                 </div>
                 <ul className="space-y-4">
-                  {[
-                    "Si tienes más de 30 años",
-                    "Entrenas o has entrenado fuerza (gimnasio, calistenia o ambos)",
-                    "Buscas ganar músculo sin dolor, sin lesiones y sin perder movilidad",
-                    "Quieres un método sostenible, no competir ni vivir para entrenar"
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start gap-3">
+                  {["Si tienes más de 30 años", "Entrenas o has entrenado fuerza (gimnasio, calistenia o ambos)", "Buscas ganar músculo sin dolor, sin lesiones y sin perder movilidad", "Quieres un método sostenible, no competir ni vivir para entrenar"].map((item, index) => <li key={index} className="flex items-start gap-3">
                       <Check className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
                       <span className="text-foreground/80">{item}</span>
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
               </div>
 
@@ -121,16 +98,10 @@ const FuncionalBodybuilding = () => {
                   <h3 className="text-xl font-bold text-red-600">NO es para ti si...</h3>
                 </div>
                 <ul className="space-y-4">
-                  {[
-                    "Buscas competir en culturismo o cross",
-                    "Quieres rutinas milagro de 20 minutos",
-                    "Solo te interesa el postureo fitness"
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start gap-3">
+                  {["Buscas competir en culturismo o cross", "Quieres rutinas milagro de 20 minutos", "Solo te interesa el postureo fitness"].map((item, index) => <li key={index} className="flex items-start gap-3">
                       <X className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
                       <span className="text-foreground/80">{item}</span>
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
               </div>
             </div>
@@ -148,31 +119,25 @@ const FuncionalBodybuilding = () => {
             </div>
 
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-12">
-              {[
-                {
-                  icon: AlertTriangle,
-                  title: "Cargado y rígido",
-                  description: "Entrenas duro, pero estás cada vez más cargado o rígido"
-                },
-                {
-                  icon: AlertTriangle,
-                  title: "Molestias recurrentes",
-                  description: "Tienes molestias recurrentes en hombros, espalda o rodillas"
-                },
-                {
-                  icon: AlertTriangle,
-                  title: "Sin base sólida",
-                  description: "Saltas de rutina en rutina sin una base sólida"
-                }
-              ].map((item, index) => (
-                <div key={index} className="bg-muted rounded-xl p-6 text-center">
+              {[{
+              icon: AlertTriangle,
+              title: "Cargado y rígido",
+              description: "Entrenas duro, pero estás cada vez más cargado o rígido"
+            }, {
+              icon: AlertTriangle,
+              title: "Molestias recurrentes",
+              description: "Tienes molestias recurrentes en hombros, espalda o rodillas"
+            }, {
+              icon: AlertTriangle,
+              title: "Sin base sólida",
+              description: "Saltas de rutina en rutina sin una base sólida"
+            }].map((item, index) => <div key={index} className="bg-muted rounded-xl p-6 text-center">
                   <div className="bg-primary/10 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
                     <item.icon className="w-7 h-7 text-primary" />
                   </div>
                   <h3 className="font-bold text-lg mb-2">{item.title}</h3>
                   <p className="text-muted-foreground">{item.description}</p>
-                </div>
-              ))}
+                </div>)}
             </div>
 
             <p className="text-center text-lg md:text-xl font-medium text-foreground/80 max-w-2xl mx-auto">
@@ -194,36 +159,29 @@ const FuncionalBodybuilding = () => {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {[
-                {
-                  icon: Dumbbell,
-                  title: "Masa muscular",
-                  description: "Mantener y desarrollar masa muscular de forma eficiente"
-                },
-                {
-                  icon: Target,
-                  title: "Movilidad articular",
-                  description: "Mejorar movilidad y salud articular mientras ganas fuerza"
-                },
-                {
-                  icon: Heart,
-                  title: "Sin castigo",
-                  description: "Entrenar fuerza sin castigar el cuerpo ni acumular lesiones"
-                },
-                {
-                  icon: Clock,
-                  title: "A largo plazo",
-                  description: "Ser fuerte ahora... y dentro de 10 años"
-                }
-              ].map((item, index) => (
-                <div key={index} className="bg-white/5 backdrop-blur rounded-xl p-6 border border-white/10">
+              {[{
+              icon: Dumbbell,
+              title: "Masa muscular",
+              description: "Mantener y desarrollar masa muscular de forma eficiente"
+            }, {
+              icon: Target,
+              title: "Movilidad articular",
+              description: "Mejorar movilidad y salud articular mientras ganas fuerza"
+            }, {
+              icon: Heart,
+              title: "Sin castigo",
+              description: "Entrenar fuerza sin castigar el cuerpo ni acumular lesiones"
+            }, {
+              icon: Clock,
+              title: "A largo plazo",
+              description: "Ser fuerte ahora... y dentro de 10 años"
+            }].map((item, index) => <div key={index} className="bg-white/5 backdrop-blur rounded-xl p-6 border border-white/10">
                   <div className="bg-primary/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                     <item.icon className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="font-bold text-lg mb-2">{item.title}</h3>
                   <p className="text-white/70 text-sm">{item.description}</p>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </section>
@@ -243,17 +201,10 @@ const FuncionalBodybuilding = () => {
                 </div>
                 <h3 className="text-xl font-bold mb-4">Tren Superior</h3>
                 <ul className="space-y-3">
-                  {[
-                    "Técnica real de empujes y tracciones",
-                    "Uso correcto de escápulas, hombros y core",
-                    "Progresiones de flexiones y dominadas",
-                    "Diferencias entre barra, mancuernas y peso corporal"
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  {["Técnica real de empujes y tracciones", "Uso correcto de escápulas, hombros y core", "Progresiones de flexiones y dominadas", "Diferencias entre barra, mancuernas y peso corporal"].map((item, index) => <li key={index} className="flex items-start gap-2 text-sm text-muted-foreground">
                       <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                       {item}
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
               </div>
 
@@ -264,17 +215,10 @@ const FuncionalBodybuilding = () => {
                 </div>
                 <h3 className="text-xl font-bold mb-4">Tren Inferior</h3>
                 <ul className="space-y-3">
-                  {[
-                    "Dominantes de rodilla y cadera bien ejecutados",
-                    "Protección de rodillas y espalda baja",
-                    "Progresiones con y sin material",
-                    "Control, estabilidad y fuerza útil"
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  {["Dominantes de rodilla y cadera bien ejecutados", "Protección de rodillas y espalda baja", "Progresiones con y sin material", "Control, estabilidad y fuerza útil"].map((item, index) => <li key={index} className="flex items-start gap-2 text-sm text-muted-foreground">
                       <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                       {item}
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
               </div>
 
@@ -285,17 +229,10 @@ const FuncionalBodybuilding = () => {
                 </div>
                 <h3 className="text-xl font-bold mb-4">Metodología</h3>
                 <ul className="space-y-3">
-                  {[
-                    "Cómo combinar calistenia y gimnasio sin conflicto",
-                    "Rangos de intensidad adecuados para tu edad",
-                    "Detalles técnicos que marcan la diferencia",
-                    "Planificación sostenible a largo plazo"
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  {["Cómo combinar calistenia y gimnasio sin conflicto", "Rangos de intensidad adecuados para tu edad", "Detalles técnicos que marcan la diferencia", "Planificación sostenible a largo plazo"].map((item, index) => <li key={index} className="flex items-start gap-2 text-sm text-muted-foreground">
                       <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                       {item}
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
               </div>
             </div>
@@ -316,11 +253,7 @@ const FuncionalBodybuilding = () => {
               {/* Carlos Plaza */}
               <div className="bg-muted rounded-2xl overflow-hidden shadow-lg">
                 <div className="h-80 md:h-96 overflow-hidden">
-                  <img 
-                    src={carlosPhoto} 
-                    alt="Carlos Plaza - Entrenador" 
-                    className="w-full h-full object-cover object-center brightness-125"
-                  />
+                  <img src={carlosPhoto} alt="Carlos Plaza - Entrenador" className="w-full h-full object-cover object-center brightness-125" />
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">Carlos Plaza</h3>
@@ -334,11 +267,7 @@ const FuncionalBodybuilding = () => {
               {/* Nicolás Reyero */}
               <div className="bg-muted rounded-2xl overflow-hidden shadow-lg">
                 <div className="h-80 md:h-96 overflow-hidden">
-                  <img 
-                    src={nicolasPhoto} 
-                    alt="Nicolás Reyero - Entrenador" 
-                    className="w-full h-full object-cover object-center"
-                  />
+                  <img src={nicolasPhoto} alt="Nicolás Reyero - Entrenador" className="w-full h-full object-cover object-center" />
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">Nicolás Reyero</h3>
@@ -360,20 +289,27 @@ const FuncionalBodybuilding = () => {
             </h2>
 
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-5xl mx-auto">
-              {[
-                { icon: Users, label: "Presencial" },
-                { icon: Target, label: "Grupos reducidos" },
-                { icon: Dumbbell, label: "Teoría + Práctica" },
-                { icon: Clock, label: "Rotación por estaciones" },
-                { icon: Gift, label: "Resumen post-evento" }
-              ].map((item, index) => (
-                <div key={index} className="bg-background rounded-xl p-4 md:p-6 text-center shadow-sm border border-border">
+              {[{
+              icon: Users,
+              label: "Presencial"
+            }, {
+              icon: Target,
+              label: "Grupos reducidos"
+            }, {
+              icon: Dumbbell,
+              label: "Teoría + Práctica"
+            }, {
+              icon: Clock,
+              label: "Rotación por estaciones"
+            }, {
+              icon: Gift,
+              label: "Resumen post-evento"
+            }].map((item, index) => <div key={index} className="bg-background rounded-xl p-4 md:p-6 text-center shadow-sm border border-border">
                   <div className="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
                     <item.icon className="w-6 h-6 text-primary" />
                   </div>
                   <p className="text-sm font-medium">{item.label}</p>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </section>
@@ -382,11 +318,7 @@ const FuncionalBodybuilding = () => {
         <section className="py-16 md:py-20 bg-secondary text-white">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
-              <img 
-                src={logoEntrenaVive} 
-                alt="Centro Deportivo ENTRENA Y VIVE" 
-                className="h-20 md:h-24 mx-auto mb-8 object-contain"
-              />
+              <img src={logoEntrenaVive} alt="Centro Deportivo ENTRENA Y VIVE" className="h-20 md:h-24 mx-auto mb-8 object-contain" />
               
               <h2 className="text-2xl md:text-3xl font-bold mb-6">
                 Centro Deportivo ENTRENA Y VIVE
@@ -432,11 +364,7 @@ const FuncionalBodybuilding = () => {
                 <CountdownTimer targetDate={EVENT_DATE} />
               </div>
 
-              <Button 
-                size="lg" 
-                onClick={scrollToForm}
-                className="bg-primary hover:bg-primary/90 text-white text-lg px-10 py-7 rounded-full shadow-lg hover:shadow-xl transition-all"
-              >
+              <Button size="lg" onClick={scrollToForm} className="bg-primary hover:bg-primary/90 text-white text-lg px-10 py-7 rounded-full shadow-lg hover:shadow-xl transition-all">
                 Reservar mi plaza
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -444,8 +372,6 @@ const FuncionalBodybuilding = () => {
           </div>
         </section>
       </div>
-    </>
-  );
+    </>;
 };
-
 export default FuncionalBodybuilding;
