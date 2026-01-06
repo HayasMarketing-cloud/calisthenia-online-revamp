@@ -386,15 +386,23 @@ const FuncionalBodybuilding = () => {
                 Centro Deportivo ENTRENA Y VIVE
               </h2>
               
-              <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-lg">
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-5 h-5 text-primary" />
-                  <span>Madrid</span>
+              {/* Dirección destacada */}
+              <div className="bg-white/10 backdrop-blur rounded-xl p-6 mb-8 border border-white/20">
+                <div className="flex items-center justify-center gap-3 text-xl md:text-2xl font-semibold">
+                  <MapPin className="w-6 h-6 text-primary flex-shrink-0" />
+                  <span>C/ Bahía de Almería 7, Madrid</span>
                 </div>
-                <div className="hidden md:block w-1 h-1 bg-white/30 rounded-full" />
+              </div>
+
+              <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-lg">
                 <div className="flex items-center gap-2">
                   <Calendar className="w-5 h-5 text-primary" />
                   <span>17 de Enero 2026</span>
+                </div>
+                <div className="hidden md:block w-1 h-1 bg-white/30 rounded-full" />
+                <div className="flex items-center gap-2">
+                  <Clock className="w-5 h-5 text-primary" />
+                  <span>10:00h - 12:00h</span>
                 </div>
               </div>
             </div>
