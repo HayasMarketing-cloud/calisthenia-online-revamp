@@ -341,7 +341,7 @@ const FuncionalBodybuilding = () => {
                 <div className="hidden md:block w-1 h-1 bg-white/30 rounded-full" />
                 <div className="flex items-center gap-2">
                   <Clock className="w-5 h-5 text-primary" />
-                  <span>10:00h - 12:00h</span>
+                  <span>11:30h - 13:30h</span>
                 </div>
               </div>
             </div>
