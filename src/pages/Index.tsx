@@ -49,7 +49,6 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <StructuredData data={[organizationSchema, faqSchema]} />
-      <EventPopup />
       <Header />
       <CommunityStickyBanner />
       <HeroSectionImproved />
