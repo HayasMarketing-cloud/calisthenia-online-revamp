@@ -16,6 +16,7 @@ const TOTAL_STEPS = 4;
 const Onboarding = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [step, setStep] = useState(1);
   const [saving, setSaving] = useState(false);
 
