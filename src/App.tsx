@@ -9,6 +9,13 @@ import { RedirectHandler } from "./components/seo/RedirectHandler";
 import DynamicRobotsTxt from "./components/seo/DynamicRobotsTxt";
 import DynamicSitemap from "./components/seo/DynamicSitemap";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
+import AppRoute from "./components/app/AppRoute";
+import AppLayout from "./components/app/AppLayout";
+import Onboarding from "./pages/app/Onboarding";
+import Dashboard from "./pages/app/Dashboard";
+import Training from "./pages/app/Training";
+import Progress from "./pages/app/Progress";
+import ProfilePage from "./pages/app/Profile";
 import Index from "./pages/Index";
 import QuienSoy from "./pages/QuienSoy";
 import Programas from "./pages/Programas";
@@ -85,6 +92,17 @@ const App = () => (
           <Route path="/blog/que-es-la-calistenia/" element={<QueEsLaCalistenia />} />
           <Route path="/brandbook/" element={<BrandBook />} />
           <Route path="/funcional-bodybuilding/" element={<FuncionalBodybuilding />} />
+          
+          {/* App Routes - Client area (mobile-first) */}
+          <Route path="/app/onboarding" element={<Onboarding />} />
+          <Route path="/app" element={<AppRoute><AppLayout /></AppRoute>}>
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="training" element={<Training />} />
+            <Route path="progress" element={<Progress />} />
+            <Route path="profile" element={<ProfilePage />} />
+            <Route index element={<Dashboard />} />
+          </Route>
+          
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<><RedirectHandler /><NotFound /></>} />
         </Routes>
