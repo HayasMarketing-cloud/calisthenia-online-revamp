@@ -85,6 +85,7 @@ const Onboarding = () => {
       }
 
       toast.success('¡Perfil completado! Bienvenido 💪');
+      await queryClient.invalidateQueries({ queryKey: ['client-profile'] });
       navigate('/app/dashboard', { replace: true });
     } catch (error: any) {
       toast.error(error.message || 'Error al guardar el perfil');
