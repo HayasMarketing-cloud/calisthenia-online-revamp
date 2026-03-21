@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
@@ -15,6 +16,7 @@ const TOTAL_STEPS = 4;
 const Onboarding = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [step, setStep] = useState(1);
   const [saving, setSaving] = useState(false);
 
@@ -83,6 +85,7 @@ const Onboarding = () => {
       }
 
       toast.success('¡Perfil completado! Bienvenido 💪');
+      await queryClient.invalidateQueries({ queryKey: ['client-profile'] });
       navigate('/app/dashboard', { replace: true });
     } catch (error: any) {
       toast.error(error.message || 'Error al guardar el perfil');
