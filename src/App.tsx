@@ -92,6 +92,17 @@ const App = () => (
           <Route path="/blog/que-es-la-calistenia/" element={<QueEsLaCalistenia />} />
           <Route path="/brandbook/" element={<BrandBook />} />
           <Route path="/funcional-bodybuilding/" element={<FuncionalBodybuilding />} />
+          
+          {/* App Routes - Client area (mobile-first) */}
+          <Route path="/app/onboarding" element={<Onboarding />} />
+          <Route path="/app" element={<AppRoute><AppLayout /></AppRoute>}>
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="training" element={<Training />} />
+            <Route path="progress" element={<Progress />} />
+            <Route path="profile" element={<ProfilePage />} />
+            <Route index element={<Dashboard />} />
+          </Route>
+          
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<><RedirectHandler /><NotFound /></>} />
         </Routes>
