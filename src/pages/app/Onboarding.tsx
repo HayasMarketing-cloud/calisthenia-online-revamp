@@ -85,8 +85,9 @@ const Onboarding = () => {
       }
 
       toast.success('¡Perfil completado! Bienvenido 💪');
-      await queryClient.invalidateQueries({ queryKey: ['client-profile'] });
-      navigate('/app/dashboard', { replace: true });
+      // Set cache directly to avoid race condition with AppRoute guard
+      queryClient.setQueryData(['client-profile', user.id], { id: user.id });
+      navigate('/app', { replace: true });
     } catch (error: any) {
       toast.error(error.message || 'Error al guardar el perfil');
     } finally {
