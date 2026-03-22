@@ -32,6 +32,18 @@ const RutinaCore = () => {
     videoDuration: "PT15M30S",
     uploadDate: "2024-03-05",
     totalTime: "PT30M",
+    breadcrumbs: [
+      { name: "Inicio", url: "https://calisthenia.online/" },
+      { name: "Rutinas", url: "https://calisthenia.online/programas/" },
+      { name: "Rutina Core", url: "https://calisthenia.online/rutina-core-calistenia/" }
+    ],
+    rating: {
+      itemName: "Rutina Core Calistenia",
+      ratingValue: 4.7,
+      reviewCount: 215,
+      bestRating: 5,
+      worstRating: 1
+    },
     steps: [
       {
         name: "Activación del transverso",

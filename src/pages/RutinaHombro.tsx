@@ -39,6 +39,18 @@ const RutinaHombro = () => {
     videoDuration: "PT10M45S",
     uploadDate: "2024-02-20",
     totalTime: "PT35M",
+    breadcrumbs: [
+      { name: "Inicio", url: "https://calisthenia.online/" },
+      { name: "Rutinas", url: "https://calisthenia.online/programas/" },
+      { name: "Rutina Hombros", url: "https://calisthenia.online/rutina-hombro/" }
+    ],
+    rating: {
+      itemName: "Rutina de Hombros Calistenia",
+      ratingValue: 4.6,
+      reviewCount: 178,
+      bestRating: 5,
+      worstRating: 1
+    },
     steps: [
       {
         name: "Calentamiento articular",
