@@ -339,6 +339,26 @@ const ExercisesManager = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Video preview modal */}
+      <Dialog open={videoModal.open} onOpenChange={open => !open && setVideoModal({ open: false, videoId: '', name: '' })}>
+        <DialogContent className="max-w-2xl p-0 overflow-hidden">
+          <DialogHeader className="p-4 pb-0">
+            <DialogTitle>{videoModal.name}</DialogTitle>
+          </DialogHeader>
+          <div className="aspect-video w-full">
+            {videoModal.open && (
+              <iframe
+                src={`https://www.youtube.com/embed/${videoModal.videoId}?autoplay=1`}
+                title={videoModal.name}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full border-0"
+              />
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
