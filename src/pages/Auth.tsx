@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -21,7 +22,15 @@ const Auth = () => {
 
   useEffect(() => {
     if (user) {
-      navigate('/');
+      supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', user.id)
+        .eq('role', 'admin')
+        .maybeSingle()
+        .then(({ data }) => {
+          navigate(data ? '/admin/coach/' : '/');
+        });
     }
   }, [user, navigate]);
 
@@ -30,10 +39,7 @@ const Auth = () => {
     setLoading(true);
 
     if (isLogin) {
-      const { error } = await signIn(email, password);
-      if (!error) {
-        navigate('/');
-      }
+      await signIn(email, password);
     } else {
       const { error } = await signUp(email, password, displayName);
       if (!error) {
