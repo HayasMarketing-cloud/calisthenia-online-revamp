@@ -208,6 +208,7 @@ const ExercisesManager = () => {
               <TableHeader>
                 <TableRow>
                   <TableHead>Nombre</TableHead>
+                  <TableHead>Categoría</TableHead>
                   <TableHead>Músculos</TableHead>
                   <TableHead>Nivel</TableHead>
                   <TableHead>Vídeo</TableHead>
