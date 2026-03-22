@@ -22,7 +22,15 @@ const Auth = () => {
 
   useEffect(() => {
     if (user) {
-      navigate('/');
+      supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', user.id)
+        .eq('role', 'admin')
+        .maybeSingle()
+        .then(({ data }) => {
+          navigate(data ? '/admin/coach/' : '/');
+        });
     }
   }, [user, navigate]);
 
