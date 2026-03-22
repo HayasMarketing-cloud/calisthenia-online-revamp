@@ -303,6 +303,15 @@ const ExercisesManager = () => {
               )}
             </div>
             <div className="space-y-2">
+              <Label>Categoría</Label>
+              <Select value={form.category} onValueChange={v => setForm(p => ({ ...p, category: v }))}>
+                <SelectTrigger><SelectValue placeholder="Selecciona categoría" /></SelectTrigger>
+                <SelectContent>
+                  {EXERCISE_CATEGORIES.map(c => <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>)}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
               <Label>Nivel de dificultad</Label>
               <Select value={form.difficulty_level} onValueChange={v => setForm(p => ({ ...p, difficulty_level: v }))}>
                 <SelectTrigger><SelectValue /></SelectTrigger>
