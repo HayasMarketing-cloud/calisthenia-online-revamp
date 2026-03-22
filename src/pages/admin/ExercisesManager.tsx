@@ -10,9 +10,10 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Loader2, Plus, Pencil, Trash2, Search, ArrowLeft, Dumbbell, Video } from 'lucide-react';
+import { Loader2, Plus, Pencil, Trash2, Search, Dumbbell, Video } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
+import AdminBreadcrumbs from '@/components/admin/AdminBreadcrumbs';
 
 const MUSCLE_GROUPS = [
   'Pecho', 'Espalda', 'Hombros', 'Bíceps', 'Tríceps', 'Core',
