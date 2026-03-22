@@ -17,6 +17,7 @@ import {
 } from '@/data/mediaLibrary';
 import { Search, Image as ImageIcon, X } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import AdminBreadcrumbs from '@/components/admin/AdminBreadcrumbs';
 
 const MediaLibrary = () => {
   const [activeCategory, setActiveCategory] = useState<MediaCategory>('buttons');

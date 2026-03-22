@@ -10,9 +10,10 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Loader2, Users, Copy, Calendar, ArrowLeft, Search, AlertCircle, Eye } from 'lucide-react';
+import { Loader2, Users, Copy, Calendar, Search, AlertCircle, Eye } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
+import AdminBreadcrumbs from '@/components/admin/AdminBreadcrumbs';
 import { format, addWeeks, addDays } from 'date-fns';
 import ClientDetailDialog from '@/components/admin/ClientDetailDialog';
 
