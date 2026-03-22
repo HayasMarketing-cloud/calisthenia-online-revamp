@@ -77,6 +77,8 @@ const RutinaCasa = () => {
         <link rel="canonical" href="https://calisthenia.online/rutina-calistenia-en-casa/" />
       </Helmet>
 
+      <StructuredData data={schemas.allSchemas} />
+
       <div className="min-h-screen flex flex-col">
         <Header />
         <CommunityStickyBanner />
