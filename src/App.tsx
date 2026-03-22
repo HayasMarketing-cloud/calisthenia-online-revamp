@@ -83,6 +83,9 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             
             {/* Admin Routes - Protected with authentication */}
+            <Route path="/admin/" element={<ProtectedRoute requireAdmin><AdminHub /></ProtectedRoute>} />
+            <Route path="/admin/exercises/" element={<ProtectedRoute requireAdmin><ExercisesManager /></ProtectedRoute>} />
+            <Route path="/admin/coach/" element={<ProtectedRoute requireAdmin><CoachPanel /></ProtectedRoute>} />
             <Route path="/admin/blog" element={<ProtectedRoute requireAdmin><BlogManager /></ProtectedRoute>} />
             <Route path="/admin/blog/nuevo" element={<ProtectedRoute requireAdmin><BlogEditor /></ProtectedRoute>} />
             <Route path="/admin/blog/:id" element={<ProtectedRoute requireAdmin><BlogEditor /></ProtectedRoute>} />
@@ -91,7 +94,6 @@ const App = () => (
             <Route path="/admin/blog/" element={<ProtectedRoute requireAdmin><BlogManager /></ProtectedRoute>} />
             <Route path="/admin/blog/nuevo/" element={<ProtectedRoute requireAdmin><BlogEditor /></ProtectedRoute>} />
             <Route path="/admin/blog/editar/:id/" element={<ProtectedRoute requireAdmin><BlogEditor /></ProtectedRoute>} />
-            <Route path="/admin/coach/" element={<ProtectedRoute requireAdmin><CoachPanel /></ProtectedRoute>} />
             
           <Route path="/blog/que-es-la-calistenia/" element={<QueEsLaCalistenia />} />
           <Route path="/brandbook/" element={<BrandBook />} />
