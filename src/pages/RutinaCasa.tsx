@@ -17,6 +17,35 @@ import StructuredData from "@/components/seo/StructuredData";
 import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
 
 const RutinaCasa = () => {
+  const schemas = useRoutineSchemas({
+    routineName: "Calistenia en Casa: Rutina Completa sin Equipamiento",
+    routineDescription: "Rutina completa de calistenia en casa sin equipamiento. Ejercicios, planificación y técnicas para entrenar desde tu hogar.",
+    videoId: "2PVk2wUY04k",
+    videoTitle: "Rutina Calistenia en Casa - Entrenamiento Completo",
+    videoDuration: "PT15M",
+    uploadDate: "2024-01-15",
+    totalTime: "PT40M",
+    breadcrumbs: [
+      { name: "Inicio", url: "https://calisthenia.online/" },
+      { name: "Rutinas", url: "https://calisthenia.online/programas/" },
+      { name: "Calistenia en Casa", url: "https://calisthenia.online/rutina-calistenia-en-casa/" }
+    ],
+    rating: {
+      itemName: "Rutina Calistenia en Casa",
+      ratingValue: 4.8,
+      reviewCount: 389,
+      bestRating: 5,
+      worstRating: 1
+    },
+    steps: [
+      { name: "Calentamiento", text: "Realiza 5-10 minutos de movilidad articular y activación muscular para preparar el cuerpo." },
+      { name: "Ejercicios de empuje", text: "Ejecuta flexiones clásicas, diamante y pike push-ups para trabajar pecho, hombros y tríceps." },
+      { name: "Ejercicios de tirón", text: "Realiza remos invertidos con mesa o toalla en puerta y curl de bíceps isométrico." },
+      { name: "Tren inferior", text: "Incluye sentadillas, zancadas y puentes de glúteo para trabajar piernas y glúteos." },
+      { name: "Core y enfriamiento", text: "Finaliza con planchas, mountain climbers y estiramientos completos durante 5-10 minutos." }
+    ]
+  });
+
   // Filtrar videos para entrenamiento en casa (excluir video principal)
   const mainVideoId = "2PVk2wUY04k";
   const videosEnCasa = allVideos
