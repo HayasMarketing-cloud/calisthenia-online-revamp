@@ -26,6 +26,14 @@ const DIFFICULTY_LEVELS = [
   { value: 'advanced', label: 'Avanzado' },
 ];
 
+const EXERCISE_CATEGORIES = [
+  { value: 'fuerza', label: 'Fuerza' },
+  { value: 'movilidad', label: 'Movilidad' },
+  { value: 'resistencia', label: 'Resistencia' },
+  { value: 'pliometria', label: 'Pliometría' },
+  { value: 'flexibilidad', label: 'Flexibilidad' },
+];
+
 interface ExerciseForm {
   id?: string;
   name: string;
@@ -34,6 +42,7 @@ interface ExerciseForm {
   muscle_groups: string[];
   difficulty_level: string;
   equipment_needed: string;
+  category: string;
 }
 
 const emptyForm: ExerciseForm = {
@@ -43,6 +52,7 @@ const emptyForm: ExerciseForm = {
   muscle_groups: [],
   difficulty_level: 'beginner',
   equipment_needed: '',
+  category: '',
 };
 
 const ExercisesManager = () => {
@@ -76,6 +86,7 @@ const ExercisesManager = () => {
         muscle_groups: data.muscle_groups,
         difficulty_level: data.difficulty_level as 'beginner' | 'intermediate' | 'advanced',
         equipment_needed: data.equipment_needed ? data.equipment_needed.split(',').map(s => s.trim()) : null,
+        category: (data.category || null) as any,
       };
 
       if (data.id) {
@@ -120,6 +131,7 @@ const ExercisesManager = () => {
       muscle_groups: ex.muscle_groups || [],
       difficulty_level: ex.difficulty_level || 'beginner',
       equipment_needed: (ex.equipment_needed || []).join(', '),
+      category: (ex as any).category || '',
     });
     setDialogOpen(true);
   };
@@ -196,6 +208,7 @@ const ExercisesManager = () => {
               <TableHeader>
                 <TableRow>
                   <TableHead>Nombre</TableHead>
+                  <TableHead>Categoría</TableHead>
                   <TableHead>Músculos</TableHead>
                   <TableHead>Nivel</TableHead>
                   <TableHead>Vídeo</TableHead>
@@ -205,7 +218,7 @@ const ExercisesManager = () => {
               <TableBody>
                 {filtered.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={5} className="text-center text-muted-foreground py-8">
+                    <TableCell colSpan={6} className="text-center text-muted-foreground py-8">
                       No se encontraron ejercicios
                     </TableCell>
                   </TableRow>
@@ -213,6 +226,13 @@ const ExercisesManager = () => {
                   filtered.map(ex => (
                     <TableRow key={ex.id}>
                       <TableCell className="font-medium">{ex.name}</TableCell>
+                      <TableCell>
+                        {(ex as any).category ? (
+                          <Badge variant="outline" className="text-xs">{EXERCISE_CATEGORIES.find(c => c.value === (ex as any).category)?.label || (ex as any).category}</Badge>
+                        ) : (
+                          <span className="text-muted-foreground text-xs">—</span>
+                        )}
+                      </TableCell>
                       <TableCell>
                         <div className="flex flex-wrap gap-1">
                           {(ex.muscle_groups || []).slice(0, 3).map(m => (
@@ -281,6 +301,15 @@ const ExercisesManager = () => {
               {form.youtube_video_id && (
                 <img src={`https://img.youtube.com/vi/${form.youtube_video_id}/mqdefault.jpg`} alt="Preview" className="rounded-md w-40 mt-1" />
               )}
+            </div>
+            <div className="space-y-2">
+              <Label>Categoría</Label>
+              <Select value={form.category} onValueChange={v => setForm(p => ({ ...p, category: v }))}>
+                <SelectTrigger><SelectValue placeholder="Selecciona categoría" /></SelectTrigger>
+                <SelectContent>
+                  {EXERCISE_CATEGORIES.map(c => <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>)}
+                </SelectContent>
+              </Select>
             </div>
             <div className="space-y-2">
               <Label>Nivel de dificultad</Label>
