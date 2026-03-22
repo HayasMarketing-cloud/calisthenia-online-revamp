@@ -26,6 +26,14 @@ const DIFFICULTY_LEVELS = [
   { value: 'advanced', label: 'Avanzado' },
 ];
 
+const EXERCISE_CATEGORIES = [
+  { value: 'fuerza', label: 'Fuerza' },
+  { value: 'movilidad', label: 'Movilidad' },
+  { value: 'resistencia', label: 'Resistencia' },
+  { value: 'pliometria', label: 'Pliometría' },
+  { value: 'flexibilidad', label: 'Flexibilidad' },
+];
+
 interface ExerciseForm {
   id?: string;
   name: string;
