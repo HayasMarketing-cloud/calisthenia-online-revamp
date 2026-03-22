@@ -176,14 +176,13 @@ const Header = () => {
             </NavigationMenuItem>
 
 
-            {/* Auth Buttons - Temporarily hidden
-            <NavigationMenuItem>
-              {user ? (
+            {user && (
+              <NavigationMenuItem>
                 <div className="flex items-center gap-2">
                   {isAdmin && (
-                    <Link to="/admin/blog">
+                    <Link to="/admin/coach/">
                       <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                        Admin
+                        Panel Coach
                       </NavigationMenuLink>
                     </Link>
                   )}
@@ -192,16 +191,8 @@ const Header = () => {
                     Salir
                   </Button>
                 </div>
-              ) : (
-                <Link to="/auth">
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    <LogIn className="h-4 w-4 mr-2" />
-                    Iniciar Sesión
-                  </NavigationMenuLink>
-                </Link>
-              )}
-            </NavigationMenuItem>
-            */}
+              </NavigationMenuItem>
+            )}
           </NavigationMenuList>
         </NavigationMenu>
 
