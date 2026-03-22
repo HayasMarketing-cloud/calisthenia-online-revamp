@@ -51,6 +51,7 @@ const ExercisesManager = () => {
   const [filterMuscle, setFilterMuscle] = useState('all');
   const [dialogOpen, setDialogOpen] = useState(false);
   const [deleteDialog, setDeleteDialog] = useState<{ open: boolean; id: string; name: string }>({ open: false, id: '', name: '' });
+  const [videoModal, setVideoModal] = useState<{ open: boolean; videoId: string; name: string }>({ open: false, videoId: '', name: '' });
   const [form, setForm] = useState<ExerciseForm>(emptyForm);
   const isEditing = !!form.id;
 
