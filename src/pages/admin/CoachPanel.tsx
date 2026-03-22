@@ -217,18 +217,13 @@ const CoachPanel = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-6xl mx-auto px-4 py-8 space-y-6">
-        {/* Header */}
+        <AdminBreadcrumbs current="Panel de Coach" />
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Link to="/">
-              <Button variant="ghost" size="icon"><ArrowLeft className="h-5 w-5" /></Button>
-            </Link>
-            <div>
-              <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                <Users className="h-6 w-6 text-primary" /> Panel de Coach
-              </h1>
-              <p className="text-sm text-muted-foreground">{clients?.length || 0} alumnos registrados</p>
-            </div>
+          <div>
+            <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+              <Users className="h-6 w-6 text-primary" /> Panel de Coach
+            </h1>
+            <p className="text-sm text-muted-foreground">{clients?.length || 0} alumnos registrados</p>
           </div>
         </div>
 
