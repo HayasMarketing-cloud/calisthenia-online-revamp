@@ -19,6 +19,12 @@ const adminSections = [
     path: '/admin/exercises/',
   },
   {
+    title: 'Plantillas de programa',
+    description: 'Crea y edita plantillas con semanas, días y ejercicios',
+    icon: ClipboardList,
+    path: '/admin/programs/',
+  },
+  {
     title: 'Blog',
     description: 'Gestiona artículos del blog',
     icon: FileText,
