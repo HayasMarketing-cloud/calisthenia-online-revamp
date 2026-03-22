@@ -96,6 +96,9 @@ const ExercisesManager = () => {
 
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
+      // First remove references in program_day_exercises
+      const { error: refError } = await supabase.from('program_day_exercises').delete().eq('exercise_id', id);
+      if (refError) throw refError;
       const { error } = await supabase.from('exercises').delete().eq('id', id);
       if (error) throw error;
     },
@@ -104,7 +107,7 @@ const ExercisesManager = () => {
       queryClient.invalidateQueries({ queryKey: ['admin-exercises'] });
       setDeleteDialog({ open: false, id: '', name: '' });
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: (err: Error) => toast.error('No se pudo eliminar: ' + err.message),
   });
 
   const openEdit = (ex: typeof exercises extends (infer T)[] ? T : never) => {
@@ -136,7 +139,9 @@ const ExercisesManager = () => {
 
   const filtered = (exercises || []).filter(ex => {
     const matchSearch = ex.name.toLowerCase().includes(search.toLowerCase());
-    const matchMuscle = filterMuscle === 'all' || (ex.muscle_groups || []).includes(filterMuscle);
+    const matchMuscle = filterMuscle === 'all' || (ex.muscle_groups || []).some(
+      m => m.toLowerCase() === filterMuscle.toLowerCase()
+    );
     return matchSearch && matchMuscle;
   });
 
