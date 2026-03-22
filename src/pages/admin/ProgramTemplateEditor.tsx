@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
@@ -8,11 +8,13 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Loader2, Plus, Trash2, GripVertical, Calendar, Dumbbell, Moon } from 'lucide-react';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem } from '@/components/ui/command';
+import { Loader2, Plus, Trash2, Calendar, Dumbbell, Moon, ChevronsUpDown, Check } from 'lucide-react';
 import { toast } from 'sonner';
+import { cn } from '@/lib/utils';
 import AdminBreadcrumbs from '@/components/admin/AdminBreadcrumbs';
 import {
   Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator,
@@ -57,6 +59,7 @@ const ProgramTemplateEditor = () => {
   const queryClient = useQueryClient();
   const [addExDialog, setAddExDialog] = useState<{ open: boolean; dayId: string }>({ open: false, dayId: '' });
   const [exForm, setExForm] = useState({ exercise_id: '', sets: 3, reps: '10', rest_seconds: 60, notes: '' });
+  const [exPickerOpen, setExPickerOpen] = useState(false);
   const [addDayDialog, setAddDayDialog] = useState<{ open: boolean; weekId: string; nextNum: number }>({ open: false, weekId: '', nextNum: 1 });
   const [dayForm, setDayForm] = useState({ name: '', is_rest_day: false });
 
@@ -377,17 +380,44 @@ const ProgramTemplateEditor = () => {
           <div className="space-y-4 py-2">
             <div className="space-y-2">
               <Label>Ejercicio *</Label>
-              <Select value={exForm.exercise_id} onValueChange={v => setExForm(p => ({ ...p, exercise_id: v }))}>
-                <SelectTrigger><SelectValue placeholder="Selecciona ejercicio..." /></SelectTrigger>
-                <SelectContent className="max-h-60">
-                  {(allExercises || []).map(ex => (
-                    <SelectItem key={ex.id} value={ex.id}>
-                      {ex.name}
-                      {ex.muscle_groups?.length ? ` (${ex.muscle_groups.join(', ')})` : ''}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <Popover open={exPickerOpen} onOpenChange={setExPickerOpen}>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" role="combobox" aria-expanded={exPickerOpen} className="w-full justify-between font-normal">
+                    {exForm.exercise_id
+                      ? (allExercises || []).find(e => e.id === exForm.exercise_id)?.name || 'Ejercicio'
+                      : 'Buscar ejercicio...'}
+                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-[400px] p-0" align="start">
+                  <Command>
+                    <CommandInput placeholder="Buscar por nombre o músculo..." />
+                    <CommandList>
+                      <CommandEmpty>No se encontraron ejercicios.</CommandEmpty>
+                      <CommandGroup>
+                        {(allExercises || []).map(ex => (
+                          <CommandItem
+                            key={ex.id}
+                            value={`${ex.name} ${ex.muscle_groups?.join(' ') || ''}`}
+                            onSelect={() => {
+                              setExForm(p => ({ ...p, exercise_id: ex.id }));
+                              setExPickerOpen(false);
+                            }}
+                          >
+                            <Check className={cn("mr-2 h-4 w-4", exForm.exercise_id === ex.id ? "opacity-100" : "opacity-0")} />
+                            <div>
+                              <span className="font-medium">{ex.name}</span>
+                              {ex.muscle_groups?.length ? (
+                                <span className="text-xs text-muted-foreground ml-2">({ex.muscle_groups.join(', ')})</span>
+                              ) : null}
+                            </div>
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </CommandList>
+                  </Command>
+                </PopoverContent>
+              </Popover>
             </div>
             <div className="grid grid-cols-3 gap-3">
               <div className="space-y-2">
