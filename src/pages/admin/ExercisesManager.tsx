@@ -52,6 +52,7 @@ const emptyForm: ExerciseForm = {
   muscle_groups: [],
   difficulty_level: 'beginner',
   equipment_needed: '',
+  category: '',
 };
 
 const ExercisesManager = () => {
