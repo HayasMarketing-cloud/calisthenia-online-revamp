@@ -13,6 +13,8 @@ import { allVideos } from "@/data/videoLibrary";
 import entrenaCase from "@/assets/entrena-casa.jpg";
 import { Home, CheckCircle, Target, Shield, Zap, Heart, Clock, TrendingUp, AlertCircle, Calendar, Activity, Dumbbell } from "lucide-react";
 import { Link } from "react-router-dom";
+import StructuredData from "@/components/seo/StructuredData";
+import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
 
 const RutinaCasa = () => {
   // Filtrar videos para entrenamiento en casa (excluir video principal)
