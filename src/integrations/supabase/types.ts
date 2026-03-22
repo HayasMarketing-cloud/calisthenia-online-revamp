@@ -352,6 +352,7 @@ export type Database = {
       }
       exercises: {
         Row: {
+          category: Database["public"]["Enums"]["exercise_category"] | null
           created_at: string
           created_by: string | null
           description: string | null
@@ -367,6 +368,7 @@ export type Database = {
           youtube_video_id: string | null
         }
         Insert: {
+          category?: Database["public"]["Enums"]["exercise_category"] | null
           created_at?: string
           created_by?: string | null
           description?: string | null
@@ -382,6 +384,7 @@ export type Database = {
           youtube_video_id?: string | null
         }
         Update: {
+          category?: Database["public"]["Enums"]["exercise_category"] | null
           created_at?: string
           created_by?: string | null
           description?: string | null
@@ -924,6 +927,12 @@ export type Database = {
       app_role: "admin" | "user"
       blog_status: "draft" | "published" | "scheduled"
       difficulty_level: "beginner" | "intermediate" | "advanced"
+      exercise_category:
+        | "fuerza"
+        | "movilidad"
+        | "resistencia"
+        | "pliometria"
+        | "flexibilidad"
       program_status: "draft" | "active" | "completed" | "paused" | "cancelled"
       session_status: "in_progress" | "completed" | "skipped"
     }
@@ -1067,6 +1076,13 @@ export const Constants = {
       app_role: ["admin", "user"],
       blog_status: ["draft", "published", "scheduled"],
       difficulty_level: ["beginner", "intermediate", "advanced"],
+      exercise_category: [
+        "fuerza",
+        "movilidad",
+        "resistencia",
+        "pliometria",
+        "flexibilidad",
+      ],
       program_status: ["draft", "active", "completed", "paused", "cancelled"],
       session_status: ["in_progress", "completed", "skipped"],
     },
