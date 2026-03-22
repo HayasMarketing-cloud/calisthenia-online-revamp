@@ -29,6 +29,7 @@ const CoachPanel = () => {
   const [search, setSearch] = useState('');
   const [assignDialog, setAssignDialog] = useState<{ open: boolean; clientId: string; clientName: string }>({ open: false, clientId: '', clientName: '' });
   const [selectedTemplate, setSelectedTemplate] = useState('');
+  const [detailDialog, setDetailDialog] = useState<{ open: boolean; clientId: string; clientName: string }>({ open: false, clientId: '', clientName: '' });
 
   // Fetch all clients (profiles + adherence + active program)
   const { data: clients, isLoading } = useQuery({
