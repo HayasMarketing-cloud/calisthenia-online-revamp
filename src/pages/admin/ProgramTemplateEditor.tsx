@@ -59,6 +59,7 @@ const ProgramTemplateEditor = () => {
   const queryClient = useQueryClient();
   const [addExDialog, setAddExDialog] = useState<{ open: boolean; dayId: string }>({ open: false, dayId: '' });
   const [exForm, setExForm] = useState({ exercise_id: '', sets: 3, reps: '10', rest_seconds: 60, notes: '' });
+  const [exPickerOpen, setExPickerOpen] = useState(false);
   const [addDayDialog, setAddDayDialog] = useState<{ open: boolean; weekId: string; nextNum: number }>({ open: false, weekId: '', nextNum: 1 });
   const [dayForm, setDayForm] = useState({ name: '', is_rest_day: false });
 
