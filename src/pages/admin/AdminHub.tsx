@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Users, Dumbbell, FileText, BarChart3, Image } from 'lucide-react';
+import { Users, Dumbbell, FileText, BarChart3, Image, ClipboardList } from 'lucide-react';
 import {
   Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
@@ -17,6 +17,12 @@ const adminSections = [
     description: 'Alta, edición y baja de ejercicios con vídeos',
     icon: Dumbbell,
     path: '/admin/exercises/',
+  },
+  {
+    title: 'Plantillas de programa',
+    description: 'Crea y edita plantillas con semanas, días y ejercicios',
+    icon: ClipboardList,
+    path: '/admin/programs/',
   },
   {
     title: 'Blog',
