@@ -26,6 +26,18 @@ const RutinaEspalda = () => {
     videoDuration: "PT11M15S",
     uploadDate: "2024-01-15",
     totalTime: "PT50M",
+    breadcrumbs: [
+      { name: "Inicio", url: "https://calisthenia.online/" },
+      { name: "Rutinas", url: "https://calisthenia.online/programas/" },
+      { name: "Rutina Espalda", url: "https://calisthenia.online/rutina-espalda/" }
+    ],
+    rating: {
+      itemName: "Rutina de Espalda Calistenia",
+      ratingValue: 4.8,
+      reviewCount: 267,
+      bestRating: 5,
+      worstRating: 1
+    },
     steps: [
       {
         name: "Movilidad escapular",

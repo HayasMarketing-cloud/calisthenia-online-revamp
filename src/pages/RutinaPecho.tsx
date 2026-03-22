@@ -26,6 +26,18 @@ const RutinaPecho = () => {
     videoDuration: "PT9M45S",
     uploadDate: "2024-01-15",
     totalTime: "PT45M",
+    breadcrumbs: [
+      { name: "Inicio", url: "https://calisthenia.online/" },
+      { name: "Rutinas", url: "https://calisthenia.online/programas/" },
+      { name: "Rutina Pecho", url: "https://calisthenia.online/rutina-pecho-calistenia/" }
+    ],
+    rating: {
+      itemName: "Rutina de Pecho Calistenia",
+      ratingValue: 4.7,
+      reviewCount: 312,
+      bestRating: 5,
+      worstRating: 1
+    },
     steps: [
       {
         name: "Calentamiento dinámico",

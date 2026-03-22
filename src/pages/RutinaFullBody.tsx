@@ -41,6 +41,18 @@ const RutinaFullBody = () => {
     videoDuration: "PT18M40S",
     uploadDate: "2024-01-20",
     totalTime: "PT50M",
+    breadcrumbs: [
+      { name: "Inicio", url: "https://calisthenia.online/" },
+      { name: "Rutinas", url: "https://calisthenia.online/programas/" },
+      { name: "Rutina Full Body", url: "https://calisthenia.online/rutina-full-body/" }
+    ],
+    rating: {
+      itemName: "Rutina Full Body Calistenia",
+      ratingValue: 4.9,
+      reviewCount: 425,
+      bestRating: 5,
+      worstRating: 1
+    },
     steps: [
       {
         name: "Calentamiento general",

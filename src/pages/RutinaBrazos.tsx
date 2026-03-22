@@ -32,6 +32,18 @@ const RutinaBrazos = () => {
     videoDuration: "PT8M30S",
     uploadDate: "2024-01-15",
     totalTime: "PT30M",
+    breadcrumbs: [
+      { name: "Inicio", url: "https://calisthenia.online/" },
+      { name: "Rutinas", url: "https://calisthenia.online/programas/" },
+      { name: "Rutina Brazos", url: "https://calisthenia.online/rutina-brazos-calistenia/" }
+    ],
+    rating: {
+      itemName: "Rutina de Brazos Calistenia",
+      ratingValue: 4.7,
+      reviewCount: 285,
+      bestRating: 5,
+      worstRating: 1
+    },
     steps: [
       {
         name: "Calentamiento",

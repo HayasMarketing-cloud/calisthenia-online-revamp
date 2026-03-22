@@ -27,6 +27,18 @@ const RutinaPiernas = () => {
     videoDuration: "PT12M20S",
     uploadDate: "2024-02-10",
     totalTime: "PT50M",
+    breadcrumbs: [
+      { name: "Inicio", url: "https://calisthenia.online/" },
+      { name: "Rutinas", url: "https://calisthenia.online/programas/" },
+      { name: "Rutina Piernas", url: "https://calisthenia.online/rutina-piernas-calistenia/" }
+    ],
+    rating: {
+      itemName: "Rutina de Piernas Calistenia",
+      ratingValue: 4.6,
+      reviewCount: 198,
+      bestRating: 5,
+      worstRating: 1
+    },
     steps: [
       {
         name: "Activación y movilidad",
