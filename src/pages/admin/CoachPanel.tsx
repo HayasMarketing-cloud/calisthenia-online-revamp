@@ -393,6 +393,14 @@ const CoachPanel = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Client detail dialog */}
+      <ClientDetailDialog
+        open={detailDialog.open}
+        onOpenChange={open => !open && setDetailDialog({ open: false, clientId: '', clientName: '' })}
+        clientId={detailDialog.clientId}
+        clientName={detailDialog.clientName}
+      />
     </div>
   );
 };
