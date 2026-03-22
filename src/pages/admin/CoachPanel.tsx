@@ -10,10 +10,11 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Loader2, Users, Copy, Calendar, ArrowLeft, Search, AlertCircle } from 'lucide-react';
+import { Loader2, Users, Copy, Calendar, ArrowLeft, Search, AlertCircle, Eye } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import { format, addWeeks, addDays } from 'date-fns';
+import ClientDetailDialog from '@/components/admin/ClientDetailDialog';
 
 const statusConfig: Record<string, { label: string; variant: 'default' | 'secondary' | 'destructive' | 'outline' }> = {
   active: { label: 'Activo', variant: 'default' },
@@ -28,6 +29,7 @@ const CoachPanel = () => {
   const [search, setSearch] = useState('');
   const [assignDialog, setAssignDialog] = useState<{ open: boolean; clientId: string; clientName: string }>({ open: false, clientId: '', clientName: '' });
   const [selectedTemplate, setSelectedTemplate] = useState('');
+  const [detailDialog, setDetailDialog] = useState<{ open: boolean; clientId: string; clientName: string }>({ open: false, clientId: '', clientName: '' });
 
   // Fetch all clients (profiles + adherence + active program)
   const { data: clients, isLoading } = useQuery({
@@ -287,7 +289,21 @@ const CoachPanel = () => {
                             <span className="text-sm text-muted-foreground italic">Sin programa</span>
                           )}
                         </TableCell>
-                        <TableCell className="text-right">
+                        <TableCell className="text-right space-x-2">
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            onClick={() =>
+                              setDetailDialog({
+                                open: true,
+                                clientId: client.id,
+                                clientName: client.display_name || 'Alumno',
+                              })
+                            }
+                          >
+                            <Eye className="h-3.5 w-3.5 mr-1" />
+                            Ver
+                          </Button>
                           <Button
                             size="sm"
                             variant="outline"
@@ -377,6 +393,14 @@ const CoachPanel = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Client detail dialog */}
+      <ClientDetailDialog
+        open={detailDialog.open}
+        onOpenChange={open => !open && setDetailDialog({ open: false, clientId: '', clientName: '' })}
+        clientId={detailDialog.clientId}
+        clientName={detailDialog.clientName}
+      />
     </div>
   );
 };
