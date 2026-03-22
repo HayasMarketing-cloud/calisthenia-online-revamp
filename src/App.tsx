@@ -36,6 +36,7 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import BlogEditor from "./pages/admin/BlogEditor";
 import BlogManager from "./pages/admin/BlogManager";
+import CoachPanel from "./pages/admin/CoachPanel";
 import Auth from "./pages/Auth";
 import QueEsLaCalistenia from "./pages/blog/QueEsLaCalistenia";
 import NotFound from "./pages/NotFound";
@@ -88,6 +89,7 @@ const App = () => (
             <Route path="/admin/blog/" element={<ProtectedRoute requireAdmin><BlogManager /></ProtectedRoute>} />
             <Route path="/admin/blog/nuevo/" element={<ProtectedRoute requireAdmin><BlogEditor /></ProtectedRoute>} />
             <Route path="/admin/blog/editar/:id/" element={<ProtectedRoute requireAdmin><BlogEditor /></ProtectedRoute>} />
+            <Route path="/admin/coach/" element={<ProtectedRoute requireAdmin><CoachPanel /></ProtectedRoute>} />
             
           <Route path="/blog/que-es-la-calistenia/" element={<QueEsLaCalistenia />} />
           <Route path="/brandbook/" element={<BrandBook />} />
