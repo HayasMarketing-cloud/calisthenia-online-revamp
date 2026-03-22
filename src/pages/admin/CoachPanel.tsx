@@ -289,7 +289,21 @@ const CoachPanel = () => {
                             <span className="text-sm text-muted-foreground italic">Sin programa</span>
                           )}
                         </TableCell>
-                        <TableCell className="text-right">
+                        <TableCell className="text-right space-x-2">
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            onClick={() =>
+                              setDetailDialog({
+                                open: true,
+                                clientId: client.id,
+                                clientName: client.display_name || 'Alumno',
+                              })
+                            }
+                          >
+                            <Eye className="h-3.5 w-3.5 mr-1" />
+                            Ver
+                          </Button>
                           <Button
                             size="sm"
                             variant="outline"
