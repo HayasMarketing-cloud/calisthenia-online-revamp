@@ -176,14 +176,13 @@ const Header = () => {
             </NavigationMenuItem>
 
 
-            {/* Auth Buttons - Temporarily hidden
-            <NavigationMenuItem>
-              {user ? (
+            {user && (
+              <NavigationMenuItem>
                 <div className="flex items-center gap-2">
                   {isAdmin && (
-                    <Link to="/admin/blog">
+                    <Link to="/admin/coach/">
                       <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                        Admin
+                        Panel Coach
                       </NavigationMenuLink>
                     </Link>
                   )}
@@ -192,16 +191,8 @@ const Header = () => {
                     Salir
                   </Button>
                 </div>
-              ) : (
-                <Link to="/auth">
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    <LogIn className="h-4 w-4 mr-2" />
-                    Iniciar Sesión
-                  </NavigationMenuLink>
-                </Link>
-              )}
-            </NavigationMenuItem>
-            */}
+              </NavigationMenuItem>
+            )}
           </NavigationMenuList>
         </NavigationMenu>
 
@@ -252,32 +243,21 @@ const Header = () => {
                 </div>
               </div>
             
-              {/* Auth Buttons Mobile - Temporarily hidden
-              <div className="pt-4 border-t border-border">
-                {user ? (
-                  <div className="space-y-2">
-                    {isAdmin && (
-                      <Link to="/admin/blog" onClick={() => setIsOpen(false)}>
-                        <Button variant="ghost" className="w-full justify-start">
-                          Admin
-                        </Button>
-                      </Link>
-                    )}
-                    <Button variant="ghost" className="w-full justify-start" onClick={() => { signOut(); setIsOpen(false); }}>
-                      <LogOut className="h-4 w-4 mr-2" />
-                      Salir
-                    </Button>
-                  </div>
-                ) : (
-                  <Link to="/auth" onClick={() => setIsOpen(false)}>
-                    <Button variant="ghost" className="w-full justify-start">
-                      <LogIn className="h-4 w-4 mr-2" />
-                      Iniciar Sesión
-                    </Button>
-                  </Link>
-                )}
-              </div>
-              */}
+              {user && (
+                <div className="pt-4 border-t border-border space-y-2">
+                  {isAdmin && (
+                    <Link to="/admin/coach/" onClick={() => setIsOpen(false)}>
+                      <Button variant="ghost" className="w-full justify-start">
+                        Panel Coach
+                      </Button>
+                    </Link>
+                  )}
+                  <Button variant="ghost" className="w-full justify-start" onClick={() => { signOut(); setIsOpen(false); }}>
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Salir
+                  </Button>
+                </div>
+              )}
 
               <div>
                 <p className="text-lg font-medium mb-2">Nivel</p>
