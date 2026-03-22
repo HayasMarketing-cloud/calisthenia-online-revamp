@@ -42,6 +42,7 @@ interface ExerciseForm {
   muscle_groups: string[];
   difficulty_level: string;
   equipment_needed: string;
+  category: string;
 }
 
 const emptyForm: ExerciseForm = {
