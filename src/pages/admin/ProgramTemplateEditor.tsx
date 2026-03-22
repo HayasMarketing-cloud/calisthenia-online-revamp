@@ -380,17 +380,44 @@ const ProgramTemplateEditor = () => {
           <div className="space-y-4 py-2">
             <div className="space-y-2">
               <Label>Ejercicio *</Label>
-              <Select value={exForm.exercise_id} onValueChange={v => setExForm(p => ({ ...p, exercise_id: v }))}>
-                <SelectTrigger><SelectValue placeholder="Selecciona ejercicio..." /></SelectTrigger>
-                <SelectContent className="max-h-60">
-                  {(allExercises || []).map(ex => (
-                    <SelectItem key={ex.id} value={ex.id}>
-                      {ex.name}
-                      {ex.muscle_groups?.length ? ` (${ex.muscle_groups.join(', ')})` : ''}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <Popover open={exPickerOpen} onOpenChange={setExPickerOpen}>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" role="combobox" aria-expanded={exPickerOpen} className="w-full justify-between font-normal">
+                    {exForm.exercise_id
+                      ? (allExercises || []).find(e => e.id === exForm.exercise_id)?.name || 'Ejercicio'
+                      : 'Buscar ejercicio...'}
+                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-[400px] p-0" align="start">
+                  <Command>
+                    <CommandInput placeholder="Buscar por nombre o músculo..." />
+                    <CommandList>
+                      <CommandEmpty>No se encontraron ejercicios.</CommandEmpty>
+                      <CommandGroup>
+                        {(allExercises || []).map(ex => (
+                          <CommandItem
+                            key={ex.id}
+                            value={`${ex.name} ${ex.muscle_groups?.join(' ') || ''}`}
+                            onSelect={() => {
+                              setExForm(p => ({ ...p, exercise_id: ex.id }));
+                              setExPickerOpen(false);
+                            }}
+                          >
+                            <Check className={cn("mr-2 h-4 w-4", exForm.exercise_id === ex.id ? "opacity-100" : "opacity-0")} />
+                            <div>
+                              <span className="font-medium">{ex.name}</span>
+                              {ex.muscle_groups?.length ? (
+                                <span className="text-xs text-muted-foreground ml-2">({ex.muscle_groups.join(', ')})</span>
+                              ) : null}
+                            </div>
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </CommandList>
+                  </Command>
+                </PopoverContent>
+              </Popover>
             </div>
             <div className="grid grid-cols-3 gap-3">
               <div className="space-y-2">
