@@ -139,7 +139,9 @@ const ExercisesManager = () => {
 
   const filtered = (exercises || []).filter(ex => {
     const matchSearch = ex.name.toLowerCase().includes(search.toLowerCase());
-    const matchMuscle = filterMuscle === 'all' || (ex.muscle_groups || []).includes(filterMuscle);
+    const matchMuscle = filterMuscle === 'all' || (ex.muscle_groups || []).some(
+      m => m.toLowerCase() === filterMuscle.toLowerCase()
+    );
     return matchSearch && matchMuscle;
   });
 
