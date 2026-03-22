@@ -39,10 +39,7 @@ const Auth = () => {
     setLoading(true);
 
     if (isLogin) {
-      const { error } = await signIn(email, password);
-      if (!error) {
-        navigate('/');
-      }
+      await signIn(email, password);
     } else {
       const { error } = await signUp(email, password, displayName);
       if (!error) {
