@@ -39,6 +39,8 @@ import BlogManager from "./pages/admin/BlogManager";
 import CoachPanel from "./pages/admin/CoachPanel";
 import AdminHub from "./pages/admin/AdminHub";
 import ExercisesManager from "./pages/admin/ExercisesManager";
+import ProgramTemplates from "./pages/admin/ProgramTemplates";
+import ProgramTemplateEditor from "./pages/admin/ProgramTemplateEditor";
 import Auth from "./pages/Auth";
 import QueEsLaCalistenia from "./pages/blog/QueEsLaCalistenia";
 import NotFound from "./pages/NotFound";
