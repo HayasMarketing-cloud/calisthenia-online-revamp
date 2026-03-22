@@ -227,6 +227,13 @@ const ExercisesManager = () => {
                     <TableRow key={ex.id}>
                       <TableCell className="font-medium">{ex.name}</TableCell>
                       <TableCell>
+                        {(ex as any).category ? (
+                          <Badge variant="outline" className="text-xs">{EXERCISE_CATEGORIES.find(c => c.value === (ex as any).category)?.label || (ex as any).category}</Badge>
+                        ) : (
+                          <span className="text-muted-foreground text-xs">—</span>
+                        )}
+                      </TableCell>
+                      <TableCell>
                         <div className="flex flex-wrap gap-1">
                           {(ex.muscle_groups || []).slice(0, 3).map(m => (
                             <Badge key={m} variant="outline" className="text-[10px]">{m}</Badge>
