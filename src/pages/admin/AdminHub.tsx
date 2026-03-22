@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Users, Dumbbell, FileText, BarChart3, Image, ArrowLeft } from 'lucide-react';
+import { Users, Dumbbell, FileText, BarChart3, Image } from 'lucide-react';
+import {
+  Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
 
 const adminSections = [
   {
