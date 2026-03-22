@@ -228,9 +228,16 @@ const ExercisesManager = () => {
                       </TableCell>
                       <TableCell>
                         {ex.youtube_video_id ? (
-                          <a href={`https://youtube.com/watch?v=${ex.youtube_video_id}`} target="_blank" rel="noopener noreferrer">
-                            <Video className="h-4 w-4 text-primary" />
-                          </a>
+                          <button
+                            onClick={() => setVideoModal({ open: true, videoId: ex.youtube_video_id!, name: ex.name })}
+                            className="block rounded overflow-hidden hover:opacity-80 transition-opacity"
+                          >
+                            <img
+                              src={`https://img.youtube.com/vi/${ex.youtube_video_id}/default.jpg`}
+                              alt={ex.name}
+                              className="w-16 h-12 object-cover rounded"
+                            />
+                          </button>
                         ) : (
                           <span className="text-muted-foreground text-xs">—</span>
                         )}
