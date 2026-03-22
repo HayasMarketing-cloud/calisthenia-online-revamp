@@ -7,6 +7,7 @@ import RobotsTxtEditor from "@/components/seo/RobotsTxtEditor";
 import MetaTagsManager from "@/components/seo/MetaTagsManager";
 import SEOStats from "@/components/seo/SEOStats";
 import { Helmet } from "react-helmet-async";
+import AdminBreadcrumbs from "@/components/admin/AdminBreadcrumbs";
 
 const SEODashboard = () => {
   const [activeTab, setActiveTab] = useState("stats");
@@ -19,6 +20,7 @@ const SEODashboard = () => {
       </Helmet>
 
       <div className="container mx-auto px-4 py-8">
+        <AdminBreadcrumbs current="SEO Dashboard" />
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-2">SEO Dashboard</h1>
           <p className="text-muted-foreground">

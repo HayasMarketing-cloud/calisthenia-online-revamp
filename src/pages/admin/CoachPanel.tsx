@@ -10,9 +10,10 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Loader2, Users, Copy, Calendar, ArrowLeft, Search, AlertCircle, Eye } from 'lucide-react';
+import { Loader2, Users, Copy, Calendar, Search, AlertCircle, Eye } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
+import AdminBreadcrumbs from '@/components/admin/AdminBreadcrumbs';
 import { format, addWeeks, addDays } from 'date-fns';
 import ClientDetailDialog from '@/components/admin/ClientDetailDialog';
 
@@ -216,18 +217,13 @@ const CoachPanel = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-6xl mx-auto px-4 py-8 space-y-6">
-        {/* Header */}
+        <AdminBreadcrumbs current="Panel de Coach" />
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Link to="/">
-              <Button variant="ghost" size="icon"><ArrowLeft className="h-5 w-5" /></Button>
-            </Link>
-            <div>
-              <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                <Users className="h-6 w-6 text-primary" /> Panel de Coach
-              </h1>
-              <p className="text-sm text-muted-foreground">{clients?.length || 0} alumnos registrados</p>
-            </div>
+          <div>
+            <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+              <Users className="h-6 w-6 text-primary" /> Panel de Coach
+            </h1>
+            <p className="text-sm text-muted-foreground">{clients?.length || 0} alumnos registrados</p>
           </div>
         </div>
 

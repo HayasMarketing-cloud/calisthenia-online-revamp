@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import AdminBreadcrumbs from "@/components/admin/AdminBreadcrumbs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -76,6 +77,7 @@ const BlogManager = () => {
 
         <main className="container mx-auto px-4 py-12">
           <div className="max-w-7xl mx-auto">
+            <AdminBreadcrumbs current="Blog" />
             <div className="flex justify-between items-center mb-8">
               <div>
                 <h1 className="text-4xl font-bold mb-2">Gestor de Blog</h1>

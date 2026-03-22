@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Users, Dumbbell, FileText, BarChart3, Image, ArrowLeft } from 'lucide-react';
+import { Users, Dumbbell, FileText, BarChart3, Image } from 'lucide-react';
+import {
+  Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
 
 const adminSections = [
   {
@@ -40,14 +42,20 @@ const AdminHub = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto px-4 py-8 space-y-6">
-        <div className="flex items-center gap-3">
-          <Link to="/">
-            <Button variant="ghost" size="icon"><ArrowLeft className="h-5 w-5" /></Button>
-          </Link>
-          <div>
-            <h1 className="text-2xl font-bold text-foreground">Panel de Administración</h1>
-            <p className="text-sm text-muted-foreground">Gestiona tu plataforma de calistenia</p>
-          </div>
+        <Breadcrumb className="mb-4">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild><Link to="/">Inicio</Link></BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>Admin</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+        <div>
+          <h1 className="text-2xl font-bold text-foreground">Panel de Administración</h1>
+          <p className="text-sm text-muted-foreground">Gestiona tu plataforma de calistenia</p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">

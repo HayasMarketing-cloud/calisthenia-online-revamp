@@ -17,6 +17,7 @@ import {
 } from '@/data/mediaLibrary';
 import { Search, Image as ImageIcon, X } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import AdminBreadcrumbs from '@/components/admin/AdminBreadcrumbs';
 
 const MediaLibrary = () => {
   const [activeCategory, setActiveCategory] = useState<MediaCategory>('buttons');
@@ -66,6 +67,7 @@ const MediaLibrary = () => {
       </Helmet>
 
       <div className="container mx-auto px-4 py-8">
+        <AdminBreadcrumbs current="Media Library" />
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-2">Biblioteca de Medios</h1>
           <p className="text-muted-foreground">
