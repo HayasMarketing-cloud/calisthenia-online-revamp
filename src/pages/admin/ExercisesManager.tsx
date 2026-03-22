@@ -131,6 +131,7 @@ const ExercisesManager = () => {
       muscle_groups: ex.muscle_groups || [],
       difficulty_level: ex.difficulty_level || 'beginner',
       equipment_needed: (ex.equipment_needed || []).join(', '),
+      category: (ex as any).category || '',
     });
     setDialogOpen(true);
   };
