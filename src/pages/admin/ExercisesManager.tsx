@@ -86,6 +86,7 @@ const ExercisesManager = () => {
         muscle_groups: data.muscle_groups,
         difficulty_level: data.difficulty_level as 'beginner' | 'intermediate' | 'advanced',
         equipment_needed: data.equipment_needed ? data.equipment_needed.split(',').map(s => s.trim()) : null,
+        category: (data.category || null) as any,
       };
 
       if (data.id) {
