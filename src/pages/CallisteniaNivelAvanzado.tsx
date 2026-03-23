@@ -13,6 +13,8 @@ import { Badge } from "@/components/ui/badge";
 import { Zap, Target, TrendingUp, Users, CheckCircle2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import StructuredData from "@/components/seo/StructuredData";
+import { generateCourseSchema, generateBreadcrumbSchema } from "@/lib/schemas";
 
 const CallisteniaNivelAvanzado = () => {
   // Filtrar videos para nivel intermedio y avanzado, ordenados por engagement
