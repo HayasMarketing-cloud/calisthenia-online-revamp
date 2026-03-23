@@ -8,6 +8,8 @@ import { Check, Target, Search, CalendarDays, Video, MessageCircle, BarChart3, U
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 import PromotionBanner from "@/components/PromotionBanner";
+import StructuredData from "@/components/seo/StructuredData";
+import { generateCourseSchema, generateBreadcrumbSchema } from "@/lib/schemas";
 
 const Programas = () => {
   useEffect(() => {
