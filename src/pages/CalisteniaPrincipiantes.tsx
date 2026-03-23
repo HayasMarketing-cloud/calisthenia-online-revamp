@@ -11,6 +11,8 @@ import RoutineHero from "@/components/routine/RoutineHero";
 import CommunityCTA from "@/components/CommunityCTA";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 import QuickJumpBanner from "@/components/QuickJumpBanner";
+import StructuredData from "@/components/seo/StructuredData";
+import { generateCourseSchema, generateBreadcrumbSchema } from "@/lib/schemas";
 
 const CalisteniaPrincipiantes = () => {
   // Filtrar videos para principiantes ordenados por engagement
