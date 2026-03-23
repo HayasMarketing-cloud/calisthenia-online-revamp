@@ -211,6 +211,94 @@ export const generateBreadcrumbSchema = (breadcrumbs: BreadcrumbItem[]) => {
 };
 
 /**
+ * Course Schema data interface
+ */
+export interface CourseData {
+  name: string;
+  description: string;
+  provider: string;
+  providerUrl: string;
+  url: string;
+  courseMode: "online" | "onsite" | "blended";
+  educationalLevel: string;
+  inLanguage?: string;
+  image?: string;
+  hasCourseInstance?: {
+    courseMode: string;
+    instructor: string;
+    courseWorkload?: string;
+  };
+  syllabusSections?: Array<{
+    name: string;
+    description: string;
+    position: number;
+  }>;
+  offers?: {
+    price: string;
+    priceCurrency: string;
+    availability?: string;
+  };
+  rating?: AggregateRatingData;
+}
+
+/**
+ * Genera Course Schema (para programas de entrenamiento y guías)
+ * https://schema.org/Course
+ */
+export const generateCourseSchema = (data: CourseData) => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: data.name,
+    description: data.description,
+    provider: {
+      "@type": "Organization",
+      name: data.provider,
+      sameAs: data.providerUrl
+    },
+    url: data.url,
+    coursePrerequisites: data.educationalLevel === "Principiante" 
+      ? "Ninguno" 
+      : "Conocimientos básicos de calistenia",
+    educationalLevel: data.educationalLevel,
+    inLanguage: data.inLanguage || "es",
+    ...(data.image && { image: data.image }),
+    ...(data.hasCourseInstance && {
+      hasCourseInstance: {
+        "@type": "CourseInstance",
+        courseMode: data.hasCourseInstance.courseMode,
+        instructor: {
+          "@type": "Person",
+          name: data.hasCourseInstance.instructor
+        },
+        ...(data.hasCourseInstance.courseWorkload && {
+          courseWorkload: data.hasCourseInstance.courseWorkload
+        })
+      }
+    }),
+    ...(data.syllabusSections && {
+      hasPart: data.syllabusSections.map(section => ({
+        "@type": "Course",
+        name: section.name,
+        description: section.description,
+        position: section.position
+      }))
+    }),
+    ...(data.offers && {
+      offers: {
+        "@type": "Offer",
+        price: data.offers.price,
+        priceCurrency: data.offers.priceCurrency,
+        ...(data.offers.availability && { availability: data.offers.availability })
+      }
+    }),
+    ...(data.rating && {
+      aggregateRating: generateAggregateRatingSchema(data.rating)
+    })
+  };
+};
+
+/**
  * Datos de la organización (constante para reutilizar)
  */
 export const ORGANIZATION_DATA: OrganizationData = {

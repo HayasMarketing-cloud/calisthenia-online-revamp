@@ -8,6 +8,8 @@ import { Check, Target, Search, CalendarDays, Video, MessageCircle, BarChart3, U
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 import PromotionBanner from "@/components/PromotionBanner";
+import StructuredData from "@/components/seo/StructuredData";
+import { generateCourseSchema, generateBreadcrumbSchema } from "@/lib/schemas";
 
 const Programas = () => {
   useEffect(() => {
@@ -36,8 +38,54 @@ const Programas = () => {
     };
   }, []);
 
+  const courseSchemas = [
+    generateCourseSchema({
+      name: "Programa de Calistenia Personalizado - Iniciación",
+      description: "Programa de entrenamiento personalizado de calistenia para principiantes. Incluye evaluación inicial, rutinas semanales, videos explicativos, soporte por WhatsApp y plan nutricional.",
+      provider: "Calistenia Online",
+      providerUrl: "https://calisthenia.online",
+      url: "https://calisthenia.online/programas/",
+      courseMode: "online",
+      educationalLevel: "Principiante",
+      image: "https://calisthenia.online/lovable-uploads/f3b95d09-dfd8-4644-9fcb-11a257a02133.png",
+      hasCourseInstance: {
+        courseMode: "Online",
+        instructor: "Nicolás Reyero",
+        courseWorkload: "3-4 horas/semana"
+      },
+      syllabusSections: [
+        { name: "Evaluación Inicial", description: "Análisis de nivel actual, experiencia previa y metas", position: 1 },
+        { name: "Rutina Semanal Personalizada", description: "Planes mensuales ajustados a tu progreso", position: 2 },
+        { name: "Videos Explicativos", description: "Explicación de cada ejercicio con correcciones de técnica", position: 3 },
+        { name: "Seguimiento Quincenal", description: "Revisión de progresos y ajustes cada dos semanas", position: 4 },
+        { name: "Plan Nutricional", description: "Guía nutricional adaptada a tus objetivos", position: 5 }
+      ],
+      rating: { itemName: "Programa Calistenia Iniciación", ratingValue: 4.8, reviewCount: 127 }
+    }),
+    generateCourseSchema({
+      name: "Programa de Calistenia Personalizado - Avanzado",
+      description: "Programa avanzado de calistenia con coaching 1:1, entrenamientos para habilidades avanzadas, comunidad privada y plan nutricional personalizado.",
+      provider: "Calistenia Online",
+      providerUrl: "https://calisthenia.online",
+      url: "https://calisthenia.online/programas/",
+      courseMode: "online",
+      educationalLevel: "Avanzado",
+      hasCourseInstance: {
+        courseMode: "Online",
+        instructor: "Nicolás Reyero",
+        courseWorkload: "4-5 horas/semana"
+      },
+      rating: { itemName: "Programa Calistenia Avanzado", ratingValue: 4.9, reviewCount: 89 }
+    }),
+    generateBreadcrumbSchema([
+      { name: "Inicio", url: "https://calisthenia.online/" },
+      { name: "Programas", url: "https://calisthenia.online/programas/" }
+    ])
+  ];
+
   return (
     <div className="min-h-screen">
+      <StructuredData data={courseSchemas} />
       <Header />
       <CommunityStickyBanner />
       

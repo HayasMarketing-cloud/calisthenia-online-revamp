@@ -13,6 +13,8 @@ import { Badge } from "@/components/ui/badge";
 import { Zap, Target, TrendingUp, Users, CheckCircle2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import StructuredData from "@/components/seo/StructuredData";
+import { generateCourseSchema, generateBreadcrumbSchema } from "@/lib/schemas";
 
 const CallisteniaNivelAvanzado = () => {
   // Filtrar videos para nivel intermedio y avanzado, ordenados por engagement
@@ -61,6 +63,35 @@ const CallisteniaNivelAvanzado = () => {
           })}
         </script>
       </Helmet>
+
+      <StructuredData data={[
+        generateCourseSchema({
+          name: "Rutina Calistenia Intermedio y Avanzado",
+          description: "Curso de calistenia nivel intermedio y avanzado. Progresiones hacia muscle-up, front lever y planche con entrenamiento de 3 días/semana.",
+          provider: "Calistenia Online",
+          providerUrl: "https://calisthenia.online",
+          url: "https://calisthenia.online/calistenia-nivel-avanzado/",
+          courseMode: "online",
+          educationalLevel: "Intermedio-Avanzado",
+          hasCourseInstance: {
+            courseMode: "Online",
+            instructor: "Nicolás Reyero",
+            courseWorkload: "4-5 horas/semana"
+          },
+          syllabusSections: [
+            { name: "Día 1: Fuerza de Empuje", description: "Flexiones declinadas, diamante, pike push-ups, plancha frontal y fondos", position: 1 },
+            { name: "Día 2: Dominadas + Core", description: "Dominadas estrictas, remo invertido, elevaciones colgado, hollow body", position: 2 },
+            { name: "Día 3: Piernas y Equilibrio", description: "Sentadillas explosivas, zancadas, puente a una pierna, pino", position: 3 }
+          ],
+          offers: { price: "0", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
+          rating: { itemName: "Rutina Calistenia Intermedio-Avanzado", ratingValue: 4.8, reviewCount: 198 }
+        }),
+        generateBreadcrumbSchema([
+          { name: "Inicio", url: "https://calisthenia.online/" },
+          { name: "Programas", url: "https://calisthenia.online/programas/" },
+          { name: "Nivel Intermedio/Avanzado", url: "https://calisthenia.online/calistenia-nivel-avanzado/" }
+        ])
+      ]} />
 
       <div className="min-h-screen flex flex-col">
         <Header />

@@ -11,6 +11,8 @@ import RoutineHero from "@/components/routine/RoutineHero";
 import CommunityCTA from "@/components/CommunityCTA";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 import QuickJumpBanner from "@/components/QuickJumpBanner";
+import StructuredData from "@/components/seo/StructuredData";
+import { generateCourseSchema, generateBreadcrumbSchema } from "@/lib/schemas";
 
 const CalisteniaPrincipiantes = () => {
   // Filtrar videos para principiantes ordenados por engagement
@@ -51,6 +53,37 @@ const CalisteniaPrincipiantes = () => {
           })}
         </script>
       </Helmet>
+
+      <StructuredData data={[
+        generateCourseSchema({
+          name: "Guía Completa de Calistenia para Principiantes",
+          description: "Curso gratuito de calistenia para principiantes. Aprende flexiones, sentadillas, planchas y dominadas con progresiones paso a paso.",
+          provider: "Calistenia Online",
+          providerUrl: "https://calisthenia.online",
+          url: "https://calisthenia.online/calistenia-principiantes/",
+          courseMode: "online",
+          educationalLevel: "Principiante",
+          hasCourseInstance: {
+            courseMode: "Online",
+            instructor: "Nicolás Reyero",
+            courseWorkload: "3-4 horas/semana"
+          },
+          syllabusSections: [
+            { name: "Flexiones (Push-ups)", description: "Fortalecen pecho, hombros y tríceps. 3x8-10", position: 1 },
+            { name: "Sentadillas (Squats)", description: "Piernas y glúteos. 3x12-15", position: 2 },
+            { name: "Plancha (Plank)", description: "Core y postura. 3x20-30s", position: 3 },
+            { name: "Remo Invertido", description: "Espalda y bíceps. 3x6-8", position: 4 },
+            { name: "Elevaciones de Rodillas", description: "Abdomen. 3x10-12", position: 5 }
+          ],
+          offers: { price: "0", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
+          rating: { itemName: "Guía Calistenia Principiantes", ratingValue: 4.7, reviewCount: 312 }
+        }),
+        generateBreadcrumbSchema([
+          { name: "Inicio", url: "https://calisthenia.online/" },
+          { name: "Niveles", url: "https://calisthenia.online/" },
+          { name: "Principiantes", url: "https://calisthenia.online/calistenia-principiantes/" }
+        ])
+      ]} />
 
       <Header />
       <CommunityStickyBanner />
