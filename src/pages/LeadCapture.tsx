@@ -56,12 +56,15 @@ const LeadCapture = () => {
       <Header />
       <main className="flex-1 flex items-center justify-center py-16 px-4 bg-gradient-to-br from-background to-muted">
         <div className="w-full max-w-md space-y-8">
-          <div className="text-center space-y-2">
-            <h1 className="text-3xl font-bold text-foreground">
-              Empieza tu transformación
+          <div className="text-center space-y-3">
+            <span className="inline-block bg-primary/10 text-primary text-sm font-semibold px-3 py-1 rounded-full">
+              Programa gratuito
+            </span>
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
+              De 0 a 5 Dominadas
             </h1>
-            <p className="text-muted-foreground">
-              Rellena el formulario y accede al programa personalizado
+            <p className="text-muted-foreground text-base">
+              Consigue tu primera dominada (o llega a 5) con un plan progresivo paso a paso. Déjanos tus datos y accede al programa completo.
             </p>
           </div>
 
@@ -128,7 +131,7 @@ const LeadCapture = () => {
             </div>
 
             <Button type="submit" className="w-full" size="lg" disabled={loading}>
-              {loading ? "Enviando..." : "Acceder al programa →"}
+              {loading ? "Enviando..." : "Quiero hacer mi primera dominada 💪"}
             </Button>
 
             <p className="text-xs text-muted-foreground text-center">
