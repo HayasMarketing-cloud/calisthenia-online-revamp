@@ -48,6 +48,7 @@ import SEODashboard from "./pages/SEODashboard";
 import BrandBook from "./pages/BrandBook";
 import MediaLibrary from "./pages/MediaLibrary";
 import FuncionalBodybuilding from "./pages/FuncionalBodybuilding";
+import LeadCapture from "./pages/LeadCapture";
 
 const queryClient = new QueryClient();
 
