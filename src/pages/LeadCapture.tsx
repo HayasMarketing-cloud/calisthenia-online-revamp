@@ -131,7 +131,7 @@ const LeadCapture = () => {
             </div>
 
             <Button type="submit" className="w-full" size="lg" disabled={loading}>
-              {loading ? "Enviando..." : "Acceder al programa →"}
+              {loading ? "Enviando..." : "Quiero hacer mi primera dominada 💪"}
             </Button>
 
             <p className="text-xs text-muted-foreground text-center">
