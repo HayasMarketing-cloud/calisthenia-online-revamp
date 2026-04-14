@@ -409,6 +409,33 @@ export type Database = {
           },
         ]
       }
+      leads: {
+        Row: {
+          age: number
+          created_at: string
+          goal: string
+          id: string
+          name: string
+          phone: string
+        }
+        Insert: {
+          age: number
+          created_at?: string
+          goal: string
+          id?: string
+          name: string
+          phone: string
+        }
+        Update: {
+          age?: number
+          created_at?: string
+          goal?: string
+          id?: string
+          name?: string
+          phone?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
