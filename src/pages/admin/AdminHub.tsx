@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Users, Dumbbell, FileText, BarChart3, Image, ClipboardList } from 'lucide-react';
+import { Users, Dumbbell, FileText, BarChart3, Image, ClipboardList, UserPlus } from 'lucide-react';
 import {
   Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
@@ -41,6 +41,12 @@ const adminSections = [
     description: 'Gestiona imágenes y archivos multimedia',
     icon: Image,
     path: '/admin/media-library/',
+  },
+  {
+    title: 'Leads',
+    description: 'Consulta y exporta los leads capturados',
+    icon: UserPlus,
+    path: '/admin/leads/',
   },
 ];
 
