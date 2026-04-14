@@ -103,6 +103,7 @@ const App = () => (
           <Route path="/blog/que-es-la-calistenia/" element={<QueEsLaCalistenia />} />
           <Route path="/brandbook/" element={<BrandBook />} />
           <Route path="/funcional-bodybuilding/" element={<FuncionalBodybuilding />} />
+          <Route path="/empezar/" element={<LeadCapture />} />
           
           {/* App Routes - Client area (mobile-first) */}
           <Route path="/app/onboarding" element={<Onboarding />} />
