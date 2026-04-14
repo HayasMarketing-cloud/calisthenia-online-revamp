@@ -8,7 +8,7 @@ import { toast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const GAMMA_URL = "https://gamma.app/docs/TU-PRESENTACION"; // ← Cambia esta URL
+const GAMMA_URL = "https://0-a-5-dominadas-25igo3j.gamma.site/";
 
 const LeadCapture = () => {
   const [loading, setLoading] = useState(false);
