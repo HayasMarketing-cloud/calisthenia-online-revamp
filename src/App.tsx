@@ -48,6 +48,7 @@ import SEODashboard from "./pages/SEODashboard";
 import BrandBook from "./pages/BrandBook";
 import MediaLibrary from "./pages/MediaLibrary";
 import FuncionalBodybuilding from "./pages/FuncionalBodybuilding";
+import LeadCapture from "./pages/LeadCapture";
 
 const queryClient = new QueryClient();
 
@@ -102,6 +103,7 @@ const App = () => (
           <Route path="/blog/que-es-la-calistenia/" element={<QueEsLaCalistenia />} />
           <Route path="/brandbook/" element={<BrandBook />} />
           <Route path="/funcional-bodybuilding/" element={<FuncionalBodybuilding />} />
+          <Route path="/empezar/" element={<LeadCapture />} />
           
           {/* App Routes - Client area (mobile-first) */}
           <Route path="/app/onboarding" element={<Onboarding />} />
