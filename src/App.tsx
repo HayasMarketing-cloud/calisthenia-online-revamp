@@ -41,6 +41,7 @@ import AdminHub from "./pages/admin/AdminHub";
 import ExercisesManager from "./pages/admin/ExercisesManager";
 import ProgramTemplates from "./pages/admin/ProgramTemplates";
 import ProgramTemplateEditor from "./pages/admin/ProgramTemplateEditor";
+import LeadsManager from "./pages/admin/LeadsManager";
 import Auth from "./pages/Auth";
 import QueEsLaCalistenia from "./pages/blog/QueEsLaCalistenia";
 import NotFound from "./pages/NotFound";
