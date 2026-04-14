@@ -42,6 +42,12 @@ const adminSections = [
     icon: Image,
     path: '/admin/media-library/',
   },
+  {
+    title: 'Leads',
+    description: 'Consulta y exporta los leads capturados',
+    icon: UserPlus,
+    path: '/admin/leads/',
+  },
 ];
 
 const AdminHub = () => {
