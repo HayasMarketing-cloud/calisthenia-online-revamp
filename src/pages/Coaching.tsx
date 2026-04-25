@@ -14,6 +14,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import nicolasPhoto from "@/assets/nicolas-reyero.jpg";
 import carlosPhoto from "@/assets/carlos-plaza.jpg";
+import raulPhoto from "@/assets/testimonial-raul.jpg";
 
 // === CONFIGURACIÓN (afinable después) ===
 const GHL_FORM_URL =
@@ -470,6 +471,7 @@ const Coaching = () => {
                       quote:
                         "Empecé desde 0 y muy tieso, ahora no me levanto con dolores y hago 10 dominadas fáciles.",
                       initials: "RM",
+                      image: raulPhoto,
                     },
                     {
                       name: "Charlie",
@@ -489,9 +491,18 @@ const Coaching = () => {
                     <Card key={t.name} className="bg-background border-0 shadow-xl">
                       <CardContent className="p-6 space-y-4">
                         <div className="flex items-center gap-4">
-                          <div className="w-14 h-14 rounded-full bg-primary/15 flex items-center justify-center text-primary font-bold text-lg shrink-0">
-                            {t.initials}
-                          </div>
+                          {t.image ? (
+                            <img
+                              src={t.image}
+                              alt={`Foto de ${t.name}, alumno de Calisthenia Online`}
+                              loading="lazy"
+                              className="w-14 h-14 rounded-full object-cover shrink-0 border-2 border-primary/20"
+                            />
+                          ) : (
+                            <div className="w-14 h-14 rounded-full bg-primary/15 flex items-center justify-center text-primary font-bold text-lg shrink-0">
+                              {t.initials}
+                            </div>
+                          )}
                           <div>
                             <h3 className="text-xl font-bold text-primary leading-tight">
                               {t.name}
