@@ -99,7 +99,8 @@ const faqs = [
 const Coaching = () => {
   const [unlocked, setUnlocked] = useState<boolean>(false);
   const formSectionRef = useRef<HTMLDivElement>(null);
-  const plansSectionRef = useRef<HTMLDivElement>(null);
+  const ctaFinalRef = useRef<HTMLDivElement>(null);
+  const unlockSentinelRef = useRef<HTMLDivElement>(null);
 
   // Restaurar estado si ya envió el formulario en esta sesión
   useEffect(() => {
@@ -108,7 +109,34 @@ const Coaching = () => {
     }
   }, []);
 
-  // Escuchar el evento postMessage del iframe de GHL al enviarse el formulario
+  const unlockPlans = () => {
+    sessionStorage.setItem(UNLOCK_KEY, "1");
+    setUnlocked((prev) => prev || true);
+  };
+
+  // Desbloqueo automático por scroll: cuando el usuario pasa por debajo del vídeo
+  useEffect(() => {
+    if (unlocked) return;
+    const target = unlockSentinelRef.current;
+    if (!target || typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            unlockPlans();
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -10% 0px" }
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [unlocked]);
+
+  // Listener postMessage del form GHL como vía alternativa de desbloqueo
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       if (
@@ -140,12 +168,8 @@ const Coaching = () => {
     return () => window.removeEventListener("message", handleMessage);
   }, []);
 
-  const unlockPlans = () => {
-    sessionStorage.setItem(UNLOCK_KEY, "1");
-    setUnlocked(true);
-    setTimeout(() => {
-      plansSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 200);
+  const scrollToCta = () => {
+    ctaFinalRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const scrollToForm = () => {
