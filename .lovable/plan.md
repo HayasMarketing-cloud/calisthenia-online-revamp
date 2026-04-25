@@ -1,51 +1,54 @@
 
+# Rediseño landing `/coaching/` — versión draft con vídeo abierto
 
-## Plan: Automatizar mensaje al responder el formulario de contacto
+## Objetivo
+Que el visitante vea el vídeo desde el inicio (sin fricción) y solo tenga que dejar sus datos para acceder a los **planes y precios** + secciones de conversión. Reutilizamos componentes de diseño de `FuncionalBodybuilding.tsx` para elevar la calidad visual.
 
-El formulario actual (`/contacto/`) es un iframe externo de **Go High Level**. Las respuestas se guardan en GHL, no en la base de datos de Lovable. Hay dos formas de automatizar el envío de un mensaje:
+## Cambios principales
 
----
+### 1. Vídeo abierto desde el inicio
+- Embeber el vídeo del canal de Nico (`fzk_o2qyXDY`) usando el mismo patrón que ya tenemos en `src/components/VideoEmbed.tsx` (iframe `youtube.com/embed/`, lazy load, aspect 16:9, sombra elegante).
+- Se renderiza inmediatamente debajo del Hero, **sin gate**.
 
-### Opción A — Automatización nativa en Go High Level (recomendada, sin código)
+### 2. Gate solo en planes y conversión
+- El formulario GHL (`JYFtKJd7tgX86dXtbRhS`) se mueve a una sección intermedia con título tipo *"Ver planes y reservar plaza"*.
+- Tras enviar el formulario (vía `postMessage` `form-submit-success` ya implementado + `sessionStorage` para persistir), se desbloquean:
+  - Cards de los 3 planes (197 / 397 / 797) con CTA WhatsApp
+  - Testimonios (placeholder)
+  - Garantía
+  - FAQ
+  - CTA final
+- Antes del gate seguirán visibles: Hero, Vídeo, "¿Para quién es / no es?" y "Conoce a tus coaches".
 
-Es lo más rápido y no requiere tocar el código del proyecto.
+### 3. Mejoras visuales (reutilizando FBB)
+- **Hero oscuro** estilo `FuncionalBodybuilding` (`bg-secondary`, grid overlay, badge naranja) adaptado a teletrabajadores.
+- **Bloque de coaches** con foto grande tipo card (Carlos Plaza + Nicolás Reyero), reemplazando los avatares circulares actuales.
+- Mantener tipografía y tokens del sistema de diseño.
 
-**Pasos a hacer en tu cuenta de GHL:**
-1. Entra en **Automations → Workflows → Create Workflow**.
-2. Trigger: **Form Submitted** → selecciona "Formulario lead español" (`JYFtKJd7tgX86dXtbRhS`).
-3. Añade una acción:
-   - **Send Email**: respuesta automática al lead.
-   - **Send SMS / WhatsApp**: si tienes esos canales conectados en GHL.
-   - **Internal Notification**: aviso a tu email/teléfono cada vez que llega un lead.
-4. Personaliza el mensaje usando campos del formulario (`{{contact.first_name}}`, etc.).
-5. Publica el workflow.
+### 4. Estructura final de la página
+1. Hero oscuro (headline para teletrabajadores)
+2. **Vídeo `fzk_o2qyXDY`** (visible para todos)
+3. ¿Para quién es / para quién no es?
+4. Conoce a tus coaches (Carlos + Nico, formato FBB)
+5. **🔒 Gate — Formulario GHL** ("Accede a los planes")
+6. ⬇️ *Solo tras enviar formulario:*
+   - 3 planes con CTAs WhatsApp
+   - Testimonios
+   - Garantía
+   - FAQ específica de teletrabajadores
+   - CTA final
 
-**Ventajas:** cero código, GHL ya tiene los datos, soporta email + SMS + WhatsApp.
-**Limitación:** depende 100% de GHL.
+## Archivos afectados
+- `src/pages/Coaching.tsx` — refactor (mover vídeo fuera del gate, reorganizar secciones, aplicar estilo FBB).
+- No se tocan `App.tsx`, integraciones Supabase ni otros componentes.
 
----
+## Lo que NO cambia
+- SEO `noindex, nofollow` (página de campaña).
+- Mecánica del gate (`postMessage` + `sessionStorage`).
+- Patrón WhatsApp CTA verde `#25D366`.
+- Estructura de planes y precios.
 
-### Opción B — Webhook desde GHL hacia Lovable (si quieres lógica propia)
-
-Si quieres que Lovable reciba cada lead y haga algo personalizado (ej. enviar un email con Resend, guardar en la base de datos, notificar por Telegram, etc.):
-
-**Lo que se construiría en el proyecto:**
-1. **Edge function nueva** `ghl-webhook` que:
-   - Recibe el POST de GHL con los datos del lead.
-   - Valida un secreto compartido (`GHL_WEBHOOK_SECRET`) para evitar abuso.
-   - Envía el mensaje automático según el canal elegido (email, WhatsApp, etc.).
-2. **Configuración en GHL:** en el mismo workflow del paso A, añadir acción **Webhook** apuntando a la URL de la edge function.
-
-**Decisiones que necesito de ti:**
-- **Canal del mensaje automático**: email (Resend / Lovable Emails), WhatsApp (Twilio), Telegram, otro.
-- **Destinatario**: ¿el mensaje va al lead que rellena el formulario, o a ti como aviso interno?
-- **Contenido**: texto fijo o personalizado con los campos del formulario.
-
----
-
-### Mi recomendación
-
-Para un mensaje automático simple (confirmación al lead o aviso a ti), **Opción A** es muy superior: 5 minutos de configuración en GHL, sin mantenimiento, sin coste extra.
-
-Solo iría a Opción B si necesitas lógica que GHL no cubre (ej. cruzar el lead con datos de Supabase, integrarlo en el panel `/admin/leads/`, o usar un canal que no tienes en GHL).
-
+## Pendiente para una segunda iteración (no en este plan)
+- Teaser público corto + gate del vídeo completo (cuando lo grabéis).
+- Testimonios reales y bios definitivas de los coaches.
+- Confirmación del número de WhatsApp final.
