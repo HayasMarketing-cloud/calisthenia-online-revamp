@@ -9,7 +9,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ArrowRight, Check, Lock, Sparkles, Star, Users, X } from "lucide-react";
+import { ArrowRight, Check, MessageCircle, PhoneCall, Sparkles, Star, Target, Users, X } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import nicolasPhoto from "@/assets/nicolas-reyero.jpg";
@@ -26,11 +26,10 @@ const YOUTUBE_VIDEO_ID = "fzk_o2qyXDY";
 // TODO: confirmar número de WhatsApp para esta campaña
 const WHATSAPP_PHONE = "34645079692";
 
-const buildWhatsAppUrl = (planName: string, price: string) => {
-  const text = encodeURIComponent(
-    `Hola Carlos y Nico, acabo de ver el vídeo de la formación y me interesa el plan ${planName} (${price}). ¿Podemos hablar?`
-  );
-  return `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${text}`;
+const buildWhatsAppUrl = (
+  message = "Hola Carlos y Nico, he visto el vídeo de la formación y me gustaría reservar una llamada para ver si encajo con vuestro coaching."
+) => {
+  return `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(message)}`;
 };
 
 // Icono WhatsApp (verde #25D366 en hover, según design system del proyecto)
@@ -43,56 +42,31 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 // Persistencia en sessionStorage para no volver a pedir el formulario en la misma sesión
 const UNLOCK_KEY = "coaching_pricing_unlocked";
 
-const plans = [
+const howItWorks = [
   {
-    name: "Grupal",
-    price: "197€",
-    cadence: "/ mes",
-    description:
-      "Entrena con la comunidad, plan estructurado y seguimiento semanal en grupo.",
-    features: [
-      "Programa mensual de calistenia + movilidad",
-      "Sesiones grupales en directo (Zoom)",
-      "Comunidad privada de WhatsApp",
-      "Revisión de técnica por vídeo",
-      "Plan nutricional general",
-    ],
-    cta: "Quiero el plan Grupal",
-    highlight: false,
+    icon: PhoneCall,
+    title: "1. Reservas tu llamada gratuita",
+    text: "20 minutos por WhatsApp o videollamada. Nos cuentas tu situación, tu nivel y tus objetivos.",
   },
   {
-    name: "Personalizado",
-    price: "397€",
-    cadence: "/ mes",
-    description:
-      "Plan 100% adaptado a ti, con seguimiento individual de Carlos y Nico.",
-    features: [
-      "Programa diseñado a medida (fuerza + movilidad)",
-      "Plan nutricional personalizado",
-      "Revisión semanal 1 a 1",
-      "Soporte directo por WhatsApp con tus coaches",
-      "Ajustes mensuales según progreso",
-    ],
-    cta: "Quiero el plan Personalizado",
-    highlight: true,
-    badge: "Más popular",
+    icon: Target,
+    title: "2. Diagnóstico + plan a medida",
+    text: "Carlos y Nico analizan tu caso y te proponen el formato de coaching que mejor encaja contigo.",
   },
   {
-    name: "VIP",
-    price: "797€",
-    cadence: "/ mes",
-    description:
-      "Acompañamiento premium con sesiones 1 a 1 en directo y prioridad total.",
-    features: [
-      "Todo lo del plan Personalizado",
-      "Sesiones 1 a 1 en directo cada semana",
-      "Acceso prioritario por WhatsApp (respuesta en horas)",
-      "Análisis biomecánico y de movilidad detallado",
-      "Acompañamiento nutricional avanzado",
-    ],
-    cta: "Quiero el plan VIP",
-    highlight: false,
+    icon: Sparkles,
+    title: "3. Empiezas a entrenar con seguimiento real",
+    text: "Programa personalizado, revisiones de técnica y soporte directo para que avances sin lesionarte.",
   },
+];
+
+const includedFeatures = [
+  "Programa 100% adaptado a tu nivel y agenda",
+  "Revisiones de técnica por vídeo",
+  "WhatsApp directo con tus coaches",
+  "Plan nutricional práctico",
+  "Comunidad privada de alumnos",
+  "Ajustes mensuales según tu progreso",
 ];
 
 const faqs = [
@@ -109,12 +83,12 @@ const faqs = [
     a: "No es imprescindible. La mayoría de los planes funcionan en casa o en un parque con barra. Si tienes material, lo aprovechamos.",
   },
   {
-    q: "¿Qué diferencia hay entre los 3 planes?",
-    a: "El Grupal es el más asequible y trabajas con la comunidad. El Personalizado incluye seguimiento individual semanal. El VIP añade sesiones 1 a 1 en directo y prioridad máxima.",
+    q: "¿Cuánto cuesta el coaching?",
+    a: "Tenemos varios formatos según tu objetivo, disponibilidad y nivel: desde acompañamiento grupal hasta coaching premium 1 a 1. Lo vemos juntos en la llamada gratuita para recomendarte el que de verdad encaja contigo, sin que pagues por algo que no necesitas.",
   },
   {
     q: "¿Cómo se hace el pago?",
-    a: "Por fuera de la web. Tras hablar contigo por WhatsApp y confirmar el plan que mejor encaja, te enviamos el método de pago que te resulte más cómodo.",
+    a: "Por fuera de la web. Tras la llamada y confirmar el formato que mejor encaja, te enviamos el método de pago que te resulte más cómodo.",
   },
   {
     q: "¿Qué pasa si una semana no puedo entrenar?",
@@ -125,7 +99,8 @@ const faqs = [
 const Coaching = () => {
   const [unlocked, setUnlocked] = useState<boolean>(false);
   const formSectionRef = useRef<HTMLDivElement>(null);
-  const plansSectionRef = useRef<HTMLDivElement>(null);
+  const ctaFinalRef = useRef<HTMLDivElement>(null);
+  const unlockSentinelRef = useRef<HTMLDivElement>(null);
 
   // Restaurar estado si ya envió el formulario en esta sesión
   useEffect(() => {
@@ -134,7 +109,34 @@ const Coaching = () => {
     }
   }, []);
 
-  // Escuchar el evento postMessage del iframe de GHL al enviarse el formulario
+  const unlockPlans = () => {
+    sessionStorage.setItem(UNLOCK_KEY, "1");
+    setUnlocked((prev) => prev || true);
+  };
+
+  // Desbloqueo automático por scroll: cuando el usuario pasa por debajo del vídeo
+  useEffect(() => {
+    if (unlocked) return;
+    const target = unlockSentinelRef.current;
+    if (!target || typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            unlockPlans();
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -10% 0px" }
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [unlocked]);
+
+  // Listener postMessage del form GHL como vía alternativa de desbloqueo
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       if (
@@ -166,12 +168,8 @@ const Coaching = () => {
     return () => window.removeEventListener("message", handleMessage);
   }, []);
 
-  const unlockPlans = () => {
-    sessionStorage.setItem(UNLOCK_KEY, "1");
-    setUnlocked(true);
-    setTimeout(() => {
-      plansSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 200);
+  const scrollToCta = () => {
+    ctaFinalRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const scrollToForm = () => {
@@ -239,8 +237,8 @@ const Coaching = () => {
               </div>
 
               <div className="pt-4">
-                <Button size="lg" onClick={scrollToForm} className="text-base px-8 rounded-full">
-                  Ver los planes de coaching
+                <Button size="lg" onClick={scrollToCta} className="text-base px-8 rounded-full">
+                  Reservar llamada con Carlos y Nico
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </div>
@@ -273,9 +271,9 @@ const Coaching = () => {
               />
             </div>
           </div>
+          {/* Sentinela: cuando entra en viewport, desbloquea automáticamente */}
+          <div ref={unlockSentinelRef} aria-hidden className="h-px w-full" />
         </section>
-
-        {/* PARA QUIÉN ES */}
         <section className="py-16 md:py-20 px-4 bg-muted">
           <div className="container mx-auto max-w-5xl">
             <h2 className="text-2xl md:text-4xl font-bold text-center mb-12">
@@ -384,158 +382,73 @@ const Coaching = () => {
           </div>
         </section>
 
-        {/* GATE: Formulario para acceder a planes */}
-        <section
-          ref={formSectionRef}
-          className="py-16 md:py-20 px-4 bg-gradient-to-br from-secondary via-secondary to-primary/20"
-        >
-          <div className="container mx-auto max-w-2xl">
-            {!unlocked ? (
-              <Card className="border-2 border-primary/20 shadow-2xl overflow-hidden">
-                <CardContent className="p-0">
-                  <div className="bg-primary text-white text-center py-4 px-4">
-                    <p className="font-semibold flex items-center justify-center gap-2 text-base md:text-lg">
-                      <Lock className="w-5 h-5" />
-                      Déjanos tus datos para ver los planes y precios
-                    </p>
-                    <p className="text-sm text-white/85 mt-1">
-                      Sin compromiso. Te contactamos por WhatsApp solo si tú quieres.
-                    </p>
-                  </div>
-                  <div className="bg-white" style={{ minHeight: "520px" }}>
-                    <iframe
-                      src={GHL_FORM_URL}
-                      style={{
-                        width: "100%",
-                        height: "520px",
-                        border: "none",
-                        borderRadius: "0 0 6px 6px",
-                      }}
-                      id={`inline-${GHL_FORM_ID}`}
-                      data-layout="{'id':'INLINE'}"
-                      data-trigger-type="alwaysShow"
-                      data-trigger-value=""
-                      data-activation-type="alwaysActivated"
-                      data-activation-value=""
-                      data-deactivation-type="neverDeactivate"
-                      data-deactivation-value=""
-                      data-form-name="Formulario coaching"
-                      data-height="500"
-                      data-layout-iframe-id={`inline-${GHL_FORM_ID}`}
-                      data-form-id={GHL_FORM_ID}
-                      title="Formulario para acceder a los planes de coaching"
-                    />
-                  </div>
-                  <div className="bg-muted/50 px-4 py-3 text-center">
-                    <button
-                      type="button"
-                      onClick={unlockPlans}
-                      className="text-xs text-muted-foreground hover:text-primary transition-colors underline"
-                    >
-                      Ya he enviado el formulario, mostrar los planes
-                    </button>
-                  </div>
-                </CardContent>
-              </Card>
-            ) : (
-              <div className="text-center text-white space-y-3">
-                <Badge className="bg-primary text-white hover:bg-primary px-4 py-2">
-                  ✓ Acceso desbloqueado
-                </Badge>
-                <h2 className="text-2xl md:text-3xl font-bold">
-                  Estos son los 3 planes de coaching
-                </h2>
-                <p className="text-white/80">
-                  Elige el que mejor encaja contigo o pregúntanos por WhatsApp.
-                </p>
-              </div>
-            )}
-          </div>
-        </section>
-
-        {/* Ancla para scroll tras desbloquear */}
-        <div ref={plansSectionRef} />
-
-        {/* CONTENIDO BLOQUEADO: planes + resto de secciones */}
+        {/* CONTENIDO DESBLOQUEADO (auto por scroll bajo el vídeo) */}
         {unlocked && (
           <>
-            {/* PLANES */}
+            {/* CÓMO TRABAJAMOS CONTIGO */}
             <section className="py-16 md:py-24 px-4 bg-background">
-              <div className="container mx-auto max-w-6xl">
+              <div className="container mx-auto max-w-5xl">
                 <div className="text-center mb-12">
                   <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
-                    Elige tu plan
+                    Cómo trabajamos contigo
                   </Badge>
                   <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-                    Tres formas de entrenar con nosotros
+                    Tres pasos para empezar a entrenar con nosotros
                   </h2>
                   <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                    Cada plan está pensado para un nivel de acompañamiento distinto.
-                    Hablamos contigo por WhatsApp para ayudarte a elegir el que mejor encaja.
+                    Sin formularios largos ni compromisos. Una conversación honesta para
+                    ver si encajamos.
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {plans.map((plan) => (
-                    <Card
-                      key={plan.name}
-                      className={`relative flex flex-col border-2 transition-all ${
-                        plan.highlight
-                          ? "border-primary shadow-2xl md:scale-105 bg-gradient-to-b from-primary/5 to-background"
-                          : "border-border hover:border-primary/40"
-                      }`}
-                    >
-                      {plan.badge && (
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                          <Badge className="bg-primary text-white hover:bg-primary px-3 py-1">
-                            ⭐ {plan.badge}
-                          </Badge>
-                        </div>
-                      )}
-                      <CardContent className="p-6 flex flex-col flex-1 space-y-5 pt-8">
-                        <div>
-                          <h3 className="text-2xl font-bold text-foreground">{plan.name}</h3>
-                          <p className="text-sm text-muted-foreground mt-1 min-h-[3rem]">
-                            {plan.description}
+                  {howItWorks.map((step) => {
+                    const Icon = step.icon;
+                    return (
+                      <Card
+                        key={step.title}
+                        className="border-2 border-border hover:border-primary/40 transition-all"
+                      >
+                        <CardContent className="p-6 space-y-4">
+                          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                            <Icon className="w-6 h-6 text-primary" />
+                          </div>
+                          <h3 className="text-xl font-bold text-foreground">
+                            {step.title}
+                          </h3>
+                          <p className="text-muted-foreground leading-relaxed">
+                            {step.text}
                           </p>
-                        </div>
-                        <div className="flex items-baseline gap-1">
-                          <span className="text-4xl font-bold text-foreground">
-                            {plan.price}
-                          </span>
-                          <span className="text-muted-foreground">{plan.cadence}</span>
-                        </div>
-                        <ul className="space-y-2.5 flex-1">
-                          {plan.features.map((f) => (
-                            <li key={f} className="flex items-start gap-2.5 text-sm">
-                              <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                              <span className="text-foreground">{f}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        <Button
-                          asChild
-                          size="lg"
-                          variant={plan.highlight ? "default" : "outline"}
-                          className="w-full group"
-                        >
-                          <a
-                            href={buildWhatsAppUrl(plan.name, plan.price)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <WhatsAppIcon className="mr-2 w-5 h-5 transition-colors group-hover:text-[#25D366]" />
-                            {plan.cta}
-                          </a>
-                        </Button>
-                      </CardContent>
-                    </Card>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+                </div>
+              </div>
+            </section>
+
+            {/* QUÉ INCLUYE */}
+            <section className="py-16 md:py-20 px-4 bg-muted/40">
+              <div className="container mx-auto max-w-4xl">
+                <div className="text-center mb-10">
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
+                    Qué incluye trabajar con nosotros
+                  </h2>
+                  <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                    Coaching real, no una app más. Carlos y Nico contigo en cada paso.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {includedFeatures.map((f) => (
+                    <div
+                      key={f}
+                      className="flex items-start gap-3 bg-background rounded-xl p-5 border-2 border-border"
+                    >
+                      <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <span className="text-foreground font-medium">{f}</span>
+                    </div>
                   ))}
                 </div>
-
-                <p className="text-center text-sm text-muted-foreground mt-8">
-                  💳 Los pagos se gestionan por fuera de la web. Te explicamos todo por WhatsApp sin compromiso.
-                </p>
               </div>
             </section>
 
@@ -592,25 +505,6 @@ const Coaching = () => {
                     </Card>
                   ))}
                 </div>
-                <div className="text-center mt-10">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="bg-secondary text-white hover:bg-secondary/90"
-                  >
-                    <a
-                      href={`https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(
-                        "Hola Carlos y Nico, quiero reservar una sesión de evaluación."
-                      )}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group"
-                    >
-                      <WhatsAppIcon className="mr-2 w-5 h-5 transition-colors group-hover:text-[#25D366]" />
-                      Reserva una sesión de evaluación
-                    </a>
-                  </Button>
-                </div>
               </div>
             </section>
 
@@ -661,30 +555,98 @@ const Coaching = () => {
               </div>
             </section>
 
-            {/* CTA FINAL */}
-            <section className="py-16 md:py-20 px-4 bg-gradient-to-br from-secondary to-primary/30">
+            {/* CTA FINAL — único punto de conversión: WhatsApp */}
+            <section
+              ref={ctaFinalRef}
+              className="py-20 md:py-28 px-4 bg-gradient-to-br from-secondary via-secondary to-primary/30"
+            >
               <div className="container mx-auto max-w-3xl text-center text-white space-y-6">
-                <h2 className="text-3xl md:text-4xl font-bold">
-                  ¿Listo/a para dar el siguiente paso?
+                <Badge className="bg-primary text-white hover:bg-primary px-4 py-2">
+                  Llamada gratuita · Sin compromiso
+                </Badge>
+                <h2 className="text-3xl md:text-5xl font-bold">
+                  Reserva tu llamada con Carlos y Nico
                 </h2>
-                <p className="text-lg text-gray-200">
-                  Ya conoces el método y los planes. Hablemos por WhatsApp y te
-                  ayudamos a elegir el que mejor encaja con tu vida.
+                <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
+                  20 minutos por WhatsApp para conocer tu caso y ver si encajamos. Si
+                  sí, te proponemos el formato de coaching que mejor te va. Si no,
+                  te orientamos igualmente.
                 </p>
-                <div className="flex justify-center pt-2">
-                  <Button asChild size="lg" className="group">
+                <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="group bg-[#25D366] hover:bg-[#1ebe5d] text-white text-base px-8 h-14 rounded-full shadow-2xl"
+                  >
                     <a
-                      href={`https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(
-                        "Hola Carlos y Nico, quiero más información sobre los planes de coaching."
-                      )}`}
+                      href={buildWhatsAppUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <WhatsAppIcon className="mr-2 w-5 h-5 transition-colors group-hover:text-[#25D366]" />
-                      Hablar por WhatsApp
+                      <WhatsAppIcon className="mr-2 w-6 h-6" />
+                      Reservar llamada por WhatsApp
                     </a>
                   </Button>
+                  <button
+                    type="button"
+                    onClick={scrollToForm}
+                    className="text-sm text-white/80 hover:text-white underline transition-colors"
+                  >
+                    ¿Prefieres que te llamemos? Déjanos tus datos
+                  </button>
                 </div>
+                <p className="text-sm text-white/70 pt-2">
+                  Respondemos en menos de 24h en horario laboral.
+                </p>
+              </div>
+            </section>
+
+            {/* FORMULARIO OPCIONAL (alternativa a WhatsApp) */}
+            <section
+              ref={formSectionRef}
+              className="py-16 md:py-20 px-4 bg-muted/40"
+            >
+              <div className="container mx-auto max-w-2xl">
+                <div className="text-center mb-6">
+                  <Badge className="mb-3 bg-primary/10 text-primary hover:bg-primary/20">
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    Alternativa al WhatsApp
+                  </Badge>
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                    ¿Prefieres que te contactemos nosotros?
+                  </h2>
+                  <p className="text-muted-foreground mt-2">
+                    Déjanos tus datos y te escribimos para reservar la llamada.
+                  </p>
+                </div>
+                <Card className="border-2 border-primary/20 shadow-xl overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="bg-white" style={{ minHeight: "520px" }}>
+                      <iframe
+                        src={GHL_FORM_URL}
+                        style={{
+                          width: "100%",
+                          height: "520px",
+                          border: "none",
+                          borderRadius: "6px",
+                        }}
+                        id={`inline-${GHL_FORM_ID}`}
+                        data-layout="{'id':'INLINE'}"
+                        data-trigger-type="alwaysShow"
+                        data-trigger-value=""
+                        data-activation-type="alwaysActivated"
+                        data-activation-value=""
+                        data-deactivation-type="neverDeactivate"
+                        data-deactivation-value=""
+                        data-form-name="Formulario coaching"
+                        data-height="500"
+                        data-layout-iframe-id={`inline-${GHL_FORM_ID}`}
+                        data-form-id={GHL_FORM_ID}
+                        title="Formulario para reservar una llamada de coaching"
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </section>
           </>
