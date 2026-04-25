@@ -9,17 +9,19 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Check, Lock, Play, Sparkles, Star, Users } from "lucide-react";
+import { ArrowRight, Check, Lock, Sparkles, Star, Users, X } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import nicolasPhoto from "@/assets/nicolas-reyero.jpg";
+import carlosPhoto from "@/assets/carlos-plaza.jpg";
 
 // === CONFIGURACIÓN (afinable después) ===
 const GHL_FORM_URL =
   "https://link.calisthenia.online/widget/form/JYFtKJd7tgX86dXtbRhS";
 const GHL_FORM_ID = "JYFtKJd7tgX86dXtbRhS";
 
-// TODO: sustituir por el ID real del vídeo de YouTube no listado
-const YOUTUBE_VIDEO_ID = "dQw4w9WgXcQ";
+// Vídeo del canal de Nico para esta campaña
+const YOUTUBE_VIDEO_ID = "fzk_o2qyXDY";
 
 // TODO: confirmar número de WhatsApp para esta campaña
 const WHATSAPP_PHONE = "34645079692";
@@ -39,7 +41,7 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 // Persistencia en sessionStorage para no volver a pedir el formulario en la misma sesión
-const UNLOCK_KEY = "coaching_video_unlocked";
+const UNLOCK_KEY = "coaching_pricing_unlocked";
 
 const plans = [
   {
@@ -95,12 +97,12 @@ const plans = [
 
 const faqs = [
   {
-    q: "¿Qué nivel necesito para empezar?",
-    a: "Ninguno previo. Adaptamos el plan a tu nivel actual, ya sea que estés empezando o que ya entrenes con regularidad.",
+    q: "¿Funciona si trabajo sentado todo el día?",
+    a: "Sí, está pensado precisamente para eso. Combinamos fuerza, movilidad y trabajo postural para revertir lo que el teletrabajo le hace a tu cuerpo: rigidez, dolor de espalda y pérdida de masa muscular.",
   },
   {
     q: "¿Cuánto tiempo a la semana necesito?",
-    a: "Con 3 a 4 sesiones de 45-60 minutos a la semana es suficiente para ver progresos sólidos.",
+    a: "Con 3 a 4 sesiones de 45-60 minutos a la semana es suficiente para ver progresos sólidos. Diseñamos el plan para que encaje en tu agenda real, no en una ideal.",
   },
   {
     q: "¿Necesito material o gimnasio?",
@@ -123,7 +125,7 @@ const faqs = [
 const Coaching = () => {
   const [unlocked, setUnlocked] = useState<boolean>(false);
   const formSectionRef = useRef<HTMLDivElement>(null);
-  const videoSectionRef = useRef<HTMLDivElement>(null);
+  const plansSectionRef = useRef<HTMLDivElement>(null);
 
   // Restaurar estado si ya envió el formulario en esta sesión
   useEffect(() => {
@@ -135,7 +137,6 @@ const Coaching = () => {
   // Escuchar el evento postMessage del iframe de GHL al enviarse el formulario
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
-      // GHL emite mensajes desde su dominio
       if (
         typeof event.origin === "string" &&
         !event.origin.includes("leadconnectorhq") &&
@@ -151,14 +152,13 @@ const Coaching = () => {
       const dataStr = typeof data === "string" ? data : JSON.stringify(data);
       const lower = dataStr.toLowerCase();
 
-      // GHL suele enviar eventos como "form-submit-success" o type "FORM_SUBMITTED"
       if (
         lower.includes("form-submit") ||
         lower.includes("form_submit") ||
         lower.includes("submitted") ||
         lower.includes("success")
       ) {
-        unlockVideo();
+        unlockPlans();
       }
     };
 
@@ -166,12 +166,11 @@ const Coaching = () => {
     return () => window.removeEventListener("message", handleMessage);
   }, []);
 
-  const unlockVideo = () => {
+  const unlockPlans = () => {
     sessionStorage.setItem(UNLOCK_KEY, "1");
     setUnlocked(true);
-    // Hacer scroll al vídeo tras un pequeño delay
     setTimeout(() => {
-      videoSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      plansSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 200);
   };
 
@@ -182,10 +181,10 @@ const Coaching = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Helmet>
-        <title>Coaching de calistenia con Carlos y Nico | Formación gratuita</title>
+        <title>Coaching de calistenia para teletrabajadores | Carlos & Nico</title>
         <meta
           name="description"
-          content="Accede gratis a la formación de Carlos y Nico sobre calistenia, fuerza y movilidad. Descubre los planes de coaching para transformar tu cuerpo."
+          content="Coaching online de calistenia, fuerza y movilidad pensado para teletrabajadores. Mira el vídeo gratis y descubre los planes con Carlos y Nico."
         />
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
@@ -193,372 +192,428 @@ const Coaching = () => {
       <Header />
 
       <main className="flex-1">
-        {/* HERO + GATE */}
-        <section
-          ref={formSectionRef}
-          className="relative py-16 md:py-24 px-4 bg-gradient-to-br from-secondary via-secondary to-primary/20"
-        >
-          <div className="container mx-auto max-w-6xl">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-              {/* Lado izquierdo: copy */}
-              <div className="text-white space-y-6">
-                <Badge className="bg-primary/20 text-primary border-primary/30 hover:bg-primary/30">
-                  <Sparkles className="w-3.5 h-3.5 mr-1.5" />
-                  Formación gratuita
-                </Badge>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                  Transforma tu cuerpo con{" "}
-                  <span className="text-primary">calistenia real</span>
-                </h1>
-                <p className="text-lg md:text-xl text-gray-200 leading-relaxed">
-                  Carlos y Nico te enseñan, en un vídeo gratuito, el método con el
-                  que sus alumnos consiguen fuerza, movilidad y resultados sostenibles
-                  sin pasarse el día en el gimnasio.
-                </p>
+        {/* HERO oscuro estilo FBB */}
+        <section className="relative bg-gradient-to-br from-secondary via-secondary to-secondary/95 text-white py-16 md:py-24 overflow-hidden">
+          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5" />
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-4xl mx-auto text-center space-y-6">
+              <Badge className="bg-primary/20 text-primary border-primary/30 hover:bg-primary/30 px-4 py-2 text-sm md:text-base">
+                <Sparkles className="w-4 h-4 mr-2" />
+                Formación gratuita en vídeo
+              </Badge>
 
-                <ul className="space-y-3 pt-2">
-                  {[
-                    "El error nº1 que frena tu progreso en calistenia",
-                    "Cómo combinar fuerza y movilidad sin lesionarte",
-                    "El sistema que usamos con nuestros alumnos de coaching",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-gray-100">
-                      <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                Recupera tu cuerpo del{" "}
+                <span className="text-primary">teletrabajo</span> con
+                calistenia real
+              </h1>
 
-                <div className="flex items-center gap-4 pt-2 text-sm text-gray-300">
-                  <div className="flex items-center gap-1.5">
-                    <Users className="w-4 h-4 text-primary" />
-                    <span>+500 alumnos</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <Star className="w-4 h-4 text-primary fill-primary" />
-                    <span>Valoración 4.9/5</span>
-                  </div>
+              <p className="text-lg md:text-xl text-white/90 font-medium max-w-2xl mx-auto">
+                Carlos y Nico te enseñan, en un vídeo gratuito, el método que usan con
+                sus alumnos para ganar fuerza, movilidad y postura sin pasarse el día
+                entrenando.
+              </p>
+
+              <ul className="space-y-3 text-left max-w-xl mx-auto pt-2">
+                {[
+                  "El error nº1 que frena tu progreso si entrenas en casa",
+                  "Cómo combinar fuerza y movilidad sin lesionarte",
+                  "El sistema que usamos con nuestros alumnos de coaching",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-white/90">
+                    <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex items-center justify-center gap-6 pt-4 text-sm text-white/70">
+                <div className="flex items-center gap-1.5">
+                  <Users className="w-4 h-4 text-primary" />
+                  <span>+500 alumnos</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Star className="w-4 h-4 text-primary fill-primary" />
+                  <span>Valoración 4.9/5</span>
                 </div>
               </div>
 
-              {/* Lado derecho: formulario o vídeo desbloqueado */}
-              <div>
-                {!unlocked ? (
-                  <Card className="border-2 border-primary/20 shadow-2xl overflow-hidden">
-                    <CardContent className="p-0">
-                      <div className="bg-primary text-white text-center py-3 px-4">
-                        <p className="font-semibold flex items-center justify-center gap-2">
-                          <Lock className="w-4 h-4" />
-                          Déjanos tus datos para ver el vídeo gratis
-                        </p>
-                      </div>
-                      <div className="bg-white" style={{ minHeight: "520px" }}>
-                        <iframe
-                          src={GHL_FORM_URL}
-                          style={{
-                            width: "100%",
-                            height: "520px",
-                            border: "none",
-                            borderRadius: "0 0 6px 6px",
-                          }}
-                          id={`inline-${GHL_FORM_ID}`}
-                          data-layout="{'id':'INLINE'}"
-                          data-trigger-type="alwaysShow"
-                          data-trigger-value=""
-                          data-activation-type="alwaysActivated"
-                          data-activation-value=""
-                          data-deactivation-type="neverDeactivate"
-                          data-deactivation-value=""
-                          data-form-name="Formulario coaching"
-                          data-height="500"
-                          data-layout-iframe-id={`inline-${GHL_FORM_ID}`}
-                          data-form-id={GHL_FORM_ID}
-                          title="Formulario para acceder al vídeo gratuito"
-                        />
-                      </div>
-                      <div className="bg-muted/50 px-4 py-3 text-center">
-                        <button
-                          type="button"
-                          onClick={unlockVideo}
-                          className="text-xs text-muted-foreground hover:text-primary transition-colors underline"
-                        >
-                          Ya he enviado el formulario, mostrar el vídeo
-                        </button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ) : (
-                  <Card className="border-2 border-primary/30 shadow-2xl overflow-hidden">
-                    <CardContent className="p-0">
-                      <div className="bg-primary text-white text-center py-3 px-4">
-                        <p className="font-semibold flex items-center justify-center gap-2">
-                          <Play className="w-4 h-4 fill-white" />
-                          ¡Vídeo desbloqueado! Disfruta la formación
-                        </p>
-                      </div>
-                      <div className="aspect-video bg-black">
-                        <iframe
-                          src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?rel=0&modestbranding=1&autoplay=1`}
-                          title="Formación gratuita de calistenia con Carlos y Nico"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                          className="w-full h-full border-0"
-                        />
-                      </div>
-                    </CardContent>
-                  </Card>
-                )}
+              <div className="pt-4">
+                <Button size="lg" onClick={scrollToForm} className="text-base px-8 rounded-full">
+                  Ver los planes de coaching
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Ancla para scroll al desbloquear */}
-        <div ref={videoSectionRef} />
+        {/* VÍDEO ABIERTO */}
+        <section className="py-12 md:py-16 px-4 bg-background">
+          <div className="container mx-auto max-w-4xl">
+            <div className="text-center mb-6">
+              <Badge className="mb-3 bg-primary/10 text-primary hover:bg-primary/20">
+                Vídeo gratuito
+              </Badge>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                Mira la formación completa
+              </h2>
+              <p className="text-muted-foreground mt-2">
+                Tómate los próximos minutos para verlo. Después podrás acceder a los planes.
+              </p>
+            </div>
+            <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+              <iframe
+                className="absolute top-0 left-0 w-full h-full rounded-xl shadow-elegant border-0 bg-black"
+                src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?rel=0&modestbranding=1`}
+                title="Formación gratuita de calistenia con Carlos y Nico"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </section>
 
         {/* PARA QUIÉN ES */}
-        <section className="py-16 md:py-20 px-4 bg-background">
+        <section className="py-16 md:py-20 px-4 bg-muted">
           <div className="container mx-auto max-w-5xl">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-                ¿Es esta formación para ti?
-              </h2>
-              <p className="text-muted-foreground text-lg">
-                Lee con sinceridad antes de decidir.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card className="border-2 border-primary/20">
-                <CardContent className="p-6 space-y-3">
-                  <h3 className="text-xl font-bold text-primary">Sí, si...</h3>
-                  <ul className="space-y-2.5 text-foreground">
-                    {[
-                      "Quieres ganar fuerza real con tu propio peso",
-                      "Buscas un método sostenible, no una dieta milagro",
-                      "Estás dispuesto/a a entrenar 3-4 días por semana",
-                      "Valoras tener un coach que te guíe paso a paso",
-                    ].map((i) => (
-                      <li key={i} className="flex items-start gap-2.5">
-                        <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                        <span>{i}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-              <Card className="border-2 border-muted">
-                <CardContent className="p-6 space-y-3">
-                  <h3 className="text-xl font-bold text-muted-foreground">No, si...</h3>
-                  <ul className="space-y-2.5 text-foreground">
-                    {[
-                      "Buscas resultados sin esfuerzo en 7 días",
-                      "No tienes intención de seguir un plan",
-                      "Esperas que entrenemos por ti",
-                      "Solo quieres rutinas sueltas sin contexto",
-                    ].map((i) => (
-                      <li key={i} className="flex items-start gap-2.5">
-                        <span className="w-5 h-5 shrink-0 mt-0.5 text-muted-foreground">×</span>
-                        <span>{i}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* COACHES */}
-        <section className="py-16 md:py-20 px-4 bg-muted/30">
-          <div className="container mx-auto max-w-5xl">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-                Conoce a tus coaches
-              </h2>
-              <p className="text-muted-foreground text-lg">
-                Dos enfoques complementarios. Un solo objetivo: tu progreso.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                {
-                  name: "Carlos",
-                  role: "Coach de fuerza y calistenia",
-                  bio: "Especialista en progresiones de fuerza con peso corporal. Ha guiado a cientos de alumnos desde su primera flexión hasta dominar movimientos avanzados.",
-                },
-                {
-                  name: "Nico",
-                  role: "Coach de movilidad y nutrición",
-                  bio: "Combina movilidad funcional y nutrición práctica para que entrenes mejor, te recuperes más rápido y mantengas resultados a largo plazo.",
-                },
-              ].map((c) => (
-                <Card key={c.name} className="border-2">
-                  <CardContent className="p-6 space-y-3">
-                    <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center text-3xl font-bold text-primary">
-                      {c.name[0]}
-                    </div>
-                    <h3 className="text-2xl font-bold text-foreground">{c.name}</h3>
-                    <p className="text-primary font-semibold">{c.role}</p>
-                    <p className="text-muted-foreground leading-relaxed">{c.bio}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* PLANES */}
-        <section className="py-16 md:py-24 px-4 bg-background">
-          <div className="container mx-auto max-w-6xl">
-            <div className="text-center mb-12">
-              <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
-                Elige tu plan
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-                Tres formas de entrenar con nosotros
-              </h2>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Cada plan está pensado para un nivel de acompañamiento distinto.
-                Hablamos contigo por WhatsApp para ayudarte a elegir el que mejor encaja.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {plans.map((plan) => (
-                <Card
-                  key={plan.name}
-                  className={`relative flex flex-col border-2 transition-all ${
-                    plan.highlight
-                      ? "border-primary shadow-2xl md:scale-105 bg-gradient-to-b from-primary/5 to-background"
-                      : "border-border hover:border-primary/40"
-                  }`}
-                >
-                  {plan.badge && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                      <Badge className="bg-primary text-white hover:bg-primary px-3 py-1">
-                        ⭐ {plan.badge}
-                      </Badge>
-                    </div>
-                  )}
-                  <CardContent className="p-6 flex flex-col flex-1 space-y-5 pt-8">
-                    <div>
-                      <h3 className="text-2xl font-bold text-foreground">{plan.name}</h3>
-                      <p className="text-sm text-muted-foreground mt-1 min-h-[3rem]">
-                        {plan.description}
-                      </p>
-                    </div>
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-4xl font-bold text-foreground">
-                        {plan.price}
-                      </span>
-                      <span className="text-muted-foreground">{plan.cadence}</span>
-                    </div>
-                    <ul className="space-y-2.5 flex-1">
-                      {plan.features.map((f) => (
-                        <li key={f} className="flex items-start gap-2.5 text-sm">
-                          <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                          <span className="text-foreground">{f}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Button
-                      asChild
-                      size="lg"
-                      variant={plan.highlight ? "default" : "outline"}
-                      className="w-full group"
-                    >
-                      <a
-                        href={buildWhatsAppUrl(plan.name, plan.price)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <WhatsAppIcon className="mr-2 w-5 h-5 transition-colors group-hover:text-[#25D366]" />
-                        {plan.cta}
-                      </a>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            <p className="text-center text-sm text-muted-foreground mt-8">
-              💳 Los pagos se gestionan por fuera de la web. Te explicamos todo por WhatsApp sin compromiso.
-            </p>
-          </div>
-        </section>
-
-        {/* FAQ */}
-        <section className="py-16 md:py-20 px-4 bg-muted/30">
-          <div className="container mx-auto max-w-3xl">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-                Preguntas frecuentes
-              </h2>
-              <p className="text-muted-foreground text-lg">
-                Si te queda alguna duda, escríbenos por WhatsApp.
-              </p>
-            </div>
-            <Accordion type="single" collapsible className="space-y-3">
-              {faqs.map((faq, i) => (
-                <AccordionItem
-                  key={i}
-                  value={`faq-${i}`}
-                  className="bg-card border-2 rounded-lg px-5"
-                >
-                  <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline">
-                    {faq.q}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground leading-relaxed">
-                    {faq.a}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </section>
-
-        {/* CTA FINAL */}
-        <section className="py-16 md:py-20 px-4 bg-gradient-to-br from-secondary to-primary/30">
-          <div className="container mx-auto max-w-3xl text-center text-white space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold">
-              ¿Listo/a para dar el siguiente paso?
+            <h2 className="text-2xl md:text-4xl font-bold text-center mb-12">
+              ¿Es este coaching para ti?
             </h2>
-            <p className="text-lg text-gray-200">
-              {unlocked
-                ? "Ya has visto la formación. Ahora elige el plan que mejor encaje contigo y hablemos."
-                : "Empieza por ver el vídeo gratuito y, si te encaja, hablamos de los planes de coaching."}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
-              {!unlocked && (
-                <Button size="lg" onClick={scrollToForm}>
-                  Ver el vídeo gratis
-                </Button>
-              )}
-              <Button
-                asChild
-                size="lg"
-                variant={unlocked ? "default" : "outline"}
-                className={
-                  unlocked
-                    ? ""
-                    : "bg-white/10 border-white text-white hover:bg-white hover:text-secondary"
-                }
-              >
-                <a
-                  href={`https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(
-                    "Hola Carlos y Nico, quiero más información sobre los planes de coaching."
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group"
-                >
-                  <WhatsAppIcon className="mr-2 w-5 h-5 transition-colors group-hover:text-[#25D366]" />
-                  Hablar por WhatsApp
-                </a>
-              </Button>
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              <div className="bg-background rounded-2xl p-6 md:p-8 border-2 border-green-500/30 shadow-lg">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="bg-green-500/20 p-3 rounded-full">
+                    <Check className="w-6 h-6 text-green-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-green-600">Para ti SÍ...</h3>
+                </div>
+                <ul className="space-y-4">
+                  {[
+                    "Pasas muchas horas sentado/a frente al ordenador",
+                    "Quieres ganar fuerza real sin vivir en el gimnasio",
+                    "Buscas un método sostenible que se adapte a tu agenda",
+                    "Valoras tener un coach que te guíe paso a paso",
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <Check className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-foreground/80">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="bg-background rounded-2xl p-6 md:p-8 border-2 border-red-500/30 shadow-lg">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="bg-red-500/20 p-3 rounded-full">
+                    <X className="w-6 h-6 text-red-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-red-600">NO es para ti si...</h3>
+                </div>
+                <ul className="space-y-4">
+                  {[
+                    "Buscas resultados sin esfuerzo en 7 días",
+                    "No tienes intención de seguir un plan",
+                    "Esperas que entrenemos por ti",
+                    "Solo quieres rutinas sueltas sin contexto",
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <X className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-foreground/80">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </section>
+
+        {/* COACHES (formato FBB) */}
+        <section className="py-16 md:py-20 px-4 bg-background">
+          <div className="container mx-auto px-4">
+            <h2 className="text-2xl md:text-4xl font-bold text-center mb-4">
+              Tus coaches
+            </h2>
+            <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+              Dos enfoques distintos, una misma visión:{" "}
+              <span className="text-primary font-medium">
+                entrenar mejor, no solo entrenar más
+              </span>
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {/* Carlos Plaza */}
+              <div className="bg-muted rounded-2xl overflow-hidden shadow-lg">
+                <div className="h-80 md:h-96 overflow-hidden">
+                  <img
+                    src={carlosPhoto}
+                    alt="Carlos Plaza - Coach de fuerza y calistenia"
+                    className="w-full h-full object-cover object-center brightness-125"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">Carlos Plaza</h3>
+                  <p className="text-muted-foreground">
+                    Coach especializado en fuerza, hipertrofia y progresiones de
+                    calistenia. Enfocado en técnica, sostenibilidad y resultados a
+                    largo plazo.
+                  </p>
+                </div>
+              </div>
+
+              {/* Nicolás Reyero */}
+              <div className="bg-muted rounded-2xl overflow-hidden shadow-lg">
+                <div className="h-80 md:h-96 overflow-hidden">
+                  <img
+                    src={nicolasPhoto}
+                    alt="Nicolás Reyero - Coach de calistenia y movilidad"
+                    className="w-full h-full object-cover object-center"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">Nicolás Reyero</h3>
+                  <p className="text-muted-foreground">
+                    Coach de calistenia funcional y movilidad. Especialista en fuerza
+                    con peso corporal, control motor y nutrición práctica para
+                    teletrabajadores.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* GATE: Formulario para acceder a planes */}
+        <section
+          ref={formSectionRef}
+          className="py-16 md:py-20 px-4 bg-gradient-to-br from-secondary via-secondary to-primary/20"
+        >
+          <div className="container mx-auto max-w-2xl">
+            {!unlocked ? (
+              <Card className="border-2 border-primary/20 shadow-2xl overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="bg-primary text-white text-center py-4 px-4">
+                    <p className="font-semibold flex items-center justify-center gap-2 text-base md:text-lg">
+                      <Lock className="w-5 h-5" />
+                      Déjanos tus datos para ver los planes y precios
+                    </p>
+                    <p className="text-sm text-white/85 mt-1">
+                      Sin compromiso. Te contactamos por WhatsApp solo si tú quieres.
+                    </p>
+                  </div>
+                  <div className="bg-white" style={{ minHeight: "520px" }}>
+                    <iframe
+                      src={GHL_FORM_URL}
+                      style={{
+                        width: "100%",
+                        height: "520px",
+                        border: "none",
+                        borderRadius: "0 0 6px 6px",
+                      }}
+                      id={`inline-${GHL_FORM_ID}`}
+                      data-layout="{'id':'INLINE'}"
+                      data-trigger-type="alwaysShow"
+                      data-trigger-value=""
+                      data-activation-type="alwaysActivated"
+                      data-activation-value=""
+                      data-deactivation-type="neverDeactivate"
+                      data-deactivation-value=""
+                      data-form-name="Formulario coaching"
+                      data-height="500"
+                      data-layout-iframe-id={`inline-${GHL_FORM_ID}`}
+                      data-form-id={GHL_FORM_ID}
+                      title="Formulario para acceder a los planes de coaching"
+                    />
+                  </div>
+                  <div className="bg-muted/50 px-4 py-3 text-center">
+                    <button
+                      type="button"
+                      onClick={unlockPlans}
+                      className="text-xs text-muted-foreground hover:text-primary transition-colors underline"
+                    >
+                      Ya he enviado el formulario, mostrar los planes
+                    </button>
+                  </div>
+                </CardContent>
+              </Card>
+            ) : (
+              <div className="text-center text-white space-y-3">
+                <Badge className="bg-primary text-white hover:bg-primary px-4 py-2">
+                  ✓ Acceso desbloqueado
+                </Badge>
+                <h2 className="text-2xl md:text-3xl font-bold">
+                  Estos son los 3 planes de coaching
+                </h2>
+                <p className="text-white/80">
+                  Elige el que mejor encaja contigo o pregúntanos por WhatsApp.
+                </p>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* Ancla para scroll tras desbloquear */}
+        <div ref={plansSectionRef} />
+
+        {/* CONTENIDO BLOQUEADO: planes + resto de secciones */}
+        {unlocked && (
+          <>
+            {/* PLANES */}
+            <section className="py-16 md:py-24 px-4 bg-background">
+              <div className="container mx-auto max-w-6xl">
+                <div className="text-center mb-12">
+                  <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
+                    Elige tu plan
+                  </Badge>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
+                    Tres formas de entrenar con nosotros
+                  </h2>
+                  <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                    Cada plan está pensado para un nivel de acompañamiento distinto.
+                    Hablamos contigo por WhatsApp para ayudarte a elegir el que mejor encaja.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {plans.map((plan) => (
+                    <Card
+                      key={plan.name}
+                      className={`relative flex flex-col border-2 transition-all ${
+                        plan.highlight
+                          ? "border-primary shadow-2xl md:scale-105 bg-gradient-to-b from-primary/5 to-background"
+                          : "border-border hover:border-primary/40"
+                      }`}
+                    >
+                      {plan.badge && (
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                          <Badge className="bg-primary text-white hover:bg-primary px-3 py-1">
+                            ⭐ {plan.badge}
+                          </Badge>
+                        </div>
+                      )}
+                      <CardContent className="p-6 flex flex-col flex-1 space-y-5 pt-8">
+                        <div>
+                          <h3 className="text-2xl font-bold text-foreground">{plan.name}</h3>
+                          <p className="text-sm text-muted-foreground mt-1 min-h-[3rem]">
+                            {plan.description}
+                          </p>
+                        </div>
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-4xl font-bold text-foreground">
+                            {plan.price}
+                          </span>
+                          <span className="text-muted-foreground">{plan.cadence}</span>
+                        </div>
+                        <ul className="space-y-2.5 flex-1">
+                          {plan.features.map((f) => (
+                            <li key={f} className="flex items-start gap-2.5 text-sm">
+                              <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                              <span className="text-foreground">{f}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <Button
+                          asChild
+                          size="lg"
+                          variant={plan.highlight ? "default" : "outline"}
+                          className="w-full group"
+                        >
+                          <a
+                            href={buildWhatsAppUrl(plan.name, plan.price)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <WhatsAppIcon className="mr-2 w-5 h-5 transition-colors group-hover:text-[#25D366]" />
+                            {plan.cta}
+                          </a>
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+
+                <p className="text-center text-sm text-muted-foreground mt-8">
+                  💳 Los pagos se gestionan por fuera de la web. Te explicamos todo por WhatsApp sin compromiso.
+                </p>
+              </div>
+            </section>
+
+            {/* GARANTÍA */}
+            <section className="py-12 md:py-16 px-4 bg-muted/30">
+              <div className="container mx-auto max-w-3xl text-center">
+                <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
+                  Nuestra garantía
+                </Badge>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                  Si en 14 días no ves encaje, te devolvemos el dinero
+                </h2>
+                <p className="text-muted-foreground text-lg">
+                  Queremos alumnos comprometidos, no atrapados. Si tras dos semanas sientes
+                  que el método no es para ti, te devolvemos íntegro lo que hayas pagado.
+                  Sin preguntas raras.
+                </p>
+              </div>
+            </section>
+
+            {/* FAQ */}
+            <section className="py-16 md:py-20 px-4 bg-background">
+              <div className="container mx-auto max-w-3xl">
+                <div className="text-center mb-10">
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
+                    Preguntas frecuentes
+                  </h2>
+                  <p className="text-muted-foreground text-lg">
+                    Si te queda alguna duda, escríbenos por WhatsApp.
+                  </p>
+                </div>
+                <Accordion type="single" collapsible className="space-y-3">
+                  {faqs.map((faq, i) => (
+                    <AccordionItem
+                      key={i}
+                      value={`faq-${i}`}
+                      className="bg-card border-2 rounded-lg px-5"
+                    >
+                      <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline">
+                        {faq.q}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground leading-relaxed">
+                        {faq.a}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
+            </section>
+
+            {/* CTA FINAL */}
+            <section className="py-16 md:py-20 px-4 bg-gradient-to-br from-secondary to-primary/30">
+              <div className="container mx-auto max-w-3xl text-center text-white space-y-6">
+                <h2 className="text-3xl md:text-4xl font-bold">
+                  ¿Listo/a para dar el siguiente paso?
+                </h2>
+                <p className="text-lg text-gray-200">
+                  Ya conoces el método y los planes. Hablemos por WhatsApp y te
+                  ayudamos a elegir el que mejor encaja con tu vida.
+                </p>
+                <div className="flex justify-center pt-2">
+                  <Button asChild size="lg" className="group">
+                    <a
+                      href={`https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(
+                        "Hola Carlos y Nico, quiero más información sobre los planes de coaching."
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <WhatsAppIcon className="mr-2 w-5 h-5 transition-colors group-hover:text-[#25D366]" />
+                      Hablar por WhatsApp
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </section>
+          </>
+        )}
       </main>
 
       <Footer />
