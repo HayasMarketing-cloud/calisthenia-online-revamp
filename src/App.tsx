@@ -50,6 +50,7 @@ import BrandBook from "./pages/BrandBook";
 import MediaLibrary from "./pages/MediaLibrary";
 import FuncionalBodybuilding from "./pages/FuncionalBodybuilding";
 import LeadCapture from "./pages/LeadCapture";
+import Coaching from "./pages/Coaching";
 
 const queryClient = new QueryClient();
 
@@ -106,6 +107,7 @@ const App = () => (
           <Route path="/brandbook/" element={<BrandBook />} />
           <Route path="/funcional-bodybuilding/" element={<FuncionalBodybuilding />} />
           <Route path="/empezar/" element={<LeadCapture />} />
+          <Route path="/coaching/" element={<Coaching />} />
           
           {/* App Routes - Client area (mobile-first) */}
           <Route path="/app/onboarding" element={<Onboarding />} />
