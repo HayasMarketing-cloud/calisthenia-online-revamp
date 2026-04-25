@@ -87,7 +87,7 @@ const faqs = [
   },
   {
     q: "¿Cuánto cuesta el coaching?",
-    a: "Tenemos varios formatos según tu objetivo, disponibilidad y nivel: desde acompañamiento grupal hasta coaching premium 1 a 1. Lo vemos juntos en la llamada gratuita para recomendarte el que de verdad encaja contigo, sin que pagues por algo que no necesitas.",
+    a: "Tenemos varios formatos según tu objetivo, disponibilidad y nivel: desde un programa sin acompañamiento hasta coaching premium 1 a 1. Lo vemos juntos en la llamada gratuita para recomendarte el que de verdad encaja contigo, sin que pagues por algo que no necesitas.",
   },
   {
     q: "¿Cómo se hace el pago?",
