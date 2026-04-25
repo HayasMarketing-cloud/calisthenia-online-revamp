@@ -201,22 +201,22 @@ const Coaching = () => {
               </Badge>
 
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                Recupera tu cuerpo del{" "}
-                <span className="text-primary">teletrabajo</span> con
-                calistenia real
+                Tu cuerpo no está diseñado para estar todo el día{" "}
+                <span className="text-primary">sentado</span>
               </h1>
 
               <p className="text-lg md:text-xl text-white/90 font-medium max-w-2xl mx-auto">
-                Carlos y Nico te enseñan, en un vídeo gratuito, el método que usan con
-                sus alumnos para ganar fuerza, movilidad y postura sin pasarse el día
-                entrenando.
+                Recupera fuerza, movilidad y energía con entrenamientos de 30 minutos
+                en casa, adaptados a tu ritmo y nivel. Carlos y Nico te enseñan el
+                sistema que usan para ayudar a personas ocupadas a volver a sentirse
+                fuertes, ágiles y sin molestias en solo 90 días.
               </p>
 
               <ul className="space-y-3 text-left max-w-xl mx-auto pt-2">
                 {[
-                  "El error nº1 que frena tu progreso si entrenas en casa",
-                  "Cómo combinar fuerza y movilidad sin lesionarte",
-                  "El sistema que usamos con nuestros alumnos de coaching",
+                  "El mayor error que te hace estancarte",
+                  "Cómo entrenar sin dolores ni sobrecargas",
+                  "El método que seguimos con nuestros alumnos",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-white/90">
                     <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
