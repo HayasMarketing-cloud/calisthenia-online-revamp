@@ -15,6 +15,7 @@ import Footer from "@/components/Footer";
 import nicolasPhoto from "@/assets/nicolas-reyero.jpg";
 import carlosPhoto from "@/assets/carlos-plaza.jpg";
 import raulPhoto from "@/assets/testimonial-raul.jpg";
+import charliePhoto from "@/assets/testimonial-charlie.jpg";
 
 // === CONFIGURACIÓN (afinable después) ===
 const GHL_FORM_URL =
@@ -479,6 +480,7 @@ const Coaching = () => {
                       quote:
                         "Necesitaba una guía para aumentar mi fuerza, movilidad y habilidades de calistenia.",
                       initials: "C",
+                      image: charliePhoto,
                     },
                     {
                       name: "Isabel",
