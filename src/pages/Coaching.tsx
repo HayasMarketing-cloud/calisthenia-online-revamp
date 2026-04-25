@@ -539,6 +539,81 @@ const Coaching = () => {
               </div>
             </section>
 
+            {/* TESTIMONIOS — Team Calisthenia */}
+            <section className="py-16 md:py-20 px-4 bg-primary">
+              <div className="container mx-auto max-w-6xl">
+                <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-12">
+                  Team Calisthenia
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {[
+                    {
+                      name: "Raúl Mollá",
+                      location: "Alicante",
+                      quote:
+                        "Empecé desde 0 y muy tieso, ahora no me levanto con dolores y hago 10 dominadas fáciles.",
+                      initials: "RM",
+                    },
+                    {
+                      name: "Charlie",
+                      location: "Madrid",
+                      quote:
+                        "Necesitaba una guía para aumentar mi fuerza, movilidad y habilidades de calistenia.",
+                      initials: "C",
+                    },
+                    {
+                      name: "Isabel",
+                      location: "Cataluña",
+                      quote:
+                        "Estoy súper contenta y motivada, tengo menos dolores y más fuerza en mis articulaciones.",
+                      initials: "I",
+                    },
+                  ].map((t) => (
+                    <Card key={t.name} className="bg-background border-0 shadow-xl">
+                      <CardContent className="p-6 space-y-4">
+                        <div className="flex items-center gap-4">
+                          <div className="w-14 h-14 rounded-full bg-primary/15 flex items-center justify-center text-primary font-bold text-lg shrink-0">
+                            {t.initials}
+                          </div>
+                          <div>
+                            <h3 className="text-xl font-bold text-primary leading-tight">
+                              {t.name}
+                            </h3>
+                            <p className="text-sm text-muted-foreground">{t.location}</p>
+                          </div>
+                        </div>
+                        <p className="text-foreground/90 leading-relaxed">
+                          <span className="text-primary text-2xl font-bold leading-none mr-1">
+                            ”
+                          </span>
+                          {t.quote}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+                <div className="text-center mt-10">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-secondary text-white hover:bg-secondary/90"
+                  >
+                    <a
+                      href={`https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(
+                        "Hola Carlos y Nico, quiero reservar una sesión de evaluación."
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group"
+                    >
+                      <WhatsAppIcon className="mr-2 w-5 h-5 transition-colors group-hover:text-[#25D366]" />
+                      Reserva una sesión de evaluación
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </section>
+
             {/* GARANTÍA */}
             <section className="py-12 md:py-16 px-4 bg-muted/30">
               <div className="container mx-auto max-w-3xl text-center">
