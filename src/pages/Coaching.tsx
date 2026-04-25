@@ -237,8 +237,8 @@ const Coaching = () => {
               </div>
 
               <div className="pt-4">
-                <Button size="lg" onClick={scrollToForm} className="text-base px-8 rounded-full">
-                  Ver los planes de coaching
+                <Button size="lg" onClick={scrollToCta} className="text-base px-8 rounded-full">
+                  Reservar llamada con Carlos y Nico
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </div>
