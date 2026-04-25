@@ -242,7 +242,7 @@ const Coaching = () => {
 
               <div className="pt-4">
                 <Button size="lg" onClick={scrollToCta} className="text-base px-8 rounded-full">
-                  Reservar llamada con Carlos y Nico
+                  Reservar llamada con el equipo
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </div>
@@ -569,7 +569,7 @@ const Coaching = () => {
                   Llamada gratuita · Sin compromiso
                 </Badge>
                 <h2 className="text-3xl md:text-5xl font-bold">
-                  Reserva tu llamada con Carlos y Nico
+                  Reserva tu llamada con el equipo de Calisthenia Online
                 </h2>
                 <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
                   20 minutos por WhatsApp para conocer tu caso y ver si encajamos. Si
