@@ -79,7 +79,7 @@ const faqs = [
   },
   {
     q: "¿Cuánto tiempo a la semana necesito?",
-    a: "Con 3 a 4 sesiones de 45-60 minutos a la semana es suficiente para ver progresos sólidos. Diseñamos el plan para que encaje en tu agenda real, no en una ideal.",
+    a: "Con 3 a 4 sesiones de 30-45 minutos máximo a la semana es suficiente para ver progresos sólidos. Diseñamos el plan para que encaje en tu agenda real, no en una ideal.",
   },
   {
     q: "¿Necesito material o gimnasio?",
