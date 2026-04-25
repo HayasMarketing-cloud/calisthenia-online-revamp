@@ -527,22 +527,7 @@ const Coaching = () => {
               </div>
             </section>
 
-            {/* GARANTÍA */}
-            <section className="py-12 md:py-16 px-4 bg-muted/30">
-              <div className="container mx-auto max-w-3xl text-center">
-                <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
-                  Nuestra garantía
-                </Badge>
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                  Si en 14 días no ves encaje, te devolvemos el dinero
-                </h2>
-                <p className="text-muted-foreground text-lg">
-                  Queremos alumnos comprometidos, no atrapados. Si tras dos semanas sientes
-                  que el método no es para ti, te devolvemos íntegro lo que hayas pagado.
-                  Sin preguntas raras.
-                </p>
-              </div>
-            </section>
+
 
             {/* FAQ */}
             <section className="py-16 md:py-20 px-4 bg-background">
