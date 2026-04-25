@@ -26,11 +26,10 @@ const YOUTUBE_VIDEO_ID = "fzk_o2qyXDY";
 // TODO: confirmar número de WhatsApp para esta campaña
 const WHATSAPP_PHONE = "34645079692";
 
-const buildWhatsAppUrl = (planName: string, price: string) => {
-  const text = encodeURIComponent(
-    `Hola Carlos y Nico, acabo de ver el vídeo de la formación y me interesa el plan ${planName} (${price}). ¿Podemos hablar?`
-  );
-  return `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${text}`;
+const buildWhatsAppUrl = (
+  message = "Hola Carlos y Nico, he visto el vídeo de la formación y me gustaría reservar una llamada para ver si encajo con vuestro coaching."
+) => {
+  return `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(message)}`;
 };
 
 // Icono WhatsApp (verde #25D366 en hover, según design system del proyecto)
@@ -43,56 +42,31 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 // Persistencia en sessionStorage para no volver a pedir el formulario en la misma sesión
 const UNLOCK_KEY = "coaching_pricing_unlocked";
 
-const plans = [
+const howItWorks = [
   {
-    name: "Grupal",
-    price: "197€",
-    cadence: "/ mes",
-    description:
-      "Entrena con la comunidad, plan estructurado y seguimiento semanal en grupo.",
-    features: [
-      "Programa mensual de calistenia + movilidad",
-      "Sesiones grupales en directo (Zoom)",
-      "Comunidad privada de WhatsApp",
-      "Revisión de técnica por vídeo",
-      "Plan nutricional general",
-    ],
-    cta: "Quiero el plan Grupal",
-    highlight: false,
+    icon: PhoneCall,
+    title: "1. Reservas tu llamada gratuita",
+    text: "20 minutos por WhatsApp o videollamada. Nos cuentas tu situación, tu nivel y tus objetivos.",
   },
   {
-    name: "Personalizado",
-    price: "397€",
-    cadence: "/ mes",
-    description:
-      "Plan 100% adaptado a ti, con seguimiento individual de Carlos y Nico.",
-    features: [
-      "Programa diseñado a medida (fuerza + movilidad)",
-      "Plan nutricional personalizado",
-      "Revisión semanal 1 a 1",
-      "Soporte directo por WhatsApp con tus coaches",
-      "Ajustes mensuales según progreso",
-    ],
-    cta: "Quiero el plan Personalizado",
-    highlight: true,
-    badge: "Más popular",
+    icon: Target,
+    title: "2. Diagnóstico + plan a medida",
+    text: "Carlos y Nico analizan tu caso y te proponen el formato de coaching que mejor encaja contigo.",
   },
   {
-    name: "VIP",
-    price: "797€",
-    cadence: "/ mes",
-    description:
-      "Acompañamiento premium con sesiones 1 a 1 en directo y prioridad total.",
-    features: [
-      "Todo lo del plan Personalizado",
-      "Sesiones 1 a 1 en directo cada semana",
-      "Acceso prioritario por WhatsApp (respuesta en horas)",
-      "Análisis biomecánico y de movilidad detallado",
-      "Acompañamiento nutricional avanzado",
-    ],
-    cta: "Quiero el plan VIP",
-    highlight: false,
+    icon: Sparkles,
+    title: "3. Empiezas a entrenar con seguimiento real",
+    text: "Programa personalizado, revisiones de técnica y soporte directo para que avances sin lesionarte.",
   },
+];
+
+const includedFeatures = [
+  "Programa 100% adaptado a tu nivel y agenda",
+  "Revisiones de técnica por vídeo",
+  "WhatsApp directo con tus coaches",
+  "Plan nutricional práctico",
+  "Comunidad privada de alumnos",
+  "Ajustes mensuales según tu progreso",
 ];
 
 const faqs = [
@@ -109,12 +83,12 @@ const faqs = [
     a: "No es imprescindible. La mayoría de los planes funcionan en casa o en un parque con barra. Si tienes material, lo aprovechamos.",
   },
   {
-    q: "¿Qué diferencia hay entre los 3 planes?",
-    a: "El Grupal es el más asequible y trabajas con la comunidad. El Personalizado incluye seguimiento individual semanal. El VIP añade sesiones 1 a 1 en directo y prioridad máxima.",
+    q: "¿Cuánto cuesta el coaching?",
+    a: "Tenemos varios formatos según tu objetivo, disponibilidad y nivel: desde acompañamiento grupal hasta coaching premium 1 a 1. Lo vemos juntos en la llamada gratuita para recomendarte el que de verdad encaja contigo, sin que pagues por algo que no necesitas.",
   },
   {
     q: "¿Cómo se hace el pago?",
-    a: "Por fuera de la web. Tras hablar contigo por WhatsApp y confirmar el plan que mejor encaja, te enviamos el método de pago que te resulte más cómodo.",
+    a: "Por fuera de la web. Tras la llamada y confirmar el formato que mejor encaja, te enviamos el método de pago que te resulte más cómodo.",
   },
   {
     q: "¿Qué pasa si una semana no puedo entrenar?",
