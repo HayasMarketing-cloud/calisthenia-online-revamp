@@ -271,9 +271,9 @@ const Coaching = () => {
               />
             </div>
           </div>
+          {/* Sentinela: cuando entra en viewport, desbloquea automáticamente */}
+          <div ref={unlockSentinelRef} aria-hidden className="h-px w-full" />
         </section>
-
-        {/* PARA QUIÉN ES */}
         <section className="py-16 md:py-20 px-4 bg-muted">
           <div className="container mx-auto max-w-5xl">
             <h2 className="text-2xl md:text-4xl font-bold text-center mb-12">
