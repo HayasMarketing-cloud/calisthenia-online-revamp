@@ -236,6 +236,10 @@ const Coaching = () => {
                 </div>
               </div>
 
+              <p className="pt-2 text-base md:text-lg font-semibold text-white">
+                👉 Te mostramos nuestro método en este vídeo
+              </p>
+
               <div className="pt-4">
                 <Button size="lg" onClick={scrollToCta} className="text-base px-8 rounded-full">
                   Reservar llamada con Carlos y Nico
