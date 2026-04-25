@@ -16,6 +16,7 @@ import nicolasPhoto from "@/assets/nicolas-reyero.jpg";
 import carlosPhoto from "@/assets/carlos-plaza.jpg";
 import raulPhoto from "@/assets/testimonial-raul.jpg";
 import charliePhoto from "@/assets/testimonial-charlie.jpg";
+import isabelPhoto from "@/assets/testimonial-isabel.png";
 
 // === CONFIGURACIÓN (afinable después) ===
 const GHL_FORM_URL =
@@ -488,6 +489,7 @@ const Coaching = () => {
                       quote:
                         "Estoy súper contenta y motivada, tengo menos dolores y más fuerza en mis articulaciones.",
                       initials: "I",
+                      image: isabelPhoto,
                     },
                   ].map((t) => (
                     <Card key={t.name} className="bg-background border-0 shadow-xl">
