@@ -14,6 +14,9 @@ const iconMap = {
 
 const CommunityCTA = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
+
+  if (!COMMUNITY_CONFIG.enabled) return null;
+
   return (
     <section className="py-20 bg-gradient-to-br from-primary/5 via-white to-accent/5 relative overflow-hidden">
       {/* Decoración de fondo */}
