@@ -9,7 +9,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ArrowRight, Check, Lock, MessageCircle, PhoneCall, Sparkles, Star, Target, Users, X } from "lucide-react";
+import { ArrowRight, Check, MessageCircle, PhoneCall, Sparkles, Star, Target, Users, X } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import nicolasPhoto from "@/assets/nicolas-reyero.jpg";
