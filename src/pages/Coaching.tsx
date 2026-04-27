@@ -102,6 +102,7 @@ const faqs = [
 const Coaching = () => {
   const [unlocked, setUnlocked] = useState<boolean>(false);
   const ctaFinalRef = useRef<HTMLDivElement>(null);
+  const videoSectionRef = useRef<HTMLDivElement>(null);
   const unlockSentinelRef = useRef<HTMLDivElement>(null);
 
   // Restaurar estado si ya envió el formulario en esta sesión
@@ -187,6 +188,10 @@ const Coaching = () => {
     ctaFinalRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  const scrollToVideo = () => {
+    videoSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Helmet>
@@ -250,12 +255,24 @@ const Coaching = () => {
               <p className="pt-2 text-base md:text-lg font-semibold text-white">
                 👉 Te mostramos nuestro método en este vídeo
               </p>
+
+              <div className="pt-4">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  onClick={scrollToVideo}
+                  className="text-base px-8 rounded-full bg-transparent border-white/40 text-white hover:bg-white hover:text-secondary"
+                >
+                  Ver el vídeo
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </div>
             </div>
           </div>
         </section>
 
         {/* VÍDEO ABIERTO */}
-        <section className="py-12 md:py-16 px-4 bg-background">
+        <section ref={videoSectionRef} className="py-12 md:py-16 px-4 bg-background">
           <div className="container mx-auto max-w-4xl">
             <div className="text-center mb-6">
               <Badge className="mb-3 bg-primary/10 text-primary hover:bg-primary/20">
