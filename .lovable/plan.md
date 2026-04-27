@@ -1,29 +1,32 @@
-## Actualizar copy del Hero en `/coaching/`
+## Reemplazar el CTA de WhatsApp por el formulario "Cuerpo Atlético" en `/coaching/`
 
-Reemplazo el contenido de la sección Hero en `src/pages/Coaching.tsx` (líneas 203–243) con el nuevo copy, manteniendo intacto el diseño (badge superior, layout, botón CTA, prueba social de "+500 alumnos / 4.9/5").
+Sustituyo el botón "Reservar llamada por WhatsApp" de la sección CTA final por el formulario embebido de GHL **Formulario lead Webinar Cuerpo Atlético** (`data-form-id: sbWhGZBx1i4npEeAZgKy`).
 
-### Cambios concretos
+### Cambios concretos en `src/pages/Coaching.tsx`
 
-1. **H1** (línea 203–207):
-   > Tu cuerpo no está diseñado para estar todo el día **sentado**
-   (palabra "sentado" resaltada en `text-primary` naranja, manteniendo el patrón visual actual)
+1. **Actualizar las constantes del formulario GHL** (las que ya existen en el archivo):
+   - `GHL_FORM_ID = "sbWhGZBx1i4npEeAZgKy"`
+   - `GHL_FORM_URL = "https://link.calisthenia.online/widget/form/sbWhGZBx1i4npEeAZgKy"`
+   - Nombre del formulario: `"Formulario lead Webinar Cuerpo Atlético"`
 
-2. **Subtítulo principal** (línea 209–213) — fusionando los dos primeros párrafos del nuevo copy:
-   > Recupera fuerza, movilidad y energía con entrenamientos de 30 minutos en casa, adaptados a tu ritmo y nivel. Carlos y Nico te enseñan el sistema que usan para ayudar a personas ocupadas a volver a sentirse fuertes, ágiles y sin molestias en solo 90 días.
+2. **Refundir la sección "CTA FINAL" + "FORMULARIO OPCIONAL"** (líneas 562–655) en una sola sección sobre el mismo fondo degradado actual (`bg-gradient-to-br from-secondary via-secondary to-primary/30`):
+   - Conservo el badge superior, el H2 ("Reserva tu llamada con el equipo de Calisthenia Online") y el párrafo descriptivo ajustado al nuevo flujo (sin mención a WhatsApp).
+   - Debajo, embebo el iframe de GHL dentro de una `Card` blanca centrada (max-width ~640px) con la altura recomendada por GHL (`551px`).
+   - Mantengo la línea de cierre "Respondemos en menos de 24h en horario laboral".
 
-3. **Lista de 3 bullets con check** (líneas 215–226) — sustituyo los actuales por:
-   - El mayor error que te hace estancarte
-   - Cómo entrenar sin dolores ni sobrecargas
-   - El método que seguimos con nuestros alumnos
+3. **Eliminar todo lo relativo al CTA de WhatsApp en esta sección**:
+   - Botón verde "Reservar llamada por WhatsApp".
+   - Enlace secundario "¿Prefieres que te llamemos? Déjanos tus datos" y la función `scrollToForm` si deja de usarse.
+   - Las refs `ctaFinalRef` y `formSectionRef` se consolidan en una sola (`ctaFinalRef`) que apunta a la nueva sección unificada.
 
-4. **Línea de cierre antes del CTA** — añado un párrafo corto destacado (`text-white font-semibold`) entre los bullets y el botón:
-   > 👉 Te mostramos nuestro método en este vídeo
-
-5. **Botón CTA** (línea 240–243): mantengo *"Reservar llamada con Carlos y Nico"* con scroll al CTA final (sin cambios).
+4. **Comprobar el resto de la página**: cualquier botón anterior (hero, sticky, etc.) que hiciera `scrollTo(ctaFinalRef)` sigue funcionando porque la ref se mantiene apuntando a la nueva sección con el formulario.
 
 ### Lo que NO cambia
 
-- Badge superior *"Formación gratuita en vídeo"*.
-- Bloque de prueba social (+500 alumnos · 4.9/5).
-- Sección de vídeo justo debajo (`fzk_o2qyXDY`).
-- Lógica de desbloqueo automático por scroll, formulario GHL, ni resto de la página.
+- Resto de secciones de `/coaching/` (hero, vídeo, beneficios, testimonios de Raúl/Charlie/Isabel, FAQ, etc.).
+- Otros usos de WhatsApp en el sitio (`PromotionBanner`, `Programas`).
+- Diseño general, colores y tipografía de la sección.
+
+### Detalle técnico del embed
+
+Mantengo el patrón de iframe que ya usa el proyecto (mismo set de `data-*` atributos, `id` dinámico basado en el form ID, `title` accesible) y conservo la carga del script `https://link.calisthenia.online/js/form_embed.js` mediante el efecto que ya existe — si no lo hubiera en `Coaching.tsx` lo añado con `useEffect` (igual que en `Contacto.tsx`) para garantizar que el iframe se renderiza correctamente y limpia el script al desmontar.
