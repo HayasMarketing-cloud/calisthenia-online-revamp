@@ -278,6 +278,13 @@ const Coaching = () => {
                 loading="lazy"
               />
             </div>
+
+            <div className="pt-8 text-center">
+              <Button size="lg" onClick={scrollToCta} className="text-base px-8 rounded-full">
+                Reservar llamada con el equipo
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
           </div>
           {/* Sentinela: cuando entra en viewport, desbloquea automáticamente */}
           <div ref={unlockSentinelRef} aria-hidden className="h-px w-full" />
