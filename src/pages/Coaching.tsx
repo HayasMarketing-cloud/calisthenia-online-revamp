@@ -272,7 +272,7 @@ const Coaching = () => {
         </section>
 
         {/* VÍDEO ABIERTO */}
-        <section className="py-12 md:py-16 px-4 bg-background">
+        <section ref={videoSectionRef} className="py-12 md:py-16 px-4 bg-background">
           <div className="container mx-auto max-w-4xl">
             <div className="text-center mb-6">
               <Badge className="mb-3 bg-primary/10 text-primary hover:bg-primary/20">
