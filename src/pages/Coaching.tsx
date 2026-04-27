@@ -101,7 +101,6 @@ const faqs = [
 
 const Coaching = () => {
   const [unlocked, setUnlocked] = useState<boolean>(false);
-  const formSectionRef = useRef<HTMLDivElement>(null);
   const ctaFinalRef = useRef<HTMLDivElement>(null);
   const unlockSentinelRef = useRef<HTMLDivElement>(null);
 
@@ -110,6 +109,19 @@ const Coaching = () => {
     if (typeof window !== "undefined" && sessionStorage.getItem(UNLOCK_KEY) === "1") {
       setUnlocked(true);
     }
+  }, []);
+
+  // Cargar el script de embed de GHL para el formulario inline
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://link.calisthenia.online/js/form_embed.js";
+    script.async = true;
+    document.body.appendChild(script);
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
   }, []);
 
   const unlockPlans = () => {
