@@ -195,10 +195,10 @@ const Coaching = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Helmet>
-        <title>Coaching de calistenia para teletrabajadores | Carlos & Nico</title>
+        <title>Programa Cuerpo Atlético en casa | Carlos & Nico</title>
         <meta
           name="description"
-          content="Coaching online de calistenia, fuerza y movilidad pensado para teletrabajadores. Mira el vídeo gratis y descubre los planes con Carlos y Nico."
+          content="Programa Cuerpo Atlético en casa: entrena calistenia, fuerza y movilidad con Carlos y Nico. Mira el vídeo gratis y descubre cómo lo hacemos."
         />
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
