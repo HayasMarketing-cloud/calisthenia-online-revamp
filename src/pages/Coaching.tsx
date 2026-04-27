@@ -102,6 +102,7 @@ const faqs = [
 const Coaching = () => {
   const [unlocked, setUnlocked] = useState<boolean>(false);
   const ctaFinalRef = useRef<HTMLDivElement>(null);
+  const videoSectionRef = useRef<HTMLDivElement>(null);
   const unlockSentinelRef = useRef<HTMLDivElement>(null);
 
   // Restaurar estado si ya envió el formulario en esta sesión
