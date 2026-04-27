@@ -68,7 +68,7 @@ const includedFeatures = [
   "Revisiones de técnica por vídeo",
   "WhatsApp directo con tus coaches",
   "Plan nutricional práctico",
-  "Comunidad privada de alumnos",
+  
   "Ajustes mensuales según tu progreso",
 ];
 
