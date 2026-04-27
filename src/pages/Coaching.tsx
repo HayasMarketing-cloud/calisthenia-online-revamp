@@ -239,11 +239,7 @@ const Coaching = () => {
               <div className="flex items-center justify-center gap-6 pt-4 text-sm text-white/70">
                 <div className="flex items-center gap-1.5">
                   <Users className="w-4 h-4 text-primary" />
-                  <span>+500 alumnos</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Star className="w-4 h-4 text-primary fill-primary" />
-                  <span>Valoración 4.9/5</span>
+                  <span>+150 alumnos</span>
                 </div>
               </div>
 
