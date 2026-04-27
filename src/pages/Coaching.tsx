@@ -537,6 +537,33 @@ const Coaching = () => {
               </div>
             </section>
 
+            {/* VÍDEO ABIERTO — justo antes del CTA final */}
+            <section className="py-12 md:py-16 px-4 bg-background">
+              <div className="container mx-auto max-w-4xl">
+                <div className="text-center mb-6">
+                  <Badge className="mb-3 bg-primary/10 text-primary hover:bg-primary/20">
+                    Vídeo gratuito
+                  </Badge>
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                    Mira la formación completa
+                  </h2>
+                  <p className="text-muted-foreground mt-2">
+                    Tómate los próximos minutos para verlo. Después podrás reservar tu plaza.
+                  </p>
+                </div>
+                <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+                  <iframe
+                    className="absolute top-0 left-0 w-full h-full rounded-xl shadow-elegant border-0 bg-black"
+                    src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?rel=0&modestbranding=1`}
+                    title="Formación gratuita de calistenia con Carlos y Nico"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </section>
+
             {/* CTA FINAL — formulario embebido "Cuerpo Atlético" */}
             <section
               ref={ctaFinalRef}
