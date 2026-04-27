@@ -250,13 +250,6 @@ const Coaching = () => {
               <p className="pt-2 text-base md:text-lg font-semibold text-white">
                 👉 Te mostramos nuestro método en este vídeo
               </p>
-
-              <div className="pt-4">
-                <Button size="lg" onClick={scrollToCta} className="text-base px-8 rounded-full">
-                  Reservar llamada con el equipo
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </div>
             </div>
           </div>
         </section>
@@ -284,6 +277,13 @@ const Coaching = () => {
                 allowFullScreen
                 loading="lazy"
               />
+            </div>
+
+            <div className="pt-8 text-center">
+              <Button size="lg" onClick={scrollToCta} className="text-base px-8 rounded-full">
+                Reservar llamada con el equipo
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
             </div>
           </div>
           {/* Sentinela: cuando entra en viewport, desbloquea automáticamente */}
