@@ -567,78 +567,31 @@ const Coaching = () => {
               </div>
             </section>
 
-            {/* CTA FINAL — único punto de conversión: WhatsApp */}
+            {/* CTA FINAL — formulario embebido "Cuerpo Atlético" */}
             <section
               ref={ctaFinalRef}
               className="py-20 md:py-28 px-4 bg-gradient-to-br from-secondary via-secondary to-primary/30"
             >
-              <div className="container mx-auto max-w-3xl text-center text-white space-y-6">
+              <div className="container mx-auto max-w-2xl text-center text-white space-y-6">
                 <Badge className="bg-primary text-white hover:bg-primary px-4 py-2">
-                  Llamada gratuita · Sin compromiso
+                  Plaza gratuita · Sin compromiso
                 </Badge>
                 <h2 className="text-3xl md:text-5xl font-bold">
-                  Reserva tu llamada con el equipo de Calisthenia Online
+                  Reserva tu plaza con el equipo de Calisthenia Online
                 </h2>
                 <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
-                  20 minutos por WhatsApp para conocer tu caso y ver si encajamos. Si
-                  sí, te proponemos el formato de coaching que mejor te va. Si no,
-                  te orientamos igualmente.
+                  Déjanos tus datos y te enviamos toda la información para que
+                  empieces con nuestro método. Si encajamos, te proponemos el
+                  formato de coaching que mejor te va. Si no, te orientamos igualmente.
                 </p>
-                <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="group bg-[#25D366] hover:bg-[#1ebe5d] text-white text-base px-8 h-14 rounded-full shadow-2xl"
-                  >
-                    <a
-                      href={buildWhatsAppUrl()}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <WhatsAppIcon className="mr-2 w-6 h-6" />
-                      Reservar llamada por WhatsApp
-                    </a>
-                  </Button>
-                  <button
-                    type="button"
-                    onClick={scrollToForm}
-                    className="text-sm text-white/80 hover:text-white underline transition-colors"
-                  >
-                    ¿Prefieres que te llamemos? Déjanos tus datos
-                  </button>
-                </div>
-                <p className="text-sm text-white/70 pt-2">
-                  Respondemos en menos de 24h en horario laboral.
-                </p>
-              </div>
-            </section>
-
-            {/* FORMULARIO OPCIONAL (alternativa a WhatsApp) */}
-            <section
-              ref={formSectionRef}
-              className="py-16 md:py-20 px-4 bg-muted/40"
-            >
-              <div className="container mx-auto max-w-2xl">
-                <div className="text-center mb-6">
-                  <Badge className="mb-3 bg-primary/10 text-primary hover:bg-primary/20">
-                    <MessageCircle className="w-4 h-4 mr-2" />
-                    Alternativa al WhatsApp
-                  </Badge>
-                  <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                    ¿Prefieres que te contactemos nosotros?
-                  </h2>
-                  <p className="text-muted-foreground mt-2">
-                    Déjanos tus datos y te escribimos para reservar la llamada.
-                  </p>
-                </div>
-                <Card className="border-2 border-primary/20 shadow-xl overflow-hidden">
+                <Card className="border-2 border-white/20 shadow-2xl overflow-hidden mt-4">
                   <CardContent className="p-0">
-                    <div className="bg-white" style={{ minHeight: "520px" }}>
+                    <div className="bg-white" style={{ minHeight: "560px" }}>
                       <iframe
                         src={GHL_FORM_URL}
                         style={{
                           width: "100%",
-                          height: "520px",
+                          height: "560px",
                           border: "none",
                           borderRadius: "6px",
                         }}
@@ -650,15 +603,18 @@ const Coaching = () => {
                         data-activation-value=""
                         data-deactivation-type="neverDeactivate"
                         data-deactivation-value=""
-                        data-form-name="Formulario coaching"
-                        data-height="500"
+                        data-form-name={GHL_FORM_NAME}
+                        data-height="551"
                         data-layout-iframe-id={`inline-${GHL_FORM_ID}`}
                         data-form-id={GHL_FORM_ID}
-                        title="Formulario para reservar una llamada de coaching"
+                        title={GHL_FORM_NAME}
                       />
                     </div>
                   </CardContent>
                 </Card>
+                <p className="text-sm text-white/70 pt-2">
+                  Respondemos en menos de 24h en horario laboral.
+                </p>
               </div>
             </section>
           </>
