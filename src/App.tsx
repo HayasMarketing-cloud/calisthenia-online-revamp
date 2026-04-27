@@ -107,7 +107,8 @@ const App = () => (
           <Route path="/brandbook/" element={<BrandBook />} />
           <Route path="/funcional-bodybuilding/" element={<FuncionalBodybuilding />} />
           <Route path="/empezar/" element={<LeadCapture />} />
-          <Route path="/coaching/" element={<Coaching />} />
+          <Route path="/programa-cuerpo-atletico-en-casa/" element={<Coaching />} />
+          <Route path="/coaching/" element={<Navigate to="/programa-cuerpo-atletico-en-casa/" replace />} />
           
           {/* App Routes - Client area (mobile-first) */}
           <Route path="/app/onboarding" element={<Onboarding />} />
