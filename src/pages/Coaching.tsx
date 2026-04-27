@@ -188,6 +188,10 @@ const Coaching = () => {
     ctaFinalRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  const scrollToVideo = () => {
+    videoSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Helmet>
