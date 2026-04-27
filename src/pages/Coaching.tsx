@@ -19,9 +19,9 @@ import charliePhoto from "@/assets/testimonial-charlie.jpg";
 import isabelPhoto from "@/assets/testimonial-isabel.png";
 
 // === CONFIGURACIÓN (afinable después) ===
-const GHL_FORM_URL =
-  "https://link.calisthenia.online/widget/form/JYFtKJd7tgX86dXtbRhS";
-const GHL_FORM_ID = "JYFtKJd7tgX86dXtbRhS";
+const GHL_FORM_ID = "sbWhGZBx1i4npEeAZgKy";
+const GHL_FORM_URL = `https://link.calisthenia.online/widget/form/${GHL_FORM_ID}`;
+const GHL_FORM_NAME = "Formulario lead Webinar Cuerpo Atlético";
 
 // Vídeo del canal de Nico para esta campaña
 const YOUTUBE_VIDEO_ID = "fzk_o2qyXDY";
