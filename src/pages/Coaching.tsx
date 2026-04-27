@@ -187,10 +187,6 @@ const Coaching = () => {
     ctaFinalRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const scrollToForm = () => {
-    formSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Helmet>
