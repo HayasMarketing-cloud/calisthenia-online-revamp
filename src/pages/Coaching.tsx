@@ -399,9 +399,9 @@ const Coaching = () => {
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">Nicolás Reyero</h3>
                   <p className="text-muted-foreground">
-                    Coach de calistenia funcional y movilidad. Especialista en fuerza
-                    con peso corporal, control motor y nutrición práctica para
-                    teletrabajadores.
+                    Coach de calistenia funcional y movilidad. Especialista en
+                    progresiones de calistenia, fuerza con peso corporal y
+                    control motor.
                   </p>
                 </div>
               </div>
