@@ -207,7 +207,7 @@ const Coaching = () => {
 
       <main className="flex-1">
         {/* HERO oscuro estilo FBB */}
-        <section className="relative bg-gradient-to-br from-secondary via-secondary to-secondary/95 text-white py-16 md:py-24 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-secondary via-secondary to-secondary/95 text-white pt-24 pb-16 md:py-24 overflow-hidden">
           <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center space-y-6">
