@@ -228,31 +228,18 @@ const Coaching = () => {
                 fuertes, ágiles y sin molestias en solo 90 días.
               </p>
 
-              <ul className="space-y-3 text-left max-w-xl mx-auto pt-2">
-                {[
-                  "El mayor error que te hace estancarte",
-                  "Cómo entrenar sin dolores ni sobrecargas",
-                  "El método que seguimos con nuestros alumnos",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-white/90">
-                    <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex items-center justify-center gap-6 pt-4 text-sm text-white/70">
+              <div className="flex items-center justify-center gap-6 pt-2 text-sm text-white/70">
                 <div className="flex items-center gap-1.5">
                   <Users className="w-4 h-4 text-primary" />
                   <span>+150 alumnos</span>
                 </div>
               </div>
 
-              <p className="pt-2 text-base md:text-lg font-semibold text-white">
+              <p className="pt-1 text-base md:text-lg font-semibold text-white">
                 👉 Te mostramos nuestro método en este vídeo
               </p>
 
-              <div className="pt-4">
+              <div className="pt-2">
                 <Button
                   size="lg"
                   variant="outline"
