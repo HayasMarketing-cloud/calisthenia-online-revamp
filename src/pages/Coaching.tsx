@@ -381,9 +381,8 @@ const Coaching = () => {
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">Carlos Plaza</h3>
                   <p className="text-muted-foreground">
-                    Coach especializado en fuerza, hipertrofia y progresiones de
-                    calistenia. Enfocado en técnica, sostenibilidad y resultados a
-                    largo plazo.
+                    Coach especializado en fuerza, hipertrofia y nutrición
+                    práctica para teletrabajadores.
                   </p>
                 </div>
               </div>
