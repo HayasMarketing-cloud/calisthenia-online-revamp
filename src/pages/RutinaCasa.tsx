@@ -91,6 +91,8 @@ const RutinaCasa = () => {
     { label: "Calistenia en Casa", href: "/rutina-calistenia-en-casa/" }
   ];
 
+  const faqSchema = generateFAQSchema(faqs);
+
   return (
     <>
       <Helmet>
