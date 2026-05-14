@@ -15,6 +15,34 @@ import { Home, CheckCircle, Target, Shield, Zap, Heart, Clock, TrendingUp, Alert
 import { Link } from "react-router-dom";
 import StructuredData from "@/components/seo/StructuredData";
 import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
+import { generateFAQSchema } from "@/lib/schemas";
+
+export const faqs = [
+  {
+    question: "¿Cuánto espacio necesito para entrenar en casa?",
+    answer: "Solo necesitas aproximadamente 2x2 metros de espacio libre. Esto es suficiente para realizar sentadillas, flexiones, planchas y la mayoría de ejercicios de calistenia sin restricciones."
+  },
+  {
+    question: "¿Puedo ganar músculo sin pesas?",
+    answer: "Sí, absolutamente. La calistenia permite desarrollar masa muscular mediante progresiones: aumentando repeticiones, reduciendo descansos, haciendo variaciones más difíciles y controlando el tempo. Muchos atletas de calistenia tienen físicos impresionantes entrenando solo con su peso corporal."
+  },
+  {
+    question: "¿Cuántas veces debo entrenar por semana?",
+    answer: "Depende de tu nivel: principiantes 3 días/semana, intermedios 4-5 días/semana, avanzados 5-6 días/semana. Es importante incluir al menos 1-2 días de descanso completo o activo para permitir la recuperación muscular."
+  },
+  {
+    question: "¿Es mejor entrenar por la mañana o por la noche?",
+    answer: "El mejor momento es cuando puedas ser más consistente. La mañana puede aumentar tu energía para el día, mientras que la noche permite desestresarte después del trabajo. Lo importante es mantener la constancia en el horario elegido."
+  },
+  {
+    question: "¿Necesito una esterilla para entrenar?",
+    answer: "No es estrictamente necesaria, pero sí muy recomendable. Una esterilla proporciona comodidad en ejercicios de suelo (planchas, estiramientos), protege tus articulaciones y mejora el agarre en ciertos movimientos. Puedes encontrarlas desde 15-20€."
+  },
+  {
+    question: "¿Cuánto tiempo hasta ver resultados?",
+    answer: "Los primeros cambios en fuerza se notan en 2-3 semanas. Los cambios físicos visibles aparecen en 4-8 semanas con entrenamiento constante y alimentación adecuada. La clave es la paciencia y la consistencia a largo plazo."
+  }
+];
 
 const RutinaCasa = () => {
   const schemas = useRoutineSchemas({
@@ -63,6 +91,8 @@ const RutinaCasa = () => {
     { label: "Calistenia en Casa", href: "/rutina-calistenia-en-casa/" }
   ];
 
+  const faqSchema = generateFAQSchema(faqs);
+
   return (
     <>
       <Helmet>
@@ -77,7 +107,7 @@ const RutinaCasa = () => {
         <link rel="canonical" href="https://calisthenia.online/rutina-calistenia-en-casa/" />
       </Helmet>
 
-      <StructuredData data={schemas.allSchemas} />
+      <StructuredData data={[...schemas.allSchemas, faqSchema]} />
 
       <div className="min-h-screen flex flex-col">
         <Header />
@@ -1017,64 +1047,30 @@ const RutinaCasa = () => {
           <section className="py-16 bg-muted/30">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Preguntas Frecuentes sobre Calistenia en Casa
+                Preguntas Frecuentes sobre <span className="text-primary">Calistenia en Casa</span>
               </h2>
               
               <div className="max-w-3xl mx-auto">
-                <Accordion type="single" collapsible className="space-y-4">
-                  <AccordionItem value="faq-1" className="border rounded-lg px-6 bg-card">
-                    <AccordionTrigger className="hover:no-underline">
-                      ¿Cuánto espacio necesito para entrenar en casa?
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">
-                      Solo necesitas aproximadamente 2x2 metros de espacio libre. Esto es suficiente para realizar sentadillas, flexiones, planchas y la mayoría de ejercicios de calistenia sin restricciones.
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <AccordionItem value="faq-2" className="border rounded-lg px-6 bg-card">
-                    <AccordionTrigger className="hover:no-underline">
-                      ¿Puedo ganar músculo sin pesas?
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">
-                      Sí, absolutamente. La calistenia permite desarrollar masa muscular mediante progresiones: aumentando repeticiones, reduciendo descansos, haciendo variaciones más difíciles y controlando el tempo. Muchos atletas de calistenia tienen físicos impresionantes entrenando solo con su peso corporal.
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <AccordionItem value="faq-3" className="border rounded-lg px-6 bg-card">
-                    <AccordionTrigger className="hover:no-underline">
-                      ¿Cuántas veces debo entrenar por semana?
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">
-                      Depende de tu nivel: principiantes 3 días/semana, intermedios 4-5 días/semana, avanzados 5-6 días/semana. Es importante incluir al menos 1-2 días de descanso completo o activo para permitir la recuperación muscular.
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <AccordionItem value="faq-4" className="border rounded-lg px-6 bg-card">
-                    <AccordionTrigger className="hover:no-underline">
-                      ¿Es mejor entrenar por la mañana o por la noche?
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">
-                      El mejor momento es cuando puedas ser más consistente. La mañana puede aumentar tu energía para el día, mientras que la noche permite desestresarte después del trabajo. Lo importante es mantener la constancia en el horario elegido.
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <AccordionItem value="faq-5" className="border rounded-lg px-6 bg-card">
-                    <AccordionTrigger className="hover:no-underline">
-                      ¿Necesito una esterilla para entrenar?
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">
-                      No es estrictamente necesaria, pero sí muy recomendable. Una esterilla proporciona comodidad en ejercicios de suelo (planchas, estiramientos), protege tus articulaciones y mejora el agarre en ciertos movimientos. Puedes encontrarlas desde 15-20€.
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <AccordionItem value="faq-6" className="border rounded-lg px-6 bg-card">
-                    <AccordionTrigger className="hover:no-underline">
-                      ¿Cuánto tiempo hasta ver resultados?
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">
-                      Los primeros cambios en fuerza se notan en 2-3 semanas. Los cambios físicos visibles aparecen en 4-8 semanas con entrenamiento constante y alimentación adecuada. La clave es la paciencia y la consistencia a largo plazo.
-                    </AccordionContent>
-                  </AccordionItem>
+                <Accordion type="single" collapsible defaultValue="faq-0" className="space-y-4">
+                  {faqs.map((faq, index) => (
+                    <AccordionItem
+                      key={index}
+                      value={`faq-${index}`}
+                      className="bg-background rounded-xl px-6 border border-primary/10 shadow-card hover:shadow-elegant transition-shadow"
+                    >
+                      <AccordionTrigger className="font-display font-bold text-left hover:text-primary hover:no-underline py-6 text-lg">
+                        <span className="flex items-center gap-3">
+                          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary text-sm font-bold shrink-0">
+                            {index + 1}
+                          </span>
+                          {faq.question}
+                        </span>
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground leading-relaxed pb-6 pl-11">
+                        {faq.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
                 </Accordion>
               </div>
             </div>
