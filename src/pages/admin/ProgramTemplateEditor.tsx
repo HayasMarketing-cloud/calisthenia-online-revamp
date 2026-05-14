@@ -24,6 +24,7 @@ interface ExerciseOption {
   id: string;
   name: string;
   muscle_groups: string[] | null;
+  youtube_video_id?: string | null;
 }
 
 interface DayExercise {
@@ -97,7 +98,7 @@ const ProgramTemplateEditor = () => {
       if (dayIds.length) {
         const { data: exData } = await supabase
           .from('program_day_exercises')
-          .select('*, exercises(id, name, muscle_groups)')
+          .select('*, exercises(id, name, muscle_groups, youtube_video_id)')
           .in('day_id', dayIds)
           .order('order_index');
         exercisesData = exData || [];
@@ -121,7 +122,7 @@ const ProgramTemplateEditor = () => {
   const { data: allExercises } = useQuery({
     queryKey: ['all-exercises'],
     queryFn: async () => {
-      const { data, error } = await supabase.from('exercises').select('id, name, muscle_groups').eq('is_active', true).order('name');
+      const { data, error } = await supabase.from('exercises').select('id, name, muscle_groups, youtube_video_id').eq('is_active', true).order('name');
       if (error) throw error;
       return data as ExerciseOption[];
     },
@@ -287,12 +288,39 @@ const ProgramTemplateEditor = () => {
                     {!day.is_rest_day && day.exercises.length > 0 && (
                       <CardContent className="px-4 pb-3 pt-0">
                         <div className="space-y-2">
-                          {day.exercises.map((ex, i) => (
+                          {day.exercises.map((ex, i) => {
+                            const videoId = (ex as any).custom_youtube_video_id || ex.exercise?.youtube_video_id;
+                            return (
                             <div key={ex.id} className="flex items-center justify-between bg-muted/50 rounded-md px-3 py-2 text-sm">
-                              <div className="flex items-center gap-3">
-                                <span className="text-muted-foreground text-xs w-5">{i + 1}.</span>
-                                <div>
-                                  <p className="font-medium">{ex.exercise?.name || 'Ejercicio desconocido'}</p>
+                              <div className="flex items-center gap-3 min-w-0">
+                                <span className="text-muted-foreground text-xs w-5 flex-shrink-0">{i + 1}.</span>
+                                {videoId ? (
+                                  <a
+                                    href={`https://www.youtube.com/watch?v=${videoId}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="relative flex-shrink-0 w-20 aspect-video rounded overflow-hidden bg-black group"
+                                    title="Ver técnica en YouTube"
+                                  >
+                                    <img
+                                      src={`https://img.youtube.com/vi/${videoId}/mqdefault.jpg`}
+                                      alt={`Técnica: ${ex.exercise?.name}`}
+                                      loading="lazy"
+                                      className="w-full h-full object-cover"
+                                    />
+                                    <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition-colors">
+                                      <div className="bg-red-600 rounded-full w-6 h-6 flex items-center justify-center">
+                                        <svg className="w-3 h-3 text-white fill-white ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                      </div>
+                                    </div>
+                                  </a>
+                                ) : (
+                                  <div className="flex-shrink-0 w-20 aspect-video rounded bg-muted flex items-center justify-center">
+                                    <Dumbbell className="h-4 w-4 text-muted-foreground/50" />
+                                  </div>
+                                )}
+                                <div className="min-w-0">
+                                  <p className="font-medium truncate">{ex.exercise?.name || 'Ejercicio desconocido'}</p>
                                   <div className="flex gap-3 text-xs text-muted-foreground mt-0.5">
                                     {ex.sets && <span>{ex.sets} series</span>}
                                     {ex.reps && <span>{ex.reps} reps</span>}
@@ -301,11 +329,12 @@ const ProgramTemplateEditor = () => {
                                   {ex.notes && <p className="text-xs text-muted-foreground italic mt-0.5">{ex.notes}</p>}
                                 </div>
                               </div>
-                              <Button size="sm" variant="ghost" className="text-destructive h-7 w-7 p-0" onClick={() => removeExMutation.mutate(ex.id)}>
+                              <Button size="sm" variant="ghost" className="text-destructive h-7 w-7 p-0 flex-shrink-0" onClick={() => removeExMutation.mutate(ex.id)}>
                                 <Trash2 className="h-3 w-3" />
                               </Button>
                             </div>
-                          ))}
+                            );
+                          })}
                         </div>
                       </CardContent>
                     )}
