@@ -12,7 +12,16 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem } from '@/components/ui/command';
-import { Loader2, Plus, Trash2, Calendar, Dumbbell, Moon, ChevronsUpDown, Check } from 'lucide-react';
+import { Loader2, Plus, Trash2, Calendar, Dumbbell, Moon, ChevronsUpDown, Check, Youtube } from 'lucide-react';
+
+// Extracts an 11-char YouTube video ID from a URL or returns the trimmed input if it already looks like an ID
+const parseYouTubeId = (input: string): string | null => {
+  const v = (input || '').trim();
+  if (!v) return null;
+  if (/^[A-Za-z0-9_-]{11}$/.test(v)) return v;
+  const m = v.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/|v\/))([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : null;
+};
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 import AdminBreadcrumbs from '@/components/admin/AdminBreadcrumbs';
@@ -35,6 +44,7 @@ interface DayExercise {
   reps: string | null;
   rest_seconds: number | null;
   notes: string | null;
+  custom_youtube_video_id?: string | null;
   exercise?: ExerciseOption;
 }
 
@@ -59,10 +69,11 @@ const ProgramTemplateEditor = () => {
   const { id } = useParams<{ id: string }>();
   const queryClient = useQueryClient();
   const [addExDialog, setAddExDialog] = useState<{ open: boolean; dayId: string }>({ open: false, dayId: '' });
-  const [exForm, setExForm] = useState({ exercise_id: '', sets: 3, reps: '10', rest_seconds: 60, notes: '' });
+  const [exForm, setExForm] = useState({ exercise_id: '', sets: 3, reps: '10', rest_seconds: 60, notes: '', custom_youtube_video_id: '' });
   const [exPickerOpen, setExPickerOpen] = useState(false);
   const [addDayDialog, setAddDayDialog] = useState<{ open: boolean; weekId: string; nextNum: number }>({ open: false, weekId: '', nextNum: 1 });
   const [dayForm, setDayForm] = useState({ name: '', is_rest_day: false });
+  const [videoEditDialog, setVideoEditDialog] = useState<{ open: boolean; exId: string; current: string; exerciseName: string; baseVideoId: string | null }>({ open: false, exId: '', current: '', exerciseName: '', baseVideoId: null });
 
   // Fetch program
   const { data: program, isLoading: loadingProgram } = useQuery({
@@ -163,7 +174,7 @@ const ProgramTemplateEditor = () => {
 
   // Add exercise to day
   const addExMutation = useMutation({
-    mutationFn: async ({ dayId, exercise_id, sets, reps, rest_seconds, notes, order }: any) => {
+    mutationFn: async ({ dayId, exercise_id, sets, reps, rest_seconds, notes, custom_youtube_video_id, order }: any) => {
       const { error } = await supabase.from('program_day_exercises').insert({
         day_id: dayId,
         exercise_id,
@@ -171,6 +182,7 @@ const ProgramTemplateEditor = () => {
         reps,
         rest_seconds,
         notes: notes || null,
+        custom_youtube_video_id: custom_youtube_video_id || null,
         order_index: order,
       });
       if (error) throw error;
@@ -179,7 +191,24 @@ const ProgramTemplateEditor = () => {
       toast.success('Ejercicio añadido al día');
       queryClient.invalidateQueries({ queryKey: ['template-weeks', id] });
       setAddExDialog({ open: false, dayId: '' });
-      setExForm({ exercise_id: '', sets: 3, reps: '10', rest_seconds: 60, notes: '' });
+      setExForm({ exercise_id: '', sets: 3, reps: '10', rest_seconds: 60, notes: '', custom_youtube_video_id: '' });
+    },
+    onError: (err: Error) => toast.error(err.message),
+  });
+
+  // Update custom YouTube video for an existing exercise row
+  const updateVideoMutation = useMutation({
+    mutationFn: async ({ exId, videoId }: { exId: string; videoId: string | null }) => {
+      const { error } = await supabase
+        .from('program_day_exercises')
+        .update({ custom_youtube_video_id: videoId })
+        .eq('id', exId);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      toast.success('Vídeo actualizado');
+      queryClient.invalidateQueries({ queryKey: ['template-weeks', id] });
+      setVideoEditDialog({ open: false, exId: '', current: '', exerciseName: '', baseVideoId: null });
     },
     onError: (err: Error) => toast.error(err.message),
   });
@@ -274,7 +303,7 @@ const ProgramTemplateEditor = () => {
                             variant="outline"
                             onClick={() => {
                               setAddExDialog({ open: true, dayId: day.id });
-                              setExForm({ exercise_id: '', sets: 3, reps: '10', rest_seconds: 60, notes: '' });
+                              setExForm({ exercise_id: '', sets: 3, reps: '10', rest_seconds: 60, notes: '', custom_youtube_video_id: '' });
                             }}
                           >
                             <Plus className="h-3 w-3 mr-1" /> Ejercicio
@@ -329,9 +358,26 @@ const ProgramTemplateEditor = () => {
                                   {ex.notes && <p className="text-xs text-muted-foreground italic mt-0.5">{ex.notes}</p>}
                                 </div>
                               </div>
-                              <Button size="sm" variant="ghost" className="text-destructive h-7 w-7 p-0 flex-shrink-0" onClick={() => removeExMutation.mutate(ex.id)}>
-                                <Trash2 className="h-3 w-3" />
-                              </Button>
+                              <div className="flex items-center gap-1 flex-shrink-0">
+                                <Button
+                                  size="sm"
+                                  variant="ghost"
+                                  className="h-7 w-7 p-0"
+                                  title="Editar vídeo de YouTube"
+                                  onClick={() => setVideoEditDialog({
+                                    open: true,
+                                    exId: ex.id,
+                                    current: ex.custom_youtube_video_id || '',
+                                    exerciseName: ex.exercise?.name || 'Ejercicio',
+                                    baseVideoId: ex.exercise?.youtube_video_id || null,
+                                  })}
+                                >
+                                  <Youtube className="h-3.5 w-3.5" />
+                                </Button>
+                                <Button size="sm" variant="ghost" className="text-destructive h-7 w-7 p-0" onClick={() => removeExMutation.mutate(ex.id)}>
+                                  <Trash2 className="h-3 w-3" />
+                                </Button>
+                              </div>
                             </div>
                             );
                           })}
@@ -466,11 +512,36 @@ const ProgramTemplateEditor = () => {
               <Label>Notas</Label>
               <Textarea value={exForm.notes} onChange={e => setExForm(p => ({ ...p, notes: e.target.value }))} rows={2} placeholder="Ej: Mantener core activado" />
             </div>
+            <div className="space-y-2">
+              <Label className="flex items-center gap-1.5">
+                <Youtube className="h-3.5 w-3.5 text-red-600" />
+                Vídeo de YouTube (opcional)
+              </Label>
+              <Input
+                value={exForm.custom_youtube_video_id}
+                onChange={e => setExForm(p => ({ ...p, custom_youtube_video_id: e.target.value }))}
+                placeholder="URL de YouTube o ID (ej: dQw4w9WgXcQ)"
+                maxLength={200}
+              />
+              {exForm.custom_youtube_video_id && !parseYouTubeId(exForm.custom_youtube_video_id) && (
+                <p className="text-xs text-destructive">URL o ID de YouTube no válido</p>
+              )}
+              {(() => {
+                const baseId = (allExercises || []).find(e => e.id === exForm.exercise_id)?.youtube_video_id;
+                return !exForm.custom_youtube_video_id && baseId ? (
+                  <p className="text-xs text-muted-foreground">Por defecto se usará el vídeo del ejercicio.</p>
+                ) : null;
+              })()}
+            </div>
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setAddExDialog({ open: false, dayId: '' })}>Cancelar</Button>
             <Button
-              disabled={!exForm.exercise_id || addExMutation.isPending}
+              disabled={
+                !exForm.exercise_id ||
+                addExMutation.isPending ||
+                (!!exForm.custom_youtube_video_id && !parseYouTubeId(exForm.custom_youtube_video_id))
+              }
               onClick={() => {
                 const day = (weeks || []).flatMap(w => w.days).find(d => d.id === addExDialog.dayId);
                 const order = day ? day.exercises.length : 0;
@@ -481,12 +552,80 @@ const ProgramTemplateEditor = () => {
                   reps: exForm.reps,
                   rest_seconds: exForm.rest_seconds,
                   notes: exForm.notes,
+                  custom_youtube_video_id: exForm.custom_youtube_video_id ? parseYouTubeId(exForm.custom_youtube_video_id) : null,
                   order,
                 });
               }}
             >
               {addExMutation.isPending && <Loader2 className="h-4 w-4 animate-spin mr-1" />}
               Añadir ejercicio
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Edit YouTube video dialog */}
+      <Dialog
+        open={videoEditDialog.open}
+        onOpenChange={open => !open && setVideoEditDialog({ open: false, exId: '', current: '', exerciseName: '', baseVideoId: null })}
+      >
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Youtube className="h-4 w-4 text-red-600" />
+              Vídeo de YouTube
+            </DialogTitle>
+            <DialogDescription>{videoEditDialog.exerciseName}</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-3 py-2">
+            <div className="space-y-2">
+              <Label>URL o ID de YouTube</Label>
+              <Input
+                value={videoEditDialog.current}
+                onChange={e => setVideoEditDialog(p => ({ ...p, current: e.target.value }))}
+                placeholder="https://youtu.be/... o ID de 11 caracteres"
+                maxLength={200}
+                autoFocus
+              />
+              {videoEditDialog.current && !parseYouTubeId(videoEditDialog.current) && (
+                <p className="text-xs text-destructive">URL o ID no válido</p>
+              )}
+              {!videoEditDialog.current && videoEditDialog.baseVideoId && (
+                <p className="text-xs text-muted-foreground">
+                  Vacío usará el vídeo por defecto del ejercicio.
+                </p>
+              )}
+            </div>
+          </div>
+          <DialogFooter className="gap-2 sm:gap-2">
+            {videoEditDialog.current && (
+              <Button
+                variant="ghost"
+                className="text-destructive mr-auto"
+                onClick={() => updateVideoMutation.mutate({ exId: videoEditDialog.exId, videoId: null })}
+                disabled={updateVideoMutation.isPending}
+              >
+                Quitar
+              </Button>
+            )}
+            <Button
+              variant="outline"
+              onClick={() => setVideoEditDialog({ open: false, exId: '', current: '', exerciseName: '', baseVideoId: null })}
+            >
+              Cancelar
+            </Button>
+            <Button
+              disabled={
+                updateVideoMutation.isPending ||
+                (!!videoEditDialog.current && !parseYouTubeId(videoEditDialog.current))
+              }
+              onClick={() => updateVideoMutation.mutate({
+                exId: videoEditDialog.exId,
+                videoId: videoEditDialog.current ? parseYouTubeId(videoEditDialog.current) : null,
+              })}
+            >
+              {updateVideoMutation.isPending && <Loader2 className="h-4 w-4 animate-spin mr-1" />}
+              Guardar
             </Button>
           </DialogFooter>
         </DialogContent>
