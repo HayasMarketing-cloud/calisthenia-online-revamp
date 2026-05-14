@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import heroImage from "@/assets/hero-calistenia-parque.png";
+import heroImage from "@/assets/hero-calistenia-parque.webp";
 const HeroSectionImproved = () => {
   const scrollToRutinas = () => {
     const element = document.getElementById('rutinas');
@@ -12,9 +12,15 @@ const HeroSectionImproved = () => {
   };
   return <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Imagen de fondo: calistenia impactante */}
-      <div className="absolute inset-0 bg-cover bg-center" style={{
-      backgroundImage: `url(${heroImage})`
-    }} />
+      <img
+        src={heroImage}
+        alt="Atleta entrenando calistenia en un parque al aire libre"
+        width={1600}
+        height={872}
+        fetchPriority="high"
+        decoding="async"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
       <div className="absolute inset-0 bg-gradient-to-r from-secondary/95 via-secondary/85 to-secondary/60" />
       
       <div className="container mx-auto px-4 relative z-10 py-32">
