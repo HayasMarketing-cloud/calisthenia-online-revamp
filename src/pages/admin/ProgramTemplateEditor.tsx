@@ -69,10 +69,11 @@ const ProgramTemplateEditor = () => {
   const { id } = useParams<{ id: string }>();
   const queryClient = useQueryClient();
   const [addExDialog, setAddExDialog] = useState<{ open: boolean; dayId: string }>({ open: false, dayId: '' });
-  const [exForm, setExForm] = useState({ exercise_id: '', sets: 3, reps: '10', rest_seconds: 60, notes: '' });
+  const [exForm, setExForm] = useState({ exercise_id: '', sets: 3, reps: '10', rest_seconds: 60, notes: '', custom_youtube_video_id: '' });
   const [exPickerOpen, setExPickerOpen] = useState(false);
   const [addDayDialog, setAddDayDialog] = useState<{ open: boolean; weekId: string; nextNum: number }>({ open: false, weekId: '', nextNum: 1 });
   const [dayForm, setDayForm] = useState({ name: '', is_rest_day: false });
+  const [videoEditDialog, setVideoEditDialog] = useState<{ open: boolean; exId: string; current: string; exerciseName: string; baseVideoId: string | null }>({ open: false, exId: '', current: '', exerciseName: '', baseVideoId: null });
 
   // Fetch program
   const { data: program, isLoading: loadingProgram } = useQuery({
