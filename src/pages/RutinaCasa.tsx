@@ -49,6 +49,14 @@ export const faqs = [
   {
     question: "¿Sirve la calistenia en casa para mujeres y para perder peso?",
     answer: "Sí, la calistenia en casa es ideal tanto para mujeres como para cualquier persona que quiera perder grasa y tonificar. Al combinar ejercicios de fuerza con peso corporal y circuitos de alta intensidad (HIIT con sentadillas, mountain climbers, burpees) elevas el gasto calórico, mantienes masa muscular y mejoras la composición corporal. Tres sesiones semanales de 30 minutos junto a un déficit calórico moderado son suficientes para ver resultados."
+  },
+  {
+    question: "¿Qué rutina de calistenia en casa para principiantes seguir las primeras 4 semanas?",
+    answer: "Una rutina de calistenia en casa para principiantes de 4 semanas se estructura en 3 sesiones full body por semana (lunes, miércoles, viernes) de 25-30 minutos. Cada sesión incluye 5 ejercicios básicos: 3 series de 10 sentadillas, 3 series de 8 flexiones (apoyando rodillas si es necesario), 3 series de 10 zancadas por pierna, 3 series de 30 segundos de plancha y 3 series de 10 bird-dog por lado. Aumenta 2 repeticiones cada semana para aplicar progresión y, al llegar a la cuarta semana, sustituye las flexiones de rodillas por flexiones completas."
+  },
+  {
+    question: "¿Qué plan de calistenia en casa seguir para ganar masa muscular?",
+    answer: "Para ganar masa muscular con calistenia en casa entrena 4-5 días por semana con división empuje/tracción/piernas y core, haciendo 4 series de 6-12 repeticiones por ejercicio cerca del fallo muscular. Programa flexiones diamante y pike push-ups para pecho y hombros, remos invertidos en mesa o toalla en puerta para espalda, sentadillas búlgaras y zancadas para piernas, y planchas con peso para core. Acompáñalo de 1,6-2 g de proteína por kilo corporal y un superávit calórico de 200-300 kcal diarias para optimizar la hipertrofia."
   }
 ];
 
