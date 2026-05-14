@@ -12,7 +12,16 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem } from '@/components/ui/command';
-import { Loader2, Plus, Trash2, Calendar, Dumbbell, Moon, ChevronsUpDown, Check } from 'lucide-react';
+import { Loader2, Plus, Trash2, Calendar, Dumbbell, Moon, ChevronsUpDown, Check, Youtube } from 'lucide-react';
+
+// Extracts an 11-char YouTube video ID from a URL or returns the trimmed input if it already looks like an ID
+const parseYouTubeId = (input: string): string | null => {
+  const v = (input || '').trim();
+  if (!v) return null;
+  if (/^[A-Za-z0-9_-]{11}$/.test(v)) return v;
+  const m = v.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/|v\/))([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : null;
+};
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 import AdminBreadcrumbs from '@/components/admin/AdminBreadcrumbs';
