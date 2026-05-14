@@ -15,6 +15,7 @@ import { Home, CheckCircle, Target, Shield, Zap, Heart, Clock, TrendingUp, Alert
 import { Link } from "react-router-dom";
 import StructuredData from "@/components/seo/StructuredData";
 import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
+import { generateFAQSchema } from "@/lib/schemas";
 
 const RutinaCasa = () => {
   const schemas = useRoutineSchemas({
