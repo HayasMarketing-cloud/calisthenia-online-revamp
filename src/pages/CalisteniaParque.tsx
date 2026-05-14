@@ -31,10 +31,27 @@ const CalisteniaParque = () => {
     'j1VaM6CNazM',  // 9. Superar 10 dominadas (422 vistas) - Avanzado
   ]);
 
+  const parqueFAQs = [
+    { question: "¿Dónde encuentro parques de calistenia cerca de mí?", answer: "Puedes buscar en Google Maps con términos como 'parque calistenia', 'street workout park' o 'outdoor gym'. También existen apps especializadas como Calisteniapp o comunidades en Instagram donde comparten ubicaciones." },
+    { question: "¿Es seguro entrenar en parques públicos?", answer: "Sí, la mayoría de los parques de calistenia son seguros. Si tienes dudas sobre la zona, entrena en horarios con más gente." },
+    { question: "¿Qué hago si todas las barras están ocupadas?", answer: "Puedes pedir educadamente compartir el espacio, hacer calentamiento extra mientras esperas, o trabajar ejercicios en el suelo." },
+    { question: "¿Puedo entrenar en parques en invierno?", answer: "Sí, con la ropa adecuada y guantes para proteger tus manos del frío. Asegúrate de calentar bien antes de empezar." },
+    { question: "¿Necesito ser fuerte para empezar?", answer: "No. Los parques tienen equipamiento para todos los niveles. Puedes empezar con ejercicios asistidos y progresiones simples." },
+    { question: "¿Cuánto tiempo tardaré en ver resultados?", answer: "Con entrenamiento constante, verás mejoras en fuerza en 4-6 semanas. Los cambios físicos visibles suelen aparecer en 8-12 semanas." },
+    { question: "¿Es mejor entrenar solo o en grupo?", answer: "Ambos tienen ventajas: en grupo, motivación y apoyo social; solo, más concentración y flexibilidad de horarios." },
+    { question: "¿Qué hago si llueve o hace mal tiempo?", answer: "Puedes entrenar en casa con rutinas de peso corporal, buscar estructuras cubiertas, o tomar el día como descanso activo." },
+  ];
+
+  const faqSchema = generateFAQSchema(parqueFAQs);
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Inicio", url: "https://calisthenia.online/" },
+    { name: "Calistenia en Parque", url: "https://calisthenia.online/calistenia-en-parque/" },
+  ]);
+
   return (
     <>
       <Helmet>
-        <title>Calistenia Parques: Guía Completa para Entrenar al Aire Libre | 2025</title>
+        <title>Calistenia en Parques: Guía Completa | 2025</title>
         <meta 
           name="description" 
           content="Aprende calistenia en parques con barras y paralelas. Videos, ejercicios y rutinas para empezar a entrenar al aire libre desde cero." 
@@ -42,8 +59,11 @@ const CalisteniaParque = () => {
         <meta name="keywords" content="calistenia parques, empezar calistenia, calistenia videos, parques calistenia cerca de mi, ejercicios barra dominadas" />
         <meta property="og:title" content="Calistenia en Parques | Entrena Gratis al Aire Libre" />
         <meta property="og:description" content="Guía completa para empezar en calistenia utilizando parques públicos. Videos, rutinas y técnicas." />
+        <meta property="og:url" content="https://calisthenia.online/calistenia-en-parque/" />
+        <meta property="og:type" content="article" />
         <link rel="canonical" href="https://calisthenia.online/calistenia-en-parque/" />
       </Helmet>
+      <StructuredData data={[faqSchema, breadcrumbSchema]} />
 
       <div className="min-h-screen flex flex-col">
         <Header />
