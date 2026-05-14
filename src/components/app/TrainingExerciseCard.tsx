@@ -3,7 +3,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Play, ChevronDown, ChevronUp, Clock } from 'lucide-react';
+import { Play, ChevronDown, ChevronUp, Clock, Dumbbell } from 'lucide-react';
 import type { TodayExercise } from '@/hooks/useTodayTraining';
 
 interface Props {
