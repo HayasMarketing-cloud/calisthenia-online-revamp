@@ -190,7 +190,7 @@ const ProgramTemplateEditor = () => {
       toast.success('Ejercicio añadido al día');
       queryClient.invalidateQueries({ queryKey: ['template-weeks', id] });
       setAddExDialog({ open: false, dayId: '' });
-      setExForm({ exercise_id: '', sets: 3, reps: '10', rest_seconds: 60, notes: '' });
+      setExForm({ exercise_id: '', sets: 3, reps: '10', rest_seconds: 60, notes: '', custom_youtube_video_id: '' });
     },
     onError: (err: Error) => toast.error(err.message),
   });
@@ -285,7 +285,7 @@ const ProgramTemplateEditor = () => {
                             variant="outline"
                             onClick={() => {
                               setAddExDialog({ open: true, dayId: day.id });
-                              setExForm({ exercise_id: '', sets: 3, reps: '10', rest_seconds: 60, notes: '' });
+                              setExForm({ exercise_id: '', sets: 3, reps: '10', rest_seconds: 60, notes: '', custom_youtube_video_id: '' });
                             }}
                           >
                             <Plus className="h-3 w-3 mr-1" /> Ejercicio
