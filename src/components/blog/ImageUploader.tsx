@@ -94,8 +94,9 @@ const ImageUploader = ({ onImageUploaded, currentImage, label = "Imagen destacad
               size="icon"
               className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
               onClick={handleRemove}
+              aria-label="Quitar imagen"
             >
-              <X className="h-4 w-4" />
+              <X className="h-4 w-4" aria-hidden="true" />
             </Button>
           </div>
         ) : (
@@ -120,8 +121,8 @@ const ImageUploader = ({ onImageUploaded, currentImage, label = "Imagen destacad
             className="flex-grow"
           />
           {uploading && (
-            <Button disabled size="icon">
-              <Loader2 className="h-4 w-4 animate-spin" />
+            <Button disabled size="icon" aria-label="Subiendo imagen">
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
             </Button>
           )}
         </div>

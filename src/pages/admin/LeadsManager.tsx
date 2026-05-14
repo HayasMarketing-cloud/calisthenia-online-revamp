@@ -117,7 +117,7 @@ const LeadsManager = () => {
                         {new Date(lead.created_at).toLocaleDateString("es-ES", { day: "2-digit", month: "short", year: "numeric" })}
                       </TableCell>
                       <TableCell>
-                        <Button variant="ghost" size="icon" onClick={() => handleDelete(lead.id)}>
+                        <Button variant="ghost" size="icon" onClick={() => handleDelete(lead.id)} aria-label={`Eliminar lead ${lead.name}`}>
                           <Trash2 className="h-4 w-4 text-destructive" />
                         </Button>
                       </TableCell>

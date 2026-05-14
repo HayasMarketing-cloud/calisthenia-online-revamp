@@ -40,7 +40,7 @@ const CallToAction = () => {
             </Button>
             
             <div className="text-center">
-              <p className="text-sm text-gray-400">Más de <span className="text-primary font-semibold">500 estudiantes</span> ya confiaron en nosotros</p>
+              <p className="text-sm text-gray-300">Más de <span className="text-primary font-semibold">500 estudiantes</span> ya confiaron en nosotros</p>
               <div className="flex justify-center mt-2 space-x-1">
                 {[...Array(5)].map((_, i) => (
                   <span key={i} className="text-yellow-400 text-lg">⭐</span>
@@ -55,17 +55,17 @@ const CallToAction = () => {
             <div className="text-center">
               <p className="font-bold text-2xl text-primary">💪</p>
               <p className="text-white font-semibold">Sin Equipos</p>
-              <p className="text-gray-400 text-sm">Solo tu peso corporal</p>
+              <p className="text-gray-300 text-sm">Solo tu peso corporal</p>
             </div>
             <div className="text-center">
               <p className="font-bold text-2xl text-primary">🎯</p>
               <p className="text-white font-semibold">Resultados Garantizados</p>
-              <p className="text-gray-400 text-sm">Metodología probada</p>
+              <p className="text-gray-300 text-sm">Metodología probada</p>
             </div>
             <div className="text-center">
               <p className="font-bold text-2xl text-primary">🚀</p>
               <p className="text-white font-semibold">Acceso Inmediato</p>
-              <p className="text-gray-400 text-sm">Comienza hoy mismo</p>
+              <p className="text-gray-300 text-sm">Comienza hoy mismo</p>
             </div>
           </div>
         </div>
