@@ -19,28 +19,36 @@ import { generateFAQSchema } from "@/lib/schemas";
 
 export const faqs = [
   {
-    question: "¿Cuánto espacio necesito para entrenar en casa?",
-    answer: "Solo necesitas aproximadamente 2x2 metros de espacio libre. Esto es suficiente para realizar sentadillas, flexiones, planchas y la mayoría de ejercicios de calistenia sin restricciones."
+    question: "¿Cómo empezar a hacer calistenia en casa siendo principiante?",
+    answer: "Para empezar calistenia en casa siendo principiante, dedica 3 días por semana a una rutina full body de 20-30 minutos centrada en cinco movimientos básicos sin material: sentadillas, flexiones (puedes apoyar las rodillas), zancadas, planchas y bird-dog. Empieza con 3 series de 8-12 repeticiones, prioriza la técnica antes que el volumen y descansa 48 horas entre sesiones para permitir la recuperación muscular."
   },
   {
-    question: "¿Puedo ganar músculo sin pesas?",
-    answer: "Sí, absolutamente. La calistenia permite desarrollar masa muscular mediante progresiones: aumentando repeticiones, reduciendo descansos, haciendo variaciones más difíciles y controlando el tempo. Muchos atletas de calistenia tienen físicos impresionantes entrenando solo con su peso corporal."
+    question: "¿Cuánto espacio necesito para una rutina de calistenia en casa?",
+    answer: "Necesitas aproximadamente 2x2 metros de espacio libre para entrenar calistenia en casa sin restricciones. Esa superficie basta para hacer flexiones, sentadillas, planchas, zancadas y mountain climbers con seguridad. Asegúrate de que el suelo sea estable, esté bien ventilado y no haya muebles cerca que limiten los movimientos amplios."
   },
   {
-    question: "¿Cuántas veces debo entrenar por semana?",
-    answer: "Depende de tu nivel: principiantes 3 días/semana, intermedios 4-5 días/semana, avanzados 5-6 días/semana. Es importante incluir al menos 1-2 días de descanso completo o activo para permitir la recuperación muscular."
+    question: "¿Se puede ganar músculo haciendo calistenia en casa sin pesas?",
+    answer: "Sí, la calistenia en casa permite ganar músculo sin pesas aplicando el principio de sobrecarga progresiva: aumenta repeticiones, reduce los descansos, controla el tempo (3 segundos bajando, 1 de pausa, 3 subiendo) y avanza hacia variaciones más exigentes (flexiones diamante, archer, pistol squat). Combinado con un superávit calórico de proteína suficiente (1,6-2 g/kg), el peso corporal es estímulo más que de sobra para hipertrofia."
   },
   {
-    question: "¿Es mejor entrenar por la mañana o por la noche?",
-    answer: "El mejor momento es cuando puedas ser más consistente. La mañana puede aumentar tu energía para el día, mientras que la noche permite desestresarte después del trabajo. Lo importante es mantener la constancia en el horario elegido."
+    question: "¿Cuántos días a la semana hay que entrenar calistenia en casa?",
+    answer: "La frecuencia ideal de entrenamiento de calistenia en casa depende del nivel: principiantes 3 días por semana en formato full body, intermedios 4-5 días con división tren superior/inferior, y avanzados 5-6 días con rutinas especializadas (empuje, tracción, piernas). Reserva siempre 1-2 días de descanso completo o activo (caminar, movilidad) para optimizar la recuperación y evitar el sobreentrenamiento."
   },
   {
-    question: "¿Necesito una esterilla para entrenar?",
-    answer: "No es estrictamente necesaria, pero sí muy recomendable. Una esterilla proporciona comodidad en ejercicios de suelo (planchas, estiramientos), protege tus articulaciones y mejora el agarre en ciertos movimientos. Puedes encontrarlas desde 15-20€."
+    question: "¿Cuánto tiempo tarda la calistenia en casa en dar resultados?",
+    answer: "Con calistenia en casa empezarás a notar mejoras de fuerza y energía en 2-3 semanas, y los cambios físicos visibles (más definición, mejor postura, hipertrofia inicial) aparecen entre la semana 4 y la 8 entrenando de forma constante 3-5 días por semana. Para resultados sostenidos a largo plazo la clave es la consistencia, una progresión gradual y una alimentación adecuada a tu objetivo."
   },
   {
-    question: "¿Cuánto tiempo hasta ver resultados?",
-    answer: "Los primeros cambios en fuerza se notan en 2-3 semanas. Los cambios físicos visibles aparecen en 4-8 semanas con entrenamiento constante y alimentación adecuada. La clave es la paciencia y la consistencia a largo plazo."
+    question: "¿Qué material necesito para entrenar calistenia en casa?",
+    answer: "La calistenia en casa se puede practicar sin ningún material: solo necesitas tu peso corporal y un espacio de 2x2 metros. De forma opcional, una esterilla aporta comodidad en ejercicios de suelo, una silla resistente sirve para fondos de tríceps y elevaciones, y una toalla en la puerta permite añadir trabajo de tracción. Una barra de dominadas de marco es la única inversión que multiplica las opciones de ejercicios."
+  },
+  {
+    question: "¿Es mejor entrenar calistenia en casa por la mañana o por la noche?",
+    answer: "El mejor momento para entrenar calistenia en casa es aquel en el que puedas ser más constante. Entrenar por la mañana activa el metabolismo y mejora el foco para el día; hacerlo por la tarde-noche aprovecha que la temperatura corporal y la fuerza están en su pico fisiológico, lo que reduce el riesgo de lesión. Elige la franja que mejor encaje con tu rutina y mantenla en el tiempo."
+  },
+  {
+    question: "¿Sirve la calistenia en casa para mujeres y para perder peso?",
+    answer: "Sí, la calistenia en casa es ideal tanto para mujeres como para cualquier persona que quiera perder grasa y tonificar. Al combinar ejercicios de fuerza con peso corporal y circuitos de alta intensidad (HIIT con sentadillas, mountain climbers, burpees) elevas el gasto calórico, mantienes masa muscular y mejoras la composición corporal. Tres sesiones semanales de 30 minutos junto a un déficit calórico moderado son suficientes para ver resultados."
   }
 ];
 
