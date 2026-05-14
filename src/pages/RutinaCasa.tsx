@@ -17,6 +17,33 @@ import StructuredData from "@/components/seo/StructuredData";
 import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
 import { generateFAQSchema } from "@/lib/schemas";
 
+export const faqs = [
+  {
+    question: "¿Cuánto espacio necesito para entrenar en casa?",
+    answer: "Solo necesitas aproximadamente 2x2 metros de espacio libre. Esto es suficiente para realizar sentadillas, flexiones, planchas y la mayoría de ejercicios de calistenia sin restricciones."
+  },
+  {
+    question: "¿Puedo ganar músculo sin pesas?",
+    answer: "Sí, absolutamente. La calistenia permite desarrollar masa muscular mediante progresiones: aumentando repeticiones, reduciendo descansos, haciendo variaciones más difíciles y controlando el tempo. Muchos atletas de calistenia tienen físicos impresionantes entrenando solo con su peso corporal."
+  },
+  {
+    question: "¿Cuántas veces debo entrenar por semana?",
+    answer: "Depende de tu nivel: principiantes 3 días/semana, intermedios 4-5 días/semana, avanzados 5-6 días/semana. Es importante incluir al menos 1-2 días de descanso completo o activo para permitir la recuperación muscular."
+  },
+  {
+    question: "¿Es mejor entrenar por la mañana o por la noche?",
+    answer: "El mejor momento es cuando puedas ser más consistente. La mañana puede aumentar tu energía para el día, mientras que la noche permite desestresarte después del trabajo. Lo importante es mantener la constancia en el horario elegido."
+  },
+  {
+    question: "¿Necesito una esterilla para entrenar?",
+    answer: "No es estrictamente necesaria, pero sí muy recomendable. Una esterilla proporciona comodidad en ejercicios de suelo (planchas, estiramientos), protege tus articulaciones y mejora el agarre en ciertos movimientos. Puedes encontrarlas desde 15-20€."
+  },
+  {
+    question: "¿Cuánto tiempo hasta ver resultados?",
+    answer: "Los primeros cambios en fuerza se notan en 2-3 semanas. Los cambios físicos visibles aparecen en 4-8 semanas con entrenamiento constante y alimentación adecuada. La clave es la paciencia y la consistencia a largo plazo."
+  }
+];
+
 const RutinaCasa = () => {
   const schemas = useRoutineSchemas({
     routineName: "Calistenia en Casa: Rutina Completa sin Equipamiento",
