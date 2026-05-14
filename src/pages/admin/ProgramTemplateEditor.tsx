@@ -98,7 +98,7 @@ const ProgramTemplateEditor = () => {
       if (dayIds.length) {
         const { data: exData } = await supabase
           .from('program_day_exercises')
-          .select('*, exercises(id, name, muscle_groups)')
+          .select('*, exercises(id, name, muscle_groups, youtube_video_id)')
           .in('day_id', dayIds)
           .order('order_index');
         exercisesData = exData || [];
