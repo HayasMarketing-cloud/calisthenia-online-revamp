@@ -358,9 +358,26 @@ const ProgramTemplateEditor = () => {
                                   {ex.notes && <p className="text-xs text-muted-foreground italic mt-0.5">{ex.notes}</p>}
                                 </div>
                               </div>
-                              <Button size="sm" variant="ghost" className="text-destructive h-7 w-7 p-0 flex-shrink-0" onClick={() => removeExMutation.mutate(ex.id)}>
-                                <Trash2 className="h-3 w-3" />
-                              </Button>
+                              <div className="flex items-center gap-1 flex-shrink-0">
+                                <Button
+                                  size="sm"
+                                  variant="ghost"
+                                  className="h-7 w-7 p-0"
+                                  title="Editar vídeo de YouTube"
+                                  onClick={() => setVideoEditDialog({
+                                    open: true,
+                                    exId: ex.id,
+                                    current: ex.custom_youtube_video_id || '',
+                                    exerciseName: ex.exercise?.name || 'Ejercicio',
+                                    baseVideoId: ex.exercise?.youtube_video_id || null,
+                                  })}
+                                >
+                                  <Youtube className="h-3.5 w-3.5" />
+                                </Button>
+                                <Button size="sm" variant="ghost" className="text-destructive h-7 w-7 p-0" onClick={() => removeExMutation.mutate(ex.id)}>
+                                  <Trash2 className="h-3 w-3" />
+                                </Button>
+                              </div>
                             </div>
                             );
                           })}
