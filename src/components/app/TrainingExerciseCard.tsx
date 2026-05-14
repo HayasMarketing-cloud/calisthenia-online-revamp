@@ -29,13 +29,44 @@ const TrainingExerciseCard = ({ item, index, completed, onToggle, disabled }: Pr
             className="mt-1"
           />
           <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-1">
-              <span className="text-xs font-bold text-primary bg-primary/10 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0">
-                {index + 1}
-              </span>
-              <h3 className={`font-semibold text-sm leading-tight ${completed ? 'line-through text-muted-foreground' : 'text-foreground'}`}>
-                {item.exercise.name}
-              </h3>
+            <div className="flex items-start gap-3 mb-2">
+              {/* Thumbnail */}
+              <button
+                type="button"
+                onClick={() => videoId && setShowVideo(!showVideo)}
+                className="relative flex-shrink-0 w-20 h-14 rounded-md overflow-hidden bg-muted group"
+                aria-label={videoId ? 'Ver vídeo del ejercicio' : 'Sin vídeo disponible'}
+                disabled={!videoId}
+              >
+                {videoId ? (
+                  <>
+                    <img
+                      src={`https://img.youtube.com/vi/${videoId}/mqdefault.jpg`}
+                      alt={`Vista previa de ${item.exercise.name}`}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors">
+                      <Play className="h-5 w-5 text-white fill-white" />
+                    </div>
+                  </>
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <Dumbbell className="h-5 w-5 text-muted-foreground" />
+                  </div>
+                )}
+              </button>
+
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-bold text-primary bg-primary/10 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0">
+                    {index + 1}
+                  </span>
+                  <h3 className={`font-semibold text-sm leading-tight ${completed ? 'line-through text-muted-foreground' : 'text-foreground'}`}>
+                    {item.exercise.name}
+                  </h3>
+                </div>
+              </div>
             </div>
 
             {/* Muscle groups */}
