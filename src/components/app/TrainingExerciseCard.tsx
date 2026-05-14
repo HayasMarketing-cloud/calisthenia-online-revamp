@@ -3,7 +3,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Play, ChevronDown, ChevronUp, Clock, Dumbbell } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Play, Clock, Dumbbell, ExternalLink } from 'lucide-react';
 import type { TodayExercise } from '@/hooks/useTodayTraining';
 
 interface Props {
@@ -17,6 +18,10 @@ interface Props {
 const TrainingExerciseCard = ({ item, index, completed, onToggle, disabled }: Props) => {
   const [showVideo, setShowVideo] = useState(false);
   const videoId = item.custom_youtube_video_id || item.exercise.youtube_video_id;
+
+  const openVideo = () => {
+    if (videoId) setShowVideo(true);
+  };
 
   return (
     <Card className={`transition-all duration-300 ${completed ? 'opacity-60 border-primary/30' : ''}`}>
@@ -33,7 +38,7 @@ const TrainingExerciseCard = ({ item, index, completed, onToggle, disabled }: Pr
               {/* Thumbnail */}
               <button
                 type="button"
-                onClick={() => videoId && setShowVideo(!showVideo)}
+                onClick={openVideo}
                 className="relative flex-shrink-0 w-20 h-14 rounded-md overflow-hidden bg-muted group"
                 aria-label={videoId ? 'Ver vídeo del ejercicio' : 'Sin vídeo disponible'}
                 disabled={!videoId}
@@ -104,36 +109,53 @@ const TrainingExerciseCard = ({ item, index, completed, onToggle, disabled }: Pr
               <p className="text-xs text-muted-foreground mb-2">{item.notes}</p>
             )}
 
-            {/* Video toggle */}
+            {/* Video button */}
             {videoId && (
-              <div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-xs h-7 px-2 gap-1"
-                  onClick={() => setShowVideo(!showVideo)}
-                >
-                  <Play className="h-3 w-3" />
-                  {showVideo ? 'Ocultar vídeo' : 'Ver vídeo'}
-                  {showVideo ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
-                </Button>
-                {showVideo && (
-                  <div className="mt-2 rounded-lg overflow-hidden" style={{ aspectRatio: '16/9' }}>
-                    <iframe
-                      src={`https://www.youtube.com/embed/${videoId}`}
-                      title={item.exercise.name}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      loading="lazy"
-                      className="w-full h-full"
-                    />
-                  </div>
-                )}
-              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-xs h-7 px-2 gap-1"
+                onClick={openVideo}
+              >
+                <Play className="h-3 w-3" />
+                Ver técnica
+              </Button>
             )}
           </div>
         </div>
       </CardContent>
+
+      {/* In-app video modal */}
+      {videoId && (
+        <Dialog open={showVideo} onOpenChange={setShowVideo}>
+          <DialogContent className="max-w-3xl p-4 sm:p-6">
+            <DialogHeader>
+              <DialogTitle className="text-base sm:text-lg pr-8">
+                {item.exercise.name}
+              </DialogTitle>
+            </DialogHeader>
+            <div className="rounded-lg overflow-hidden bg-black" style={{ aspectRatio: '16/9' }}>
+              {showVideo && (
+                <iframe
+                  src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
+                  title={item.exercise.name}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              )}
+            </div>
+            <a
+              href={`https://www.youtube.com/watch?v=${videoId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors self-end"
+            >
+              Abrir en YouTube <ExternalLink className="h-3 w-3" />
+            </a>
+          </DialogContent>
+        </Dialog>
+      )}
     </Card>
   );
 };
