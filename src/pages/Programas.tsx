@@ -76,6 +76,15 @@ const Programas = () => {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Programas de Calistenia con Nico Reyero</title>
+        <meta name="description" content="Programas de calistenia personalizados con Nico Reyero, entrenador certificado. Online y presencial en Madrid. Sin equipos, resultados reales." />
+        <link rel="canonical" href="https://calisthenia.online/programas/" />
+        <meta property="og:title" content="Programas de Calistenia con Nico Reyero" />
+        <meta property="og:description" content="Programas personalizados online y presencial en Madrid con un entrenador certificado." />
+        <meta property="og:url" content="https://calisthenia.online/programas/" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <StructuredData data={courseSchemas} />
       <Header />
       <CommunityStickyBanner />
