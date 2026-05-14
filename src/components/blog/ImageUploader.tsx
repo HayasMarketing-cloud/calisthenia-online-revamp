@@ -121,8 +121,8 @@ const ImageUploader = ({ onImageUploaded, currentImage, label = "Imagen destacad
             className="flex-grow"
           />
           {uploading && (
-            <Button disabled size="icon">
-              <Loader2 className="h-4 w-4 animate-spin" />
+            <Button disabled size="icon" aria-label="Subiendo imagen">
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
             </Button>
           )}
         </div>
