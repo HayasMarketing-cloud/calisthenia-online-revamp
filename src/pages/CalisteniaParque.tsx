@@ -7,6 +7,8 @@ import QuickJumpBanner from "@/components/QuickJumpBanner";
 import RoutineBreadcrumbs from "@/components/routine/RoutineBreadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
+import StructuredData from "@/components/seo/StructuredData";
+import { generateFAQSchema, generateBreadcrumbSchema } from "@/lib/schemas";
 import { allVideos } from "@/data/videoLibrary";
 import { getVideosByIds } from "@/lib/videoUtils";
 import entrenaParque from "@/assets/entrena-parque.jpg";
