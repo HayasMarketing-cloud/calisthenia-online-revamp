@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,16 +13,6 @@ import StructuredData from "@/components/seo/StructuredData";
 import { generateCourseSchema, generateBreadcrumbSchema } from "@/lib/schemas";
 
 const Programas = () => {
-  useEffect(() => {
-    document.title = "Programas de Entrenamiento | Entrenador Personal de Calistenia - Nico Reyero";
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 
-        'Entrena con Nico Reyero, entrenador personal de calistenia certificado. Programas personalizados online y presencial en Madrid. Transforma tu cuerpo sin equipos.'
-      );
-    }
-  }, []);
 
   // Load Go High Level form embed script
   useEffect(() => {
