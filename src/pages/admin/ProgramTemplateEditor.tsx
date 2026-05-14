@@ -122,7 +122,7 @@ const ProgramTemplateEditor = () => {
   const { data: allExercises } = useQuery({
     queryKey: ['all-exercises'],
     queryFn: async () => {
-      const { data, error } = await supabase.from('exercises').select('id, name, muscle_groups').eq('is_active', true).order('name');
+      const { data, error } = await supabase.from('exercises').select('id, name, muscle_groups, youtube_video_id').eq('is_active', true).order('name');
       if (error) throw error;
       return data as ExerciseOption[];
     },
