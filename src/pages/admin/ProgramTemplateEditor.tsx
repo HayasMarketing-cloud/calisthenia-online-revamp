@@ -174,7 +174,7 @@ const ProgramTemplateEditor = () => {
 
   // Add exercise to day
   const addExMutation = useMutation({
-    mutationFn: async ({ dayId, exercise_id, sets, reps, rest_seconds, notes, order }: any) => {
+    mutationFn: async ({ dayId, exercise_id, sets, reps, rest_seconds, notes, custom_youtube_video_id, order }: any) => {
       const { error } = await supabase.from('program_day_exercises').insert({
         day_id: dayId,
         exercise_id,
@@ -182,6 +182,7 @@ const ProgramTemplateEditor = () => {
         reps,
         rest_seconds,
         notes: notes || null,
+        custom_youtube_video_id: custom_youtube_video_id || null,
         order_index: order,
       });
       if (error) throw error;
@@ -191,6 +192,23 @@ const ProgramTemplateEditor = () => {
       queryClient.invalidateQueries({ queryKey: ['template-weeks', id] });
       setAddExDialog({ open: false, dayId: '' });
       setExForm({ exercise_id: '', sets: 3, reps: '10', rest_seconds: 60, notes: '', custom_youtube_video_id: '' });
+    },
+    onError: (err: Error) => toast.error(err.message),
+  });
+
+  // Update custom YouTube video for an existing exercise row
+  const updateVideoMutation = useMutation({
+    mutationFn: async ({ exId, videoId }: { exId: string; videoId: string | null }) => {
+      const { error } = await supabase
+        .from('program_day_exercises')
+        .update({ custom_youtube_video_id: videoId })
+        .eq('id', exId);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      toast.success('Vídeo actualizado');
+      queryClient.invalidateQueries({ queryKey: ['template-weeks', id] });
+      setVideoEditDialog({ open: false, exId: '', current: '', exerciseName: '', baseVideoId: null });
     },
     onError: (err: Error) => toast.error(err.message),
   });
