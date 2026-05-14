@@ -53,24 +53,6 @@
     }
     </script>
 
-    <!-- Structured Data: Organization -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "@id": "https://calisthenia.online/#organization",
-      "name": "Calistenia Online",
-      "url": "https://calisthenia.online/",
-      "logo": "https://calisthenia.online/lovable-uploads/f3b95d09-dfd8-4644-9fcb-11a257a02133.png",
-      "image": "https://calisthenia.online/lovable-uploads/f3b95d09-dfd8-4644-9fcb-11a257a02133.png",
-      "founder": { "@id": "https://calisthenia.online/#nicolas-reyero" },
-      "sameAs": [
-        "https://www.instagram.com/nicolasreyero/",
-        "https://www.youtube.com/@nicolasreyero"
-      ]
-    }
-    </script>
-
     <!-- Structured Data: Person (Personal Trainer) -->
     <script type="application/ld+json">
     {
@@ -78,10 +60,10 @@
       "@type": "Person",
       "@id": "https://calisthenia.online/#nicolas-reyero",
       "name": "Nicolás Reyero",
-      "url": "https://calisthenia.online/",
+      "url": "https://calisthenia.online/quien-soy",
       "image": "https://calisthenia.online/lovable-uploads/f3b95d09-dfd8-4644-9fcb-11a257a02133.png",
       "jobTitle": "Entrenador personal de calistenia",
-      "description": "Entrenador personal especializado en calistenia, movilidad y entrenamiento funcional. Crea programas online accesibles desde cualquier lugar.",
+      "description": "Entrenador personal certificado FESWC, especializado en calistenia, movilidad y entrenamiento funcional con peso corporal.",
       "knowsAbout": [
         "Calistenia",
         "Entrenamiento funcional",
@@ -90,14 +72,17 @@
         "Hipertrofia"
       ],
       "nationality": "ES",
-      "worksFor": { "@id": "https://calisthenia.online/#organization" },
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Calistenia Online",
+        "url": "https://calisthenia.online/"
+      },
       "sameAs": [
-        "https://www.instagram.com/nicolasreyero/",
-        "https://www.youtube.com/@nicolasreyero"
+        "https://www.instagram.com/calistenia.online/",
+        "https://www.youtube.com/@CalisteniaOnline"
       ]
     }
     </script>
-  </head>
 
   <body>
     <div id="root"></div>
