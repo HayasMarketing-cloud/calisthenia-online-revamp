@@ -24,6 +24,7 @@ interface ExerciseOption {
   id: string;
   name: string;
   muscle_groups: string[] | null;
+  youtube_video_id?: string | null;
 }
 
 interface DayExercise {
