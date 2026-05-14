@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import RoutineBreadcrumbs from "@/components/routine/RoutineBreadcrumbs";
 import BlogPostCard from "@/components/blog/BlogPostCard";
 import LatestVideosCarousel from "@/components/LatestVideosCarousel";
+import StructuredData from "@/components/seo/StructuredData";
 import { usePublishedBlogPosts } from "@/hooks/useBlogPosts";
 import { useBlogCategories } from "@/hooks/useBlogCategories";
 import { Input } from "@/components/ui/input";
