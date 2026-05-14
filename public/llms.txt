@@ -1,0 +1,33 @@
+# Calistenia Online
+
+> Plataforma de calistenia y entrenamiento funcional con peso corporal, dirigida por Nicolás Reyero. Programas, rutinas, guías y contenidos en vídeo para entrenar sin equipos desde casa o en parques.
+
+## Pages
+
+- [Inicio](/): Home, propuesta de valor y acceso a rutinas y programas.
+- [Quién soy](/quien-soy/): Historia, metodología y certificaciones de Nicolás Reyero.
+- [Programas](/programas/): Programas personalizados de calistenia online y presencial en Madrid.
+- [Programa cuerpo atlético en casa](/programa-cuerpo-atletico-en-casa/): Coaching para teletrabajadores.
+- [Funcional Bodybuilding](/funcional-bodybuilding/): Workshop e información del enfoque.
+- [Empezar](/empezar/): Captación de leads y formación gratuita en vídeo.
+- [Contacto](/contacto/): Vías de contacto.
+
+## Rutinas
+
+- [Calistenia en parque](/calistenia-en-parque/): Guía para entrenar al aire libre con barras y paralelas.
+- [Calistenia para principiantes](/calistenia-principiantes/): Primeros pasos y progresiones.
+- [Calistenia nivel avanzado](/calistenia-nivel-avanzado/): Progresiones avanzadas.
+- [Rutina de brazos](/rutina-brazos-calistenia/)
+- [Rutina de espalda](/rutina-espalda-calistenia/)
+- [Rutina de abdominales](/rutina-abdominales-calistenia/)
+- [Rutina de core](/rutina-core-calistenia/)
+- [Rutina de piernas](/rutina-piernas-calistenia/)
+- [Rutina de pecho](/rutina-pecho-calistenia/)
+- [Rutinas de hombro](/rutinas-de-hombro-calistenia/)
+- [Rutina full body](/rutina-full-body/)
+- [Rutina en casa](/rutina-calistenia-en-casa/)
+
+## Blog
+
+- [Blog](/blog/): Guías y artículos sobre calistenia.
+- [Qué es la calistenia](/blog/que-es-la-calistenia/): Introducción y fundamentos.
