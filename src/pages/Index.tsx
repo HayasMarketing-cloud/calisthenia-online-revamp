@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 import HeroSectionImproved from "@/components/HeroSectionImproved";
@@ -48,6 +49,15 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Calistenia Online | Nicolás Reyero</title>
+        <meta name="description" content="Entrena calistenia con Nicolás Reyero: rutinas, programas y guías para transformar tu cuerpo sin equipos, desde casa o el parque." />
+        <link rel="canonical" href="https://calisthenia.online/" />
+        <meta property="og:title" content="Calistenia Online | Nicolás Reyero" />
+        <meta property="og:description" content="Entrena calistenia con Nicolás Reyero: rutinas, programas y guías para transformar tu cuerpo sin equipos." />
+        <meta property="og:url" content="https://calisthenia.online/" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <StructuredData data={[organizationSchema, faqSchema]} />
       <Header />
       <CommunityStickyBanner />

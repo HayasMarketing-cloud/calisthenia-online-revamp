@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import RoutineBreadcrumbs from "@/components/routine/RoutineBreadcrumbs";
 import BlogPostCard from "@/components/blog/BlogPostCard";
 import LatestVideosCarousel from "@/components/LatestVideosCarousel";
+import StructuredData from "@/components/seo/StructuredData";
 import { usePublishedBlogPosts } from "@/hooks/useBlogPosts";
 import { useBlogCategories } from "@/hooks/useBlogCategories";
 import { Input } from "@/components/ui/input";
@@ -32,10 +33,29 @@ const Blog = () => {
     return matchesSearch && matchesCategory;
   });
 
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Blog de Calistenia",
+    "description": "Blog de calistenia con guías completas, consejos de entrenamiento y todo lo que necesitas saber sobre ejercicios con peso corporal.",
+    "url": "https://calisthenia.online/blog/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Calistenia Online",
+      "url": "https://calisthenia.online/"
+    },
+    "blogPost": (posts ?? []).slice(0, 20).map((p: any) => ({
+      "@type": "BlogPosting",
+      "headline": p.title,
+      "url": `https://calisthenia.online/blog/${p.slug}/`,
+      "datePublished": p.published_at || p.created_at,
+    })),
+  };
+
   return (
     <>
       <Helmet>
-        <title>Blog de Calistenia | Guías y Consejos - Calistenia Online</title>
+        <title>Blog de Calistenia | Guías y Consejos</title>
         <meta
           name="description"
           content="Blog de calistenia con guías completas, consejos de entrenamiento y todo lo que necesitas saber sobre ejercicios con peso corporal."
@@ -49,6 +69,7 @@ const Blog = () => {
         <meta property="og:url" content="https://calisthenia.online/blog/" />
         <meta property="og:type" content="website" />
       </Helmet>
+      <StructuredData data={blogSchema} />
 
       <div className="min-h-screen bg-background">
         <Header />

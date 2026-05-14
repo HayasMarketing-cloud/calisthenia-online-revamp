@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PersonalHero from "@/components/PersonalHero";
@@ -10,61 +10,7 @@ import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 import VideoHeroBanner from "@/components/VideoHeroBanner";
 
 const QuienSoy = () => {
-  useEffect(() => {
-    // SEO Meta tags
-    document.title = "Quién Soy - Nicolás Reyero | Entrenador de Calistenia Online";
-    
-    // Meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 
-        'Conoce la historia de Nicolás Reyero, entrenador certificado con más de 5 años transformando vidas mediante calistenia. Descubre su metodología y filosofía de entrenamiento.'
-      );
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = 'Conoce la historia de Nicolás Reyero, entrenador certificado con más de 5 años transformando vidas mediante calistenia. Descubre su metodología y filosofía de entrenamiento.';
-      document.head.appendChild(meta);
-    }
-    
-    // Meta keywords
-    let metaKeywords = document.querySelector('meta[name="keywords"]');
-    if (!metaKeywords) {
-      metaKeywords = document.createElement('meta');
-      metaKeywords.setAttribute('name', 'keywords');
-      document.head.appendChild(metaKeywords);
-    }
-    metaKeywords.setAttribute('content', 
-      'entrenador calistenia, nicolás reyero, historia personal entrenador, certificación calistenia, calistenia online'
-    );
-    
-    // Open Graph tags
-    const ogTags = [
-      { property: 'og:title', content: 'Quién Soy - Nicolás Reyero | Calistenia Online' },
-      { property: 'og:description', content: 'Conoce la historia y metodología de Nicolás Reyero, entrenador profesional de calistenia' },
-      { property: 'og:type', content: 'profile' },
-      { property: 'og:url', content: 'https://calisthenia.online/quien-soy/' }
-    ];
-    
-    ogTags.forEach(tag => {
-      let ogTag = document.querySelector(`meta[property="${tag.property}"]`);
-      if (!ogTag) {
-        ogTag = document.createElement('meta');
-        ogTag.setAttribute('property', tag.property);
-        document.head.appendChild(ogTag);
-      }
-      ogTag.setAttribute('content', tag.content);
-    });
-
-    // Canonical URL
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute('href', 'https://calisthenia.online/quien-soy/');
-  }, []);
+  // SEO meta tags handled by Helmet below
 
   const schemaData = {
     "@context": "https://schema.org",
@@ -81,6 +27,15 @@ const QuienSoy = () => {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Quién Soy - Nicolás Reyero | Calistenia</title>
+        <meta name="description" content="Conoce a Nicolás Reyero, entrenador certificado de calistenia con más de 5 años transformando vidas. Su historia, metodología y filosofía." />
+        <link rel="canonical" href="https://calisthenia.online/quien-soy/" />
+        <meta property="og:title" content="Quién Soy - Nicolás Reyero" />
+        <meta property="og:description" content="Conoce la historia y metodología de Nicolás Reyero, entrenador profesional de calistenia." />
+        <meta property="og:url" content="https://calisthenia.online/quien-soy/" />
+        <meta property="og:type" content="profile" />
+      </Helmet>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
