@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
 import HeroSectionImproved from "@/components/HeroSectionImproved";
