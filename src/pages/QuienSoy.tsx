@@ -27,6 +27,15 @@ const QuienSoy = () => {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Quién Soy - Nicolás Reyero | Calistenia</title>
+        <meta name="description" content="Conoce a Nicolás Reyero, entrenador certificado de calistenia con más de 5 años transformando vidas. Su historia, metodología y filosofía." />
+        <link rel="canonical" href="https://calisthenia.online/quien-soy/" />
+        <meta property="og:title" content="Quién Soy - Nicolás Reyero" />
+        <meta property="og:description" content="Conoce la historia y metodología de Nicolás Reyero, entrenador profesional de calistenia." />
+        <meta property="og:url" content="https://calisthenia.online/quien-soy/" />
+        <meta property="og:type" content="profile" />
+      </Helmet>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
