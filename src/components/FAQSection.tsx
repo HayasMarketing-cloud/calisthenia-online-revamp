@@ -5,7 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const faqs = [
+export const faqs = [
   {
     question: "¿Necesito equipos para empezar?",
     answer: "No, absolutamente ningún equipo es necesario. Todos nuestros programas están diseñados para trabajar únicamente con tu peso corporal. Lo único que necesitas es motivación y un espacio para entrenar."
