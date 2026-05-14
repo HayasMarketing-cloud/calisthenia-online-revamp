@@ -107,7 +107,7 @@ const RutinaCasa = () => {
         <link rel="canonical" href="https://calisthenia.online/rutina-calistenia-en-casa/" />
       </Helmet>
 
-      <StructuredData data={schemas.allSchemas} />
+      <StructuredData data={[...schemas.allSchemas, faqSchema]} />
 
       <div className="min-h-screen flex flex-col">
         <Header />
