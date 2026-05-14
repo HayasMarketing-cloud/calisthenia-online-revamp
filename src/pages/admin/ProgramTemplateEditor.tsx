@@ -512,11 +512,36 @@ const ProgramTemplateEditor = () => {
               <Label>Notas</Label>
               <Textarea value={exForm.notes} onChange={e => setExForm(p => ({ ...p, notes: e.target.value }))} rows={2} placeholder="Ej: Mantener core activado" />
             </div>
+            <div className="space-y-2">
+              <Label className="flex items-center gap-1.5">
+                <Youtube className="h-3.5 w-3.5 text-red-600" />
+                Vídeo de YouTube (opcional)
+              </Label>
+              <Input
+                value={exForm.custom_youtube_video_id}
+                onChange={e => setExForm(p => ({ ...p, custom_youtube_video_id: e.target.value }))}
+                placeholder="URL de YouTube o ID (ej: dQw4w9WgXcQ)"
+                maxLength={200}
+              />
+              {exForm.custom_youtube_video_id && !parseYouTubeId(exForm.custom_youtube_video_id) && (
+                <p className="text-xs text-destructive">URL o ID de YouTube no válido</p>
+              )}
+              {(() => {
+                const baseId = (allExercises || []).find(e => e.id === exForm.exercise_id)?.youtube_video_id;
+                return !exForm.custom_youtube_video_id && baseId ? (
+                  <p className="text-xs text-muted-foreground">Por defecto se usará el vídeo del ejercicio.</p>
+                ) : null;
+              })()}
+            </div>
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setAddExDialog({ open: false, dayId: '' })}>Cancelar</Button>
             <Button
-              disabled={!exForm.exercise_id || addExMutation.isPending}
+              disabled={
+                !exForm.exercise_id ||
+                addExMutation.isPending ||
+                (!!exForm.custom_youtube_video_id && !parseYouTubeId(exForm.custom_youtube_video_id))
+              }
               onClick={() => {
                 const day = (weeks || []).flatMap(w => w.days).find(d => d.id === addExDialog.dayId);
                 const order = day ? day.exercises.length : 0;
@@ -527,12 +552,80 @@ const ProgramTemplateEditor = () => {
                   reps: exForm.reps,
                   rest_seconds: exForm.rest_seconds,
                   notes: exForm.notes,
+                  custom_youtube_video_id: exForm.custom_youtube_video_id ? parseYouTubeId(exForm.custom_youtube_video_id) : null,
                   order,
                 });
               }}
             >
               {addExMutation.isPending && <Loader2 className="h-4 w-4 animate-spin mr-1" />}
               Añadir ejercicio
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Edit YouTube video dialog */}
+      <Dialog
+        open={videoEditDialog.open}
+        onOpenChange={open => !open && setVideoEditDialog({ open: false, exId: '', current: '', exerciseName: '', baseVideoId: null })}
+      >
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Youtube className="h-4 w-4 text-red-600" />
+              Vídeo de YouTube
+            </DialogTitle>
+            <DialogDescription>{videoEditDialog.exerciseName}</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-3 py-2">
+            <div className="space-y-2">
+              <Label>URL o ID de YouTube</Label>
+              <Input
+                value={videoEditDialog.current}
+                onChange={e => setVideoEditDialog(p => ({ ...p, current: e.target.value }))}
+                placeholder="https://youtu.be/... o ID de 11 caracteres"
+                maxLength={200}
+                autoFocus
+              />
+              {videoEditDialog.current && !parseYouTubeId(videoEditDialog.current) && (
+                <p className="text-xs text-destructive">URL o ID no válido</p>
+              )}
+              {!videoEditDialog.current && videoEditDialog.baseVideoId && (
+                <p className="text-xs text-muted-foreground">
+                  Vacío usará el vídeo por defecto del ejercicio.
+                </p>
+              )}
+            </div>
+          </div>
+          <DialogFooter className="gap-2 sm:gap-2">
+            {videoEditDialog.current && (
+              <Button
+                variant="ghost"
+                className="text-destructive mr-auto"
+                onClick={() => updateVideoMutation.mutate({ exId: videoEditDialog.exId, videoId: null })}
+                disabled={updateVideoMutation.isPending}
+              >
+                Quitar
+              </Button>
+            )}
+            <Button
+              variant="outline"
+              onClick={() => setVideoEditDialog({ open: false, exId: '', current: '', exerciseName: '', baseVideoId: null })}
+            >
+              Cancelar
+            </Button>
+            <Button
+              disabled={
+                updateVideoMutation.isPending ||
+                (!!videoEditDialog.current && !parseYouTubeId(videoEditDialog.current))
+              }
+              onClick={() => updateVideoMutation.mutate({
+                exId: videoEditDialog.exId,
+                videoId: videoEditDialog.current ? parseYouTubeId(videoEditDialog.current) : null,
+              })}
+            >
+              {updateVideoMutation.isPending && <Loader2 className="h-4 w-4 animate-spin mr-1" />}
+              Guardar
             </Button>
           </DialogFooter>
         </DialogContent>
