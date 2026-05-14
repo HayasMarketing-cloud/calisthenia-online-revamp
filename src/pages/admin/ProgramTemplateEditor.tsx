@@ -44,6 +44,7 @@ interface DayExercise {
   reps: string | null;
   rest_seconds: number | null;
   notes: string | null;
+  custom_youtube_video_id?: string | null;
   exercise?: ExerciseOption;
 }
 
