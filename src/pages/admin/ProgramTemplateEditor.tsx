@@ -318,12 +318,28 @@ const ProgramTemplateEditor = () => {
                       <CardContent className="px-4 pb-3 pt-0">
                         <div className="space-y-2">
                           {day.exercises.map((ex, i) => {
-                            const videoId = (ex as any).custom_youtube_video_id || ex.exercise?.youtube_video_id;
+                            const videoId = ex.custom_youtube_video_id || ex.exercise?.youtube_video_id;
+                            const hasVideo = !!videoId;
+                            const openVideoEditor = () => setVideoEditDialog({
+                              open: true,
+                              exId: ex.id,
+                              current: ex.custom_youtube_video_id || '',
+                              exerciseName: ex.exercise?.name || 'Ejercicio',
+                              baseVideoId: ex.exercise?.youtube_video_id || null,
+                            });
                             return (
-                            <div key={ex.id} className="flex items-center justify-between bg-muted/50 rounded-md px-3 py-2 text-sm">
+                            <div
+                              key={ex.id}
+                              className={cn(
+                                "flex items-center justify-between rounded-md px-3 py-2 text-sm transition-colors",
+                                hasVideo
+                                  ? "bg-muted/50"
+                                  : "bg-amber-500/5 border border-dashed border-amber-500/40"
+                              )}
+                            >
                               <div className="flex items-center gap-3 min-w-0">
                                 <span className="text-muted-foreground text-xs w-5 flex-shrink-0">{i + 1}.</span>
-                                {videoId ? (
+                                {hasVideo ? (
                                   <a
                                     href={`https://www.youtube.com/watch?v=${videoId}`}
                                     target="_blank"
@@ -344,33 +360,49 @@ const ProgramTemplateEditor = () => {
                                     </div>
                                   </a>
                                 ) : (
-                                  <div className="flex-shrink-0 w-20 aspect-video rounded bg-muted flex items-center justify-center">
-                                    <Dumbbell className="h-4 w-4 text-muted-foreground/50" />
-                                  </div>
+                                  <button
+                                    type="button"
+                                    onClick={openVideoEditor}
+                                    title="Añadir vídeo de YouTube"
+                                    className="relative flex-shrink-0 w-20 aspect-video rounded border border-dashed border-amber-500/60 bg-amber-500/10 hover:bg-amber-500/20 flex flex-col items-center justify-center gap-0.5 transition-colors group"
+                                  >
+                                    <Plus className="h-3.5 w-3.5 text-amber-700 dark:text-amber-400" />
+                                    <span className="text-[9px] font-medium text-amber-700 dark:text-amber-400 leading-none">Vídeo</span>
+                                  </button>
                                 )}
                                 <div className="min-w-0">
-                                  <p className="font-medium truncate">{ex.exercise?.name || 'Ejercicio desconocido'}</p>
+                                  <div className="flex items-center gap-2 flex-wrap">
+                                    <p className="font-medium truncate">{ex.exercise?.name || 'Ejercicio desconocido'}</p>
+                                    {!hasVideo && (
+                                      <Badge variant="outline" className="text-[9px] py-0 px-1.5 h-4 border-amber-500/60 text-amber-700 dark:text-amber-400 bg-amber-500/10">
+                                        Sin vídeo
+                                      </Badge>
+                                    )}
+                                  </div>
                                   <div className="flex gap-3 text-xs text-muted-foreground mt-0.5">
                                     {ex.sets && <span>{ex.sets} series</span>}
                                     {ex.reps && <span>{ex.reps} reps</span>}
                                     {ex.rest_seconds && <span>{ex.rest_seconds}s descanso</span>}
                                   </div>
                                   {ex.notes && <p className="text-xs text-muted-foreground italic mt-0.5">{ex.notes}</p>}
+                                  {!hasVideo && (
+                                    <button
+                                      type="button"
+                                      onClick={openVideoEditor}
+                                      className="inline-flex items-center gap-1 text-[11px] text-amber-700 dark:text-amber-400 hover:underline mt-1"
+                                    >
+                                      <Youtube className="h-3 w-3" /> Asignar vídeo de YouTube
+                                    </button>
+                                  )}
                                 </div>
                               </div>
                               <div className="flex items-center gap-1 flex-shrink-0">
                                 <Button
                                   size="sm"
                                   variant="ghost"
-                                  className="h-7 w-7 p-0"
-                                  title="Editar vídeo de YouTube"
-                                  onClick={() => setVideoEditDialog({
-                                    open: true,
-                                    exId: ex.id,
-                                    current: ex.custom_youtube_video_id || '',
-                                    exerciseName: ex.exercise?.name || 'Ejercicio',
-                                    baseVideoId: ex.exercise?.youtube_video_id || null,
-                                  })}
+                                  className={cn("h-7 w-7 p-0", !hasVideo && "text-amber-600 hover:text-amber-700")}
+                                  title={hasVideo ? "Editar vídeo de YouTube" : "Añadir vídeo de YouTube"}
+                                  onClick={openVideoEditor}
                                 >
                                   <Youtube className="h-3.5 w-3.5" />
                                 </Button>
