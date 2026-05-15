@@ -255,7 +255,17 @@ const ExercisesManager = () => {
                 ) : (
                   filtered.map(ex => (
                     <TableRow key={ex.id}>
-                      <TableCell className="font-medium">{ex.name}</TableCell>
+                      <TableCell className="font-medium">
+                        <div className="flex items-center gap-2">
+                          <span>{ex.name}</span>
+                          {(ex as any).is_public_seo && (
+                            <Badge variant="default" className="text-[10px] gap-1"><Globe className="h-3 w-3" />SEO</Badge>
+                          )}
+                        </div>
+                        {(ex as any).primary_keyword && (
+                          <div className="text-[10px] text-muted-foreground mt-0.5">kw: {(ex as any).primary_keyword}</div>
+                        )}
+                      </TableCell>
                       <TableCell>
                         {(ex as any).category ? (
                           <Badge variant="outline" className="text-xs">{EXERCISE_CATEGORIES.find(c => c.value === (ex as any).category)?.label || (ex as any).category}</Badge>
