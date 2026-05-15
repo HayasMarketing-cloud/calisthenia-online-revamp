@@ -207,29 +207,35 @@ const Base = () => {
 
   const canonical = "https://calisthenia.online/programas/base/";
 
-  const courseSchema = generateCourseSchema({
-    name: "Programa BASE - Iniciación a la calistenia (12 semanas)",
-    description:
-      "Programa de iniciación a la calistenia online de 12 semanas para personas sedentarias, +30, sin experiencia previa o que quieren empezar a entrenar sin lesionarse. Incluye evaluación inicial, área privada, seguimiento personalizado y revisión técnica por WhatsApp.",
-    provider: "Calistenia Online",
-    providerUrl: "https://calisthenia.online",
-    url: canonical,
-    courseMode: "online",
-    educationalLevel: "Principiante",
-    image: "https://calisthenia.online/lovable-uploads/f3b95d09-dfd8-4644-9fcb-11a257a02133.png",
-    hasCourseInstance: {
-      courseMode: "Online",
-      instructor: "Nicolás Reyero",
-      courseWorkload: "2-3 horas/semana",
+  const courseSchema = {
+    ...generateCourseSchema({
+      name: "Programa BASE - Iniciación a la calistenia (12 semanas)",
+      description:
+        "Programa de iniciación a la calistenia online de 12 semanas para personas sedentarias, +30, sin experiencia previa o que quieren empezar a entrenar sin lesionarse. Incluye evaluación inicial, área privada, seguimiento personalizado y revisión técnica por WhatsApp.",
+      provider: "Calistenia Online",
+      providerUrl: "https://calisthenia.online",
+      url: canonical,
+      courseMode: "online",
+      educationalLevel: "Principiante",
+      image: "https://calisthenia.online/lovable-uploads/f3b95d09-dfd8-4644-9fcb-11a257a02133.png",
+      hasCourseInstance: {
+        courseMode: "Online",
+        instructor: "Nicolás Reyero",
+        courseWorkload: "2-3 horas/semana",
+      },
+      syllabusSections: [
+        { name: "Evaluación inicial y onboarding", description: "Análisis de nivel, movilidad, objetivos y condición física", position: 1 },
+        { name: "Movilidad y activación", description: "Recuperar amplitud articular y reducir rigidez", position: 2 },
+        { name: "Fuerza funcional progresiva", description: "Construir base de fuerza con peso corporal", position: 3 },
+        { name: "Resistencia y estabilidad", description: "Mejorar condición física y control corporal", position: 4 },
+        { name: "Hábitos sostenibles", description: "Construir una rutina realista y mantenible a largo plazo", position: 5 },
+      ],
+    }),
+    audience: {
+      "@type": "EducationalAudience",
+      audienceType: "Adultos +30 sedentarios o sin experiencia previa",
     },
-    syllabusSections: [
-      { name: "Evaluación inicial y onboarding", description: "Análisis de nivel, movilidad, objetivos y condición física", position: 1 },
-      { name: "Movilidad y activación", description: "Recuperar amplitud articular y reducir rigidez", position: 2 },
-      { name: "Fuerza funcional progresiva", description: "Construir base de fuerza con peso corporal", position: 3 },
-      { name: "Resistencia y estabilidad", description: "Mejorar condición física y control corporal", position: 4 },
-      { name: "Hábitos sostenibles", description: "Construir una rutina realista y mantenible a largo plazo", position: 5 },
-    ],
-  });
+  };
 
   const faqSchema = generateFAQSchema(faqs.map((f) => ({ question: f.q, answer: f.a })));
 
@@ -242,16 +248,16 @@ const Base = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Helmet>
-        <title>Programa BASE de Calistenia | Iniciación 12 semanas | Calisthenia Online</title>
+        <title>Programa de Calistenia desde Cero | Iniciación +30 Online</title>
         <meta
           name="description"
-          content="Programa BASE de calistenia: 12 semanas de iniciación online para +30, sedentarios o sin experiencia. Recupera movilidad, fuerza y energía con seguimiento personalizado."
+          content="Programa BASE: 12 semanas de calistenia desde cero online para mayores de 30, sedentarios o sin experiencia. Recupera movilidad y fuerza funcional con Nico."
         />
         <link rel="canonical" href={canonical} />
-        <meta property="og:title" content="Programa BASE de Calistenia | Iniciación 12 semanas" />
+        <meta property="og:title" content="Programa de Calistenia desde Cero | Iniciación +30 Online" />
         <meta
           property="og:description"
-          content="Programa de iniciación a la calistenia online. Movilidad, fuerza funcional y hábitos sostenibles con seguimiento personalizado de Nico Reyero."
+          content="Cómo empezar calistenia con un plan de 12 semanas online para sedentarios y mayores de 30. Movilidad articular, fuerza funcional y seguimiento personalizado."
         />
         <meta property="og:url" content={canonical} />
         <meta property="og:type" content="website" />
@@ -295,8 +301,8 @@ const Base = () => {
               </Badge>
 
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                Vuelve a sentirte ágil, fuerte y en forma —{" "}
-                <span className="text-primary">sin pisar un gimnasio</span>
+                Programa de calistenia desde cero para{" "}
+                <span className="text-primary">volver a moverte con fuerza</span>
               </h1>
 
               <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
@@ -348,7 +354,7 @@ const Base = () => {
                 Para quién es
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                BASE está diseñado para ti
+                Para quién es este programa de iniciación a la calistenia
               </h2>
               <p className="text-muted-foreground text-lg mt-3 max-w-2xl mx-auto">
                 Si te identificas con alguno de estos perfiles, este programa es tu
@@ -377,7 +383,7 @@ const Base = () => {
         <section className="py-16 md:py-20 px-4 bg-muted/40">
           <div className="container mx-auto max-w-4xl text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-              Problemas que resuelve
+              Cómo empezar calistenia si llevas años sin entrenar
             </h2>
             <p className="text-muted-foreground text-lg mb-10 max-w-2xl mx-auto">
               Sentirte rígido, cansado o fuera de forma no tiene por qué ser tu
@@ -401,7 +407,7 @@ const Base = () => {
           <div className="container mx-auto max-w-5xl">
             <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-                La transformación que vas a vivir
+                Recupera movilidad articular y fuerza desde el primer día
               </h2>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
                 En 12 semanas tu cuerpo cambia de aquí a aquí.
@@ -458,7 +464,7 @@ const Base = () => {
                 Qué es BASE
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Una base física sólida y sostenible en 12 semanas
+                Calistenia funcional para sedentarios y mayores de 30
               </h2>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
                 BASE es el programa inicial de Calisthenia Online. Trabajamos de
@@ -487,7 +493,7 @@ const Base = () => {
                 Cómo funciona
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                Un método simple, progresivo y personalizado
+                Cómo funciona el plan de calistenia de 12 semanas
               </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -559,7 +565,7 @@ const Base = () => {
           <div className="container mx-auto max-w-4xl">
             <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-                Qué incluye BASE
+                Qué incluye el programa BASE
               </h2>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
                 Todo lo que necesitas para empezar bien y mantenerte constante.
@@ -583,7 +589,7 @@ const Base = () => {
         <section className="py-16 md:py-20 px-4 bg-muted/40">
           <div className="container mx-auto max-w-4xl text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-              ¿Necesito material?
+              Entrenamiento funcional para principiantes en casa, parque o gimnasio
             </h2>
             <p className="text-muted-foreground text-lg mb-10 max-w-2xl mx-auto">
               BASE está diseñado para que puedas entrenar en cualquier lugar. La
@@ -802,7 +808,7 @@ const Base = () => {
           <div className="container mx-auto max-w-3xl">
             <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-                Preguntas frecuentes
+                Preguntas frecuentes sobre el programa de iniciación
               </h2>
               <p className="text-muted-foreground text-lg">
                 Si te queda alguna duda, escríbenos por WhatsApp.
