@@ -746,7 +746,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* Galería de Videos */}
-          <section className="py-20 md:py-24 bg-muted/30">
+          <section id="videos" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
               <VideoGallery 
                 videos={videosEnCasa}
@@ -1361,7 +1361,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* CTA Final */}
-          <section className="py-20 md:py-24">
+          <section id="cta-trial" className="py-20 md:py-24 scroll-mt-24">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-secondary via-secondary to-primary/30 p-10 md:p-16 text-center shadow-elegant">
