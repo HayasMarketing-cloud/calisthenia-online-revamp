@@ -280,6 +280,11 @@ const RutinaCasa = () => {
             />
           </div>
 
+          {/* Sticky Table of Contents */}
+          <div className="container mx-auto px-4">
+            <StickyTOC items={TOC_ITEMS} />
+          </div>
+
           {/* Por Qué Entrenar en Casa */}
           <section id="que-es" className="py-12 md:py-16 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
