@@ -1,6 +1,7 @@
 import { Outlet, useLocation, Link } from 'react-router-dom';
 import { Home, Dumbbell, User, BarChart3 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import PWAUpdatePrompt from './PWAUpdatePrompt';
 
 const navItems = [
   { to: '/app/dashboard', icon: Home, label: 'Inicio' },
@@ -14,6 +15,7 @@ const AppLayout = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <PWAUpdatePrompt />
       {/* Main content */}
       <main className="flex-1 pb-20">
         <Outlet />
