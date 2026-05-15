@@ -270,32 +270,7 @@ const RutinaCasa = () => {
                 Qué es la calistenia en <span className="text-primary">casa</span> y por qué funciona
               </h2>
 
-              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                {[
-                  { Icon: Home, title: "Sin Equipamiento", text: "Solo necesitas tu peso corporal para entrenar efectivamente" },
-                  { Icon: Clock, title: "Flexibilidad Total", text: "Entrena cuando quieras, sin horarios ni desplazamientos" },
-                  { Icon: Wallet, title: "Ahorro Económico", text: "Sin cuotas de gimnasio ni gastos en equipamiento caro" },
-                ].map(({ Icon, title, text }) => (
-                  <div key={title} className="text-center">
-                    <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                      <Icon className="w-7 h-7 text-primary" />
-                    </div>
-                    <h3 className="font-semibold text-xl mb-3">{title}</h3>
-                    <p className="text-muted-foreground">{text}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* ¿Qué es la Calistenia en Casa? */}
-          <section id="definicion" className="py-20 md:py-24 scroll-mt-24">
-            <div className="container mx-auto px-4">
-              <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Calistenia en casa para <span className="text-primary">principiantes</span>: definición rápida
-              </h2>
-
-              <div className="max-w-6xl mx-auto grid lg:grid-cols-5 gap-8 items-start">
+              <div className="max-w-6xl mx-auto grid lg:grid-cols-5 gap-8 items-start mb-16">
                 <div className="lg:col-span-3 space-y-4 text-muted-foreground text-lg leading-relaxed">
                   <div className="inline-flex items-center gap-3 mb-2">
                     <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
@@ -319,6 +294,22 @@ const RutinaCasa = () => {
                     Esto no solo ahorra dinero, sino que desarrolla <strong className="text-foreground">fuerza funcional</strong> más aplicable a movimientos del día a día.
                   </p>
                 </aside>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                {[
+                  { Icon: Home, title: "Sin equipamiento", text: "Solo necesitas tu peso corporal para entrenar de forma efectiva." },
+                  { Icon: Clock, title: "Flexibilidad total", text: "Entrena cuando quieras, sin horarios ni desplazamientos." },
+                  { Icon: Wallet, title: "Ahorro económico", text: "Sin cuotas de gimnasio ni gastos en equipamiento caro." },
+                ].map(({ Icon, title, text }) => (
+                  <div key={title} className="text-center">
+                    <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                      <Icon className="w-7 h-7 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-xl mb-3">{title}</h3>
+                    <p className="text-muted-foreground">{text}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
