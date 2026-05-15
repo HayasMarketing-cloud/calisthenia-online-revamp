@@ -160,7 +160,7 @@ const CalisteniaMujeres = () => {
         <link rel="canonical" href="https://calisthenia.online/calistenia-mujeres/" />
       </Helmet>
 
-      <StructuredData data={[...schemas.allSchemas, faqSchema]} />
+      <StructuredData data={[articleSchema, ...schemas.allSchemas, faqSchema]} />
 
       <div className="min-h-screen flex flex-col">
         <Header />
