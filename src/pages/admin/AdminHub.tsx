@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Users, Dumbbell, FileText, BarChart3, Image, ClipboardList, UserPlus } from 'lucide-react';
+import { Users, Dumbbell, FileText, BarChart3, Image, ClipboardList, UserPlus, Video } from 'lucide-react';
 import {
   Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
@@ -47,6 +47,12 @@ const adminSections = [
     description: 'Consulta y exporta los leads capturados',
     icon: UserPlus,
     path: '/admin/leads/',
+  },
+  {
+    title: 'Biblioteca de vídeos',
+    description: 'Catálogo del canal y páginas donde se usa cada vídeo',
+    icon: Video,
+    path: '/admin/videos/',
   },
 ];
 
