@@ -315,7 +315,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* Beneficios de la Calistenia en Casa */}
-          <section id="beneficios" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
+          <section id="beneficios" className="py-20 md:py-24 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Beneficios de entrenar calistenia en <span className="text-primary">casa</span>
@@ -1163,7 +1163,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* Progresión sin Equipamiento */}
-          <section id="progresion" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
+          <section id="progresion" className="py-20 md:py-24 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Progresión en calistenia en casa sin <span className="text-primary">equipamiento</span>
