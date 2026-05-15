@@ -578,6 +578,12 @@ const RutinaCasa = () => {
                           <p className="text-sm text-muted-foreground">Piernas, glúteos, core</p>
                         </div>
                       </div>
+                      <div className="bg-secondary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">👶 Regresión (versión fácil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Sentadilla a silla (box squat) • Sentadilla asistida sujetándote a una puerta o mesa • Reduce el rango bajando solo a media altura
+                        </p>
+                      </div>
                       <div className="bg-primary/10 p-4 rounded-lg">
                         <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
                         <p className="text-sm text-muted-foreground">
@@ -624,10 +630,16 @@ const RutinaCasa = () => {
                           <p className="text-sm text-muted-foreground">Pecho, tríceps, hombros, core</p>
                         </div>
                       </div>
+                      <div className="bg-secondary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">👶 Regresión (versión fácil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Flexiones contra la pared • Flexiones inclinadas con manos en mesa o sofá • Flexiones de rodillas manteniendo el cuerpo recto
+                        </p>
+                      </div>
                       <div className="bg-primary/10 p-4 rounded-lg">
                         <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
                         <p className="text-sm text-muted-foreground">
-                          Flexiones inclinadas (principiantes) • Flexiones diamante • Flexiones declinadas • Flexiones archer (avanzado)
+                          Flexiones diamante • Flexiones declinadas con pies elevados • Flexiones archer • Pseudo-planche push-ups (avanzado)
                         </p>
                       </div>
                       <div className="bg-destructive/10 p-4 rounded-lg">
@@ -669,6 +681,12 @@ const RutinaCasa = () => {
                           <h4 className="font-semibold mb-2">💪 Músculos Trabajados:</h4>
                           <p className="text-sm text-muted-foreground">Core completo, estabilizadores</p>
                         </div>
+                      </div>
+                      <div className="bg-secondary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">👶 Regresión (versión fácil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Plancha de rodillas • Plancha alta sobre manos extendidas • Reduce el tiempo a 15-20 segundos por serie
+                        </p>
                       </div>
                       <div className="bg-primary/10 p-4 rounded-lg">
                         <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
@@ -716,10 +734,16 @@ const RutinaCasa = () => {
                           <p className="text-sm text-muted-foreground">Piernas, glúteos, equilibrio</p>
                         </div>
                       </div>
+                      <div className="bg-secondary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">👶 Regresión (versión fácil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Zancada estática asistida apoyando una mano en pared • Acorta el paso para reducir la profundidad
+                        </p>
+                      </div>
                       <div className="bg-primary/10 p-4 rounded-lg">
                         <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
                         <p className="text-sm text-muted-foreground">
-                          Zancadas estáticas • Zancadas caminando • Zancadas inversas • Zancadas con salto (avanzado)
+                          Zancadas caminando • Zancadas inversas • Zancadas con salto (jumping lunges) • Zancada búlgara con pie trasero elevado (avanzado)
                         </p>
                       </div>
                     </AccordionContent>
@@ -753,10 +777,16 @@ const RutinaCasa = () => {
                           <p className="text-sm text-muted-foreground">Core, cardio, estabilidad</p>
                         </div>
                       </div>
+                      <div className="bg-secondary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">👶 Regresión (versión fácil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Mountain climbers lentos con manos apoyadas en mesa o sofá • Reduce el tiempo a 15-20 segundos
+                        </p>
+                      </div>
                       <div className="bg-primary/10 p-4 rounded-lg">
                         <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
                         <p className="text-sm text-muted-foreground">
-                          Mountain climbers lentos • Mountain climbers cruzados • Spiderman climbers
+                          Mountain climbers cruzados (rodilla al codo opuesto) • Spiderman climbers • Mountain climbers con sliders o toallas
                         </p>
                       </div>
                     </AccordionContent>
