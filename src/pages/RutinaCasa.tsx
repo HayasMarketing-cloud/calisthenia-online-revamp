@@ -695,8 +695,242 @@ const RutinaCasa = () => {
           {/* CTA Comunidad */}
           <CommunityCTA />
 
+          {/* Tabla Rutina Semanal Detallada */}
+          <section id="tabla-rutina" className="py-20 md:py-24 scroll-mt-24">
+            <div className="container mx-auto px-4">
+              <div className="max-w-5xl mx-auto">
+                <div className="text-center mb-12">
+                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider mb-4">
+                    <Calendar className="w-3.5 h-3.5" />
+                    Plan semanal listo para usar
+                  </span>
+                  <h2 className="font-display font-bold text-3xl md:text-4xl mb-4">
+                    Tabla de rutina de calistenia en <span className="text-primary">casa</span>
+                  </h2>
+                  <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                    Plan completo de 5 días con ejercicios, series, repeticiones y descansos. Sin material y adaptable a cualquier nivel.
+                  </p>
+                </div>
+
+                <Card className="border-primary/20 shadow-elegant overflow-hidden">
+                  <CardContent className="p-0">
+                    <Table>
+                      <TableCaption className="mb-4 px-4">
+                        Rutina de calistenia en casa · 5 sesiones/semana · ajusta repeticiones a tu nivel
+                      </TableCaption>
+                      <TableHeader>
+                        <TableRow className="bg-muted/60 hover:bg-muted/60">
+                          <TableHead className="font-bold text-foreground">Día</TableHead>
+                          <TableHead className="font-bold text-foreground">Enfoque</TableHead>
+                          <TableHead className="font-bold text-foreground">Ejercicio</TableHead>
+                          <TableHead className="font-bold text-foreground text-center">Series</TableHead>
+                          <TableHead className="font-bold text-foreground text-center">Reps</TableHead>
+                          <TableHead className="font-bold text-foreground text-center">Descanso</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {/* LUNES - EMPUJE */}
+                        <TableRow>
+                          <TableCell rowSpan={4} className="font-bold align-top bg-primary/5">
+                            <div>Lunes</div>
+                            <Badge variant="secondary" className="mt-2 text-xs">Empuje</Badge>
+                          </TableCell>
+                          <TableCell rowSpan={4} className="align-top text-sm text-muted-foreground">Pecho, hombros y tríceps</TableCell>
+                          <TableCell className="font-medium">Flexiones estándar</TableCell>
+                          <TableCell className="text-center">4</TableCell>
+                          <TableCell className="text-center">8-15</TableCell>
+                          <TableCell className="text-center">60-90 s</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="font-medium">Pike push-ups</TableCell>
+                          <TableCell className="text-center">3</TableCell>
+                          <TableCell className="text-center">6-12</TableCell>
+                          <TableCell className="text-center">90 s</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="font-medium">Flexiones diamante</TableCell>
+                          <TableCell className="text-center">3</TableCell>
+                          <TableCell className="text-center">6-10</TableCell>
+                          <TableCell className="text-center">60 s</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="font-medium">Fondos en silla</TableCell>
+                          <TableCell className="text-center">3</TableCell>
+                          <TableCell className="text-center">8-12</TableCell>
+                          <TableCell className="text-center">60 s</TableCell>
+                        </TableRow>
+
+                        {/* MARTES - PIERNAS */}
+                        <TableRow>
+                          <TableCell rowSpan={4} className="font-bold align-top bg-primary/5">
+                            <div>Martes</div>
+                            <Badge variant="secondary" className="mt-2 text-xs">Piernas</Badge>
+                          </TableCell>
+                          <TableCell rowSpan={4} className="align-top text-sm text-muted-foreground">Cuádriceps, glúteos y femoral</TableCell>
+                          <TableCell className="font-medium">Sentadillas</TableCell>
+                          <TableCell className="text-center">4</TableCell>
+                          <TableCell className="text-center">15-25</TableCell>
+                          <TableCell className="text-center">60 s</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="font-medium">Sentadilla búlgara</TableCell>
+                          <TableCell className="text-center">3</TableCell>
+                          <TableCell className="text-center">10-12 / pierna</TableCell>
+                          <TableCell className="text-center">90 s</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="font-medium">Zancadas alternas</TableCell>
+                          <TableCell className="text-center">3</TableCell>
+                          <TableCell className="text-center">12 / pierna</TableCell>
+                          <TableCell className="text-center">60 s</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="font-medium">Puente de glúteos</TableCell>
+                          <TableCell className="text-center">3</TableCell>
+                          <TableCell className="text-center">15-20</TableCell>
+                          <TableCell className="text-center">45 s</TableCell>
+                        </TableRow>
+
+                        {/* MIÉRCOLES - DESCANSO */}
+                        <TableRow className="bg-muted/30">
+                          <TableCell className="font-bold bg-primary/5">
+                            <div>Miércoles</div>
+                            <Badge variant="outline" className="mt-2 text-xs">Descanso</Badge>
+                          </TableCell>
+                          <TableCell colSpan={5} className="text-sm text-muted-foreground italic">
+                            Descanso activo: caminata 30-45 min, movilidad o estiramientos suaves.
+                          </TableCell>
+                        </TableRow>
+
+                        {/* JUEVES - TRACCIÓN */}
+                        <TableRow>
+                          <TableCell rowSpan={4} className="font-bold align-top bg-primary/5">
+                            <div>Jueves</div>
+                            <Badge variant="secondary" className="mt-2 text-xs">Tracción</Badge>
+                          </TableCell>
+                          <TableCell rowSpan={4} className="align-top text-sm text-muted-foreground">Espalda y bíceps</TableCell>
+                          <TableCell className="font-medium">Remo invertido en mesa</TableCell>
+                          <TableCell className="text-center">4</TableCell>
+                          <TableCell className="text-center">8-12</TableCell>
+                          <TableCell className="text-center">90 s</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="font-medium">Remo con toalla en puerta</TableCell>
+                          <TableCell className="text-center">3</TableCell>
+                          <TableCell className="text-center">10-15</TableCell>
+                          <TableCell className="text-center">60 s</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="font-medium">Superman</TableCell>
+                          <TableCell className="text-center">3</TableCell>
+                          <TableCell className="text-center">12-15</TableCell>
+                          <TableCell className="text-center">45 s</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="font-medium">Curl isométrico con toalla</TableCell>
+                          <TableCell className="text-center">3</TableCell>
+                          <TableCell className="text-center">20-30 s</TableCell>
+                          <TableCell className="text-center">60 s</TableCell>
+                        </TableRow>
+
+                        {/* VIERNES - CORE + HIIT */}
+                        <TableRow>
+                          <TableCell rowSpan={4} className="font-bold align-top bg-primary/5">
+                            <div>Viernes</div>
+                            <Badge variant="secondary" className="mt-2 text-xs">Core + HIIT</Badge>
+                          </TableCell>
+                          <TableCell rowSpan={4} className="align-top text-sm text-muted-foreground">Abdomen, oblicuos y cardio</TableCell>
+                          <TableCell className="font-medium">Plancha frontal</TableCell>
+                          <TableCell className="text-center">3</TableCell>
+                          <TableCell className="text-center">30-60 s</TableCell>
+                          <TableCell className="text-center">45 s</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="font-medium">Mountain climbers</TableCell>
+                          <TableCell className="text-center">4</TableCell>
+                          <TableCell className="text-center">30 s</TableCell>
+                          <TableCell className="text-center">30 s</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="font-medium">Bicicleta abdominal</TableCell>
+                          <TableCell className="text-center">3</TableCell>
+                          <TableCell className="text-center">20 / lado</TableCell>
+                          <TableCell className="text-center">45 s</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="font-medium">Burpees</TableCell>
+                          <TableCell className="text-center">4</TableCell>
+                          <TableCell className="text-center">10-15</TableCell>
+                          <TableCell className="text-center">60 s</TableCell>
+                        </TableRow>
+
+                        {/* SÁBADO - FULL BODY */}
+                        <TableRow>
+                          <TableCell rowSpan={4} className="font-bold align-top bg-primary/5">
+                            <div>Sábado</div>
+                            <Badge variant="secondary" className="mt-2 text-xs">Full Body</Badge>
+                          </TableCell>
+                          <TableCell rowSpan={4} className="align-top text-sm text-muted-foreground">Sesión global de refuerzo</TableCell>
+                          <TableCell className="font-medium">Flexiones</TableCell>
+                          <TableCell className="text-center">3</TableCell>
+                          <TableCell className="text-center">10-15</TableCell>
+                          <TableCell className="text-center">60 s</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="font-medium">Sentadillas con salto</TableCell>
+                          <TableCell className="text-center">3</TableCell>
+                          <TableCell className="text-center">12-15</TableCell>
+                          <TableCell className="text-center">60 s</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="font-medium">Remo invertido</TableCell>
+                          <TableCell className="text-center">3</TableCell>
+                          <TableCell className="text-center">10-12</TableCell>
+                          <TableCell className="text-center">60 s</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="font-medium">Plancha lateral</TableCell>
+                          <TableCell className="text-center">3</TableCell>
+                          <TableCell className="text-center">30 s / lado</TableCell>
+                          <TableCell className="text-center">45 s</TableCell>
+                        </TableRow>
+
+                        {/* DOMINGO */}
+                        <TableRow className="bg-muted/30">
+                          <TableCell className="font-bold bg-primary/5">
+                            <div>Domingo</div>
+                            <Badge variant="outline" className="mt-2 text-xs">Descanso</Badge>
+                          </TableCell>
+                          <TableCell colSpan={5} className="text-sm text-muted-foreground italic">
+                            Descanso completo. Hidrátate, duerme 7-9 h y prepara la semana.
+                          </TableCell>
+                        </TableRow>
+                      </TableBody>
+                    </Table>
+                  </CardContent>
+                </Card>
+
+                <div className="grid md:grid-cols-3 gap-4 mt-8">
+                  <div className="p-4 rounded-xl bg-primary/5 border border-primary/20">
+                    <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-1">Principiantes</p>
+                    <p className="text-sm text-muted-foreground">Haz 2-3 series del rango bajo de reps y descansa 90-120 s.</p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-primary/5 border border-primary/20">
+                    <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-1">Intermedios</p>
+                    <p className="text-sm text-muted-foreground">Sigue la tabla tal cual y progresa subiendo reps cada semana.</p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-primary/5 border border-primary/20">
+                    <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-1">Avanzados</p>
+                    <p className="text-sm text-muted-foreground">Añade variantes a una mano, tempo lento o reduce descanso a 30-45 s.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Cómo Diseñar tu Rutina Semanal */}
-          <section id="planificacion" className="py-20 md:py-24 scroll-mt-24">
+          <section id="planificacion" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
+
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Cómo diseñar tu rutina semanal en <span className="text-primary">casa</span>
