@@ -122,7 +122,7 @@ const RutinaPiernas = () => {
             Fundamentos del Entrenamiento de Piernas
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Entrenar piernas no es solo una cuestión de apariencia: es la base para desarrollar una verdadera fuerza funcional.
+            Entrenar piernas no es solo una cuestión de apariencia: es la base para desarrollar una verdadera fuerza funcional, también clave en una <Link to="/rutina-full-body/" className="text-primary hover:underline font-medium underline-offset-4">rutina full body de calistenia</Link> y en cualquier <Link to="/programas/" className="text-primary hover:underline font-medium underline-offset-4">programa de calistenia</Link> serio.
           </p>
           
           <div className="max-w-4xl mx-auto">
@@ -410,7 +410,7 @@ const RutinaPiernas = () => {
             Rutina de Piernas en el Parque: Entreno Funcional y al Aire Libre
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Aprovecha bancos, barras y tu propio peso para un entrenamiento completo en el parque
+            Aprovecha bancos, barras y tu propio peso para un entrenamiento completo en el <Link to="/calistenia-en-parque/" className="text-primary hover:underline font-medium underline-offset-4">parque de calistenia</Link>. Si prefieres entrenar en casa, adapta los ejercicios con la <Link to="/rutina-calistenia-en-casa/" className="text-primary hover:underline font-medium underline-offset-4">rutina de calistenia en casa</Link>; y si vas empezando, échale un ojo a la <Link to="/calistenia-principiantes/" className="text-primary hover:underline font-medium underline-offset-4">guía de calistenia para principiantes</Link>.
           </p>
 
           <div className="max-w-4xl mx-auto">

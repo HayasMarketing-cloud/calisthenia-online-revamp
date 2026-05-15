@@ -127,7 +127,7 @@ const RutinaBrazos = () => {
             Por qué trabajar los brazos es clave para tu progreso
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Entrenar los brazos no solo mejora tu estética, también te da ventaja en ejercicios compuestos como dominadas, flexiones o fondos. Unos bíceps y tríceps fuertes te hacen más eficiente, más resistente… y sí, también más seguro en cada movimiento.
+            Entrenar los brazos no solo mejora tu estética, también te da ventaja en ejercicios compuestos como las dominadas que verás en la <Link to="/rutina-espalda-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">rutina de espalda con calistenia</Link>, las flexiones de la <Link to="/rutina-pecho-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">rutina de pecho</Link> o los fondos. Unos bíceps y tríceps fuertes te hacen más eficiente, más resistente… y sí, también más seguro en cada movimiento.
           </p>
           
           <div className="max-w-4xl mx-auto">
@@ -168,7 +168,7 @@ const RutinaBrazos = () => {
             Ejercicios clave para brazos fuertes y definidos
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Aquí no venimos a perder el tiempo. Esta selección de ejercicios activa al máximo tus bíceps y tríceps, para que cada serie cuente.
+            Aquí no venimos a perder el tiempo. Esta selección de ejercicios activa al máximo tus bíceps y tríceps, para que cada serie cuente. Si buscas un enfoque global, combínala con una <Link to="/rutina-full-body/" className="text-primary hover:underline font-medium underline-offset-4">rutina full body de calistenia</Link> o entrénala al aire libre en un <Link to="/calistenia-en-parque/" className="text-primary hover:underline font-medium underline-offset-4">parque de calistenia</Link>.
           </p>
 
           <div className="max-w-5xl mx-auto space-y-8">
@@ -510,7 +510,7 @@ const RutinaBrazos = () => {
             Tips finales para progresar sin lesionarte
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Estos consejos te ayudarán a maximizar resultados mientras cuidas tu salud y prevines lesiones.
+            Estos consejos te ayudarán a maximizar resultados mientras cuidas tu salud y prevines lesiones. Si vas empezando, repasa primero la <Link to="/calistenia-principiantes/" className="text-primary hover:underline font-medium underline-offset-4">guía de calistenia para principiantes</Link>; si quieres una progresión guiada paso a paso, échale un ojo a nuestros <Link to="/programas/" className="text-primary hover:underline font-medium underline-offset-4">programas de calistenia</Link>.
           </p>
 
           <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">

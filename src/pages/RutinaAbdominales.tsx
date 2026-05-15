@@ -135,7 +135,7 @@ const RutinaAbdominales = () => {
             La Importancia de Abdominales Fuertes en el Entrenamiento
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Contar con abdominales fuertes es fundamental para el rendimiento físico. Un abdomen tonificado no solo contribuye a la estética, sino que también juega un papel esencial en la postura y el soporte de la columna.
+            Contar con abdominales fuertes es fundamental para el rendimiento físico. Un abdomen tonificado no solo contribuye a la estética, sino que también juega un papel esencial en la postura y el soporte de la columna, algo que también trabajamos a fondo en la <Link to="/rutina-core-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">rutina de core con calistenia</Link>.
           </p>
           
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -831,7 +831,7 @@ const RutinaAbdominales = () => {
             Alimentación y Estilo de Vida para Potenciar el Desarrollo Abdominal
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            La combinación de alimentación adecuada y un estilo de vida saludable es fundamental para conseguir un abdomen tonificado. Los nutrientes y hábitos diarios repercuten en la capacidad del cuerpo para desarrollar músculo y quemar grasa.
+            La combinación de alimentación adecuada y un estilo de vida saludable es fundamental para conseguir un abdomen tonificado. Los nutrientes y hábitos diarios repercuten en la capacidad del cuerpo para desarrollar músculo y quemar grasa, igual de importante que estructurar bien tu <Link to="/rutina-full-body/" className="text-primary hover:underline font-medium underline-offset-4">rutina full body de calistenia</Link> o seguir uno de nuestros <Link to="/programas/" className="text-primary hover:underline font-medium underline-offset-4">programas de calistenia</Link>. Si vas empezando, te recomiendo la <Link to="/calistenia-principiantes/" className="text-primary hover:underline font-medium underline-offset-4">guía de calistenia para principiantes</Link>.
           </p>
 
           <div className="max-w-6xl mx-auto space-y-8">

@@ -121,7 +121,7 @@ const RutinaCore = () => {
               La importancia de un <span className="text-primary">core fuerte</span> en tu entrenamiento
             </h2>
             <p className="text-lg text-muted-foreground">
-              Tener un centro sólido es imprescindible para tu rendimiento y bienestar. Un core bien desarrollado no solo aporta estética, también cumple un papel esencial en tu día a día y en tu entrenamiento.
+              Tener un centro sólido es imprescindible para tu rendimiento y bienestar. Un core bien desarrollado no solo aporta estética, también cumple un papel esencial en tu día a día y en tu entrenamiento, sea una <Link to="/rutina-abdominales-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">rutina de abdominales</Link>, una <Link to="/rutina-piernas-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">rutina de piernas</Link> o una <Link to="/rutina-full-body/" className="text-primary hover:underline font-medium underline-offset-4">rutina full body</Link>.
             </p>
           </div>
 
@@ -170,7 +170,7 @@ const RutinaCore = () => {
               Core Ejercicios: <span className="text-primary">Fortalece tu Centro</span> Paso a Paso
             </h2>
             <p className="text-lg text-muted-foreground">
-              Aquí tienes una excelente selección de ejercicios para trabajar el centro desde distintos ángulos y niveles.
+              Aquí tienes una excelente selección de ejercicios para trabajar el centro desde distintos ángulos y niveles. Si vas empezando, repasa primero la <Link to="/calistenia-principiantes/" className="text-primary hover:underline font-medium underline-offset-4">guía de calistenia para principiantes</Link>; y si buscas progresión guiada, descubre nuestros <Link to="/programas/" className="text-primary hover:underline font-medium underline-offset-4">programas de calistenia</Link>.
             </p>
           </div>
 

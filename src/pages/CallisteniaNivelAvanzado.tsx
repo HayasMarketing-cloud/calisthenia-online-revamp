@@ -130,7 +130,7 @@ const CallisteniaNivelAvanzado = () => {
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto prose prose-lg">
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  En <strong>Calisthenia.online</strong> te acompañamos en este nuevo nivel, donde el reto es mayor, pero también la satisfacción.
+                  En <strong>Calisthenia.online</strong> te acompañamos en este nuevo nivel, donde el reto es mayor, pero también la satisfacción. Si todavía estás cimentando la base, repasa la <Link to="/calistenia-principiantes/" className="text-primary hover:underline font-medium underline-offset-4">guía de calistenia para principiantes</Link>; y si quieres una progresión guiada hacia movimientos avanzados, descubre nuestros <Link to="/programas/" className="text-primary hover:underline font-medium underline-offset-4">programas de calistenia</Link> o entrena al aire libre con la <Link to="/calistenia-en-parque/" className="text-primary hover:underline font-medium underline-offset-4">calistenia en parque</Link>.
                 </p>
               </div>
             </div>

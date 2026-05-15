@@ -123,7 +123,7 @@ const RutinaPecho = () => {
             Anatomía y Función de los Músculos del Pecho
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            El pecho humano está compuesto principalmente por dos grandes grupos musculares esenciales para diversas actividades físicas.
+            El pecho humano está compuesto principalmente por dos grandes grupos musculares esenciales para diversas actividades físicas, y trabaja en sinergia con los <Link to="/rutina-brazos-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">brazos en calistenia</Link> y los <Link to="/rutinas-de-hombro-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">hombros</Link>.
           </p>
 
           <div className="max-w-5xl mx-auto space-y-8">
@@ -633,7 +633,7 @@ const RutinaPecho = () => {
             Calentamiento y Prevención de Lesiones
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Realizar un calentamiento adecuado es fundamental para preparar el cuerpo antes de cualquier sesión de entrenamiento de pecho.
+            Realizar un calentamiento adecuado es fundamental para preparar el cuerpo antes de cualquier sesión de entrenamiento de pecho. Si vas empezando, repasa la <Link to="/calistenia-principiantes/" className="text-primary hover:underline font-medium underline-offset-4">guía de calistenia para principiantes</Link>; si buscas un plan completo, descubre nuestros <Link to="/programas/" className="text-primary hover:underline font-medium underline-offset-4">programas de calistenia</Link>.
           </p>
 
           <div className="max-w-5xl mx-auto space-y-8">

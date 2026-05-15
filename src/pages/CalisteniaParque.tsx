@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import VideoGallery from "@/components/VideoGallery";
@@ -292,7 +293,7 @@ const CalisteniaParque = () => {
                     Tipos de <span className="text-primary">barras de parques</span> de calistenia
                   </h2>
                   <p className="text-muted-foreground max-w-3xl mx-auto">
-                    No todas las barras de parques sirven para lo mismo. Conocer cada tipo te ayuda a elegir el parque adecuado para tu objetivo y a sacar más partido a cada sesión.
+                    No todas las barras de parques sirven para lo mismo. Conocer cada tipo te ayuda a elegir el parque adecuado para tu objetivo y a sacar más partido a cada sesión, ya sea una <Link to="/rutina-espalda-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">rutina de espalda en barra</Link>, una <Link to="/rutina-brazos-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">rutina de brazos</Link> o un <Link to="/rutina-full-body/" className="text-primary hover:underline font-medium underline-offset-4">entreno full body</Link>.
                   </p>
                 </div>
 
@@ -804,7 +805,7 @@ const CalisteniaParque = () => {
                   <div>
                     <h4 className="font-semibold text-lg mb-2">💡 Consejo Pro</h4>
                     <p className="text-muted-foreground">
-                      Mantén 48 horas de descanso entre sesiones para permitir la recuperación muscular. Los días libres puedes hacer movilidad ligera o estiramientos.
+                      Mantén 48 horas de descanso entre sesiones para permitir la recuperación muscular. Los días libres puedes hacer movilidad ligera, estiramientos o cambiar al entorno con la <Link to="/rutina-calistenia-en-casa/" className="text-primary hover:underline font-medium underline-offset-4">rutina de calistenia en casa</Link>. Si vas empezando, repasa la <Link to="/calistenia-principiantes/" className="text-primary hover:underline font-medium underline-offset-4">guía de calistenia para principiantes</Link>; y para una progresión guiada, descubre nuestros <Link to="/programas/" className="text-primary hover:underline font-medium underline-offset-4">programas de calistenia</Link>.
                     </p>
                   </div>
                 </div>

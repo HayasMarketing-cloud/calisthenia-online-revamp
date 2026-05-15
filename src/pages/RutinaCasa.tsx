@@ -1219,7 +1219,7 @@ const RutinaCasa = () => {
                   Plan de calistenia en casa: progresión <span className="text-primary">4 semanas</span>
                 </h2>
                 <p className="text-muted-foreground">
-                  De adaptación a intensidad y deload. Un mes completo de entrenamiento sin material para construir base, ganar volumen y medir tu progreso real.
+                  De adaptación a intensidad y deload. Un mes completo de entrenamiento sin material para construir base, ganar volumen y medir tu progreso real. Si nunca has entrenado, repasa antes la <Link to="/calistenia-principiantes/" className="text-primary hover:underline font-medium underline-offset-4">guía de calistenia para principiantes</Link>.
                 </p>
               </div>
 
@@ -1240,7 +1240,7 @@ const RutinaCasa = () => {
               
               <div className="max-w-5xl mx-auto">
                 <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-                  Avanza en tus entrenamientos sin necesidad de pesas o máquinas. Estas estrategias te permitirán seguir desafiando tu cuerpo con solo tu peso corporal.
+                  Avanza en tus entrenamientos sin necesidad de pesas o máquinas. Estas estrategias te permitirán seguir desafiando tu cuerpo con solo tu peso corporal, y cuando estés listo para añadir barra y anillas puedes dar el salto a la <Link to="/calistenia-en-parque/" className="text-primary hover:underline font-medium underline-offset-4">calistenia en parque</Link>, a la <Link to="/calistenia-nivel-avanzado/" className="text-primary hover:underline font-medium underline-offset-4">calistenia de nivel avanzado</Link> o a uno de nuestros <Link to="/programas/" className="text-primary hover:underline font-medium underline-offset-4">programas de calistenia</Link>.
                 </p>
                 
                 <div className="grid md:grid-cols-2 gap-6">

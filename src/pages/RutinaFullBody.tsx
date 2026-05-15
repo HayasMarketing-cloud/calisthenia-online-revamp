@@ -136,7 +136,7 @@ const RutinaFullBody = () => {
             Fundamentos de la Calistenia Full Body
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            La calistenia full body se centra en el uso del propio peso corporal para trabajar todos los músculos en una misma sesión.
+            La calistenia full body se centra en el uso del propio peso corporal para trabajar todos los músculos en una misma sesión, integrando lo mejor de la <Link to="/rutina-pecho-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">rutina de pecho</Link>, la <Link to="/rutina-espalda-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">rutina de espalda</Link>, las <Link to="/rutina-piernas-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">piernas</Link> y el <Link to="/rutina-core-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">core</Link>.
           </p>
           
           <div className="max-w-4xl mx-auto space-y-8">
@@ -879,7 +879,7 @@ const RutinaFullBody = () => {
             Consejos para Progresar y Evitar Lesiones
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Para disfrutar de los beneficios de la calistenia y mejorar el rendimiento, es crucial seguir ciertas recomendaciones.
+            Para disfrutar de los beneficios de la calistenia y mejorar el rendimiento, es crucial seguir ciertas recomendaciones. Si vas empezando, repasa la <Link to="/calistenia-principiantes/" className="text-primary hover:underline font-medium underline-offset-4">guía de calistenia para principiantes</Link>; si quieres ir más allá, prueba la <Link to="/calistenia-nivel-avanzado/" className="text-primary hover:underline font-medium underline-offset-4">calistenia de nivel avanzado</Link> o uno de nuestros <Link to="/programas/" className="text-primary hover:underline font-medium underline-offset-4">programas de calistenia</Link>.
           </p>
 
           <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
