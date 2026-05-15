@@ -1,58 +1,70 @@
+
 ## Objetivo
+Llevar el estilo del hero recién implementado en la home a la página `/rutina-calistenia-en-casa/` y mejorar la jerarquía y el ritmo visual del resto de secciones.
 
-Reemplazar los iconos actuales de las secciones **"¿Qué estás buscando?"** y **"Beneficios"** de la home por una nueva línea **duotone calistenia**: iconos SVG con trazo principal en color primary (naranja) y un trazo/relleno secundario más tenue, sobre un contenedor cuadrado con esquinas redondeadas. Más diferencial, deportivo y coherente con el tema de calistenia / entrenamiento funcional.
+## 1. Nuevo hero (estilo Home)
 
-## Línea visual propuesta
+Reemplazar el hero actual (centrado, icono + h1 + p sobre fondo difuminado) por uno alineado a la izquierda con el mismo lenguaje que `HeroSectionImproved.tsx`:
 
-- **Trazo principal:** stroke `hsl(var(--primary))`, grosor 1.75–2px
-- **Trazo/relleno secundario:** mismo color al 25–35% de opacidad (efecto duotone)
-- **Contenedor:** 64×64 px, `rounded-2xl`, fondo `bg-primary/10` con borde `border-primary/20`
-- **Hover:** ligero scale + saturación (sin cambiar color base)
-- **Estilo de dibujo:** líneas redondeadas (linecap/linejoin round), inspirado en Phosphor Duotone pero con metáforas de calistenia
+- Imagen `entrena-casa.jpg` como `<img>` con `object-cover`, `fetchPriority="high"`.
+- Doble overlay: `bg-gradient-to-r from-secondary via-secondary/85 to-secondary/30 md:via-secondary/70` + `bg-gradient-to-t from-secondary via-transparent to-transparent`.
+- Contenedor `max-w-3xl` alineado a la izquierda, padding `py-20 md:py-28`, `min-h-[600px] lg:min-h-[80vh]`.
+- Eyebrow badge: punto naranja pulsante + texto `RUTINA EN CASA · SIN MATERIAL`.
+- H1 `font-display font-extrabold text-4xl md:text-6xl lg:text-7xl text-white`, con palabra clave en gradiente primary→accent: "Rutina de calistenia <gradient>en casa</gradient>".
+- Subtítulo en `text-gray-300 max-w-2xl`: "Entrena desde cualquier lugar sin material. Tu cuerpo es tu gimnasio: rutinas, ejercicios y planificación semanal para empezar hoy mismo."
+- 2 CTAs: primario "Ver rutina completa" → `#video-rutina` con `ArrowRight`; secundario outline glassmorphism "Encuentra tu nivel" → `#planificacion` con `ChevronDown`.
+- Quitar el `<Home>` icono central (queda integrado en el badge si hace falta).
 
-## Cambios por sección
+Los breadcrumbs se mantienen justo debajo del hero como ahora.
 
-### 1. `src/components/QuickPathSelector.tsx` (sustituir emojis 🌱📈🎯)
+## 2. Refinamientos de maquetación
 
-Crear 3 SVGs duotone propios:
-- **Empiezo desde cero** → silueta de persona haciendo flexión básica (push-up)
-- **Quiero progresar** → silueta haciendo dominada (pull-up) con flecha ascendente duotone
-- **Quiero un entrenador** → silbato + figura coach (o dos figuras: coach señalando atleta)
+**Ritmo de secciones:** unificar a `py-20 md:py-24` (en lugar del `py-16` actual) y alternar fondos `bg-background` ↔ `bg-muted/30` de forma estricta para crear ritmo claro.
 
-Reemplazar `<div className="text-6xl">{path.emoji}</div>` por el componente SVG dentro del contenedor duotone descrito arriba.
-
-### 2. `src/components/BenefitsSection.tsx` (sustituir Dumbbell/Target/Trophy/Users2)
-
-Crear 4 SVGs duotone propios alineados con calistenia:
-- **Sin Equipos, Sin Excusas** → cuerpo humano en plancha (silueta lateral)
-- **Adaptado a Tu Nivel** → 3 barras escalonadas (progresión) con figura
-- **Metodología Probada** → medalla/insignia con check duotone
-- **Comunidad Activa** → 3 figuras entrenando juntas
-
-Mantener la grid actual y el layout. Sustituir el `bg-gradient-primary` por `bg-primary/10 border border-primary/20` para el efecto duotone (el icono ya aporta el color primary).
-
-## Estructura de archivos nueva
-
-```text
-src/components/icons/calisthenia/
-  ├── BeginnerIcon.tsx       (push-up básico)
-  ├── ProgressIcon.tsx       (pull-up + flecha)
-  ├── CoachIcon.tsx          (silbato + figura)
-  ├── NoEquipmentIcon.tsx    (plancha lateral)
-  ├── LevelAdaptIcon.tsx     (barras progresión)
-  ├── MethodologyIcon.tsx    (medalla check)
-  ├── CommunityIcon.tsx      (3 figuras)
-  └── index.ts               (re-exports)
+**Headers de sección consistentes:** todos los `<h2>` con eyebrow opcional + título display + lead centrado max-w-2xl. Patrón:
 ```
+<eyebrow chip color primary/10>
+<h2 display, palabra clave en text-primary>
+<p lead text-muted-foreground>
+```
+Aplicar resaltado de palabra clave en naranja en los h2 actuales (igual que la home: "¿Por qué entrenar en casa?" → "casa" en `text-primary`).
 
-Cada componente acepta `className?: string` y usa `currentColor` para el trazo principal y `fill-opacity="0.25"` para el secundario, de modo que se puedan recolorear vía Tailwind (`text-primary`).
+**"¿Por qué entrenar en casa?":** sustituir los 3 `CheckCircle` repetidos por iconos diferenciados (`Home`, `Clock`, `Wallet` o `PiggyBank`) en contenedor `w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20` para alinearlo con el lenguaje duotone de los iconos calistenia ya creados.
 
-## Sección no afectada
+**"Beneficios" (6 cards):** mantener cards pero:
+- Mover el icono al mismo contenedor `bg-primary/10 border border-primary/20 rounded-2xl w-14 h-14` arriba.
+- Reducir padding del CardHeader y dar `gap-4` consistente.
+- Hover: `hover:-translate-y-1 hover:border-primary/30 transition-all`.
 
-`TrainingCategories` (BRAZOS, ESPALDA…) se mantiene intacta (los webp actuales ya son ilustrados y temáticos).
+**Bloque "¿Qué es la calistenia en casa?":** quitar la Card que envuelve (rompe el ritmo de un único bloque centrado). Pasar a un layout de prosa centrado max-w-3xl + un callout `Diferencia vs Gimnasio` como aside lateral en desktop (grid 2 cols 60/40).
 
-## Verificación
+**"Preparación / Calentamiento":** la Card grande con 3 sub-cards funciona bien; igualar paddings (`p-6`) y añadir números 1·2·3 en cada sub-card como en "Estructura de una sesión efectiva" para coherencia.
 
-- Inspeccionar la home en preview tras los cambios: los 3 iconos de "¿Qué estás buscando?" deben verse con la misma altura visual y los 4 iconos de Beneficios alineados en una sola línea duotone naranja.
-- Comprobar contraste del icono sobre fondo claro (`bg-primary/10`) y oscuro (modo oscuro si aplica).
-- Verificar que no hay reflow ni cambio de altura de las cards.
+**"Ejercicios básicos" (Accordion):** sustituir los emojis por los iconos lucide ya existentes a tamaño w-6 h-6 con color primary; trigger con badge `Principiante / Intermedio / Avanzado` a la derecha.
+
+**"Planificación semanal":** las 3 columnas de niveles ya están bien; añadir borde superior coloreado (`border-t-4`) con tono progresivo (primary/40, primary/70, primary) para reforzar la progresión visual de niveles.
+
+**"Progresión sin equipamiento":** está bien; solo armonizar tamaños de icono (w-10 → w-12) y añadir numeración 01-05 como detalle tipográfico de gran tamaño en `text-primary/20` detrás del título.
+
+**FAQ:** ya está alineada con el patrón de la home, sin cambios.
+
+**CTA final:** ampliar a `max-w-4xl`, fondo con `bg-gradient-to-br from-secondary via-secondary to-primary/20`, texto blanco y botón primario sólido más grande (igual al CTA del hero) para cerrar la página con fuerza.
+
+## 3. Detalles técnicos
+
+- Archivo a editar: `src/pages/RutinaCasa.tsx`.
+- Imports adicionales: `Wallet`, `Sparkles` de `lucide-react` si se usan en el bloque "Por qué".
+- Reutilizar tokens semánticos (`primary`, `secondary`, `muted-foreground`, `accent`); nada hardcodeado.
+- Mantener intactos schemas JSON-LD, Helmet/SEO, breadcrumbs, FAQs (solo se ajusta el JSX).
+- Responsive: validar en mobile (839px y 375px) que el hero respira y los CTAs apilan en columna.
+
+## 4. Verificación
+
+1. Build pasa.
+2. Navegar a `/rutina-calistenia-en-casa/` en preview, comprobar hero y ritmo de secciones en desktop y mobile.
+3. Confirmar que el botón "Ver rutina completa" hace scroll a `#video-rutina` y "Encuentra tu nivel" a `#planificacion` (añadir id a la sección de "Planificación semanal").
+
+## Fuera de alcance
+- No tocar contenido textual de FAQs ni de cards (solo el resaltado tipográfico de los h2).
+- No reemplazar la imagen `entrena-casa.jpg`.
+- No modificar el componente `HeroSectionImproved` de la home.
