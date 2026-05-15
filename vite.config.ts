@@ -23,7 +23,7 @@ export default defineConfig(({ mode }) => ({
         rendererOptions: {
           maxConcurrentRoutes: 2,
           renderAfterTime: 1500,
-          headless: "new",
+          headless: true,
           // Wait for react-helmet-async to flush head tags after hydration
           inject: { prerendered: true },
         },
