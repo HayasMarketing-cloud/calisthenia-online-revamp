@@ -97,6 +97,41 @@ const CalisteniaMujeres = () => {
 
   const faqSchema = generateFAQSchema(faqs);
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Calistenia para Mujeres: Guía y Rutina en Casa",
+    description:
+      "Guía completa de calistenia para mujeres: beneficios reales, mitos desmontados, rutina en casa sin material, plan progresivo de 4 semanas y adaptación al ciclo menstrual.",
+    image: [
+      "https://img.youtube.com/vi/pwjUl5FQLCg/maxresdefault.jpg",
+      "https://img.youtube.com/vi/pwjUl5FQLCg/hqdefault.jpg",
+    ],
+    datePublished: "2024-02-10T09:00:00+01:00",
+    dateModified: new Date().toISOString(),
+    inLanguage: "es-ES",
+    author: {
+      "@type": "Person",
+      name: "Coach Calisthenia Online",
+      url: "https://calisthenia.online/",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Calisthenia Online",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://calisthenia.online/logo.png",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": "https://calisthenia.online/calistenia-mujeres/",
+    },
+    articleSection: "Calistenia para mujeres",
+    keywords:
+      "calistenia para mujeres, calistenia mujer, rutina calistenia mujer, calistenia en casa mujer, calistenia mujeres principiantes",
+  };
+
   const breadcrumbItems = [
     { label: "Inicio", href: "/" },
     { label: "Lugar", href: "/programas/" },
