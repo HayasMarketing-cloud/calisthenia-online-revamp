@@ -1,138 +1,80 @@
-## Contexto
+# Diagnóstico: por qué GSC indexa 11 de 21 y 0 vídeos
 
-Página actual: 13 secciones, 1.401 líneas, posición #20 para "rutina calistenia en casa" (390/mo). Datos Semrush (DB es):
+He auditado el HTML que sirve `calisthenia.online`. **No hace falta más información**, el problema es claro y reproducible con `curl`:
 
-| Keyword objetivo | Volumen | KDI | Estado |
-|---|---|---|---|
-| calistenia en casa | 4.400/mo | 49 | sin H2 propio |
-| ejercicios calistenia en casa | 1.000/mo | 45 | sin H2 propio |
-| rutina calistenia en casa | 390/mo | 36 | H1 cubre |
-| calistenia en casa principiantes | 140/mo | 38 | parcial |
-| tabla calistenia en casa | 90/mo | 26 | cubierto (nuevo) |
-| que es la calistenia | 1.900/mo | 06 | parcial |
+## Causa raíz
 
-Problemas: 4 pares de secciones duplicadas, ejercicios sin H3 (usan span), H2 actuales sin keywords exactas, ritmo visual monotono.
+El proyecto es una SPA Vite sin SSR ni prerender. Cuando Googlebot pide `https://calisthenia.online/rutina-calistenia-en-casa/`, el servidor devuelve **el mismo `index.html` que para `/`**:
 
-## Nueva jerarquia H2/H3 (basada en Semrush)
+- `<title>` = "Calistenia Online | Nicolás Reyero" (homepage)
+- `<meta name="description">` = la del home
+- `<link rel="canonical" href="https://calisthenia.online/">` ← **canonical apuntando al home en TODAS las URLs**
+- JSON-LD: solo Organization/Person/WebSite del home
+- Cero contenido del artículo, cero `VideoObject`, cero `<h1>` de la página
 
-```text
-H1  Calistenia en Casa: Rutina Completa sin Equipamiento
-H2  Que es la calistenia en casa y por que funciona       [4.400 + 1.900/mo]
-H2  Beneficios de entrenar calistenia en casa             [refuerzo semantico]
-H2  Calentamiento y prevencion de lesiones                [fusion #5+#11]
-H2  Ejercicios de calistenia en casa para principiantes   [1.000 + 140/mo]
-    H3  Sentadillas (squats) en casa
-    H3  Flexiones (push-ups) sin material
-    H3  Plancha (plank) y variantes
-    H3  Zancadas (lunges) en espacio reducido
-    H3  Mountain climbers para core y cardio
-    H3  Bird-dog para estabilidad lumbar
-    H3  Pike push-ups (camino al HSPU)            (nuevo)
-    H3  Remo invertido con mesa o toalla          (nuevo)
-H2  Tabla de rutina de calistenia en casa                 [90/mo, ya hecho]
-H2  Plan de calistenia en casa: progresion 4 semanas      [absorbe #9+#10]
-    H3  Semana 1 - Adaptacion y tecnica
-    H3  Semana 2 - Volumen
-    H3  Semana 3 - Intensidad
-    H3  Semana 4 - Descarga y test
-H2  Videos de calistenia en casa
-H2  Preguntas frecuentes sobre calistenia en casa
-H2  Empieza con un plan personalizado (CTA -> trial)
-```
+`<Helmet>` reemplaza esos tags después en el cliente, pero el HTML "crudo" que ve el crawler no los tiene.
 
-Total: 9 H2 + 12 H3 nuevos.
+### Por qué 11 indexadas y no 21
+Google sí ejecuta JS en una segunda pasada, pero al ver en la primera pasada que las 21 URLs comparten **mismo título, misma descripción y mismo canonical = `/`**, marca la mayoría como "Duplicada — Google eligió un canónico distinto" o "Descubierta, actualmente sin indexar". Solo termina indexando un subconjunto (las que renderiza con JS y considera suficientemente distintas).
 
-## Fase 1 - Jerarquia H2/H3 + reescritura de titulos
+### Por qué 0 vídeos descubiertos
+Dos motivos acumulados:
+1. El **crawler de vídeo de Google no ejecuta JS** con la misma fiabilidad que Googlebot. Necesita ver `VideoObject` en el HTML servido.
+2. Solo `RutinaAbdominales.tsx` declara `VideoObject` (vía Helmet, así que tampoco lo ve). El resto de páginas con YouTube embebido no tienen schema de vídeo.
 
-Riesgo bajo, ganancia SEO inmediata, sin tocar layout.
+## Solución
 
-- Reescribir los 13 H2 actuales segun la tabla (incluir keyword exacta).
-- Convertir los 6 titulos de ejercicios (span dentro de AccordionTrigger) a h3 semanticos manteniendo estilo visual.
-- Anadir id a cada H2 para anclas (TOC fase 5).
-- Actualizar title y meta description para incluir "ejercicios" y "principiantes".
+Dos cambios complementarios:
 
-Ficheros: src/pages/RutinaCasa.tsx.
+### 1. Prerender estático en build (resuelve 11→21 y la mayoría del problema de vídeo)
 
-## Fase 2 - Deduplicacion de secciones (13 -> 8)
+Añadir `vite-plugin-prerender` (basado en Puppeteer) al build. Genera un `index.html` físico por cada ruta del sitemap con el HTML ya renderizado por React, incluyendo el `<Helmet>` aplicado.
 
-| Accion | Origen | Destino |
-|---|---|---|
-| Fusionar | "Por que entrenar en casa" + "Que es calistenia en casa" + "Beneficios" | Que es la calistenia en casa + Beneficios (2 H2 limpios) |
-| Fusionar | "Preparacion" + "Prevencion de lesiones" | Calentamiento y prevencion de lesiones (warm-up + cool-down + senales) |
-| Fusionar | "Como disenar tu rutina semanal" + "Progresion sin equipamiento" | Plan 4 semanas (Fase 4) |
+- Archivos: `vite.config.ts` (registrar plugin), `package.json` (dependencia + ya hay `prebuild` para sitemap, no rompe nada).
+- Lista de rutas a prerenderizar: las 21 del sitemap actual (importadas del mismo array para mantenerse en sync).
+- Resultado tras `vite build`: `dist/rutina-calistenia-en-casa/index.html` con title, meta, canonical, OG y JSON-LD correctos. El hosting de Lovable ya sirve `index.html` por carpeta, no hay que tocar routing.
 
-Resultado: ~−400 lineas de JSX duplicado, misma cobertura lexica.
+Alternativa más ligera si prefieres evitar Puppeteer: `react-snap` (mismo principio, menos config), pero `vite-plugin-prerender`/`@prerenderer/rollup-plugin` es lo más estándar hoy.
 
-## Fase 3 - Tarjetas-coach por ejercicio
+### 2. VideoObject en todas las páginas con YouTube (resuelve "0 vídeos")
 
-Rediseñar el accordion con campos de coach reales:
+Auditar cada página de rutina (`RutinaCasa`, `RutinaBrazos`, `RutinaEspalda`, `RutinaCore`, `RutinaPiernas`, `RutinaPecho`, `RutinaHombro`, `RutinaFullBody`, `CalisteniaParque`, `CalisteniaPrincipiantes`, `CalisteniaNivelAvanzado`, `QueEsLaCalistenia`) y añadir `VideoObject` con los campos obligatorios para que Google muestre rich result de vídeo:
+
+- `name`, `description`, `thumbnailUrl` (URL absoluta, ratio 16:9 o 4:3 o 1:1, ≥1200px ancho recomendado),
+- `uploadDate` (ISO 8601),
+- `embedUrl` (la URL `https://www.youtube.com/embed/...`),
+- `duration` (formato ISO 8601, p.ej. `PT8M30S`).
+
+Ya existe el helper `generateVideoObjectSchema` en `src/lib/schemas.ts`, solo falta usarlo en cada página y pasar el JSON-LD por `<Helmet>`. Con prerender activo, ese script saldrá ya en el HTML servido y el video crawler lo verá.
+
+### 3. Limpieza menor en `index.html`
+
+- Quitar el `<link rel="canonical" href="https://calisthenia.online/">` estático (cada página debe poner el suyo vía Helmet, y el prerender lo congela). Mantenerlo provoca canonicals duplicados tras prerender.
+- Mantener los OG/Twitter del home como fallback (los crawlers sociales sin JS los necesitan).
+
+## Detalle técnico
 
 ```text
-H3  Nombre (ES + EN)
-    Tecnica (5 puntos clave)
-    Series x reps recomendadas
-    Musculos trabajados
-    Regresion (como empezar mas facil)   (nuevo)
-    Progresion (siguiente paso)           (nuevo)
-    Errores comunes
+flujo actual:           Googlebot → index.html (shell) → JS → Helmet aplica
+                                    └─ ve home dup           └─ tarde y frágil
+
+flujo objetivo:         Googlebot → /rutina-.../index.html (prerenderizado)
+                                    └─ ya tiene title, canonical, VideoObject
 ```
 
-Anadir 2 ejercicios: Pike push-ups (hombros / camino HSPU) y Remo invertido (traccion, falta clamoroso). Total 8 ejercicios.
+Pasos de implementación (ya en build mode):
 
-## Fase 4 - Plan progresivo 4 semanas
+1. `bun add -D @prerenderer/rollup-plugin @prerenderer/renderer-puppeteer` (o `vite-plugin-prerender`).
+2. Editar `vite.config.ts`: importar el plugin, leer las rutas desde `scripts/sitemap-routes.ts` (extraer constante para reusar), pasarlas a `routes`.
+3. Extraer las 21 URLs del sitemap a un módulo común para que sitemap y prerender no se desincronicen.
+4. Añadir `VideoObject` (con `Helmet` + `generateVideoObjectSchema`) en cada página de rutina que embeba YouTube. Pediré la `uploadDate` y `duration` reales de cada vídeo (o las extraigo de la API de YouTube si tienes la key).
+5. Quitar canonical estático de `index.html`.
+6. Verificación post-deploy:
+   - `curl -s https://calisthenia.online/rutina-calistenia-en-casa/ | grep -E "<title>|canonical|VideoObject"` → debe mostrar los específicos de la página.
+   - En GSC: "Inspeccionar URL" en 2-3 páginas problemáticas → "Probar URL publicada" → confirmar que ve título y canonical correctos.
+   - Re-enviar sitemap; en 1-2 semanas las 21 deberían pasar a "Indexada" y los vídeos a "Descubiertos".
 
-Sustituye las 2 secciones de planificacion duplicadas por un bloque con Tabs:
+## Lo único que necesito de ti antes de implementar
 
-```text
-Semana 1 - Adaptacion        ->  3 dias, RIR 3, foco tecnica
-Semana 2 - Volumen           ->  4 dias, RIR 2, +1 serie
-Semana 3 - Intensidad        ->  4 dias, RIR 1, progresiones duras
-Semana 4 - Descarga + test   ->  3 dias suaves + test max reps
-```
-
-Cada tab: mini-tabla + parrafo "que buscamos". Cubre "plan calistenia en casa" + "calistenia en casa principiantes".
-
-Schema: extender ExercisePlan con 4 fases (hasPart con sub-planes semanales).
-
-## Fase 5 - Ritmo visual y navegacion
-
-Romper la monotonia de 8 secciones py-20 bg-muted/30 sin tocar contenido:
-
-- TOC sticky en desktop (sidebar fina derecha, anclas a los 9 H2). Crear RoutineTOC.tsx hermano de RoutineBreadcrumbs.
-- Chips horizontales scrollables en movil (sticky tras hero), reutilizar FilterChip.
-- Hero compacto: 3 KPIs sobre la imagen (dias/semana, min/sesion, equipamiento = 0).
-- Tabla full-bleed con border-y bg-card.
-- Patron de fondos ampliado: bg-background, bg-muted/30, bg-gradient-to-b from-primary/5.
-
-## Fase 6 - CTA a area privada (lead magnet, sustituye al PDF)
-
-- Banner sticky inferior en movil: "Plan personalizado en tu area privada - prueba gratis" -> /auth?next=/app/onboarding.
-- Bloque CTA tras la tabla y antes del FAQ: valor del trial (rutina adaptada, seguimiento, videos guiados).
-- Reutilizar DualCTA o crear TrialCTA especifico.
-- En ExercisePlan schema anadir offers con price: "0" + category: "Trial".
-
-Pendiente confirmar: la ruta /app/onboarding ya existe segun memoria del proyecto; se usa esa.
-
-## Orden de ejecucion
-
-```text
-Fase 1  ->  Fase 2  ->  Fase 3  ->  Fase 4  ->  Fase 5  ->  Fase 6
-(H2/H3)    (dedup)    (coach)   (4 sem)    (visual)   (trial CTA)
-```
-
-Cada fase es independiente y desplegable por separado. Empezamos por Fase 1 (max ratio impacto/esfuerzo SEO) y Fase 2 para limpiar el terreno antes de las creativas.
-
-## Detalles tecnicos
-
-- Cambios concentrados en src/pages/RutinaCasa.tsx; nuevos RoutineTOC.tsx (Fase 5) y posible TrialCTA.tsx (Fase 6).
-- Schemas existentes intactos; solo se amplia ExercisePlan en Fase 4 (sub-planes semanales) y Fase 6 (offers trial).
-- Sin nuevas dependencias npm. Se usan Tabs, Accordion, Table ya disponibles en src/components/ui/.
-- Espanol de Espana, tokens semanticos del design system.
-
-## Resultado esperado
-
-- Pagina 13 -> 8/9 secciones, ~400 lineas menos.
-- 9 H2 con keywords exactas Semrush + 12 H3 nuevos.
-- Cobertura lexica de 6 keywords objetivo (~6.000 busquedas/mes acumuladas).
-- Lead magnet integrado en la app (trial) en lugar de PDF.
-- Posicion esperada 4-8 semanas: #20 -> top 10 para "rutina calistenia en casa", primeras posiciones para "tabla calistenia en casa" (KDI 26).
+- ¿Apruebas usar **prerender con Puppeteer** (recomendado, estándar) o prefieres `react-snap` (más simple, menos mantenido)?
+- Para el `VideoObject`, ¿me pasas o prefieres que extraiga (API de YouTube) **uploadDate y duration** reales de cada vídeo embebido? Sin esos campos Google a veces ignora el rich result.
