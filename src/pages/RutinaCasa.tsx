@@ -981,7 +981,7 @@ const RutinaCasa = () => {
           <CommunityCTA />
 
           {/* Tabla Rutina Semanal Detallada */}
-          <section id="tabla-rutina" className="py-12 md:py-16 scroll-mt-24">
+          <section id="tabla-rutina" className="py-12 md:py-16 scroll-mt-24 bg-gradient-to-b from-primary/5 via-background to-background">
             <div className="container mx-auto px-4">
               <div className="max-w-5xl mx-auto">
                 <div className="text-center mb-12">
