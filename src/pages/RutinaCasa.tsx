@@ -11,8 +11,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { allVideos } from "@/data/videoLibrary";
 import entrenaCase from "@/assets/entrena-casa.jpg";
-import { Home, CheckCircle, Target, Shield, Zap, Heart, Clock, TrendingUp, AlertCircle, Calendar, Activity, Dumbbell } from "lucide-react";
+import { Home, CheckCircle, Target, Shield, Zap, Heart, Clock, TrendingUp, AlertCircle, Calendar, Activity, Dumbbell, Wallet, ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import StructuredData from "@/components/seo/StructuredData";
 import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
 import { generateFAQSchema } from "@/lib/schemas";
@@ -131,22 +132,52 @@ const RutinaCasa = () => {
         
         <main className="flex-grow pt-20">
           {/* Hero Section */}
-          <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-            <div 
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${entrenaCase})` }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background"></div>
-            </div>
-            
-            <div className="relative z-10 container mx-auto px-4 text-center">
-              <Home className="w-16 h-16 mx-auto mb-6 text-primary" />
-              <h1 className="font-display font-bold text-4xl md:text-6xl mb-6">
-                Rutina de Calistenia en Casa
-              </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-                Entrena desde cualquier lugar sin necesidad de equipamiento. Tu cuerpo es tu gimnasio.
-              </p>
+          <section className="relative min-h-[600px] lg:min-h-[80vh] flex items-center overflow-hidden">
+            <img
+              src={entrenaCase}
+              alt="Atleta entrenando calistenia en casa sin equipamiento"
+              width={1600}
+              height={900}
+              fetchPriority="high"
+              decoding="async"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/85 to-secondary/30 md:via-secondary/70" />
+            <div className="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent" />
+
+            <div className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10 py-20 md:py-28">
+              <div className="max-w-3xl">
+                <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 md:mb-8 bg-primary/10 border border-primary/30 rounded-full backdrop-blur-sm">
+                  <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
+                  <span className="text-[10px] md:text-xs font-bold tracking-[0.15em] text-primary uppercase">
+                    Rutina en casa · Sin material
+                  </span>
+                </div>
+
+                <h1 className="font-display font-extrabold text-4xl md:text-6xl lg:text-7xl text-white leading-[1.1] mb-6 md:mb-8 tracking-tight">
+                  Rutina de calistenia <br className="hidden md:block" />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">en casa</span>
+                </h1>
+
+                <p className="text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed max-w-2xl mb-10 md:mb-12">
+                  Entrena desde cualquier lugar sin material. Tu cuerpo es tu gimnasio: rutinas, ejercicios y planificación semanal para empezar hoy mismo.
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                  <Button size="lg" asChild className="text-lg px-8 py-6 rounded-xl font-bold shadow-xl">
+                    <a href="#video-rutina">
+                      Ver rutina completa
+                      <ArrowRight className="ml-2" />
+                    </a>
+                  </Button>
+                  <Button size="lg" variant="outline" asChild className="text-lg px-8 py-6 rounded-xl font-bold bg-white/5 backdrop-blur-md border-white/20 text-white hover:bg-white/10">
+                    <a href="#planificacion">
+                      Encuentra tu nivel
+                      <ChevronDown className="ml-2" />
+                    </a>
+                  </Button>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -167,163 +198,100 @@ const RutinaCasa = () => {
           </div>
 
           {/* Por Qué Entrenar en Casa */}
-          <section className="py-16 bg-muted/30">
+          <section className="py-20 md:py-24 bg-muted/30">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                ¿Por Qué Entrenar en Casa?
+                ¿Por qué entrenar en <span className="text-primary">casa</span>?
               </h2>
-              
+
               <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <div className="text-center">
-                  <CheckCircle className="w-12 h-12 mx-auto mb-4 text-primary" />
-                  <h3 className="font-semibold text-xl mb-3">Sin Equipamiento</h3>
-                  <p className="text-muted-foreground">
-                    Solo necesitas tu peso corporal para entrenar efectivamente
-                  </p>
-                </div>
-                
-                <div className="text-center">
-                  <CheckCircle className="w-12 h-12 mx-auto mb-4 text-primary" />
-                  <h3 className="font-semibold text-xl mb-3">Flexibilidad Total</h3>
-                  <p className="text-muted-foreground">
-                    Entrena cuando quieras, sin horarios ni desplazamientos
-                  </p>
-                </div>
-                
-                <div className="text-center">
-                  <CheckCircle className="w-12 h-12 mx-auto mb-4 text-primary" />
-                  <h3 className="font-semibold text-xl mb-3">Ahorro Económico</h3>
-                  <p className="text-muted-foreground">
-                    Sin cuotas de gimnasio ni gastos en equipamiento caro
-                  </p>
-                </div>
+                {[
+                  { Icon: Home, title: "Sin Equipamiento", text: "Solo necesitas tu peso corporal para entrenar efectivamente" },
+                  { Icon: Clock, title: "Flexibilidad Total", text: "Entrena cuando quieras, sin horarios ni desplazamientos" },
+                  { Icon: Wallet, title: "Ahorro Económico", text: "Sin cuotas de gimnasio ni gastos en equipamiento caro" },
+                ].map(({ Icon, title, text }) => (
+                  <div key={title} className="text-center">
+                    <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                      <Icon className="w-7 h-7 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-xl mb-3">{title}</h3>
+                    <p className="text-muted-foreground">{text}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
 
           {/* ¿Qué es la Calistenia en Casa? */}
-          <section className="py-16">
+          <section className="py-20 md:py-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                ¿Qué es la Calistenia para Principiantes en Casa?
+                ¿Qué es la calistenia para principiantes en <span className="text-primary">casa</span>?
               </h2>
-              
-              <div className="max-w-4xl mx-auto">
-                <Card className="border-primary/20 hover:shadow-elegant transition-all duration-300">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-3">
-                      <Target className="w-8 h-8 text-primary" />
-                      Entrenamiento con Peso Corporal
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4 text-muted-foreground">
-                    <p>
-                      La <strong>calistenia en casa</strong> es un método de entrenamiento que utiliza el propio peso del cuerpo como herramienta principal. 
-                      Movimientos como flexiones, sentadillas y dominadas te permiten trabajar diversos grupos musculares de manera efectiva sin necesidad de equipos adicionales.
-                    </p>
-                    <p>
-                      La eficacia de este entrenamiento radica en su capacidad para activar la musculatura y mejorar la funcionalidad del cuerpo. 
-                      Puedes entrenar en cualquier espacio de tu hogar, desde tu habitación hasta el salón, solo necesitas aproximadamente 2 metros cuadrados.
-                    </p>
-                    <div className="bg-muted/50 p-4 rounded-lg mt-4">
-                      <p className="text-sm font-semibold text-foreground mb-2">💡 Diferencia vs Gimnasio Tradicional:</p>
-                      <p className="text-sm">
-                        Mientras el gimnasio requiere máquinas y pesas, la calistenia convierte tu cuerpo en tu propia resistencia. 
-                        Esto no solo ahorra dinero, sino que también desarrolla fuerza funcional más aplicable a movimientos del día a día.
-                      </p>
+
+              <div className="max-w-6xl mx-auto grid lg:grid-cols-5 gap-8 items-start">
+                <div className="lg:col-span-3 space-y-4 text-muted-foreground text-lg leading-relaxed">
+                  <div className="inline-flex items-center gap-3 mb-2">
+                    <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                      <Target className="w-6 h-6 text-primary" />
                     </div>
-                  </CardContent>
-                </Card>
+                    <span className="font-display font-bold text-xl text-foreground">Entrenamiento con peso corporal</span>
+                  </div>
+                  <p>
+                    La <strong className="text-foreground">calistenia en casa</strong> es un método de entrenamiento que utiliza el propio peso del cuerpo como herramienta principal.
+                    Movimientos como flexiones, sentadillas y dominadas te permiten trabajar diversos grupos musculares sin necesidad de equipos adicionales.
+                  </p>
+                  <p>
+                    Su eficacia radica en activar la musculatura y mejorar la funcionalidad del cuerpo.
+                    Puedes entrenar en cualquier espacio de tu hogar: solo necesitas aproximadamente 2 metros cuadrados.
+                  </p>
+                </div>
+                <aside className="lg:col-span-2 bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 rounded-2xl p-6">
+                  <p className="text-sm font-bold text-primary uppercase tracking-wider mb-3">Diferencia vs gimnasio</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Mientras el gimnasio requiere máquinas y pesas, la calistenia convierte tu cuerpo en tu propia resistencia.
+                    Esto no solo ahorra dinero, sino que desarrolla <strong className="text-foreground">fuerza funcional</strong> más aplicable a movimientos del día a día.
+                  </p>
+                </aside>
               </div>
             </div>
           </section>
 
           {/* Beneficios de la Calistenia en Casa */}
-          <section className="py-16 bg-muted/30">
+          <section className="py-20 md:py-24 bg-muted/30">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Beneficios de la Rutina Calistenia en Casa
+                Beneficios de la rutina calistenia en <span className="text-primary">casa</span>
               </h2>
-              
+
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                <Card className="hover:shadow-elegant transition-all duration-300">
-                  <CardHeader>
-                    <Dumbbell className="w-10 h-10 text-primary mb-2" />
-                    <CardTitle>Desarrollo de Fuerza Funcional</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      Al trabajar con tu propio peso, desarrollas músculos de manera equilibrada y aumentas la fuerza aplicable a situaciones reales.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-elegant transition-all duration-300">
-                  <CardHeader>
-                    <Heart className="w-10 h-10 text-primary mb-2" />
-                    <CardTitle>Mejora Cardiovascular</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      Los movimientos dinámicos elevan tu ritmo cardíaco, mejorando la salud cardiovascular y la capacidad pulmonar.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-elegant transition-all duration-300">
-                  <CardHeader>
-                    <Activity className="w-10 h-10 text-primary mb-2" />
-                    <CardTitle>Coordinación y Equilibrio</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      Ejercicios que requieren balance promueven la conexión mente-cuerpo y mejoran tu estabilidad general.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-elegant transition-all duration-300">
-                  <CardHeader>
-                    <Shield className="w-10 h-10 text-primary mb-2" />
-                    <CardTitle>Prevención de Lesiones</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      Fortaleces músculos, tendones y ligamentos, creando una base sólida que reduce el riesgo de lesiones.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-elegant transition-all duration-300">
-                  <CardHeader>
-                    <Clock className="w-10 h-10 text-primary mb-2" />
-                    <CardTitle>Entrenamientos Eficientes</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      Sesiones de 20-45 minutos son suficientes para obtener resultados, perfecto para agendas ocupadas.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-elegant transition-all duration-300">
-                  <CardHeader>
-                    <TrendingUp className="w-10 h-10 text-primary mb-2" />
-                    <CardTitle>Adaptable a Todos los Niveles</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      Desde principiantes hasta avanzados, cada ejercicio se puede modificar según tus capacidades.
-                    </p>
-                  </CardContent>
-                </Card>
+                {[
+                  { Icon: Dumbbell, title: "Desarrollo de Fuerza Funcional", text: "Al trabajar con tu propio peso, desarrollas músculos de manera equilibrada y aumentas la fuerza aplicable a situaciones reales." },
+                  { Icon: Heart, title: "Mejora Cardiovascular", text: "Los movimientos dinámicos elevan tu ritmo cardíaco, mejorando la salud cardiovascular y la capacidad pulmonar." },
+                  { Icon: Activity, title: "Coordinación y Equilibrio", text: "Ejercicios que requieren balance promueven la conexión mente-cuerpo y mejoran tu estabilidad general." },
+                  { Icon: Shield, title: "Prevención de Lesiones", text: "Fortaleces músculos, tendones y ligamentos, creando una base sólida que reduce el riesgo de lesiones." },
+                  { Icon: Clock, title: "Entrenamientos Eficientes", text: "Sesiones de 20-45 minutos son suficientes para obtener resultados, perfecto para agendas ocupadas." },
+                  { Icon: TrendingUp, title: "Adaptable a Todos los Niveles", text: "Desde principiantes hasta avanzados, cada ejercicio se puede modificar según tus capacidades." },
+                ].map(({ Icon, title, text }) => (
+                  <Card key={title} className="hover:-translate-y-1 hover:shadow-elegant hover:border-primary/30 transition-all duration-300">
+                    <CardHeader className="gap-4">
+                      <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                        <Icon className="w-7 h-7 text-primary" />
+                      </div>
+                      <CardTitle>{title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground">{text}</p>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
             </div>
           </section>
 
           {/* Video Principal Estructurado */}
           <div id="video-rutina" className="relative -top-20"></div>
-          <section className="py-16">
+          <section className="py-20 md:py-24">
             <div className="container mx-auto px-4">
               <VideoWithStructure
                 videoId={mainVideoId}
@@ -363,10 +331,10 @@ const RutinaCasa = () => {
           </section>
 
           {/* Preparación para el Entrenamiento Funcional en Casa */}
-          <section className="py-16 bg-muted/30">
+          <section className="py-20 md:py-24 bg-muted/30">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Preparación para tu Entrenamiento Funcional en Casa
+                Preparación para tu entrenamiento funcional en <span className="text-primary">casa</span>
               </h2>
               
               <div className="max-w-5xl mx-auto space-y-8">
@@ -450,10 +418,10 @@ const RutinaCasa = () => {
           </section>
 
           {/* Ejercicios Básicos de Calistenia en Casa */}
-          <section className="py-16">
+          <section className="py-20 md:py-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Ejercicios Básicos de Calistenia en Casa
+                Ejercicios <span className="text-primary">básicos</span> de calistenia en casa
               </h2>
               
               <div className="max-w-4xl mx-auto">
@@ -712,7 +680,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* Galería de Videos */}
-          <section className="py-16 bg-muted/30">
+          <section className="py-20 md:py-24 bg-muted/30">
             <div className="container mx-auto px-4">
               <VideoGallery 
                 videos={videosEnCasa}
@@ -726,10 +694,10 @@ const RutinaCasa = () => {
           <CommunityCTA />
 
           {/* Cómo Diseñar tu Rutina Semanal */}
-          <section className="py-16">
+          <section id="planificacion" className="py-20 md:py-24 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Cómo Diseñar tu Rutina Semanal en Casa
+                Cómo diseñar tu rutina semanal en <span className="text-primary">casa</span>
               </h2>
               
               <div className="max-w-5xl mx-auto space-y-8">
@@ -837,10 +805,10 @@ const RutinaCasa = () => {
           </section>
 
           {/* Progresión sin Equipamiento */}
-          <section className="py-16 bg-muted/30">
+          <section className="py-20 md:py-24 bg-muted/30">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Progresión sin Equipamiento
+                Progresión sin <span className="text-primary">equipamiento</span>
               </h2>
               
               <div className="max-w-5xl mx-auto">
@@ -940,10 +908,10 @@ const RutinaCasa = () => {
           </section>
 
           {/* Prevención de Lesiones */}
-          <section className="py-16">
+          <section className="py-20 md:py-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Prevención de Lesiones y Cuidado Corporal
+                Prevención de <span className="text-primary">lesiones</span> y cuidado corporal
               </h2>
               
               <div className="max-w-5xl mx-auto space-y-6">
@@ -1060,7 +1028,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* FAQ Section */}
-          <section className="py-16 bg-muted/30">
+          <section className="py-20 md:py-24 bg-muted/30">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Preguntas Frecuentes sobre <span className="text-primary">Calistenia en Casa</span>
@@ -1093,26 +1061,32 @@ const RutinaCasa = () => {
           </section>
 
           {/* CTA Final */}
-          <section className="py-16">
+          <section className="py-20 md:py-24">
             <div className="container mx-auto px-4">
-              <div className="max-w-3xl mx-auto text-center">
-                <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10">
-                  <CardHeader>
-                    <CardTitle className="text-2xl md:text-3xl">
-                      ¿Quieres un Plan Personalizado?
-                    </CardTitle>
-                    <CardDescription className="text-base">
-                      Descubre nuestros programas de entrenamiento adaptados a tus objetivos y nivel
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Link to="/programas">
-                      <button className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-elegant">
-                        Ver Programas de Entrenamiento
-                      </button>
-                    </Link>
-                  </CardContent>
-                </Card>
+              <div className="max-w-4xl mx-auto">
+                <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-secondary via-secondary to-primary/30 p-10 md:p-16 text-center shadow-elegant">
+                  <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-primary/20 blur-3xl" />
+                  <div className="relative z-10">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 bg-primary/10 border border-primary/30 rounded-full backdrop-blur-sm">
+                      <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
+                      <span className="text-[10px] md:text-xs font-bold tracking-[0.15em] text-primary uppercase">
+                        Plan personalizado
+                      </span>
+                    </div>
+                    <h2 className="font-display font-extrabold text-3xl md:text-5xl text-white mb-4 leading-tight">
+                      ¿Quieres un plan <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">100% adaptado</span> a ti?
+                    </h2>
+                    <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto mb-8">
+                      Descubre nuestros programas de entrenamiento adaptados a tus objetivos y nivel.
+                    </p>
+                    <Button size="lg" asChild className="text-lg px-8 py-6 rounded-xl font-bold shadow-xl">
+                      <Link to="/programas/">
+                        Ver programas de entrenamiento
+                        <ArrowRight className="ml-2" />
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
