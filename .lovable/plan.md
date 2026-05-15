@@ -1,70 +1,138 @@
+## Contexto
 
-## Objetivo
-Llevar el estilo del hero recién implementado en la home a la página `/rutina-calistenia-en-casa/` y mejorar la jerarquía y el ritmo visual del resto de secciones.
+Página actual: 13 secciones, 1.401 líneas, posición #20 para "rutina calistenia en casa" (390/mo). Datos Semrush (DB es):
 
-## 1. Nuevo hero (estilo Home)
+| Keyword objetivo | Volumen | KDI | Estado |
+|---|---|---|---|
+| calistenia en casa | 4.400/mo | 49 | sin H2 propio |
+| ejercicios calistenia en casa | 1.000/mo | 45 | sin H2 propio |
+| rutina calistenia en casa | 390/mo | 36 | H1 cubre |
+| calistenia en casa principiantes | 140/mo | 38 | parcial |
+| tabla calistenia en casa | 90/mo | 26 | cubierto (nuevo) |
+| que es la calistenia | 1.900/mo | 06 | parcial |
 
-Reemplazar el hero actual (centrado, icono + h1 + p sobre fondo difuminado) por uno alineado a la izquierda con el mismo lenguaje que `HeroSectionImproved.tsx`:
+Problemas: 4 pares de secciones duplicadas, ejercicios sin H3 (usan span), H2 actuales sin keywords exactas, ritmo visual monotono.
 
-- Imagen `entrena-casa.jpg` como `<img>` con `object-cover`, `fetchPriority="high"`.
-- Doble overlay: `bg-gradient-to-r from-secondary via-secondary/85 to-secondary/30 md:via-secondary/70` + `bg-gradient-to-t from-secondary via-transparent to-transparent`.
-- Contenedor `max-w-3xl` alineado a la izquierda, padding `py-20 md:py-28`, `min-h-[600px] lg:min-h-[80vh]`.
-- Eyebrow badge: punto naranja pulsante + texto `RUTINA EN CASA · SIN MATERIAL`.
-- H1 `font-display font-extrabold text-4xl md:text-6xl lg:text-7xl text-white`, con palabra clave en gradiente primary→accent: "Rutina de calistenia <gradient>en casa</gradient>".
-- Subtítulo en `text-gray-300 max-w-2xl`: "Entrena desde cualquier lugar sin material. Tu cuerpo es tu gimnasio: rutinas, ejercicios y planificación semanal para empezar hoy mismo."
-- 2 CTAs: primario "Ver rutina completa" → `#video-rutina` con `ArrowRight`; secundario outline glassmorphism "Encuentra tu nivel" → `#planificacion` con `ChevronDown`.
-- Quitar el `<Home>` icono central (queda integrado en el badge si hace falta).
+## Nueva jerarquia H2/H3 (basada en Semrush)
 
-Los breadcrumbs se mantienen justo debajo del hero como ahora.
-
-## 2. Refinamientos de maquetación
-
-**Ritmo de secciones:** unificar a `py-20 md:py-24` (en lugar del `py-16` actual) y alternar fondos `bg-background` ↔ `bg-muted/30` de forma estricta para crear ritmo claro.
-
-**Headers de sección consistentes:** todos los `<h2>` con eyebrow opcional + título display + lead centrado max-w-2xl. Patrón:
+```text
+H1  Calistenia en Casa: Rutina Completa sin Equipamiento
+H2  Que es la calistenia en casa y por que funciona       [4.400 + 1.900/mo]
+H2  Beneficios de entrenar calistenia en casa             [refuerzo semantico]
+H2  Calentamiento y prevencion de lesiones                [fusion #5+#11]
+H2  Ejercicios de calistenia en casa para principiantes   [1.000 + 140/mo]
+    H3  Sentadillas (squats) en casa
+    H3  Flexiones (push-ups) sin material
+    H3  Plancha (plank) y variantes
+    H3  Zancadas (lunges) en espacio reducido
+    H3  Mountain climbers para core y cardio
+    H3  Bird-dog para estabilidad lumbar
+    H3  Pike push-ups (camino al HSPU)            (nuevo)
+    H3  Remo invertido con mesa o toalla          (nuevo)
+H2  Tabla de rutina de calistenia en casa                 [90/mo, ya hecho]
+H2  Plan de calistenia en casa: progresion 4 semanas      [absorbe #9+#10]
+    H3  Semana 1 - Adaptacion y tecnica
+    H3  Semana 2 - Volumen
+    H3  Semana 3 - Intensidad
+    H3  Semana 4 - Descarga y test
+H2  Videos de calistenia en casa
+H2  Preguntas frecuentes sobre calistenia en casa
+H2  Empieza con un plan personalizado (CTA -> trial)
 ```
-<eyebrow chip color primary/10>
-<h2 display, palabra clave en text-primary>
-<p lead text-muted-foreground>
+
+Total: 9 H2 + 12 H3 nuevos.
+
+## Fase 1 - Jerarquia H2/H3 + reescritura de titulos
+
+Riesgo bajo, ganancia SEO inmediata, sin tocar layout.
+
+- Reescribir los 13 H2 actuales segun la tabla (incluir keyword exacta).
+- Convertir los 6 titulos de ejercicios (span dentro de AccordionTrigger) a h3 semanticos manteniendo estilo visual.
+- Anadir id a cada H2 para anclas (TOC fase 5).
+- Actualizar title y meta description para incluir "ejercicios" y "principiantes".
+
+Ficheros: src/pages/RutinaCasa.tsx.
+
+## Fase 2 - Deduplicacion de secciones (13 -> 8)
+
+| Accion | Origen | Destino |
+|---|---|---|
+| Fusionar | "Por que entrenar en casa" + "Que es calistenia en casa" + "Beneficios" | Que es la calistenia en casa + Beneficios (2 H2 limpios) |
+| Fusionar | "Preparacion" + "Prevencion de lesiones" | Calentamiento y prevencion de lesiones (warm-up + cool-down + senales) |
+| Fusionar | "Como disenar tu rutina semanal" + "Progresion sin equipamiento" | Plan 4 semanas (Fase 4) |
+
+Resultado: ~−400 lineas de JSX duplicado, misma cobertura lexica.
+
+## Fase 3 - Tarjetas-coach por ejercicio
+
+Rediseñar el accordion con campos de coach reales:
+
+```text
+H3  Nombre (ES + EN)
+    Tecnica (5 puntos clave)
+    Series x reps recomendadas
+    Musculos trabajados
+    Regresion (como empezar mas facil)   (nuevo)
+    Progresion (siguiente paso)           (nuevo)
+    Errores comunes
 ```
-Aplicar resaltado de palabra clave en naranja en los h2 actuales (igual que la home: "¿Por qué entrenar en casa?" → "casa" en `text-primary`).
 
-**"¿Por qué entrenar en casa?":** sustituir los 3 `CheckCircle` repetidos por iconos diferenciados (`Home`, `Clock`, `Wallet` o `PiggyBank`) en contenedor `w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20` para alinearlo con el lenguaje duotone de los iconos calistenia ya creados.
+Anadir 2 ejercicios: Pike push-ups (hombros / camino HSPU) y Remo invertido (traccion, falta clamoroso). Total 8 ejercicios.
 
-**"Beneficios" (6 cards):** mantener cards pero:
-- Mover el icono al mismo contenedor `bg-primary/10 border border-primary/20 rounded-2xl w-14 h-14` arriba.
-- Reducir padding del CardHeader y dar `gap-4` consistente.
-- Hover: `hover:-translate-y-1 hover:border-primary/30 transition-all`.
+## Fase 4 - Plan progresivo 4 semanas
 
-**Bloque "¿Qué es la calistenia en casa?":** quitar la Card que envuelve (rompe el ritmo de un único bloque centrado). Pasar a un layout de prosa centrado max-w-3xl + un callout `Diferencia vs Gimnasio` como aside lateral en desktop (grid 2 cols 60/40).
+Sustituye las 2 secciones de planificacion duplicadas por un bloque con Tabs:
 
-**"Preparación / Calentamiento":** la Card grande con 3 sub-cards funciona bien; igualar paddings (`p-6`) y añadir números 1·2·3 en cada sub-card como en "Estructura de una sesión efectiva" para coherencia.
+```text
+Semana 1 - Adaptacion        ->  3 dias, RIR 3, foco tecnica
+Semana 2 - Volumen           ->  4 dias, RIR 2, +1 serie
+Semana 3 - Intensidad        ->  4 dias, RIR 1, progresiones duras
+Semana 4 - Descarga + test   ->  3 dias suaves + test max reps
+```
 
-**"Ejercicios básicos" (Accordion):** sustituir los emojis por los iconos lucide ya existentes a tamaño w-6 h-6 con color primary; trigger con badge `Principiante / Intermedio / Avanzado` a la derecha.
+Cada tab: mini-tabla + parrafo "que buscamos". Cubre "plan calistenia en casa" + "calistenia en casa principiantes".
 
-**"Planificación semanal":** las 3 columnas de niveles ya están bien; añadir borde superior coloreado (`border-t-4`) con tono progresivo (primary/40, primary/70, primary) para reforzar la progresión visual de niveles.
+Schema: extender ExercisePlan con 4 fases (hasPart con sub-planes semanales).
 
-**"Progresión sin equipamiento":** está bien; solo armonizar tamaños de icono (w-10 → w-12) y añadir numeración 01-05 como detalle tipográfico de gran tamaño en `text-primary/20` detrás del título.
+## Fase 5 - Ritmo visual y navegacion
 
-**FAQ:** ya está alineada con el patrón de la home, sin cambios.
+Romper la monotonia de 8 secciones py-20 bg-muted/30 sin tocar contenido:
 
-**CTA final:** ampliar a `max-w-4xl`, fondo con `bg-gradient-to-br from-secondary via-secondary to-primary/20`, texto blanco y botón primario sólido más grande (igual al CTA del hero) para cerrar la página con fuerza.
+- TOC sticky en desktop (sidebar fina derecha, anclas a los 9 H2). Crear RoutineTOC.tsx hermano de RoutineBreadcrumbs.
+- Chips horizontales scrollables en movil (sticky tras hero), reutilizar FilterChip.
+- Hero compacto: 3 KPIs sobre la imagen (dias/semana, min/sesion, equipamiento = 0).
+- Tabla full-bleed con border-y bg-card.
+- Patron de fondos ampliado: bg-background, bg-muted/30, bg-gradient-to-b from-primary/5.
 
-## 3. Detalles técnicos
+## Fase 6 - CTA a area privada (lead magnet, sustituye al PDF)
 
-- Archivo a editar: `src/pages/RutinaCasa.tsx`.
-- Imports adicionales: `Wallet`, `Sparkles` de `lucide-react` si se usan en el bloque "Por qué".
-- Reutilizar tokens semánticos (`primary`, `secondary`, `muted-foreground`, `accent`); nada hardcodeado.
-- Mantener intactos schemas JSON-LD, Helmet/SEO, breadcrumbs, FAQs (solo se ajusta el JSX).
-- Responsive: validar en mobile (839px y 375px) que el hero respira y los CTAs apilan en columna.
+- Banner sticky inferior en movil: "Plan personalizado en tu area privada - prueba gratis" -> /auth?next=/app/onboarding.
+- Bloque CTA tras la tabla y antes del FAQ: valor del trial (rutina adaptada, seguimiento, videos guiados).
+- Reutilizar DualCTA o crear TrialCTA especifico.
+- En ExercisePlan schema anadir offers con price: "0" + category: "Trial".
 
-## 4. Verificación
+Pendiente confirmar: la ruta /app/onboarding ya existe segun memoria del proyecto; se usa esa.
 
-1. Build pasa.
-2. Navegar a `/rutina-calistenia-en-casa/` en preview, comprobar hero y ritmo de secciones en desktop y mobile.
-3. Confirmar que el botón "Ver rutina completa" hace scroll a `#video-rutina` y "Encuentra tu nivel" a `#planificacion` (añadir id a la sección de "Planificación semanal").
+## Orden de ejecucion
 
-## Fuera de alcance
-- No tocar contenido textual de FAQs ni de cards (solo el resaltado tipográfico de los h2).
-- No reemplazar la imagen `entrena-casa.jpg`.
-- No modificar el componente `HeroSectionImproved` de la home.
+```text
+Fase 1  ->  Fase 2  ->  Fase 3  ->  Fase 4  ->  Fase 5  ->  Fase 6
+(H2/H3)    (dedup)    (coach)   (4 sem)    (visual)   (trial CTA)
+```
+
+Cada fase es independiente y desplegable por separado. Empezamos por Fase 1 (max ratio impacto/esfuerzo SEO) y Fase 2 para limpiar el terreno antes de las creativas.
+
+## Detalles tecnicos
+
+- Cambios concentrados en src/pages/RutinaCasa.tsx; nuevos RoutineTOC.tsx (Fase 5) y posible TrialCTA.tsx (Fase 6).
+- Schemas existentes intactos; solo se amplia ExercisePlan en Fase 4 (sub-planes semanales) y Fase 6 (offers trial).
+- Sin nuevas dependencias npm. Se usan Tabs, Accordion, Table ya disponibles en src/components/ui/.
+- Espanol de Espana, tokens semanticos del design system.
+
+## Resultado esperado
+
+- Pagina 13 -> 8/9 secciones, ~400 lineas menos.
+- 9 H2 con keywords exactas Semrush + 12 H3 nuevos.
+- Cobertura lexica de 6 keywords objetivo (~6.000 busquedas/mes acumuladas).
+- Lead magnet integrado en la app (trial) en lugar de PDF.
+- Posicion esperada 4-8 semanas: #20 -> top 10 para "rutina calistenia en casa", primeras posiciones para "tabla calistenia en casa" (KDI 26).
