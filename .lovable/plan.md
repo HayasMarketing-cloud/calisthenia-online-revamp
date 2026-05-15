@@ -1,32 +1,58 @@
-## Reemplazar el CTA de WhatsApp por el formulario "Cuerpo Atlético" en `/coaching/`
+## Objetivo
 
-Sustituyo el botón "Reservar llamada por WhatsApp" de la sección CTA final por el formulario embebido de GHL **Formulario lead Webinar Cuerpo Atlético** (`data-form-id: sbWhGZBx1i4npEeAZgKy`).
+Reemplazar los iconos actuales de las secciones **"¿Qué estás buscando?"** y **"Beneficios"** de la home por una nueva línea **duotone calistenia**: iconos SVG con trazo principal en color primary (naranja) y un trazo/relleno secundario más tenue, sobre un contenedor cuadrado con esquinas redondeadas. Más diferencial, deportivo y coherente con el tema de calistenia / entrenamiento funcional.
 
-### Cambios concretos en `src/pages/Coaching.tsx`
+## Línea visual propuesta
 
-1. **Actualizar las constantes del formulario GHL** (las que ya existen en el archivo):
-   - `GHL_FORM_ID = "sbWhGZBx1i4npEeAZgKy"`
-   - `GHL_FORM_URL = "https://link.calisthenia.online/widget/form/sbWhGZBx1i4npEeAZgKy"`
-   - Nombre del formulario: `"Formulario lead Webinar Cuerpo Atlético"`
+- **Trazo principal:** stroke `hsl(var(--primary))`, grosor 1.75–2px
+- **Trazo/relleno secundario:** mismo color al 25–35% de opacidad (efecto duotone)
+- **Contenedor:** 64×64 px, `rounded-2xl`, fondo `bg-primary/10` con borde `border-primary/20`
+- **Hover:** ligero scale + saturación (sin cambiar color base)
+- **Estilo de dibujo:** líneas redondeadas (linecap/linejoin round), inspirado en Phosphor Duotone pero con metáforas de calistenia
 
-2. **Refundir la sección "CTA FINAL" + "FORMULARIO OPCIONAL"** (líneas 562–655) en una sola sección sobre el mismo fondo degradado actual (`bg-gradient-to-br from-secondary via-secondary to-primary/30`):
-   - Conservo el badge superior, el H2 ("Reserva tu llamada con el equipo de Calisthenia Online") y el párrafo descriptivo ajustado al nuevo flujo (sin mención a WhatsApp).
-   - Debajo, embebo el iframe de GHL dentro de una `Card` blanca centrada (max-width ~640px) con la altura recomendada por GHL (`551px`).
-   - Mantengo la línea de cierre "Respondemos en menos de 24h en horario laboral".
+## Cambios por sección
 
-3. **Eliminar todo lo relativo al CTA de WhatsApp en esta sección**:
-   - Botón verde "Reservar llamada por WhatsApp".
-   - Enlace secundario "¿Prefieres que te llamemos? Déjanos tus datos" y la función `scrollToForm` si deja de usarse.
-   - Las refs `ctaFinalRef` y `formSectionRef` se consolidan en una sola (`ctaFinalRef`) que apunta a la nueva sección unificada.
+### 1. `src/components/QuickPathSelector.tsx` (sustituir emojis 🌱📈🎯)
 
-4. **Comprobar el resto de la página**: cualquier botón anterior (hero, sticky, etc.) que hiciera `scrollTo(ctaFinalRef)` sigue funcionando porque la ref se mantiene apuntando a la nueva sección con el formulario.
+Crear 3 SVGs duotone propios:
+- **Empiezo desde cero** → silueta de persona haciendo flexión básica (push-up)
+- **Quiero progresar** → silueta haciendo dominada (pull-up) con flecha ascendente duotone
+- **Quiero un entrenador** → silbato + figura coach (o dos figuras: coach señalando atleta)
 
-### Lo que NO cambia
+Reemplazar `<div className="text-6xl">{path.emoji}</div>` por el componente SVG dentro del contenedor duotone descrito arriba.
 
-- Resto de secciones de `/coaching/` (hero, vídeo, beneficios, testimonios de Raúl/Charlie/Isabel, FAQ, etc.).
-- Otros usos de WhatsApp en el sitio (`PromotionBanner`, `Programas`).
-- Diseño general, colores y tipografía de la sección.
+### 2. `src/components/BenefitsSection.tsx` (sustituir Dumbbell/Target/Trophy/Users2)
 
-### Detalle técnico del embed
+Crear 4 SVGs duotone propios alineados con calistenia:
+- **Sin Equipos, Sin Excusas** → cuerpo humano en plancha (silueta lateral)
+- **Adaptado a Tu Nivel** → 3 barras escalonadas (progresión) con figura
+- **Metodología Probada** → medalla/insignia con check duotone
+- **Comunidad Activa** → 3 figuras entrenando juntas
 
-Mantengo el patrón de iframe que ya usa el proyecto (mismo set de `data-*` atributos, `id` dinámico basado en el form ID, `title` accesible) y conservo la carga del script `https://link.calisthenia.online/js/form_embed.js` mediante el efecto que ya existe — si no lo hubiera en `Coaching.tsx` lo añado con `useEffect` (igual que en `Contacto.tsx`) para garantizar que el iframe se renderiza correctamente y limpia el script al desmontar.
+Mantener la grid actual y el layout. Sustituir el `bg-gradient-primary` por `bg-primary/10 border border-primary/20` para el efecto duotone (el icono ya aporta el color primary).
+
+## Estructura de archivos nueva
+
+```text
+src/components/icons/calisthenia/
+  ├── BeginnerIcon.tsx       (push-up básico)
+  ├── ProgressIcon.tsx       (pull-up + flecha)
+  ├── CoachIcon.tsx          (silbato + figura)
+  ├── NoEquipmentIcon.tsx    (plancha lateral)
+  ├── LevelAdaptIcon.tsx     (barras progresión)
+  ├── MethodologyIcon.tsx    (medalla check)
+  ├── CommunityIcon.tsx      (3 figuras)
+  └── index.ts               (re-exports)
+```
+
+Cada componente acepta `className?: string` y usa `currentColor` para el trazo principal y `fill-opacity="0.25"` para el secundario, de modo que se puedan recolorear vía Tailwind (`text-primary`).
+
+## Sección no afectada
+
+`TrainingCategories` (BRAZOS, ESPALDA…) se mantiene intacta (los webp actuales ya son ilustrados y temáticos).
+
+## Verificación
+
+- Inspeccionar la home en preview tras los cambios: los 3 iconos de "¿Qué estás buscando?" deben verse con la misma altura visual y los 4 iconos de Beneficios alineados en una sola línea duotone naranja.
+- Comprobar contraste del icono sobre fondo claro (`bg-primary/10`) y oscuro (modo oscuro si aplica).
+- Verificar que no hay reflow ni cambio de altura de las cards.
