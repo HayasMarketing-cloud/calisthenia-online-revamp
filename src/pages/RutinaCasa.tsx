@@ -18,7 +18,7 @@ import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Tabl
 import { Badge } from "@/components/ui/badge";
 import StructuredData from "@/components/seo/StructuredData";
 import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
-import { generateFAQSchema } from "@/lib/schemas";
+import { generateFAQSchema, generateExercisePlanSchema } from "@/lib/schemas";
 
 export const faqs = [
   {
