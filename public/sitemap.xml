@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://calisthenia.online/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://calisthenia.online/quien-soy/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://calisthenia.online/quien-soy/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://calisthenia.online/coaching/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://calisthenia.online/programas/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://calisthenia.online/programa-cuerpo-atletico-en-casa/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://calisthenia.online/funcional-bodybuilding/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -9,16 +10,17 @@
   <url><loc>https://calisthenia.online/contacto/</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
   <url><loc>https://calisthenia.online/blog/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://calisthenia.online/blog/que-es-la-calistenia/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://calisthenia.online/calistenia-en-parque/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://calisthenia.online/calistenia-principiantes/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://calisthenia.online/calistenia-en-parque/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://calisthenia.online/calistenia-principiantes/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://calisthenia.online/calistenia-nivel-avanzado/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://calisthenia.online/calistenia-mujeres/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://calisthenia.online/rutina-calistenia-en-casa/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
   <url><loc>https://calisthenia.online/rutina-brazos-calistenia/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://calisthenia.online/rutina-espalda-calistenia/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://calisthenia.online/rutina-espalda-calistenia/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://calisthenia.online/rutina-abdominales-calistenia/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://calisthenia.online/rutina-core-calistenia/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://calisthenia.online/rutina-core-calistenia/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://calisthenia.online/rutina-piernas-calistenia/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://calisthenia.online/rutina-pecho-calistenia/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://calisthenia.online/rutinas-de-hombro-calistenia/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://calisthenia.online/rutina-full-body/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://calisthenia.online/rutina-calistenia-en-casa/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
