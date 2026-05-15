@@ -53,7 +53,8 @@ const AppRoute = ({ children }: AppRouteProps) => {
   }
 
   // If no client profile exists, redirect to onboarding
-  if (!clientProfile) {
+  // Admins bypass onboarding (preview mode)
+  if (!clientProfile && !isAdmin) {
     return <Navigate to="/app/onboarding" replace />;
   }
 
