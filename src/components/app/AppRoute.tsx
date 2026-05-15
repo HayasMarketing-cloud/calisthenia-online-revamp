@@ -25,7 +25,22 @@ const AppRoute = ({ children }: AppRouteProps) => {
     enabled: !!user,
   });
 
-  if (authLoading || profileLoading) {
+  const { data: isAdmin, isLoading: roleLoading } = useQuery({
+    queryKey: ['is-admin', user?.id],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', user!.id)
+        .eq('role', 'admin')
+        .maybeSingle();
+      if (error) throw error;
+      return !!data;
+    },
+    enabled: !!user,
+  });
+
+  if (authLoading || profileLoading || roleLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -38,7 +53,8 @@ const AppRoute = ({ children }: AppRouteProps) => {
   }
 
   // If no client profile exists, redirect to onboarding
-  if (!clientProfile) {
+  // Admins bypass onboarding (preview mode)
+  if (!clientProfile && !isAdmin) {
     return <Navigate to="/app/onboarding" replace />;
   }
 
