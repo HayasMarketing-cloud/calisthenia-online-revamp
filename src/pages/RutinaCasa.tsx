@@ -56,7 +56,7 @@ export const faqs = [
   },
   {
     question: "¿Qué plan de calistenia en casa seguir para ganar masa muscular?",
-    answer: "Para ganar masa muscular con calistenia en casa entrena 4-5 días por semana con división empuje/tracción/piernas y core, 4 series de 6-12 repeticiones cerca del fallo. Programa flexiones diamante y pike push-ups para pecho y hombros, remos invertidos en mesa o toalla para espalda, sentadillas búlgaras y zancadas para piernas, y planchas para core. Suma 1,6-2 g de proteína/kg y un superávit de 200-300 kcal diarias."
+    answer: "Para ganar masa muscular con calistenia en casa entrena de 3 a 5 días por semana con división empuje/tracción/piernas y core, 4 series de 6-12 repeticiones cerca del fallo. Programa flexiones diamante y pike push-ups para pecho y hombros, remos invertidos en mesa o toalla para espalda, sentadillas búlgaras y zancadas para piernas, y planchas para core. "
   }
 ];
 
