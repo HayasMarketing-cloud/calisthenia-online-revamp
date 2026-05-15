@@ -103,6 +103,13 @@ const ExercisesManager = () => {
         difficulty_level: data.difficulty_level as 'beginner' | 'intermediate' | 'advanced',
         equipment_needed: data.equipment_needed ? data.equipment_needed.split(',').map(s => s.trim()) : null,
         category: (data.category || null) as any,
+        seo_slug: data.seo_slug.trim() || null,
+        primary_keyword: data.primary_keyword.trim() || null,
+        aliases: data.aliases ? data.aliases.split(',').map(s => s.trim()).filter(Boolean) : [],
+        seo_description: data.seo_description.trim() || null,
+        monthly_volume: data.monthly_volume ? parseInt(data.monthly_volume, 10) : null,
+        is_public_seo: data.is_public_seo,
+        public_order: data.public_order ? parseInt(data.public_order, 10) : null,
       };
 
       if (data.id) {
