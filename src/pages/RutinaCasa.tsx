@@ -291,7 +291,7 @@ const RutinaCasa = () => {
 
           {/* Video Principal Estructurado */}
           <div id="video-rutina" className="relative -top-20"></div>
-          <section className="py-16">
+          <section className="py-20 md:py-24">
             <div className="container mx-auto px-4">
               <VideoWithStructure
                 videoId={mainVideoId}
@@ -331,7 +331,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* Preparación para el Entrenamiento Funcional en Casa */}
-          <section className="py-16 bg-muted/30">
+          <section className="py-20 md:py-24 bg-muted/30">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Preparación para tu Entrenamiento Funcional en Casa
@@ -418,7 +418,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* Ejercicios Básicos de Calistenia en Casa */}
-          <section className="py-16">
+          <section className="py-20 md:py-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Ejercicios Básicos de Calistenia en Casa
@@ -680,7 +680,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* Galería de Videos */}
-          <section className="py-16 bg-muted/30">
+          <section className="py-20 md:py-24 bg-muted/30">
             <div className="container mx-auto px-4">
               <VideoGallery 
                 videos={videosEnCasa}
@@ -694,7 +694,7 @@ const RutinaCasa = () => {
           <CommunityCTA />
 
           {/* Cómo Diseñar tu Rutina Semanal */}
-          <section className="py-16">
+          <section className="py-20 md:py-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Cómo Diseñar tu Rutina Semanal en Casa
@@ -805,7 +805,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* Progresión sin Equipamiento */}
-          <section className="py-16 bg-muted/30">
+          <section className="py-20 md:py-24 bg-muted/30">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Progresión sin Equipamiento
@@ -908,7 +908,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* Prevención de Lesiones */}
-          <section className="py-16">
+          <section className="py-20 md:py-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Prevención de Lesiones y Cuidado Corporal
@@ -1028,7 +1028,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* FAQ Section */}
-          <section className="py-16 bg-muted/30">
+          <section className="py-20 md:py-24 bg-muted/30">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Preguntas Frecuentes sobre <span className="text-primary">Calistenia en Casa</span>
@@ -1061,7 +1061,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* CTA Final */}
-          <section className="py-16">
+          <section className="py-20 md:py-24">
             <div className="container mx-auto px-4">
               <div className="max-w-3xl mx-auto text-center">
                 <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10">
