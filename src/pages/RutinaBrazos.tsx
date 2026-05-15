@@ -433,68 +433,26 @@ const RutinaBrazos = () => {
         </div>
       </section>
 
-      {/* Mujeres: brazos fuertes */}
+      {/* Teaser: Calistenia para mujeres */}
       <section className="py-16 bg-gradient-to-br from-pink-50 to-purple-50 dark:from-pink-950/10 dark:to-purple-950/10">
         <div className="container mx-auto px-4">
-          <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4 text-center">
-            Mujeres: brazos fuertes, cuerpo tonificado
-          </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            El entrenamiento de brazos para mujeres se enfoca en tonificar sin ganar volumen excesivo. Ejercicios como el curl con mancuernas o extensiones en polea con cuerda son ideales para resaltar definición con elegancia y fuerza.
-          </p>
-
           <div className="max-w-4xl mx-auto">
-            <Card className="border-pink-200 dark:border-pink-800">
-              <CardContent className="p-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-                      <span className="text-2xl">✨</span>
-                      Ejercicios recomendados
-                    </h3>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Curl con mancuernas (ligeras a moderadas)</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Extensiones en polea con cuerda</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Flexiones diamante modificadas</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Fondos asistidos en paralelas</span>
-                      </li>
-                    </ul>
-                  </div>
-                  
-                  <div>
-                    <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
-                      <span className="text-2xl">💪</span>
-                      Beneficios específicos
-                    </h3>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Tonificación sin volumen excesivo</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Definición elegante y funcional</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Mayor fuerza para el día a día</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-primary">•</span>
-                        <span>Mejora de la postura y estabilidad</span>
-                      </li>
-                    </ul>
+            <Card className="border-pink-200 dark:border-pink-800 overflow-hidden">
+              <CardContent className="p-8 md:p-10">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+                  <div className="text-6xl shrink-0" aria-hidden="true">✨</div>
+                  <div className="flex-1">
+                    <h2 className="font-display font-bold text-2xl lg:text-3xl mb-3">
+                      Calistenia para mujeres: rutina en casa, beneficios y mitos
+                    </h2>
+                    <p className="text-muted-foreground mb-5">
+                      Hemos creado una guía completa de <Link to="/calistenia-mujeres/" className="text-primary hover:underline font-medium underline-offset-4">calistenia para mujeres</Link>: rutina en casa sin material, progresión de 4 semanas, beneficios reales (fuerza, tonificación y salud hormonal), mitos desmontados y cómo adaptar el entrenamiento al ciclo menstrual. Ideal si quieres empezar desde cero o llevar tu entrenamiento de brazos al siguiente nivel.
+                    </p>
+                    <Button asChild size="lg" className="bg-pink-600 hover:bg-pink-700 text-white">
+                      <Link to="/calistenia-mujeres/">
+                        Ver la guía de calistenia para mujeres →
+                      </Link>
+                    </Button>
                   </div>
                 </div>
               </CardContent>
