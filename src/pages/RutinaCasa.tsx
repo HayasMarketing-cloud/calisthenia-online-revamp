@@ -179,14 +179,14 @@ const RutinaCasa = () => {
   return (
     <>
       <Helmet>
-        <title>Calistenia en Casa: Rutina Completa sin Equipamiento | Guía 2025</title>
+        <title>Calistenia en Casa: Rutina y Ejercicios para Principiantes 2025</title>
         <meta 
           name="description" 
-          content="Rutina completa de calistenia en casa sin equipamiento. Ejercicios, planificación y técnicas para entrenar desde tu hogar. Video guiado incluido." 
+          content="Rutina de calistenia en casa para principiantes: tabla semanal, plan 4 semanas y 8 ejercicios sin equipamiento explicados paso a paso por un coach certificado." 
         />
-        <meta name="keywords" content="calistenia para principiantes en casa, rutina calistenia en casa, entrenamiento funcional en casa, ejercicios peso corporal" />
-        <meta property="og:title" content="Calistenia en Casa: Rutina Completa sin Equipamiento" />
-        <meta property="og:description" content="Rutina completa de calistenia en casa sin equipamiento. Ejercicios efectivos con video guiado." />
+        <meta name="keywords" content="calistenia en casa, rutina calistenia en casa, ejercicios calistenia en casa, calistenia en casa principiantes, tabla calistenia en casa, plan calistenia en casa" />
+        <meta property="og:title" content="Calistenia en Casa: Rutina y Ejercicios para Principiantes" />
+        <meta property="og:description" content="Tabla semanal, plan 4 semanas y 8 ejercicios de calistenia en casa explicados paso a paso. Sin equipamiento." />
         <link rel="canonical" href="https://calisthenia.online/rutina-calistenia-en-casa/" />
       </Helmet>
 
