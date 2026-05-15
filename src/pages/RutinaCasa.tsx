@@ -112,6 +112,70 @@ const RutinaCasa = () => {
 
   const faqSchema = generateFAQSchema(faqs);
 
+  const exercisePlanSchema = generateExercisePlanSchema({
+    name: "Tabla Calistenia en Casa: Plan Semanal Sin Equipamiento",
+    description: "Tabla y plan semanal de calistenia en casa con 5 sesiones (empuje, piernas, tracción, core+HIIT y full body) y 2 días de descanso. Sin equipamiento, adaptable a principiantes, intermedios y avanzados.",
+    url: "https://calisthenia.online/rutina-calistenia-en-casa/",
+    image: "https://calisthenia.online/assets/calisthenia-casa.webp",
+    activityFrequency: "5 días por semana",
+    workload: "PT40M",
+    intensity: "Moderada-Alta",
+    restPeriods: "60-90 segundos entre series; miércoles y domingo descanso completo",
+    audience: "Principiantes a avanzados",
+    sessions: [
+      {
+        day: "Lunes",
+        focus: "Empuje (pecho, hombros, tríceps)",
+        exercises: [
+          { name: "Flexiones clásicas", sets: 4, reps: "8-12", rest: "60s" },
+          { name: "Pike push-ups", sets: 3, reps: "8-10", rest: "75s" },
+          { name: "Flexiones diamante", sets: 3, reps: "6-10", rest: "75s" },
+          { name: "Fondos en silla", sets: 3, reps: "10-12", rest: "60s" }
+        ]
+      },
+      {
+        day: "Martes",
+        focus: "Piernas y glúteos",
+        exercises: [
+          { name: "Sentadillas", sets: 4, reps: "15-20", rest: "60s" },
+          { name: "Zancadas alternas", sets: 3, reps: "10/pierna", rest: "60s" },
+          { name: "Sentadilla búlgara", sets: 3, reps: "8/pierna", rest: "75s" },
+          { name: "Puente de glúteo", sets: 3, reps: "15", rest: "45s" }
+        ]
+      },
+      {
+        day: "Jueves",
+        focus: "Tracción (espalda y bíceps)",
+        exercises: [
+          { name: "Remo invertido en mesa", sets: 4, reps: "8-12", rest: "75s" },
+          { name: "Remo con toalla en puerta", sets: 3, reps: "10-12", rest: "60s" },
+          { name: "Curl bíceps isométrico con toalla", sets: 3, reps: "30s", rest: "45s" },
+          { name: "Superman", sets: 3, reps: "12-15", rest: "45s" }
+        ]
+      },
+      {
+        day: "Viernes",
+        focus: "Core y HIIT",
+        exercises: [
+          { name: "Plancha frontal", sets: 3, reps: "45-60s", rest: "45s" },
+          { name: "Mountain climbers", sets: 4, reps: "30s", rest: "30s" },
+          { name: "Crunch bicicleta", sets: 3, reps: "20", rest: "45s" },
+          { name: "Burpees", sets: 4, reps: "10", rest: "45s" }
+        ]
+      },
+      {
+        day: "Sábado",
+        focus: "Full body",
+        exercises: [
+          { name: "Flexiones", sets: 3, reps: "10-12", rest: "60s" },
+          { name: "Sentadillas con salto", sets: 3, reps: "12", rest: "60s" },
+          { name: "Remo invertido", sets: 3, reps: "8-10", rest: "60s" },
+          { name: "Plancha lateral", sets: 3, reps: "30s/lado", rest: "45s" }
+        ]
+      }
+    ]
+  });
+
   return (
     <>
       <Helmet>
