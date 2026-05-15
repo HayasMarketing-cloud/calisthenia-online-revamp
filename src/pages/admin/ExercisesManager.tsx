@@ -145,7 +145,7 @@ const ExercisesManager = () => {
     onError: (err: Error) => toast.error('No se pudo eliminar: ' + err.message),
   });
 
-  const openEdit = (ex: typeof exercises extends (infer T)[] ? T : never) => {
+  const openEdit = (ex: any) => {
     setForm({
       id: ex.id,
       name: ex.name,
@@ -154,7 +154,14 @@ const ExercisesManager = () => {
       muscle_groups: ex.muscle_groups || [],
       difficulty_level: ex.difficulty_level || 'beginner',
       equipment_needed: (ex.equipment_needed || []).join(', '),
-      category: (ex as any).category || '',
+      category: ex.category || '',
+      seo_slug: ex.seo_slug || '',
+      primary_keyword: ex.primary_keyword || '',
+      aliases: (ex.aliases || []).join(', '),
+      seo_description: ex.seo_description || '',
+      monthly_volume: ex.monthly_volume != null ? String(ex.monthly_volume) : '',
+      is_public_seo: !!ex.is_public_seo,
+      public_order: ex.public_order != null ? String(ex.public_order) : '',
     });
     setDialogOpen(true);
   };
