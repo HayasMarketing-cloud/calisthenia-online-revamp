@@ -1063,24 +1063,30 @@ const RutinaCasa = () => {
           {/* CTA Final */}
           <section className="py-20 md:py-24">
             <div className="container mx-auto px-4">
-              <div className="max-w-3xl mx-auto text-center">
-                <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10">
-                  <CardHeader>
-                    <CardTitle className="text-2xl md:text-3xl">
-                      ¿Quieres un Plan Personalizado?
-                    </CardTitle>
-                    <CardDescription className="text-base">
-                      Descubre nuestros programas de entrenamiento adaptados a tus objetivos y nivel
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Link to="/programas">
-                      <button className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-elegant">
-                        Ver Programas de Entrenamiento
-                      </button>
-                    </Link>
-                  </CardContent>
-                </Card>
+              <div className="max-w-4xl mx-auto">
+                <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-secondary via-secondary to-primary/30 p-10 md:p-16 text-center shadow-elegant">
+                  <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-primary/20 blur-3xl" />
+                  <div className="relative z-10">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 bg-primary/10 border border-primary/30 rounded-full backdrop-blur-sm">
+                      <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
+                      <span className="text-[10px] md:text-xs font-bold tracking-[0.15em] text-primary uppercase">
+                        Plan personalizado
+                      </span>
+                    </div>
+                    <h2 className="font-display font-extrabold text-3xl md:text-5xl text-white mb-4 leading-tight">
+                      ¿Quieres un plan <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">100% adaptado</span> a ti?
+                    </h2>
+                    <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto mb-8">
+                      Descubre nuestros programas de entrenamiento adaptados a tus objetivos y nivel.
+                    </p>
+                    <Button size="lg" asChild className="text-lg px-8 py-6 rounded-xl font-bold shadow-xl">
+                      <Link to="/programas/">
+                        Ver programas de entrenamiento
+                        <ArrowRight className="ml-2" />
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
