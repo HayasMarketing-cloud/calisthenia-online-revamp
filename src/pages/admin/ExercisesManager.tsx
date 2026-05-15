@@ -321,7 +321,7 @@ const ExercisesManager = () => {
 
       {/* Create/Edit Dialog */}
       <Dialog open={dialogOpen} onOpenChange={open => { if (!open) { setDialogOpen(false); setForm(emptyForm); } }}>
-        <DialogContent className="max-w-lg">
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{isEditing ? 'Editar ejercicio' : 'Nuevo ejercicio'}</DialogTitle>
             <DialogDescription>{isEditing ? 'Modifica los datos del ejercicio' : 'Añade un nuevo ejercicio a la base de datos'}</DialogDescription>
