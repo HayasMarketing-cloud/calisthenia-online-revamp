@@ -808,7 +808,7 @@ const RutinaCasa = () => {
           <section className="py-20 md:py-24 bg-muted/30">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Progresión sin Equipamiento
+                Progresión sin <span className="text-primary">equipamiento</span>
               </h2>
               
               <div className="max-w-5xl mx-auto">
