@@ -352,6 +352,7 @@ export type Database = {
       }
       exercises: {
         Row: {
+          aliases: string[] | null
           category: Database["public"]["Enums"]["exercise_category"] | null
           created_at: string
           created_by: string | null
@@ -362,12 +363,19 @@ export type Database = {
           equipment_needed: string[] | null
           id: string
           is_active: boolean | null
+          is_public_seo: boolean
+          monthly_volume: number | null
           muscle_groups: string[] | null
           name: string
+          primary_keyword: string | null
+          public_order: number | null
+          seo_description: string | null
+          seo_slug: string | null
           updated_at: string
           youtube_video_id: string | null
         }
         Insert: {
+          aliases?: string[] | null
           category?: Database["public"]["Enums"]["exercise_category"] | null
           created_at?: string
           created_by?: string | null
@@ -378,12 +386,19 @@ export type Database = {
           equipment_needed?: string[] | null
           id?: string
           is_active?: boolean | null
+          is_public_seo?: boolean
+          monthly_volume?: number | null
           muscle_groups?: string[] | null
           name: string
+          primary_keyword?: string | null
+          public_order?: number | null
+          seo_description?: string | null
+          seo_slug?: string | null
           updated_at?: string
           youtube_video_id?: string | null
         }
         Update: {
+          aliases?: string[] | null
           category?: Database["public"]["Enums"]["exercise_category"] | null
           created_at?: string
           created_by?: string | null
@@ -394,8 +409,14 @@ export type Database = {
           equipment_needed?: string[] | null
           id?: string
           is_active?: boolean | null
+          is_public_seo?: boolean
+          monthly_volume?: number | null
           muscle_groups?: string[] | null
           name?: string
+          primary_keyword?: string | null
+          public_order?: number | null
+          seo_description?: string | null
+          seo_slug?: string | null
           updated_at?: string
           youtube_video_id?: string | null
         }
