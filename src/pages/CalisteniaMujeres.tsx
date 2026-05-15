@@ -12,6 +12,8 @@ import TrialCTA from "@/components/seo/TrialCTA";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
 import { generateFAQSchema } from "@/lib/schemas";
 import { Sparkles, Heart, Shield, TrendingUp, CheckCircle, AlertCircle, Calendar, Target, Flame, Users } from "lucide-react";
