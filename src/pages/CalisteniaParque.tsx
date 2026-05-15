@@ -260,26 +260,136 @@ const CalisteniaParque = () => {
             </div>
           </section>
 
-          {/* ¿Qué es la Calistenia en Parques? */}
-          <section className="py-16">
+          {/* ¿Qué es un parque de Calistenia? */}
+          <section id="que-es-parque" className="py-16 scroll-mt-24">
             <div className="container mx-auto px-4">
-              <Card className="p-8 md:p-12 bg-muted/30 border-none text-center max-w-4xl mx-auto">
-                <TreePine className="w-16 h-16 mx-auto mb-6 text-primary" />
+              <Card className="p-8 md:p-12 bg-muted/30 border-none max-w-4xl mx-auto">
+                <TreePine className="w-12 h-12 mb-4 text-primary" />
                 <h2 className="font-display font-bold text-3xl md:text-4xl mb-6">
-                  ¿Qué es la Calistenia en Parques?
+                  Qué es un parque de <span className="text-primary">calistenia</span>
                 </h2>
                 <div className="space-y-4 text-lg text-muted-foreground">
                   <p>
-                    La calistenia en parques es una forma de entrenamiento con peso corporal que utiliza el equipamiento disponible en espacios públicos: barras altas y bajas, paralelas, anillas, y espaleras.
+                    Un <strong className="text-foreground">parque de calistenia</strong> es una instalación pública al aire libre equipada con barras de dominadas, paralelas, espalderas y otros elementos diseñados específicamente para entrenar con el peso del cuerpo. Forma parte del mobiliario urbano deportivo y está pensado para que cualquier persona pueda entrenar gratis sin pagar gimnasio.
                   </p>
                   <p>
-                    A diferencia de los gimnasios tradicionales, los parques ofrecen un ambiente motivador donde personas de todos los niveles entrenan juntas al aire libre, sin cuotas mensuales.
+                    A diferencia de un parque infantil o de un gimnasio tradicional, los <strong className="text-foreground">parques de barras</strong> tienen estructuras pensadas para soportar el peso del cuerpo en suspensión, con alturas escalonadas, agarres antideslizantes y suelo amortiguado. Los hay desde instalaciones modestas (una barra alta y unas paralelas) hasta complejos completos con anillas, wall-bars y barras Z.
                   </p>
                   <p>
-                    Es ideal para principiantes porque el equipamiento es intuitivo y el ambiente comunitario te impulsa a mejorar. Además, puedes encontrar parques de calistenia en casi cualquier ciudad buscando en Google Maps o apps especializadas.
+                    Es ideal para principiantes porque el equipamiento es intuitivo y el ambiente comunitario te impulsa a mejorar. Encontrarás parques en casi cualquier ciudad usando Google Maps o mapas colaborativos como <em>streetworkoutparks.es</em>.
                   </p>
                 </div>
               </Card>
+            </div>
+          </section>
+
+          {/* Tipos de barras de parques */}
+          <section id="tipos-barras" className="py-16 bg-muted/30 scroll-mt-24">
+            <div className="container mx-auto px-4">
+              <div className="max-w-5xl mx-auto">
+                <div className="text-center mb-10">
+                  <h2 className="font-display font-bold text-3xl md:text-4xl mb-4">
+                    Tipos de <span className="text-primary">barras de parques</span> de calistenia
+                  </h2>
+                  <p className="text-muted-foreground max-w-3xl mx-auto">
+                    No todas las barras de parques sirven para lo mismo. Conocer cada tipo te ayuda a elegir el parque adecuado para tu objetivo y a sacar más partido a cada sesión.
+                  </p>
+                </div>
+
+                <div className="overflow-x-auto rounded-xl border border-border bg-background">
+                  <table className="w-full text-sm">
+                    <thead className="bg-muted/60">
+                      <tr className="text-left">
+                        <th className="p-4 font-semibold">Tipo de barra</th>
+                        <th className="p-4 font-semibold">Para qué sirve</th>
+                        <th className="p-4 font-semibold whitespace-nowrap">Altura</th>
+                        <th className="p-4 font-semibold whitespace-nowrap">Nivel</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {tiposBarras.map((b) => (
+                        <tr key={b.name} className="border-t border-border align-top">
+                          <td className="p-4 font-medium">{b.name}</td>
+                          <td className="p-4 text-muted-foreground">{b.uso}</td>
+                          <td className="p-4 text-muted-foreground whitespace-nowrap">{b.altura}</td>
+                          <td className="p-4 text-muted-foreground">{b.nivel}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                <p className="text-xs text-muted-foreground mt-4 text-center">
+                  Las medidas son orientativas; varían según el fabricante (Mobipark, Toxicworkout, Decathlon, etc.) y la normativa municipal.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Cómo encontrar un parque cerca */}
+          <section id="encontrar-parque" className="py-16 scroll-mt-24">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <div className="text-center mb-10">
+                  <MapPin className="w-12 h-12 mx-auto mb-4 text-primary" />
+                  <h2 className="font-display font-bold text-3xl md:text-4xl mb-4">
+                    Cómo encontrar un <span className="text-primary">parque de calistenia</span> cerca de ti
+                  </h2>
+                  <p className="text-muted-foreground">
+                    Cuatro vías fiables para localizar barras de parques en tu ciudad, ordenadas de más rápida a más completa.
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-5">
+                  <Card className="p-6">
+                    <h3 className="font-semibold text-lg mb-2 flex items-center gap-2">
+                      <MapPin className="w-5 h-5 text-primary" /> 1. Google Maps
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-3">
+                      Lo más rápido. Busca cualquiera de estos términos en tu ciudad:
+                    </p>
+                    <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-5">
+                      <li>"parque calistenia"</li>
+                      <li>"parque de barras"</li>
+                      <li>"street workout park"</li>
+                      <li>"calisthenics park"</li>
+                    </ul>
+                  </Card>
+
+                  <Card className="p-6">
+                    <h3 className="font-semibold text-lg mb-2 flex items-center gap-2">
+                      <Target className="w-5 h-5 text-primary" /> 2. streetworkoutparks.es
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Mapa colaborativo en español con cientos de parques de España geolocalizados. Cada parque incluye fotos del equipamiento y reseñas de la comunidad.
+                    </p>
+                  </Card>
+
+                  <Card className="p-6">
+                    <h3 className="font-semibold text-lg mb-2 flex items-center gap-2">
+                      <Users className="w-5 h-5 text-primary" /> 3. calisteniaparks.com
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Directorio internacional. Útil si viajas o vives en una ciudad pequeña: filtra por país y tipo de equipamiento (anillas, paralelas, wall-bars).
+                    </p>
+                  </Card>
+
+                  <Card className="p-6">
+                    <h3 className="font-semibold text-lg mb-2 flex items-center gap-2">
+                      <TreePine className="w-5 h-5 text-primary" /> 4. Wikiloc + Instagram
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Wikiloc para parques en rutas de senderismo. En Instagram busca el hashtag <strong>#calistenia[tu ciudad]</strong> (ej. #calisteniabarcelona) para descubrir spots no indexados en mapas.
+                    </p>
+                  </Card>
+                </div>
+
+                <div className="mt-8 p-5 rounded-xl bg-primary/5 border border-primary/20">
+                  <p className="text-sm">
+                    <strong className="text-primary">Tip del coach:</strong> Antes de ir, comprueba en las fotos que el parque tenga al menos una <strong>barra alta</strong> y unas <strong>paralelas</strong>. Con esos dos elementos cubres el 80% de los ejercicios de calistenia.
+                  </p>
+                </div>
+              </div>
             </div>
           </section>
 
