@@ -820,8 +820,20 @@ const RutinaCasa = () => {
                           <p className="text-sm text-muted-foreground">Core, espalda baja, glúteos</p>
                         </div>
                       </div>
+                      <div className="bg-secondary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">👶 Regresión (versión fácil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Eleva solo el brazo o solo la pierna por separado, sin combinarlos • Reduce las repeticiones a 6-8 por lado
+                        </p>
+                      </div>
                       <div className="bg-primary/10 p-4 rounded-lg">
-                        <h4 className="font-semibold mb-2">💡 Beneficios Clave:</h4>
+                        <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Bird-dog con extensión bajo el cuerpo (rodilla y codo se tocan) • Bird-dog con banda elástica • Aumenta el aguante isométrico a 5 segundos
+                        </p>
+                      </div>
+                      <div className="bg-accent/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">💡 Beneficios clave:</h4>
                         <p className="text-sm text-muted-foreground">
                           Excelente para prevenir dolor lumbar y mejorar la postura. Ideal para principiantes.
                         </p>
