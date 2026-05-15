@@ -1,65 +1,103 @@
-# Enlazado interno contextual SEO
+# Biblioteca de vídeos del canal — panel admin privado
 
-## Objetivo
+Implementación admin-only para 570 vídeos públicos + biblioteca privada de ejercicios. Sincronización manual, mapa de uso auto-escaneado del código + override manual con fecha de última actualización.
 
-Reforzar la arquitectura SEO con enlaces internos **inline en párrafos**, usando anchors descriptivos exact-match, desde cada sección de las 12 páginas del cluster hacia rutinas relacionadas, el hub `/programas/` y la guía de principiantes.
+## Sobre los IDs que me has pasado (`v4Zk9iSLdOo`, `PS0zO8um6II`)
 
-## Páginas en alcance (12)
+Sin el `playlistId` de la lista privada no podemos pedirle a la API "tráeme todos los vídeos de esa lista" en una sola llamada. Pero hay un test rápido que hace la propia función de sincronización:
 
-Rutinas (9): `/rutina-brazos-calistenia/`, `/rutina-espalda-calistenia/`, `/rutina-abdominales-calistenia/`, `/rutina-core-calistenia/`, `/rutina-piernas-calistenia/`, `/rutina-pecho-calistenia/`, `/rutinas-de-hombro-calistenia/`, `/rutina-full-body/`, `/rutina-calistenia-en-casa/`
+- Si llamamos a `videos.list?id=v4Zk9iSLdOo` con la API key y devuelve metadatos → es **unlisted** (no listado), accesible con API key. Funciona perfecto.
+- Si devuelve vacío o error 404 → es **private** de verdad, y necesita OAuth (fuera de scope, te avisaría).
 
-Hubs temáticos (3): `/calistenia-en-parque/`, `/calistenia-principiantes/`, `/calistenia-nivel-avanzado/`, `/blog/que-es-la-calistenia/`
+Para no depender de tener el `playlistId`, la sincronización privada funcionará con **lista de IDs pegados manualmente** (uno por línea) en el panel. Tú vas pegando los 11-char IDs según los vayas teniendo y la función baja título, miniatura, duración, vistas, etc. de cada uno. Si más adelante consigues el playlistId, añado un segundo modo automático.
 
-## Mapa de enlaces (silo)
+> Cómo obtener el playlistId si lo necesitas en el futuro: en YouTube Studio → Contenido → Listas de reproducción → abres la lista → la URL contiene `?list=PLxxxxxxxxxxxx`. Ese `PL...` es el ID.
+
+## 1. Migración (esquema admin-only)
+
+**`youtube_videos`**
+- `video_id` text PRIMARY KEY (los 11 caracteres que usas para embed)
+- `title`, `description`, `thumbnail_url`, `duration` (ISO 8601), `published_at`
+- `view_count`, `like_count`, `comment_count` (bigint)
+- `tags` text[]
+- `source` text — `'channel'` (público de Nico) o `'exercise_library'` (privada/no listada)
+- `is_orphan` bool — calculado por la UI; no en DB
+- `last_synced_at` timestamptz
+- `notes` text — campo libre del admin
+
+**`video_page_usage`** (overrides manuales + cache del scanner)
+- `video_id` text
+- `page_path` text
+- `section` text NULL
+- `source` text — `'auto-scan'` o `'manual'`
+- `updated_at` timestamptz DEFAULT now()
+- PRIMARY KEY (`video_id`, `page_path`, `section`)
+- Trigger BEFORE UPDATE para refrescar `updated_at`
+
+RLS: solo admins (`has_role(auth.uid(), 'admin')`) pueden leer/escribir ambas. Públicas no exponen nada.
+
+## 2. Edge Function `youtube-sync`
+
+Ruta: `supabase/functions/youtube-sync/index.ts`. JWT validado con `getClaims` y rol admin verificado contra `user_roles`. Reutiliza `YOUTUBE_API_KEY`.
+
+Body aceptado:
+- `{ mode: "channel" }` → resuelve uploads playlist de `@Nicoreyero`, pagina hasta agotar (~12 páginas para 570), batch de 50 en `videos.list?part=snippet,statistics,contentDetails`. Marca `source = 'channel'`. Coste ~25 unidades.
+- `{ mode: "exercise_ids", ids: ["v4Zk9iSLdOo", "PS0zO8um6II", ...] }` → trae metadatos de esos IDs y marca `source = 'exercise_library'`. Si algún ID viene vacío en la respuesta, lo reportamos como "private (necesita OAuth) o eliminado".
+- `{ mode: "exercise_playlist", playlistId: "PL..." }` → para el día que tengas el ID.
+
+Respuesta: `{ inserted, updated, missing: string[], total }`.
+
+## 3. Mapa de uso (auto-scan del código + manual)
+
+**Script Node** `scripts/scan-video-usage.ts`:
+- Recorre `src/**/*.{ts,tsx}` con regex que captura los 11 caracteres en patrones: `youtube.com/embed/<id>`, `youtu.be/<id>`, `videoId="<id>"`, `videoId: "<id>"`, claves de objeto en `videoLibrary.ts`/`videoCuration.ts`.
+- Mapea fichero → ruta de página usando un diccionario explícito basado en `prerender-routes.ts` (p. ej. `RutinaPiernas.tsx` → `/rutina-piernas-calistenia/`). Para componentes compartidos (Header, Hero, etc.) marca como "Global / múltiples páginas".
+- Hace upsert en `video_page_usage` con `source = 'auto-scan'` (vía supabase admin client con SERVICE_ROLE en el script). Borra los `'auto-scan'` previos antes de reinsertar para que las páginas que dejaron de usar un vídeo desaparezcan.
+- Output también: `src/data/videoUsageMap.generated.ts` (snapshot de respaldo).
+
+**Override manual**: en cada fila del panel, un botón "Editar páginas" abre un dialog donde añades/quitas `page_path` con `source = 'manual'`. Esos no los borra el scanner. Cada manual tiene su propia `updated_at` visible en la UI.
+
+**Botón "Re-escanear código"**: como el navegador no puede ejecutar scripts Node, el botón muestra un dialog con el comando `npm run scan:videos` listo para copiar (lo añadimos a `package.json`). Más limpio que falsear que la UI lo dispara.
+
+## 4. Página `/admin/videos`
+
+- Ruta protegida con `ProtectedRoute` admin, enlazada desde `AdminHub.tsx`.
+- Helmet `noindex, nofollow`.
+- **Header**: contador `X públicos · Y biblioteca`, fecha "última sincronización", botones:
+  - `Sincronizar canal público` (mode `channel`)
+  - `Sincronizar biblioteca de ejercicios` → abre dialog con textarea para pegar IDs (uno por línea)
+  - `Re-escanear código` (instrucciones)
+- **Tabs**: `Canal público` · `Biblioteca de ejercicios (privada)`
+- **Filtros**: búsqueda por título/ID, checkbox "solo huérfanos (sin uso)", "duplicados".
+- **Tabla** ordenada por `view_count DESC` (toggle por título/fecha):
 
 ```text
-                  /que-es-la-calistenia/  (pillar conceptual)
-                            │
-                  /calistenia-principiantes/  (pillar nivel inicial)
-                  /calistenia-nivel-avanzado/ (pillar nivel avanzado)
-                            │
-       ┌───────── Rutinas por grupo muscular ─────────┐
-       │  brazos ↔ espalda ↔ pecho ↔ hombro ↔ core    │
-       │  piernas ↔ full body ↔ casa ↔ parque         │
-       └───────────────────────────────────────────────┘
-                            │
-                   /programas/  (conversión)
+Miniatura | Título               | Video ID         | Vistas | Páginas (fecha)             | Acciones
+[80x45]   | Rutina pecho 12 min  | aBcD123XyZ9 [📋] | 124K   | /rutina-pecho/ (auto · 2d)  | ✎ ▶
+          |                      |                  |        | /programas/ (manual · 5d)   |
 ```
 
-Reglas:
-- Cada página debe enlazar a **3-5 páginas hermanas** + **1 a `/programas/`** + **1 a `/calistenia-principiantes/`** (o `/calistenia-nivel-avanzado/` si la página ya es de iniciación).
-- Anclas **descriptivas y variadas** (nunca "haz click aquí"), priorizando keyword exacta de la página destino.
-- Sin enlaces auto-referentes y sin duplicar el mismo destino más de 2 veces por página.
-
-## Patrón de implementación
-
-Cada enlace inline usa `<Link to="..." className="text-primary hover:underline font-medium">ancla descriptiva</Link>` insertado **dentro de párrafos existentes** de las secciones (intro, "qué es", "beneficios", "progresión", "errores", etc.). No se crean cards nuevas ni se mueve estructura.
-
-Ejemplos de anclas por contexto:
-
-| En página | Sección | Ancla | Destino |
-|---|---|---|---|
-| RutinaBrazos | Intro | "rutina de espalda con calistenia" | /rutina-espalda-calistenia/ |
-| RutinaBrazos | Progresión | "rutina full body" | /rutina-full-body/ |
-| RutinaBrazos | Equipo | "entrenar en un parque de calistenia" | /calistenia-en-parque/ |
-| RutinaBrazos | Cierre | "programas de coaching de calistenia" | /programas/ |
-| RutinaCasa | Equipo mínimo | "rutina en parque de calistenia" | /calistenia-en-parque/ |
-| RutinaCasa | Plan 4 semanas | "guía de calistenia para principiantes" | /calistenia-principiantes/ |
-| CalisteniaPrincipiantes | Progresión | "rutina full body en casa" | /rutina-full-body/ |
-| CalisteniaPrincipiantes | Siguiente paso | "calistenia nivel avanzado" | /calistenia-nivel-avanzado/ |
-| CalisteniaParque | Tipos de barras | "rutina de espalda en barra" | /rutina-espalda-calistenia/ |
-| QueEsLaCalistenia | Por dónde empezar | "calistenia para principiantes" | /calistenia-principiantes/ |
-
-(El mapa completo se aplica análogamente al resto.)
+- ID copiable al portapapeles (toast confirmando).
+- Click miniatura → modal con `VideoEmbed`.
+- Badge rojo "huérfano" si no tiene filas en `video_page_usage`.
+- Cada badge de página muestra `(auto · 2d)` o `(manual · 5d)` calculado desde `updated_at`.
+- Paginación cliente, 50 por página (importante para 570 filas).
 
 ## Detalles técnicos
 
-- Importar `Link` de `react-router-dom` donde no esté ya.
-- Reutilizar clase de enlace consistente: `text-primary hover:underline font-medium underline-offset-4`.
-- Verificar que cada `<Link>` apunta a una ruta existente en `App.tsx` con la **barra final** (el sitio usa rutas con trailing slash).
-- No tocar JSON-LD, schemas ni componentes de layout. Solo ediciones puntuales de texto en los `.tsx` de las páginas listadas.
-- No añadir más de ~6 enlaces internos nuevos por página (densidad razonable, evita keyword stuffing de anchors).
+- Hook `useAdminVideos.ts` con TanStack Query (`['admin-videos', source]`).
+- Componente `<VideoLibraryTable />` con shadcn `Table` + `Badge` + `Dialog`.
+- `<EditUsageDialog />` para overrides manuales.
+- `package.json`: añadir `"scan:videos": "tsx scripts/scan-video-usage.ts"`.
+- Memoria nueva: `mem://features/admin-video-library` describiendo arquitectura.
+- Memoria a actualizar: `mem://features/admin-management-system` (referencia al nuevo módulo).
 
-## Entregables
+## Lo que necesito de ti para arrancar
 
-12 archivos editados en `src/pages/` con enlaces inline contextuales según el mapa, manteniendo el copy actual y la jerarquía de secciones.
+Solo confirmación de este plan. El playlistId puede llegar después; con la lista de IDs pegados ya tienes la biblioteca privada operativa desde el día 1. Si confirmas, ejecuto en este orden:
+
+1. Migración (apruebas tú)
+2. Edge function `youtube-sync` + test con `v4Zk9iSLdOo` para detectar si es unlisted o private
+3. Página `/admin/videos` + hook + dialog
+4. Script de scan + entrada en `package.json`
+5. Memoria actualizada
