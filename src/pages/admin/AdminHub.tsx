@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Users, Dumbbell, FileText, BarChart3, Image, ClipboardList, UserPlus, Video } from 'lucide-react';
+import { Users, Dumbbell, FileText, BarChart3, Image, ClipboardList, UserPlus, Video, Smartphone } from 'lucide-react';
 import {
   Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
@@ -11,6 +11,18 @@ const adminSections = [
     description: 'Lista de alumnos, asignar programas y ver detalle',
     icon: Users,
     path: '/admin/coach/',
+  },
+  {
+    title: 'Onboarding alumnos',
+    description: 'Datos recibidos del formulario inicial y gestión del cuestionario',
+    icon: ClipboardList,
+    path: '/admin/onboarding/',
+  },
+  {
+    title: 'Vista alumno (app)',
+    description: 'Abre la pantalla de inicio del área privada del alumno',
+    icon: Smartphone,
+    path: '/app/dashboard',
   },
   {
     title: 'Ejercicios',
