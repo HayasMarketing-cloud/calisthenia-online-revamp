@@ -32,7 +32,7 @@ const HeroSectionImproved = () => {
           </h1>
           
           <p className="text-xl lg:text-2xl text-gray-200 leading-relaxed max-w-2xl">
-            Entrena donde quieras, con rutinas adaptadas a tu nivel y objetivos. Encuentra tu ritmo, mejora tu salud y bienestar con solo tu cuerpo
+            Entrena donde quieras, con rutinas adaptadas a tu nivel y objetivos. Encuentra tu ritmo, mejora tu salud y bienestar solo con tu cuerpo
           </p>
           
           {/* CTAs claros */}
