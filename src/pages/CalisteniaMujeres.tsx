@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import VideoWithStructure from "@/components/VideoWithStructure";
+import VideoEmbed from "@/components/VideoEmbed";
 import QuickJumpBanner from "@/components/QuickJumpBanner";
 import RoutineBreadcrumbs from "@/components/routine/RoutineBreadcrumbs";
 import CommunityStickyBanner from "@/components/CommunityStickyBanner";
@@ -312,7 +312,7 @@ const CalisteniaMujeres = () => {
                 <p className="text-center text-muted-foreground mb-8 max-w-3xl mx-auto">
                   Una sesión completa para mujeres principiantes, sin material y explicada paso a paso.
                 </p>
-                <VideoWithStructure
+                <VideoEmbed
                   videoId="pwjUl5FQLCg"
                   title="Calistenia para Mujeres - Empezar en Casa Sin Material"
                 />
