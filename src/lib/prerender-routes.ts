@@ -7,6 +7,7 @@ export const PRERENDER_ROUTES: string[] = [
   "/",
   "/quien-soy/",
   "/programas/",
+  "/programas/base/",
   "/programa-cuerpo-atletico-en-casa/",
   "/funcional-bodybuilding/",
   "/empezar/",

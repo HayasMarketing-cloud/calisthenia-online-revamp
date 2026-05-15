@@ -53,6 +53,7 @@ import MediaLibrary from "./pages/MediaLibrary";
 import FuncionalBodybuilding from "./pages/FuncionalBodybuilding";
 import LeadCapture from "./pages/LeadCapture";
 import Coaching from "./pages/Coaching";
+import Base from "./pages/programas/Base";
 
 const queryClient = new QueryClient();
 
@@ -72,6 +73,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/quien-soy/" element={<QuienSoy />} />
           <Route path="/programas/" element={<Programas />} />
+          <Route path="/programas/base/" element={<Base />} />
           <Route path="/rutina-brazos-calistenia/" element={<RutinaBrazos />} />
           <Route path="/rutina-espalda-calistenia/" element={<RutinaEspalda />} />
           <Route path="/rutina-abdominales-calistenia/" element={<RutinaAbdominales />} />
