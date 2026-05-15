@@ -264,10 +264,10 @@ const RutinaCasa = () => {
           </div>
 
           {/* Por Qué Entrenar en Casa */}
-          <section className="py-20 md:py-24 bg-muted/30">
+          <section id="que-es" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                ¿Por qué entrenar en <span className="text-primary">casa</span>?
+                Qué es la calistenia en <span className="text-primary">casa</span> y por qué funciona
               </h2>
 
               <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -289,10 +289,10 @@ const RutinaCasa = () => {
           </section>
 
           {/* ¿Qué es la Calistenia en Casa? */}
-          <section className="py-20 md:py-24">
+          <section id="definicion" className="py-20 md:py-24 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                ¿Qué es la calistenia para principiantes en <span className="text-primary">casa</span>?
+                Calistenia en casa para <span className="text-primary">principiantes</span>: definición rápida
               </h2>
 
               <div className="max-w-6xl mx-auto grid lg:grid-cols-5 gap-8 items-start">
@@ -324,10 +324,10 @@ const RutinaCasa = () => {
           </section>
 
           {/* Beneficios de la Calistenia en Casa */}
-          <section className="py-20 md:py-24 bg-muted/30">
+          <section id="beneficios" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Beneficios de la rutina calistenia en <span className="text-primary">casa</span>
+                Beneficios de entrenar calistenia en <span className="text-primary">casa</span>
               </h2>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
@@ -397,10 +397,10 @@ const RutinaCasa = () => {
           </section>
 
           {/* Preparación para el Entrenamiento Funcional en Casa */}
-          <section className="py-20 md:py-24 bg-muted/30">
+          <section id="calentamiento" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Preparación para tu entrenamiento funcional en <span className="text-primary">casa</span>
+                Calentamiento y prevención de <span className="text-primary">lesiones</span>
               </h2>
               
               <div className="max-w-5xl mx-auto space-y-8">
@@ -484,10 +484,10 @@ const RutinaCasa = () => {
           </section>
 
           {/* Ejercicios Básicos de Calistenia en Casa */}
-          <section className="py-20 md:py-24">
+          <section id="ejercicios" className="py-20 md:py-24 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Ejercicios <span className="text-primary">básicos</span> de calistenia en casa
+                Ejercicios de calistenia en casa para <span className="text-primary">principiantes</span>
               </h2>
               
               <div className="max-w-4xl mx-auto">
@@ -997,7 +997,7 @@ const RutinaCasa = () => {
 
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Cómo diseñar tu rutina semanal en <span className="text-primary">casa</span>
+                Plan de calistenia en casa: cómo organizar tu <span className="text-primary">semana</span>
               </h2>
               
               <div className="max-w-5xl mx-auto space-y-8">
@@ -1105,10 +1105,10 @@ const RutinaCasa = () => {
           </section>
 
           {/* Progresión sin Equipamiento */}
-          <section className="py-20 md:py-24 bg-muted/30">
+          <section id="progresion" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Progresión sin <span className="text-primary">equipamiento</span>
+                Progresión en calistenia en casa sin <span className="text-primary">equipamiento</span>
               </h2>
               
               <div className="max-w-5xl mx-auto">
@@ -1208,10 +1208,10 @@ const RutinaCasa = () => {
           </section>
 
           {/* Prevención de Lesiones */}
-          <section className="py-20 md:py-24">
+          <section id="lesiones" className="py-20 md:py-24 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Prevención de <span className="text-primary">lesiones</span> y cuidado corporal
+                Cuidado del cuerpo y recuperación tras entrenar en <span className="text-primary">casa</span>
               </h2>
               
               <div className="max-w-5xl mx-auto space-y-6">
@@ -1328,10 +1328,10 @@ const RutinaCasa = () => {
           </section>
 
           {/* FAQ Section */}
-          <section className="py-20 md:py-24 bg-muted/30">
+          <section id="faq" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Preguntas Frecuentes sobre <span className="text-primary">Calistenia en Casa</span>
+                Preguntas frecuentes sobre <span className="text-primary">calistenia en casa</span>
               </h2>
               
               <div className="max-w-3xl mx-auto">
