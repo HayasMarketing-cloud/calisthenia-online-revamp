@@ -17,8 +17,25 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import StructuredData from "@/components/seo/StructuredData";
+import WeeklyPlanTabs from "@/components/seo/WeeklyPlanTabs";
+import StickyTOC from "@/components/seo/StickyTOC";
+import TrialCTA from "@/components/seo/TrialCTA";
 import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
 import { generateFAQSchema, generateExercisePlanSchema } from "@/lib/schemas";
+
+const TOC_ITEMS = [
+  { id: "que-es", label: "Qué es" },
+  { id: "beneficios", label: "Beneficios" },
+  { id: "video-rutina", label: "Vídeo guiado" },
+  { id: "calentamiento", label: "Calentamiento" },
+  { id: "ejercicios", label: "Ejercicios" },
+  { id: "videos", label: "Más vídeos" },
+  { id: "tabla-rutina", label: "Tabla semanal" },
+  { id: "planificacion", label: "Plan 4 semanas" },
+  { id: "progresion", label: "Progresión" },
+  { id: "faq", label: "FAQ" },
+  { id: "cta-trial", label: "Prueba gratis" },
+];
 
 export const faqs = [
   {
