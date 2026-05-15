@@ -30,6 +30,76 @@ const TOC_ITEMS = [
   { id: "faq", label: "FAQ" },
 ];
 
+const WEEKS_PLAN = [
+  {
+    id: "semana-1",
+    label: "Semana 1",
+    phase: "Adaptación y técnica",
+    rpe: "RPE 6 / 10",
+    goal: "Aprender la técnica básica y crear el hábito de 3 sesiones full body sin material.",
+    coachNote: "Prioriza técnica sobre repeticiones. Si una flexión completa te cuesta, apoya rodillas y baja en 3 segundos.",
+    exercises: [
+      { name: "Sentadillas al aire", sets: "3", reps: "10", rest: "60s" },
+      { name: "Flexiones de rodillas", sets: "3", reps: "6", rest: "60s" },
+      { name: "Puente de glúteo", sets: "3", reps: "12", rest: "45s" },
+      { name: "Remo invertido (mesa)", sets: "3", reps: "8", rest: "75s" },
+      { name: "Plancha frontal", sets: "3", reps: "20s", rest: "45s" },
+      { name: "Bird-dog", sets: "3", reps: "8/lado", rest: "45s" },
+    ],
+  },
+  {
+    id: "semana-2",
+    label: "Semana 2",
+    phase: "Volumen base",
+    rpe: "RPE 7 / 10",
+    goal: "Subir volumen total: más series y nuevos patrones (zancadas + hollow).",
+    coachNote: "Mantén tempo 3-1-2 (3s bajando, 1s pausa, 2s subiendo). Si pierdes técnica, vuelve a las reps anteriores.",
+    exercises: [
+      { name: "Sentadillas al aire", sets: "4", reps: "12", rest: "60s" },
+      { name: "Flexiones de rodillas", sets: "4", reps: "8", rest: "60s" },
+      { name: "Zancadas estáticas", sets: "3", reps: "10/pierna", rest: "60s" },
+      { name: "Puente de glúteo", sets: "4", reps: "15", rest: "45s" },
+      { name: "Remo invertido (mesa)", sets: "4", reps: "10", rest: "60s" },
+      { name: "Plancha frontal", sets: "3", reps: "30s", rest: "45s" },
+      { name: "Hollow hold", sets: "3", reps: "15s", rest: "45s" },
+    ],
+  },
+  {
+    id: "semana-3",
+    label: "Semana 3",
+    phase: "Intensidad y progresión",
+    rpe: "RPE 8 / 10",
+    goal: "Variantes más exigentes y menos descanso para forzar adaptación.",
+    coachNote: "Acerca cada serie al fallo técnico (RIR 1-2). Si llevas regla, baja una serie de cada ejercicio.",
+    exercises: [
+      { name: "Sentadilla búlgara asistida", sets: "4", reps: "8/pierna", rest: "60s" },
+      { name: "Flexiones completas (negativas si hace falta)", sets: "4", reps: "6-8", rest: "60s" },
+      { name: "Hip thrust a una pierna", sets: "3", reps: "10/pierna", rest: "60s" },
+      { name: "Remo invertido pies elevados", sets: "4", reps: "10", rest: "60s" },
+      { name: "Plancha lateral", sets: "3", reps: "25s/lado", rest: "45s" },
+      { name: "Zancada caminando", sets: "3", reps: "12/pierna", rest: "60s" },
+      { name: "Mountain climbers", sets: "3", reps: "30s", rest: "30s" },
+    ],
+  },
+  {
+    id: "semana-4",
+    label: "Semana 4",
+    phase: "Consolidación + test",
+    rpe: "RPE 7 + máximas",
+    goal: "Asentar progreso y medir: 2 sesiones suaves + 1 test final para comparar con la semana 1.",
+    coachNote: "El test es la foto fija de tus ganancias. Anota cada cifra: vas a sorprenderte de cuánto has crecido en 4 semanas.",
+    exercises: [
+      { name: "Sentadillas al aire", sets: "4", reps: "10", rest: "60s" },
+      { name: "Flexiones (rodillas o completas)", sets: "4", reps: "10", rest: "60s" },
+      { name: "Hip thrust", sets: "4", reps: "10", rest: "60s" },
+      { name: "Remo invertido", sets: "4", reps: "10", rest: "60s" },
+      { name: "Burpees suaves", sets: "3", reps: "8", rest: "60s" },
+      { name: "Plancha (máximo)", sets: "1", reps: "AMRAP", rest: "—" },
+      { name: "Test: máx. flexiones + sentadillas en 60s", sets: "1", reps: "AMRAP", rest: "—" },
+    ],
+  },
+];
+
 const faqs = [
   {
     question: "¿La calistenia para mujeres pone el cuerpo musculoso?",
@@ -62,6 +132,18 @@ const faqs = [
   {
     question: "¿Cuántos días a la semana entrenar calistenia siendo mujer?",
     answer: "Entrena calistenia 3 días por semana si eres principiante, 4-5 días si eres intermedia y 5-6 días si eres avanzada. La división recomendada para principiantes es full body 3 veces por semana; en intermedio puedes alternar tren superior y tren inferior; en avanzado, dividir empuje, tracción y piernas. Reserva siempre 1-2 días de descanso completo o activo para permitir la recuperación hormonal y muscular.",
+  },
+  {
+    question: "¿Puedo hacer calistenia durante el embarazo o el postparto?",
+    answer: "Durante el embarazo puedes hacer calistenia adaptada (sentadillas, remo invertido, plancha lateral, movilidad y respiración) siempre con luz verde médica y evitando ejercicios en supino prolongado a partir del segundo trimestre. En el postparto, espera a la revisión de suelo pélvico (8-12 semanas en parto vaginal, más en cesárea) antes de retomar core directo o impactos. Empieza por respiración hipopresiva, glúteo suave y caminar, y progresa de forma gradual con un profesional.",
+  },
+  {
+    question: "¿La calistenia tonifica piernas y glúteos sin ponerlos voluminosos?",
+    answer: "Sí. Las sentadillas, zancadas, hip thrust y sentadilla búlgara con peso corporal son los mejores ejercicios para tonificar piernas y glúteos sin volumen excesivo. Trabajas en rangos de 10-15 repeticiones con tempo controlado, lo que activa la musculatura en su rango completo y genera un efecto de definición y firmeza, no de hipertrofia masiva.",
+  },
+  {
+    question: "¿Es normal sentir más cansancio entrenando con la regla?",
+    answer: "Sí, es normal. En los primeros días de menstruación bajan los niveles de estrógeno y progesterona, lo que reduce la energía y aumenta la sensación de fatiga. No es debilidad: es fisiología. Bajar una serie por ejercicio, aumentar descansos y priorizar movilidad suave esos días te permite seguir entrenando sin frustrarte y respetando tu cuerpo.",
   },
 ];
 
