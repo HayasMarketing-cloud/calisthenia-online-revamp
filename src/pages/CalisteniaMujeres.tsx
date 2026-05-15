@@ -502,40 +502,88 @@ const CalisteniaMujeres = () => {
                   </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  {[
-                    {
-                      week: "Semana 1 — Adaptación",
-                      focus: "Aprender la técnica",
-                      detail: "3 sesiones full body de 25 min. 3x10 sentadillas, 3x6 flexiones rodillas, 3x10 puente glúteo, 3x30s plancha, 3x8 bird-dog/lado. Descanso completo 48h entre sesiones.",
-                    },
-                    {
-                      week: "Semana 2 — Volumen",
-                      focus: "Sumar repeticiones",
-                      detail: "3 sesiones de 30 min. Suma 2 reps a cada ejercicio y 10s a la plancha. Añade zancadas 3x8/pierna y remo invertido 3x6.",
-                    },
-                    {
-                      week: "Semana 3 — Intensidad",
-                      focus: "Subir el listón",
-                      detail: "4 sesiones (alternando full body y core+glúteo). Pasa a flexiones completas si ya bajas con control 3 segundos. Reduce descanso a 45s entre series.",
-                    },
-                    {
-                      week: "Semana 4 — Consolidar y deload",
-                      focus: "Asentar progreso",
-                      detail: "3 sesiones suaves al 70% de intensidad para recuperar y consolidar. Mide cuántas flexiones, sentadillas y plancha haces y compáralo con la semana 1.",
-                    },
-                  ].map((w, i) => (
-                    <Card key={i} className="border-primary/20">
-                      <CardContent className="p-6">
-                        <Badge className="mb-3 bg-primary/10 text-primary hover:bg-primary/20 border-primary/20">
-                          {w.focus}
-                        </Badge>
-                        <h3 className="font-bold text-xl mb-3">{w.week}</h3>
-                        <p className="text-sm text-muted-foreground">{w.detail}</p>
-                      </CardContent>
-                    </Card>
+                <Card className="border-primary/10 bg-background/60 mb-6">
+                  <CardContent className="p-5 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                    <div>
+                      <p className="font-bold mb-1">Frecuencia</p>
+                      <p className="text-muted-foreground">3 días/semana (lun · mié · vie)</p>
+                    </div>
+                    <div>
+                      <p className="font-bold mb-1">Duración</p>
+                      <p className="text-muted-foreground">25-35 min por sesión</p>
+                    </div>
+                    <div>
+                      <p className="font-bold mb-1">Tempo</p>
+                      <p className="text-muted-foreground">3-1-2 (bajada-pausa-subida)</p>
+                    </div>
+                    <div>
+                      <p className="font-bold mb-1">Calentamiento</p>
+                      <p className="text-muted-foreground">5 min movilidad + activación</p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Tabs defaultValue="semana-1" className="w-full">
+                  <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 h-auto gap-2 bg-transparent p-0">
+                    {WEEKS_PLAN.map((w) => (
+                      <TabsTrigger
+                        key={w.id}
+                        value={w.id}
+                        className="flex flex-col items-start gap-1 p-4 h-auto data-[state=active]:bg-primary data-[state=active]:text-primary-foreground border border-border rounded-xl"
+                      >
+                        <span className="text-xs font-bold uppercase tracking-wider opacity-80">
+                          {w.label}
+                        </span>
+                        <span className="font-display font-bold text-base text-left">{w.phase}</span>
+                      </TabsTrigger>
+                    ))}
+                  </TabsList>
+
+                  {WEEKS_PLAN.map((w) => (
+                    <TabsContent key={w.id} value={w.id} className="mt-6">
+                      <Card className="border-primary/20">
+                        <CardContent className="p-6 md:p-8 space-y-5">
+                          <div className="flex flex-wrap items-center gap-3">
+                            <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/15">
+                              {w.phase}
+                            </Badge>
+                            <Badge variant="outline">{w.rpe}</Badge>
+                          </div>
+                          <p className="text-base text-muted-foreground leading-relaxed">
+                            <strong className="text-foreground">Objetivo:</strong> {w.goal}
+                          </p>
+                          <div className="overflow-x-auto rounded-lg border border-border">
+                            <Table>
+                              <TableHeader>
+                                <TableRow className="bg-muted/60 hover:bg-muted/60">
+                                  <TableHead>Ejercicio</TableHead>
+                                  <TableHead className="text-center">Series</TableHead>
+                                  <TableHead className="text-center">Reps</TableHead>
+                                  <TableHead className="text-center">Descanso</TableHead>
+                                </TableRow>
+                              </TableHeader>
+                              <TableBody>
+                                {w.exercises.map((ex) => (
+                                  <TableRow key={ex.name}>
+                                    <TableCell className="font-medium">{ex.name}</TableCell>
+                                    <TableCell className="text-center">{ex.sets}</TableCell>
+                                    <TableCell className="text-center">{ex.reps}</TableCell>
+                                    <TableCell className="text-center text-muted-foreground">{ex.rest}</TableCell>
+                                  </TableRow>
+                                ))}
+                              </TableBody>
+                            </Table>
+                          </div>
+                          <div className="rounded-lg bg-primary/5 border border-primary/20 p-4">
+                            <p className="text-sm text-muted-foreground">
+                              <strong className="text-primary">Nota del coach:</strong> {w.coachNote}
+                            </p>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </TabsContent>
                   ))}
-                </div>
+                </Tabs>
 
                 <div className="max-w-4xl mx-auto mt-10">
                   <TrialCTA variant="inline" utmMedium="calistenia-mujeres-plan" />
