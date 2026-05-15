@@ -10,7 +10,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Loader2, Plus, Pencil, Trash2, Search, Dumbbell, Video } from 'lucide-react';
+import { Switch } from '@/components/ui/switch';
+import { Loader2, Plus, Pencil, Trash2, Search, Dumbbell, Video, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import AdminBreadcrumbs from '@/components/admin/AdminBreadcrumbs';
@@ -43,6 +44,14 @@ interface ExerciseForm {
   difficulty_level: string;
   equipment_needed: string;
   category: string;
+  // SEO
+  seo_slug: string;
+  primary_keyword: string;
+  aliases: string;
+  seo_description: string;
+  monthly_volume: string;
+  is_public_seo: boolean;
+  public_order: string;
 }
 
 const emptyForm: ExerciseForm = {
@@ -53,6 +62,13 @@ const emptyForm: ExerciseForm = {
   difficulty_level: 'beginner',
   equipment_needed: '',
   category: '',
+  seo_slug: '',
+  primary_keyword: '',
+  aliases: '',
+  seo_description: '',
+  monthly_volume: '',
+  is_public_seo: false,
+  public_order: '',
 };
 
 const ExercisesManager = () => {
@@ -87,6 +103,13 @@ const ExercisesManager = () => {
         difficulty_level: data.difficulty_level as 'beginner' | 'intermediate' | 'advanced',
         equipment_needed: data.equipment_needed ? data.equipment_needed.split(',').map(s => s.trim()) : null,
         category: (data.category || null) as any,
+        seo_slug: data.seo_slug.trim() || null,
+        primary_keyword: data.primary_keyword.trim() || null,
+        aliases: data.aliases ? data.aliases.split(',').map(s => s.trim()).filter(Boolean) : [],
+        seo_description: data.seo_description.trim() || null,
+        monthly_volume: data.monthly_volume ? parseInt(data.monthly_volume, 10) : null,
+        is_public_seo: data.is_public_seo,
+        public_order: data.public_order ? parseInt(data.public_order, 10) : null,
       };
 
       if (data.id) {
@@ -122,7 +145,7 @@ const ExercisesManager = () => {
     onError: (err: Error) => toast.error('No se pudo eliminar: ' + err.message),
   });
 
-  const openEdit = (ex: typeof exercises extends (infer T)[] ? T : never) => {
+  const openEdit = (ex: any) => {
     setForm({
       id: ex.id,
       name: ex.name,
@@ -131,7 +154,14 @@ const ExercisesManager = () => {
       muscle_groups: ex.muscle_groups || [],
       difficulty_level: ex.difficulty_level || 'beginner',
       equipment_needed: (ex.equipment_needed || []).join(', '),
-      category: (ex as any).category || '',
+      category: ex.category || '',
+      seo_slug: ex.seo_slug || '',
+      primary_keyword: ex.primary_keyword || '',
+      aliases: (ex.aliases || []).join(', '),
+      seo_description: ex.seo_description || '',
+      monthly_volume: ex.monthly_volume != null ? String(ex.monthly_volume) : '',
+      is_public_seo: !!ex.is_public_seo,
+      public_order: ex.public_order != null ? String(ex.public_order) : '',
     });
     setDialogOpen(true);
   };
@@ -225,7 +255,17 @@ const ExercisesManager = () => {
                 ) : (
                   filtered.map(ex => (
                     <TableRow key={ex.id}>
-                      <TableCell className="font-medium">{ex.name}</TableCell>
+                      <TableCell className="font-medium">
+                        <div className="flex items-center gap-2">
+                          <span>{ex.name}</span>
+                          {(ex as any).is_public_seo && (
+                            <Badge variant="default" className="text-[10px] gap-1"><Globe className="h-3 w-3" />SEO</Badge>
+                          )}
+                        </div>
+                        {(ex as any).primary_keyword && (
+                          <div className="text-[10px] text-muted-foreground mt-0.5">kw: {(ex as any).primary_keyword}</div>
+                        )}
+                      </TableCell>
                       <TableCell>
                         {(ex as any).category ? (
                           <Badge variant="outline" className="text-xs">{EXERCISE_CATEGORIES.find(c => c.value === (ex as any).category)?.label || (ex as any).category}</Badge>
@@ -281,7 +321,7 @@ const ExercisesManager = () => {
 
       {/* Create/Edit Dialog */}
       <Dialog open={dialogOpen} onOpenChange={open => { if (!open) { setDialogOpen(false); setForm(emptyForm); } }}>
-        <DialogContent className="max-w-lg">
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{isEditing ? 'Editar ejercicio' : 'Nuevo ejercicio'}</DialogTitle>
             <DialogDescription>{isEditing ? 'Modifica los datos del ejercicio' : 'Añade un nuevo ejercicio a la base de datos'}</DialogDescription>
@@ -338,6 +378,83 @@ const ExercisesManager = () => {
             <div className="space-y-2">
               <Label>Equipamiento (separado por comas)</Label>
               <Input value={form.equipment_needed} onChange={e => setForm(p => ({ ...p, equipment_needed: e.target.value }))} placeholder="Ej: barra, paralelas" />
+            </div>
+
+            {/* SEO Fields */}
+            <div className="border-t pt-4 space-y-4">
+              <div className="flex items-center gap-2">
+                <Globe className="h-4 w-4 text-primary" />
+                <h3 className="font-semibold text-sm">SEO público</h3>
+              </div>
+
+              <div className="flex items-center justify-between rounded-md border p-3">
+                <div className="space-y-0.5">
+                  <Label className="text-sm">Mostrar en web pública</Label>
+                  <p className="text-xs text-muted-foreground">Aparece en tablas SEO de páginas públicas</p>
+                </div>
+                <Switch
+                  checked={form.is_public_seo}
+                  onCheckedChange={v => setForm(p => ({ ...p, is_public_seo: v }))}
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="space-y-2">
+                  <Label>Keyword principal</Label>
+                  <Input
+                    value={form.primary_keyword}
+                    onChange={e => setForm(p => ({ ...p, primary_keyword: e.target.value }))}
+                    placeholder="Ej: dominadas pronas"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label>Volumen mensual</Label>
+                  <Input
+                    type="number"
+                    min="0"
+                    value={form.monthly_volume}
+                    onChange={e => setForm(p => ({ ...p, monthly_volume: e.target.value }))}
+                    placeholder="Ej: 1300"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label>SEO slug</Label>
+                  <Input
+                    value={form.seo_slug}
+                    onChange={e => setForm(p => ({ ...p, seo_slug: e.target.value }))}
+                    placeholder="dominadas-pronas"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label>Orden público</Label>
+                  <Input
+                    type="number"
+                    min="0"
+                    value={form.public_order}
+                    onChange={e => setForm(p => ({ ...p, public_order: e.target.value }))}
+                    placeholder="Ej: 1"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label>Aliases / sinónimos (separados por comas)</Label>
+                <Input
+                  value={form.aliases}
+                  onChange={e => setForm(p => ({ ...p, aliases: e.target.value }))}
+                  placeholder="Ej: pull ups, dominadas agarre prono"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label>Descripción SEO</Label>
+                <Textarea
+                  value={form.seo_description}
+                  onChange={e => setForm(p => ({ ...p, seo_description: e.target.value }))}
+                  placeholder="Descripción optimizada para meta y rich snippets"
+                  rows={2}
+                />
+              </div>
             </div>
           </div>
           <DialogFooter>
