@@ -179,14 +179,14 @@ const RutinaCasa = () => {
   return (
     <>
       <Helmet>
-        <title>Calistenia en Casa: Rutina Completa sin Equipamiento | Guía 2025</title>
+        <title>Calistenia en Casa: Rutina y Ejercicios para Principiantes 2025</title>
         <meta 
           name="description" 
-          content="Rutina completa de calistenia en casa sin equipamiento. Ejercicios, planificación y técnicas para entrenar desde tu hogar. Video guiado incluido." 
+          content="Rutina de calistenia en casa para principiantes: tabla semanal, plan 4 semanas y 8 ejercicios sin equipamiento explicados paso a paso por un coach certificado." 
         />
-        <meta name="keywords" content="calistenia para principiantes en casa, rutina calistenia en casa, entrenamiento funcional en casa, ejercicios peso corporal" />
-        <meta property="og:title" content="Calistenia en Casa: Rutina Completa sin Equipamiento" />
-        <meta property="og:description" content="Rutina completa de calistenia en casa sin equipamiento. Ejercicios efectivos con video guiado." />
+        <meta name="keywords" content="calistenia en casa, rutina calistenia en casa, ejercicios calistenia en casa, calistenia en casa principiantes, tabla calistenia en casa, plan calistenia en casa" />
+        <meta property="og:title" content="Calistenia en Casa: Rutina y Ejercicios para Principiantes" />
+        <meta property="og:description" content="Tabla semanal, plan 4 semanas y 8 ejercicios de calistenia en casa explicados paso a paso. Sin equipamiento." />
         <link rel="canonical" href="https://calisthenia.online/rutina-calistenia-en-casa/" />
       </Helmet>
 
@@ -264,38 +264,13 @@ const RutinaCasa = () => {
           </div>
 
           {/* Por Qué Entrenar en Casa */}
-          <section className="py-20 md:py-24 bg-muted/30">
+          <section id="que-es" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                ¿Por qué entrenar en <span className="text-primary">casa</span>?
+                Qué es la calistenia en <span className="text-primary">casa</span> y por qué funciona
               </h2>
 
-              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                {[
-                  { Icon: Home, title: "Sin Equipamiento", text: "Solo necesitas tu peso corporal para entrenar efectivamente" },
-                  { Icon: Clock, title: "Flexibilidad Total", text: "Entrena cuando quieras, sin horarios ni desplazamientos" },
-                  { Icon: Wallet, title: "Ahorro Económico", text: "Sin cuotas de gimnasio ni gastos en equipamiento caro" },
-                ].map(({ Icon, title, text }) => (
-                  <div key={title} className="text-center">
-                    <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                      <Icon className="w-7 h-7 text-primary" />
-                    </div>
-                    <h3 className="font-semibold text-xl mb-3">{title}</h3>
-                    <p className="text-muted-foreground">{text}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* ¿Qué es la Calistenia en Casa? */}
-          <section className="py-20 md:py-24">
-            <div className="container mx-auto px-4">
-              <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                ¿Qué es la calistenia para principiantes en <span className="text-primary">casa</span>?
-              </h2>
-
-              <div className="max-w-6xl mx-auto grid lg:grid-cols-5 gap-8 items-start">
+              <div className="max-w-6xl mx-auto grid lg:grid-cols-5 gap-8 items-start mb-16">
                 <div className="lg:col-span-3 space-y-4 text-muted-foreground text-lg leading-relaxed">
                   <div className="inline-flex items-center gap-3 mb-2">
                     <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
@@ -320,14 +295,30 @@ const RutinaCasa = () => {
                   </p>
                 </aside>
               </div>
+
+              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                {[
+                  { Icon: Home, title: "Sin equipamiento", text: "Solo necesitas tu peso corporal para entrenar de forma efectiva." },
+                  { Icon: Clock, title: "Flexibilidad total", text: "Entrena cuando quieras, sin horarios ni desplazamientos." },
+                  { Icon: Wallet, title: "Ahorro económico", text: "Sin cuotas de gimnasio ni gastos en equipamiento caro." },
+                ].map(({ Icon, title, text }) => (
+                  <div key={title} className="text-center">
+                    <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                      <Icon className="w-7 h-7 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-xl mb-3">{title}</h3>
+                    <p className="text-muted-foreground">{text}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
 
           {/* Beneficios de la Calistenia en Casa */}
-          <section className="py-20 md:py-24 bg-muted/30">
+          <section id="beneficios" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Beneficios de la rutina calistenia en <span className="text-primary">casa</span>
+                Beneficios de entrenar calistenia en <span className="text-primary">casa</span>
               </h2>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
@@ -397,10 +388,10 @@ const RutinaCasa = () => {
           </section>
 
           {/* Preparación para el Entrenamiento Funcional en Casa */}
-          <section className="py-20 md:py-24 bg-muted/30">
+          <section id="calentamiento" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Preparación para tu entrenamiento funcional en <span className="text-primary">casa</span>
+                Calentamiento y prevención de <span className="text-primary">lesiones</span>
               </h2>
               
               <div className="max-w-5xl mx-auto space-y-8">
@@ -443,17 +434,16 @@ const RutinaCasa = () => {
                     <CardHeader>
                       <CardTitle className="flex items-center gap-3">
                         <Home className="w-6 h-6 text-primary" />
-                        Elección del Espacio
+                        Elección del espacio
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <p className="text-muted-foreground">
-                        Necesitas un mínimo de <strong>2x2 metros</strong> de espacio libre de obstáculos para permitir movimientos amplios y seguros.
+                        Necesitas un mínimo de <strong>2x2 metros</strong> libre de obstáculos para realizar movimientos amplios y seguros.
                       </p>
                       <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
                         <li>Superficie plana y estable</li>
-                        <li>Buena ventilación</li>
-                        <li>Iluminación adecuada</li>
+                        <li>Buena ventilación e iluminación</li>
                         <li>Sin muebles cerca</li>
                       </ul>
                     </CardContent>
@@ -463,18 +453,86 @@ const RutinaCasa = () => {
                     <CardHeader>
                       <CardTitle className="flex items-center gap-3">
                         <CheckCircle className="w-6 h-6 text-primary" />
-                        Equipo Básico Opcional
+                        Equipo básico opcional
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <p className="text-muted-foreground">
-                        Aunque no son necesarios, estos elementos pueden mejorar tu comodidad:
+                        No son necesarios, pero mejoran tu comodidad:
                       </p>
                       <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
                         <li><strong>Esterilla</strong>: comodidad en ejercicios de suelo</li>
                         <li><strong>Silla o banco</strong>: para fondos de tríceps</li>
-                        <li><strong>Toalla</strong>: para higiene y soporte</li>
+                        <li><strong>Toalla</strong>: higiene y soporte para remos invertidos</li>
                         <li><strong>Botella de agua</strong>: hidratación constante</li>
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                <Card className="border-primary/20">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-3">
+                      <Shield className="w-8 h-8 text-primary" />
+                      Escuchar al cuerpo y prevenir lesiones
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <p className="text-muted-foreground">
+                      Prestar atención a las señales que envía tu cuerpo es esencial para prevenir lesiones. El dolor es un indicador que no debe ignorarse.
+                    </p>
+                    <div className="bg-destructive/10 p-4 rounded-lg">
+                      <h4 className="font-semibold mb-3 flex items-center gap-2">
+                        <AlertCircle className="w-5 h-5" />
+                        Señales de sobreentrenamiento
+                      </h4>
+                      <ul className="grid md:grid-cols-2 gap-2 text-sm text-muted-foreground">
+                        <li>• Fatiga constante y falta de energía</li>
+                        <li>• Insomnio o mala calidad del sueño</li>
+                        <li>• Caída del rendimiento físico</li>
+                        <li>• Dolores musculares persistentes</li>
+                        <li>• Irritabilidad o cambios de humor</li>
+                        <li>• Pérdida de motivación para entrenar</li>
+                      </ul>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-3">
+                        <CheckCircle className="w-6 h-6 text-primary" />
+                        Técnica antes que cantidad
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <p className="text-muted-foreground">
+                        Una ejecución perfecta con menos repeticiones es siempre mejor que muchas con mala forma.
+                      </p>
+                      <ul className="space-y-2 text-sm text-muted-foreground list-disc list-inside">
+                        <li>Domina el movimiento básico primero</li>
+                        <li>Aumenta la dificultad gradualmente</li>
+                        <li>Si pierdes la forma, detente y descansa</li>
+                      </ul>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-3">
+                        <Activity className="w-6 h-6 text-primary" />
+                        Descanso activo y recuperación
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <p className="text-muted-foreground">
+                        La recuperación es cuando el cuerpo se fortalece. Incluye días de descanso activo en tu rutina.
+                      </p>
+                      <ul className="space-y-2 text-sm text-muted-foreground list-disc list-inside">
+                        <li>Caminatas suaves de 20-30 minutos</li>
+                        <li>Sesiones de estiramientos o yoga</li>
+                        <li>Movilidad articular ligera</li>
                       </ul>
                     </CardContent>
                   </Card>
@@ -484,10 +542,10 @@ const RutinaCasa = () => {
           </section>
 
           {/* Ejercicios Básicos de Calistenia en Casa */}
-          <section className="py-20 md:py-24">
+          <section id="ejercicios" className="py-20 md:py-24 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Ejercicios <span className="text-primary">básicos</span> de calistenia en casa
+                Ejercicios de calistenia en casa para <span className="text-primary">principiantes</span>
               </h2>
               
               <div className="max-w-4xl mx-auto">
@@ -496,7 +554,7 @@ const RutinaCasa = () => {
                     <AccordionTrigger className="hover:no-underline">
                       <div className="flex items-center gap-3">
                         <span className="text-2xl">🦵</span>
-                        <span className="font-semibold text-lg">Sentadillas (Squats)</span>
+                        <h3 className="font-semibold text-lg m-0">Sentadillas (squats) en casa</h3>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="space-y-4 pt-4">
@@ -520,8 +578,14 @@ const RutinaCasa = () => {
                           <p className="text-sm text-muted-foreground">Piernas, glúteos, core</p>
                         </div>
                       </div>
+                      <div className="bg-secondary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">👶 Regresión (versión fácil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Sentadilla a silla (box squat) • Sentadilla asistida sujetándote a una puerta o mesa • Reduce el rango bajando solo a media altura
+                        </p>
+                      </div>
                       <div className="bg-primary/10 p-4 rounded-lg">
-                        <h4 className="font-semibold mb-2">🔄 Variaciones:</h4>
+                        <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
                         <p className="text-sm text-muted-foreground">
                           Sentadilla sumo • Sentadilla búlgara • Sentadilla con salto • Sentadilla pistol (avanzado)
                         </p>
@@ -542,7 +606,7 @@ const RutinaCasa = () => {
                     <AccordionTrigger className="hover:no-underline">
                       <div className="flex items-center gap-3">
                         <span className="text-2xl">💪</span>
-                        <span className="font-semibold text-lg">Flexiones (Push-ups)</span>
+                        <h3 className="font-semibold text-lg m-0">Flexiones (push-ups) sin material</h3>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="space-y-4 pt-4">
@@ -566,10 +630,16 @@ const RutinaCasa = () => {
                           <p className="text-sm text-muted-foreground">Pecho, tríceps, hombros, core</p>
                         </div>
                       </div>
-                      <div className="bg-primary/10 p-4 rounded-lg">
-                        <h4 className="font-semibold mb-2">🔄 Variaciones:</h4>
+                      <div className="bg-secondary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">👶 Regresión (versión fácil):</h4>
                         <p className="text-sm text-muted-foreground">
-                          Flexiones inclinadas (principiantes) • Flexiones diamante • Flexiones declinadas • Flexiones archer (avanzado)
+                          Flexiones contra la pared • Flexiones inclinadas con manos en mesa o sofá • Flexiones de rodillas manteniendo el cuerpo recto
+                        </p>
+                      </div>
+                      <div className="bg-primary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Flexiones diamante • Flexiones declinadas con pies elevados • Flexiones archer • Pseudo-planche push-ups (avanzado)
                         </p>
                       </div>
                       <div className="bg-destructive/10 p-4 rounded-lg">
@@ -588,7 +658,7 @@ const RutinaCasa = () => {
                     <AccordionTrigger className="hover:no-underline">
                       <div className="flex items-center gap-3">
                         <span className="text-2xl">🏋️</span>
-                        <span className="font-semibold text-lg">Planchas (Planks)</span>
+                        <h3 className="font-semibold text-lg m-0">Plancha (plank) y variantes</h3>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="space-y-4 pt-4">
@@ -612,8 +682,14 @@ const RutinaCasa = () => {
                           <p className="text-sm text-muted-foreground">Core completo, estabilizadores</p>
                         </div>
                       </div>
+                      <div className="bg-secondary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">👶 Regresión (versión fácil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Plancha de rodillas • Plancha alta sobre manos extendidas • Reduce el tiempo a 15-20 segundos por serie
+                        </p>
+                      </div>
                       <div className="bg-primary/10 p-4 rounded-lg">
-                        <h4 className="font-semibold mb-2">🔄 Variaciones:</h4>
+                        <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
                         <p className="text-sm text-muted-foreground">
                           Plancha lateral • Plancha con tap shoulders • Plancha RKC (avanzado) • Plancha con elevación de pierna
                         </p>
@@ -634,7 +710,7 @@ const RutinaCasa = () => {
                     <AccordionTrigger className="hover:no-underline">
                       <div className="flex items-center gap-3">
                         <span className="text-2xl">🚶</span>
-                        <span className="font-semibold text-lg">Zancadas (Lunges)</span>
+                        <h3 className="font-semibold text-lg m-0">Zancadas (lunges) en espacio reducido</h3>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="space-y-4 pt-4">
@@ -658,10 +734,16 @@ const RutinaCasa = () => {
                           <p className="text-sm text-muted-foreground">Piernas, glúteos, equilibrio</p>
                         </div>
                       </div>
-                      <div className="bg-primary/10 p-4 rounded-lg">
-                        <h4 className="font-semibold mb-2">🔄 Variaciones:</h4>
+                      <div className="bg-secondary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">👶 Regresión (versión fácil):</h4>
                         <p className="text-sm text-muted-foreground">
-                          Zancadas estáticas • Zancadas caminando • Zancadas inversas • Zancadas con salto (avanzado)
+                          Zancada estática asistida apoyando una mano en pared • Acorta el paso para reducir la profundidad
+                        </p>
+                      </div>
+                      <div className="bg-primary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Zancadas caminando • Zancadas inversas • Zancadas con salto (jumping lunges) • Zancada búlgara con pie trasero elevado (avanzado)
                         </p>
                       </div>
                     </AccordionContent>
@@ -671,7 +753,7 @@ const RutinaCasa = () => {
                     <AccordionTrigger className="hover:no-underline">
                       <div className="flex items-center gap-3">
                         <span className="text-2xl">⛰️</span>
-                        <span className="font-semibold text-lg">Mountain Climbers</span>
+                        <h3 className="font-semibold text-lg m-0">Mountain climbers para core y cardio</h3>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="space-y-4 pt-4">
@@ -695,10 +777,16 @@ const RutinaCasa = () => {
                           <p className="text-sm text-muted-foreground">Core, cardio, estabilidad</p>
                         </div>
                       </div>
-                      <div className="bg-primary/10 p-4 rounded-lg">
-                        <h4 className="font-semibold mb-2">🔄 Variaciones:</h4>
+                      <div className="bg-secondary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">👶 Regresión (versión fácil):</h4>
                         <p className="text-sm text-muted-foreground">
-                          Mountain climbers lentos • Mountain climbers cruzados • Spiderman climbers
+                          Mountain climbers lentos con manos apoyadas en mesa o sofá • Reduce el tiempo a 15-20 segundos
+                        </p>
+                      </div>
+                      <div className="bg-primary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Mountain climbers cruzados (rodilla al codo opuesto) • Spiderman climbers • Mountain climbers con sliders o toallas
                         </p>
                       </div>
                     </AccordionContent>
@@ -708,7 +796,7 @@ const RutinaCasa = () => {
                     <AccordionTrigger className="hover:no-underline">
                       <div className="flex items-center gap-3">
                         <span className="text-2xl">🐕</span>
-                        <span className="font-semibold text-lg">Bird-Dog</span>
+                        <h3 className="font-semibold text-lg m-0">Bird-dog para estabilidad lumbar</h3>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="space-y-4 pt-4">
@@ -732,10 +820,126 @@ const RutinaCasa = () => {
                           <p className="text-sm text-muted-foreground">Core, espalda baja, glúteos</p>
                         </div>
                       </div>
+                      <div className="bg-secondary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">👶 Regresión (versión fácil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Eleva solo el brazo o solo la pierna por separado, sin combinarlos • Reduce las repeticiones a 6-8 por lado
+                        </p>
+                      </div>
                       <div className="bg-primary/10 p-4 rounded-lg">
-                        <h4 className="font-semibold mb-2">💡 Beneficios Clave:</h4>
+                        <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Bird-dog con extensión bajo el cuerpo (rodilla y codo se tocan) • Bird-dog con banda elástica • Aumenta el aguante isométrico a 5 segundos
+                        </p>
+                      </div>
+                      <div className="bg-accent/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">💡 Beneficios clave:</h4>
                         <p className="text-sm text-muted-foreground">
                           Excelente para prevenir dolor lumbar y mejorar la postura. Ideal para principiantes.
+                        </p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="pike-push-ups" className="border rounded-lg px-6 bg-card">
+                    <AccordionTrigger className="hover:no-underline">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">🤸</span>
+                        <h3 className="font-semibold text-lg m-0">Pike push-ups (camino al HSPU)</h3>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="space-y-4 pt-4">
+                      <div className="bg-muted/50 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">✅ Técnica correcta:</h4>
+                        <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                          <li>Posición de V invertida: caderas elevadas, manos y pies en el suelo</li>
+                          <li>Manos a la anchura de los hombros, dedos hacia delante</li>
+                          <li>Baja la coronilla hacia el suelo entre las manos</li>
+                          <li>Codos a 45º, no hacia los lados</li>
+                          <li>Empuja con hombros y tríceps para volver arriba</li>
+                        </ul>
+                      </div>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="font-semibold mb-2">📊 Series recomendadas:</h4>
+                          <p className="text-sm text-muted-foreground">3-4 series × 6-10 repeticiones</p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">💪 Músculos trabajados:</h4>
+                          <p className="text-sm text-muted-foreground">Hombros (deltoides), tríceps, trapecio superior, core</p>
+                        </div>
+                      </div>
+                      <div className="bg-secondary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">👶 Regresión (versión fácil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Pike push-ups con manos elevadas en silla o sofá • Reduce el rango bajando solo unos centímetros
+                        </p>
+                      </div>
+                      <div className="bg-primary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Pike push-ups con pies elevados • Wall handstand push-ups (HSPU contra pared) • Free handstand push-ups (avanzado)
+                        </p>
+                      </div>
+                      <div className="bg-destructive/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2 flex items-center gap-2">
+                          <AlertCircle className="w-4 h-4" />
+                          Errores comunes:
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          Caderas bajas (se convierte en flexión normal) • Codos muy abiertos • No bajar lo suficiente
+                        </p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="remo-invertido" className="border rounded-lg px-6 bg-card">
+                    <AccordionTrigger className="hover:no-underline">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">🪑</span>
+                        <h3 className="font-semibold text-lg m-0">Remo invertido con mesa o toalla</h3>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="space-y-4 pt-4">
+                      <div className="bg-muted/50 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">✅ Técnica correcta:</h4>
+                        <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                          <li>Túmbate boca arriba bajo una mesa firme y agarra el borde con manos a la anchura de los hombros</li>
+                          <li>Alternativa con toalla: pásala por el pomo cerrado de una puerta y agárrala con las dos manos</li>
+                          <li>Cuerpo en línea recta desde cabeza hasta talones, talones apoyados en el suelo</li>
+                          <li>Tira llevando el pecho hacia las manos, codos cerca del cuerpo</li>
+                          <li>Aprieta los omóplatos en la posición alta y baja con control</li>
+                        </ul>
+                      </div>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="font-semibold mb-2">📊 Series recomendadas:</h4>
+                          <p className="text-sm text-muted-foreground">3-4 series × 8-12 repeticiones</p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">💪 Músculos trabajados:</h4>
+                          <p className="text-sm text-muted-foreground">Espalda alta, dorsales, bíceps, parte trasera del hombro, core</p>
+                        </div>
+                      </div>
+                      <div className="bg-secondary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">👶 Regresión (versión fácil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Flexiona las rodillas con pies apoyados en el suelo • Sube la mesa o sube el agarre para reducir la inclinación del cuerpo
+                        </p>
+                      </div>
+                      <div className="bg-primary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Remo invertido con pies elevados en silla • Remo invertido a una mano • Australian pull-ups en barra baja • Camino hacia las dominadas (avanzado)
+                        </p>
+                      </div>
+                      <div className="bg-destructive/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2 flex items-center gap-2">
+                          <AlertCircle className="w-4 h-4" />
+                          Errores comunes:
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          Caderas hundidas o elevadas • No retraer escápulas (tirar solo con brazos) • Mesa o agarre poco firme (verifica seguridad antes de empezar)
                         </p>
                       </div>
                     </AccordionContent>
@@ -746,7 +950,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* Galería de Videos */}
-          <section className="py-20 md:py-24 bg-muted/30">
+          <section id="videos" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
               <VideoGallery 
                 videos={videosEnCasa}
@@ -997,7 +1201,7 @@ const RutinaCasa = () => {
 
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Cómo diseñar tu rutina semanal en <span className="text-primary">casa</span>
+                Plan de calistenia en casa: cómo organizar tu <span className="text-primary">semana</span>
               </h2>
               
               <div className="max-w-5xl mx-auto space-y-8">
@@ -1105,10 +1309,10 @@ const RutinaCasa = () => {
           </section>
 
           {/* Progresión sin Equipamiento */}
-          <section className="py-20 md:py-24 bg-muted/30">
+          <section id="progresion" className="py-20 md:py-24 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Progresión sin <span className="text-primary">equipamiento</span>
+                Progresión en calistenia en casa sin <span className="text-primary">equipamiento</span>
               </h2>
               
               <div className="max-w-5xl mx-auto">
@@ -1207,131 +1411,11 @@ const RutinaCasa = () => {
             </div>
           </section>
 
-          {/* Prevención de Lesiones */}
-          <section className="py-20 md:py-24">
-            <div className="container mx-auto px-4">
-              <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Prevención de <span className="text-primary">lesiones</span> y cuidado corporal
-              </h2>
-              
-              <div className="max-w-5xl mx-auto space-y-6">
-                <Card className="border-primary/20">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-3">
-                      <Shield className="w-8 h-8 text-primary" />
-                      Escuchar al Cuerpo
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-muted-foreground">
-                      Prestar atención a las señales que envía tu cuerpo es esencial para prevenir lesiones. 
-                      El dolor es un indicador que no debe ignorarse.
-                    </p>
-                    <div className="bg-destructive/10 p-4 rounded-lg">
-                      <h4 className="font-semibold mb-3 flex items-center gap-2">
-                        <AlertCircle className="w-5 h-5" />
-                        Señales de Sobreentrenamiento:
-                      </h4>
-                      <ul className="grid md:grid-cols-2 gap-2 text-sm text-muted-foreground">
-                        <li>• Fatiga constante y falta de energía</li>
-                        <li>• Dificultad para dormir o insomnio</li>
-                        <li>• Disminución del rendimiento físico</li>
-                        <li>• Aumento de lesiones o dolores musculares</li>
-                        <li>• Irritabilidad o cambios de humor</li>
-                        <li>• Pérdida de motivación para entrenar</li>
-                      </ul>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-3">
-                        <CheckCircle className="w-6 h-6 text-primary" />
-                        Técnica Antes que Cantidad
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                      <p className="text-muted-foreground">
-                        Una ejecución perfecta con menos repeticiones es siempre mejor que muchas repeticiones con mala forma.
-                      </p>
-                      <ul className="space-y-2 text-sm text-muted-foreground list-disc list-inside">
-                        <li>Domina el movimiento básico primero</li>
-                        <li>Aumenta la dificultad gradualmente</li>
-                        <li>Si pierdes la forma, detente y descansa</li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-3">
-                        <Activity className="w-6 h-6 text-primary" />
-                        Descanso Activo
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                      <p className="text-muted-foreground">
-                        La recuperación es cuando el cuerpo se fortalece. Incluye días de descanso activo en tu rutina.
-                      </p>
-                      <ul className="space-y-2 text-sm text-muted-foreground list-disc list-inside">
-                        <li>Caminatas suaves de 20-30 minutos</li>
-                        <li>Sesiones de estiramientos o yoga</li>
-                        <li>Movilidad articular ligera</li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </div>
-
-                <Card className="bg-primary/5 border-primary/20">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-3">
-                      <Target className="w-8 h-8 text-primary" />
-                      Checklist de Postura Correcta
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid md:grid-cols-3 gap-4">
-                      <div className="bg-card p-4 rounded-lg border">
-                        <h4 className="font-semibold mb-2">Sentadillas</h4>
-                        <ul className="text-sm text-muted-foreground space-y-1">
-                          <li>✓ Rodillas alineadas con pies</li>
-                          <li>✓ Peso en talones</li>
-                          <li>✓ Espalda recta</li>
-                          <li>✓ Mirada al frente</li>
-                        </ul>
-                      </div>
-                      <div className="bg-card p-4 rounded-lg border">
-                        <h4 className="font-semibold mb-2">Flexiones</h4>
-                        <ul className="text-sm text-muted-foreground space-y-1">
-                          <li>✓ Cuerpo en línea recta</li>
-                          <li>✓ Codos a 45°</li>
-                          <li>✓ Core activado</li>
-                          <li>✓ Rango completo</li>
-                        </ul>
-                      </div>
-                      <div className="bg-card p-4 rounded-lg border">
-                        <h4 className="font-semibold mb-2">Planchas</h4>
-                        <ul className="text-sm text-muted-foreground space-y-1">
-                          <li>✓ Codos bajo hombros</li>
-                          <li>✓ Caderas alineadas</li>
-                          <li>✓ Glúteos activos</li>
-                          <li>✓ Respiración continua</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </section>
-
           {/* FAQ Section */}
-          <section className="py-20 md:py-24 bg-muted/30">
+          <section id="faq" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Preguntas Frecuentes sobre <span className="text-primary">Calistenia en Casa</span>
+                Preguntas frecuentes sobre <span className="text-primary">calistenia en casa</span>
               </h2>
               
               <div className="max-w-3xl mx-auto">
@@ -1361,7 +1445,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* CTA Final */}
-          <section className="py-20 md:py-24">
+          <section id="cta-trial" className="py-20 md:py-24 scroll-mt-24">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-secondary via-secondary to-primary/30 p-10 md:p-16 text-center shadow-elegant">
