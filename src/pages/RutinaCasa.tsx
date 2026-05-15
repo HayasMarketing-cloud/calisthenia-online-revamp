@@ -258,84 +258,33 @@ const RutinaCasa = () => {
           </section>
 
           {/* Beneficios de la Calistenia en Casa */}
-          <section className="py-16 bg-muted/30">
+          <section className="py-20 md:py-24 bg-muted/30">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Beneficios de la Rutina Calistenia en Casa
+                Beneficios de la rutina calistenia en <span className="text-primary">casa</span>
               </h2>
-              
+
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                <Card className="hover:shadow-elegant transition-all duration-300">
-                  <CardHeader>
-                    <Dumbbell className="w-10 h-10 text-primary mb-2" />
-                    <CardTitle>Desarrollo de Fuerza Funcional</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      Al trabajar con tu propio peso, desarrollas músculos de manera equilibrada y aumentas la fuerza aplicable a situaciones reales.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-elegant transition-all duration-300">
-                  <CardHeader>
-                    <Heart className="w-10 h-10 text-primary mb-2" />
-                    <CardTitle>Mejora Cardiovascular</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      Los movimientos dinámicos elevan tu ritmo cardíaco, mejorando la salud cardiovascular y la capacidad pulmonar.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-elegant transition-all duration-300">
-                  <CardHeader>
-                    <Activity className="w-10 h-10 text-primary mb-2" />
-                    <CardTitle>Coordinación y Equilibrio</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      Ejercicios que requieren balance promueven la conexión mente-cuerpo y mejoran tu estabilidad general.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-elegant transition-all duration-300">
-                  <CardHeader>
-                    <Shield className="w-10 h-10 text-primary mb-2" />
-                    <CardTitle>Prevención de Lesiones</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      Fortaleces músculos, tendones y ligamentos, creando una base sólida que reduce el riesgo de lesiones.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-elegant transition-all duration-300">
-                  <CardHeader>
-                    <Clock className="w-10 h-10 text-primary mb-2" />
-                    <CardTitle>Entrenamientos Eficientes</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      Sesiones de 20-45 minutos son suficientes para obtener resultados, perfecto para agendas ocupadas.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-elegant transition-all duration-300">
-                  <CardHeader>
-                    <TrendingUp className="w-10 h-10 text-primary mb-2" />
-                    <CardTitle>Adaptable a Todos los Niveles</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      Desde principiantes hasta avanzados, cada ejercicio se puede modificar según tus capacidades.
-                    </p>
-                  </CardContent>
-                </Card>
+                {[
+                  { Icon: Dumbbell, title: "Desarrollo de Fuerza Funcional", text: "Al trabajar con tu propio peso, desarrollas músculos de manera equilibrada y aumentas la fuerza aplicable a situaciones reales." },
+                  { Icon: Heart, title: "Mejora Cardiovascular", text: "Los movimientos dinámicos elevan tu ritmo cardíaco, mejorando la salud cardiovascular y la capacidad pulmonar." },
+                  { Icon: Activity, title: "Coordinación y Equilibrio", text: "Ejercicios que requieren balance promueven la conexión mente-cuerpo y mejoran tu estabilidad general." },
+                  { Icon: Shield, title: "Prevención de Lesiones", text: "Fortaleces músculos, tendones y ligamentos, creando una base sólida que reduce el riesgo de lesiones." },
+                  { Icon: Clock, title: "Entrenamientos Eficientes", text: "Sesiones de 20-45 minutos son suficientes para obtener resultados, perfecto para agendas ocupadas." },
+                  { Icon: TrendingUp, title: "Adaptable a Todos los Niveles", text: "Desde principiantes hasta avanzados, cada ejercicio se puede modificar según tus capacidades." },
+                ].map(({ Icon, title, text }) => (
+                  <Card key={title} className="hover:-translate-y-1 hover:shadow-elegant hover:border-primary/30 transition-all duration-300">
+                    <CardHeader className="gap-4">
+                      <div className="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                        <Icon className="w-7 h-7 text-primary" />
+                      </div>
+                      <CardTitle>{title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground">{text}</p>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
             </div>
           </section>
