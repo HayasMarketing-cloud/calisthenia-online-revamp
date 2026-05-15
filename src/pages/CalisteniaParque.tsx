@@ -31,15 +31,92 @@ const CalisteniaParque = () => {
     'j1VaM6CNazM',  // 9. Superar 10 dominadas (422 vistas) - Avanzado
   ]);
 
+  const tiposBarras = [
+    {
+      name: "Barra de dominadas alta",
+      uso: "Dominadas, muscle-ups, leg raises, front lever",
+      altura: "2,2 - 2,5 m",
+      nivel: "Principiante a avanzado",
+    },
+    {
+      name: "Barras paralelas",
+      uso: "Fondos, L-sit, planchas, equilibrios",
+      altura: "1,2 - 1,4 m",
+      nivel: "Principiante a avanzado",
+    },
+    {
+      name: "Barra baja (low bar)",
+      uso: "Remo invertido, dominadas asistidas, australian pull-ups",
+      altura: "0,9 - 1,1 m",
+      nivel: "Principiante",
+    },
+    {
+      name: "Espalderas (wall bars)",
+      uso: "Estiramientos, leg raises colgado, escaladas",
+      altura: "2,4 m",
+      nivel: "Todos los niveles",
+    },
+    {
+      name: "Barras Z (escalonadas)",
+      uso: "Dominadas con agarre variado, transiciones",
+      altura: "1,8 - 2,4 m",
+      nivel: "Intermedio",
+    },
+    {
+      name: "Bancos inclinados",
+      uso: "Step-ups, fondos, abdominales declinados",
+      altura: "0,4 - 0,6 m",
+      nivel: "Principiante",
+    },
+    {
+      name: "Anillas de gimnasia",
+      uso: "Dominadas en anillas, dips, muscle-ups, skin the cat",
+      altura: "Variable",
+      nivel: "Intermedio a avanzado",
+    },
+  ];
+
   const parqueFAQs = [
-    { question: "¿Dónde encuentro parques de calistenia cerca de mí?", answer: "Puedes buscar en Google Maps con términos como 'parque calistenia', 'street workout park' o 'outdoor gym'. También existen apps especializadas como Calisteniapp o comunidades en Instagram donde comparten ubicaciones." },
-    { question: "¿Es seguro entrenar en parques públicos?", answer: "Sí, la mayoría de los parques de calistenia son seguros. Si tienes dudas sobre la zona, entrena en horarios con más gente." },
-    { question: "¿Qué hago si todas las barras están ocupadas?", answer: "Puedes pedir educadamente compartir el espacio, hacer calentamiento extra mientras esperas, o trabajar ejercicios en el suelo." },
-    { question: "¿Puedo entrenar en parques en invierno?", answer: "Sí, con la ropa adecuada y guantes para proteger tus manos del frío. Asegúrate de calentar bien antes de empezar." },
-    { question: "¿Necesito ser fuerte para empezar?", answer: "No. Los parques tienen equipamiento para todos los niveles. Puedes empezar con ejercicios asistidos y progresiones simples." },
-    { question: "¿Cuánto tiempo tardaré en ver resultados?", answer: "Con entrenamiento constante, verás mejoras en fuerza en 4-6 semanas. Los cambios físicos visibles suelen aparecer en 8-12 semanas." },
-    { question: "¿Es mejor entrenar solo o en grupo?", answer: "Ambos tienen ventajas: en grupo, motivación y apoyo social; solo, más concentración y flexibilidad de horarios." },
-    { question: "¿Qué hago si llueve o hace mal tiempo?", answer: "Puedes entrenar en casa con rutinas de peso corporal, buscar estructuras cubiertas, o tomar el día como descanso activo." },
+    {
+      question: "¿Qué es un parque de calistenia?",
+      answer: "Un parque de calistenia es una instalación pública al aire libre equipada con barras de dominadas, paralelas, espalderas y otros elementos diseñados para entrenar con el peso del cuerpo. Está pensado para que cualquier persona pueda entrenar gratis fuerza, resistencia y movilidad sin pagar gimnasio."
+    },
+    {
+      question: "¿Qué tipos de barras hay en un parque de calistenia?",
+      answer: "En un parque de calistenia encontrarás principalmente: barras de dominadas altas (2-2,5 m), barras bajas para remo invertido (0,9-1,1 m), barras paralelas para fondos, espalderas, barras Z escalonadas, bancos inclinados y, en parques modernos, anillas de gimnasia."
+    },
+    {
+      question: "¿Dónde encuentro parques de barras y calistenia cerca de mí?",
+      answer: "La forma más rápida es buscar en Google Maps términos como 'parque calistenia', 'barras de parque' o 'street workout park'. También puedes usar streetworkoutparks.es y calisteniaparks.com (mapas colaborativos), Wikiloc para parques en rutas, o las apps de la comunidad como Calisteniapp."
+    },
+    {
+      question: "¿Cuánto cuesta entrenar en un parque de calistenia?",
+      answer: "Entrenar en un parque de calistenia es gratuito. Son instalaciones públicas mantenidas por el ayuntamiento. Solo necesitas ropa cómoda y, opcionalmente, guantes o magnesia para mejorar el agarre en las barras."
+    },
+    {
+      question: "¿Es seguro entrenar en parques públicos?",
+      answer: "Sí, la mayoría de parques de calistenia son seguros. Si dudas de la zona, ve en horarios con más gente (mañanas o tardes-noche). Revisa siempre que las barras no tengan óxido, holguras ni soldaduras rotas antes de colgarte."
+    },
+    {
+      question: "¿Qué hago si todas las barras están ocupadas?",
+      answer: "Pide compartir el espacio (la comunidad suele ser receptiva), trabaja ejercicios de suelo (flexiones, plancha, sentadillas) o haz tu calentamiento mientras esperas. Cambiar el horario a primera hora de la mañana o última de la tarde también ayuda."
+    },
+    {
+      question: "¿Puedo empezar calistenia en el parque siendo principiante?",
+      answer: "Sí. Empieza con remo invertido en barra baja, dominadas asistidas con goma elástica, fondos negativos en paralelas y plancha. En 4-6 semanas la mayoría logra su primera dominada estricta entrenando 3 días por semana."
+    },
+    {
+      question: "¿Puedo entrenar en parques en invierno o con lluvia?",
+      answer: "Sí, con guantes finos para el frío y calentamiento extra. Si llueve, las barras se vuelven resbaladizas: sécalas con una toalla o cambia a una sesión en casa con peso corporal (flexiones, sentadillas, plancha)."
+    },
+    {
+      question: "¿Cuánto tiempo tardaré en ver resultados entrenando en el parque?",
+      answer: "Con 3 sesiones semanales constantes verás mejoras de fuerza en 4-6 semanas (más dominadas, más fondos). Los cambios físicos visibles aparecen entre la semana 8 y la 12, junto a una alimentación adecuada."
+    },
+    {
+      question: "¿Es mejor entrenar solo o en grupo en el parque?",
+      answer: "Ambos funcionan. En grupo ganas motivación, técnica y consejos; solo ganas concentración y flexibilidad de horarios. Combinarlo (1-2 sesiones en grupo + 1-2 solo) suele dar el mejor resultado."
+    },
   ];
 
   const faqSchema = generateFAQSchema(parqueFAQs);
@@ -48,22 +125,34 @@ const CalisteniaParque = () => {
     { name: "Calistenia en Parque", url: "https://calisthenia.online/calistenia-en-parque/" },
   ]);
 
+  const tiposBarrasItemList = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Tipos de barras de parques de calistenia",
+    itemListElement: tiposBarras.map((b, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: b.name,
+      description: `${b.uso} · Altura ${b.altura} · ${b.nivel}`,
+    })),
+  };
+
   return (
     <>
       <Helmet>
-        <title>Calistenia en Parques: Guía Completa | 2025</title>
-        <meta 
-          name="description" 
-          content="Aprende calistenia en parques con barras y paralelas. Videos, ejercicios y rutinas para empezar a entrenar al aire libre desde cero." 
+        <title>Calistenia en Parque: Tipos de Barras y Guía Completa 2025</title>
+        <meta
+          name="description"
+          content="Guía de calistenia en parque: qué es un parque de calistenia, tipos de barras de parques, cómo encontrar uno cerca de ti, ejercicios y rutina para empezar."
         />
-        <meta name="keywords" content="calistenia parques, empezar calistenia, calistenia videos, parques calistenia cerca de mi, ejercicios barra dominadas" />
-        <meta property="og:title" content="Calistenia en Parques | Entrena Gratis al Aire Libre" />
-        <meta property="og:description" content="Guía completa para empezar en calistenia utilizando parques públicos. Videos, rutinas y técnicas." />
+        <meta name="keywords" content="calistenia parque, barras de parques, parque de calistenia, parques calistenia cerca de mi, tipos de barras, parque de barras" />
+        <meta property="og:title" content="Calistenia en Parque: Tipos de Barras y Guía Completa" />
+        <meta property="og:description" content="Tipos de barras de parques, cómo encontrar tu parque y ejercicios paso a paso para entrenar al aire libre." />
         <meta property="og:url" content="https://calisthenia.online/calistenia-en-parque/" />
         <meta property="og:type" content="article" />
         <link rel="canonical" href="https://calisthenia.online/calistenia-en-parque/" />
       </Helmet>
-      <StructuredData data={[faqSchema, breadcrumbSchema]} />
+      <StructuredData data={[faqSchema, breadcrumbSchema, tiposBarrasItemList]} />
 
       <div className="min-h-screen flex flex-col">
         <Header />
