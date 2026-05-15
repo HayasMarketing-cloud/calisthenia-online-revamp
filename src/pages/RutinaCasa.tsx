@@ -14,6 +14,8 @@ import entrenaCase from "@/assets/entrena-casa.jpg";
 import { Home, CheckCircle, Target, Shield, Zap, Heart, Clock, TrendingUp, AlertCircle, Calendar, Activity, Dumbbell, Wallet, ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
 import StructuredData from "@/components/seo/StructuredData";
 import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
 import { generateFAQSchema } from "@/lib/schemas";
