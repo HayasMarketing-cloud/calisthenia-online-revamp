@@ -658,6 +658,10 @@ const CalisteniaMujeres = () => {
                     { t: "No registrar repeticiones ni series", d: "Sin medir no progresas. Anota cada sesión: repeticiones, descanso y sensación. La sobrecarga progresiva es la clave de todo." },
                     { t: "Saltarse el trabajo de tracción", d: "Sin remos invertidos ni dominadas asistidas, la postura se resiente y la espalda se queda débil. Tracción cada semana, sí o sí." },
                     { t: "No descansar lo suficiente", d: "Más no es mejor. Sin 1-2 días de descanso completo o activo, no recuperas y aumentan lesiones y fatiga hormonal." },
+                    { t: "Saltarse el calentamiento", d: "5 minutos de movilidad articular y activación de glúteos previenen lesiones y mejoran la calidad de cada serie. No es opcional." },
+                    { t: "Obsesionarse con la báscula", d: "El peso fluctúa por agua, ciclo y glucógeno. Mide cintura, fotos mensuales y repeticiones: son indicadores mucho más fiables del progreso." },
+                    { t: "Compararte con entrenamientos masculinos", d: "La fuerza relativa, recuperación y respuesta hormonal son distintas. Sigue una progresión adaptada a ti, no copies rutinas pensadas para hombres." },
+                    { t: "Ignorar el ciclo menstrual", d: "Entrenar igual los 28 días te lleva al estancamiento. Adapta intensidad y volumen a cada fase para rendir mejor sin quemarte." },
                   ].map((e, i) => (
                     <Card key={i} className="border-l-4 border-destructive">
                       <CardContent className="p-6">
