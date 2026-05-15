@@ -67,7 +67,7 @@ const RutinaCasa = () => {
     videoId: "2PVk2wUY04k",
     videoTitle: "Rutina Calistenia en Casa - Entrenamiento Completo",
     videoDuration: "PT15M",
-    uploadDate: "2024-01-15",
+    uploadDate: "2024-01-15T09:00:00+01:00",
     totalTime: "PT40M",
     breadcrumbs: [
       { name: "Inicio", url: "https://calisthenia.online/" },

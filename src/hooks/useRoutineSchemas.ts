@@ -35,7 +35,7 @@ export const useRoutineSchemas = (params: RoutineSchemaParams) => {
     name: params.videoTitle,
     description: params.routineDescription,
     thumbnailUrl: `https://img.youtube.com/vi/${params.videoId}/maxresdefault.jpg`,
-    uploadDate: params.uploadDate || new Date().toISOString().split('T')[0],
+    uploadDate: params.uploadDate || new Date().toISOString(),
     duration: params.videoDuration,
     embedUrl: `https://www.youtube.com/embed/${params.videoId}`,
     contentUrl: `https://www.youtube.com/watch?v=${params.videoId}`
