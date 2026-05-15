@@ -579,7 +579,7 @@ const RutinaCasa = () => {
                         </div>
                       </div>
                       <div className="bg-primary/10 p-4 rounded-lg">
-                        <h4 className="font-semibold mb-2">🔄 Variaciones:</h4>
+                        <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
                         <p className="text-sm text-muted-foreground">
                           Sentadilla sumo • Sentadilla búlgara • Sentadilla con salto • Sentadilla pistol (avanzado)
                         </p>
@@ -625,7 +625,7 @@ const RutinaCasa = () => {
                         </div>
                       </div>
                       <div className="bg-primary/10 p-4 rounded-lg">
-                        <h4 className="font-semibold mb-2">🔄 Variaciones:</h4>
+                        <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
                         <p className="text-sm text-muted-foreground">
                           Flexiones inclinadas (principiantes) • Flexiones diamante • Flexiones declinadas • Flexiones archer (avanzado)
                         </p>
@@ -671,7 +671,7 @@ const RutinaCasa = () => {
                         </div>
                       </div>
                       <div className="bg-primary/10 p-4 rounded-lg">
-                        <h4 className="font-semibold mb-2">🔄 Variaciones:</h4>
+                        <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
                         <p className="text-sm text-muted-foreground">
                           Plancha lateral • Plancha con tap shoulders • Plancha RKC (avanzado) • Plancha con elevación de pierna
                         </p>
@@ -717,7 +717,7 @@ const RutinaCasa = () => {
                         </div>
                       </div>
                       <div className="bg-primary/10 p-4 rounded-lg">
-                        <h4 className="font-semibold mb-2">🔄 Variaciones:</h4>
+                        <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
                         <p className="text-sm text-muted-foreground">
                           Zancadas estáticas • Zancadas caminando • Zancadas inversas • Zancadas con salto (avanzado)
                         </p>
@@ -754,7 +754,7 @@ const RutinaCasa = () => {
                         </div>
                       </div>
                       <div className="bg-primary/10 p-4 rounded-lg">
-                        <h4 className="font-semibold mb-2">🔄 Variaciones:</h4>
+                        <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
                         <p className="text-sm text-muted-foreground">
                           Mountain climbers lentos • Mountain climbers cruzados • Spiderman climbers
                         </p>
