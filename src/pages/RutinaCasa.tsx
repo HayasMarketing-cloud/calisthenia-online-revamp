@@ -1374,33 +1374,9 @@ const RutinaCasa = () => {
           </section>
 
           {/* CTA Final */}
-          <section id="cta-trial" className="py-12 md:py-16 scroll-mt-24">
+          <section id="cta-trial" className="py-12 md:py-16 scroll-mt-24 bg-gradient-to-b from-background via-primary/5 to-background">
             <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto">
-                <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-secondary via-secondary to-primary/30 p-10 md:p-16 text-center shadow-elegant">
-                  <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-primary/20 blur-3xl" />
-                  <div className="relative z-10">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 bg-primary/10 border border-primary/30 rounded-full backdrop-blur-sm">
-                      <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
-                      <span className="text-[10px] md:text-xs font-bold tracking-[0.15em] text-primary uppercase">
-                        Plan personalizado
-                      </span>
-                    </div>
-                    <h2 className="font-display font-extrabold text-3xl md:text-5xl text-white mb-4 leading-tight">
-                      ¿Quieres un plan <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">100% adaptado</span> a ti?
-                    </h2>
-                    <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto mb-8">
-                      Descubre nuestros programas de entrenamiento adaptados a tus objetivos y nivel.
-                    </p>
-                    <Button size="lg" asChild className="text-lg px-8 py-6 rounded-xl font-bold shadow-xl">
-                      <Link to="/programas/">
-                        Ver programas de entrenamiento
-                        <ArrowRight className="ml-2" />
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </div>
+              <TrialCTA variant="full" utmMedium="cta-final" />
             </div>
           </section>
         </main>
