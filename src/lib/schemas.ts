@@ -299,6 +299,61 @@ export const generateCourseSchema = (data: CourseData) => {
 };
 
 /**
+ * ExercisePlan Schema - plan/tabla de entrenamiento semanal
+ * https://schema.org/ExercisePlan
+ */
+export interface ExercisePlanSession {
+  day: string; // "Lunes", "Martes"...
+  focus: string; // "Empuje", "Piernas"...
+  exercises: Array<{
+    name: string;
+    sets?: string | number;
+    reps?: string;
+    rest?: string;
+  }>;
+}
+
+export interface ExercisePlanData {
+  name: string;
+  description: string;
+  url: string;
+  image?: string;
+  activityFrequency?: string; // p.ej. "5 días por semana"
+  workload?: string; // ISO 8601 duration por sesión, p.ej. "PT40M"
+  intensity?: string; // "Moderada", "Alta"
+  restPeriods?: string;
+  audience?: string; // "Principiantes", "Intermedios"
+  sessions: ExercisePlanSession[];
+}
+
+export const generateExercisePlanSchema = (data: ExercisePlanData) => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ExercisePlan",
+    name: data.name,
+    description: data.description,
+    url: data.url,
+    ...(data.image && { image: data.image }),
+    ...(data.activityFrequency && { activityFrequency: data.activityFrequency }),
+    ...(data.workload && { workload: data.workload }),
+    ...(data.intensity && { intensity: data.intensity }),
+    ...(data.restPeriods && { restPeriods: data.restPeriods }),
+    ...(data.audience && {
+      audience: { "@type": "PeopleAudience", suggestedMinAge: 14, audienceType: data.audience }
+    }),
+    hasPart: data.sessions.map((session, idx) => ({
+      "@type": "ExercisePlan",
+      position: idx + 1,
+      name: `${session.day} – ${session.focus}`,
+      exerciseType: session.focus,
+      description: session.exercises
+        .map(e => `${e.name}${e.sets ? ` ${e.sets}x${e.reps ?? ""}` : ""}${e.rest ? ` (descanso ${e.rest})` : ""}`)
+        .join("; ")
+    }))
+  };
+};
+
+/**
  * Datos de la organización (constante para reutilizar)
  */
 export const ORGANIZATION_DATA: OrganizationData = {
