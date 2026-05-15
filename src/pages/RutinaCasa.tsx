@@ -840,6 +840,110 @@ const RutinaCasa = () => {
                       </div>
                     </AccordionContent>
                   </AccordionItem>
+
+                  <AccordionItem value="pike-push-ups" className="border rounded-lg px-6 bg-card">
+                    <AccordionTrigger className="hover:no-underline">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">🤸</span>
+                        <h3 className="font-semibold text-lg m-0">Pike push-ups (camino al HSPU)</h3>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="space-y-4 pt-4">
+                      <div className="bg-muted/50 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">✅ Técnica correcta:</h4>
+                        <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                          <li>Posición de V invertida: caderas elevadas, manos y pies en el suelo</li>
+                          <li>Manos a la anchura de los hombros, dedos hacia delante</li>
+                          <li>Baja la coronilla hacia el suelo entre las manos</li>
+                          <li>Codos a 45º, no hacia los lados</li>
+                          <li>Empuja con hombros y tríceps para volver arriba</li>
+                        </ul>
+                      </div>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="font-semibold mb-2">📊 Series recomendadas:</h4>
+                          <p className="text-sm text-muted-foreground">3-4 series × 6-10 repeticiones</p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">💪 Músculos trabajados:</h4>
+                          <p className="text-sm text-muted-foreground">Hombros (deltoides), tríceps, trapecio superior, core</p>
+                        </div>
+                      </div>
+                      <div className="bg-secondary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">👶 Regresión (versión fácil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Pike push-ups con manos elevadas en silla o sofá • Reduce el rango bajando solo unos centímetros
+                        </p>
+                      </div>
+                      <div className="bg-primary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Pike push-ups con pies elevados • Wall handstand push-ups (HSPU contra pared) • Free handstand push-ups (avanzado)
+                        </p>
+                      </div>
+                      <div className="bg-destructive/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2 flex items-center gap-2">
+                          <AlertCircle className="w-4 h-4" />
+                          Errores comunes:
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          Caderas bajas (se convierte en flexión normal) • Codos muy abiertos • No bajar lo suficiente
+                        </p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="remo-invertido" className="border rounded-lg px-6 bg-card">
+                    <AccordionTrigger className="hover:no-underline">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">🪑</span>
+                        <h3 className="font-semibold text-lg m-0">Remo invertido con mesa o toalla</h3>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="space-y-4 pt-4">
+                      <div className="bg-muted/50 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">✅ Técnica correcta:</h4>
+                        <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
+                          <li>Túmbate boca arriba bajo una mesa firme y agarra el borde con manos a la anchura de los hombros</li>
+                          <li>Alternativa con toalla: pásala por el pomo cerrado de una puerta y agárrala con las dos manos</li>
+                          <li>Cuerpo en línea recta desde cabeza hasta talones, talones apoyados en el suelo</li>
+                          <li>Tira llevando el pecho hacia las manos, codos cerca del cuerpo</li>
+                          <li>Aprieta los omóplatos en la posición alta y baja con control</li>
+                        </ul>
+                      </div>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="font-semibold mb-2">📊 Series recomendadas:</h4>
+                          <p className="text-sm text-muted-foreground">3-4 series × 8-12 repeticiones</p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">💪 Músculos trabajados:</h4>
+                          <p className="text-sm text-muted-foreground">Espalda alta, dorsales, bíceps, parte trasera del hombro, core</p>
+                        </div>
+                      </div>
+                      <div className="bg-secondary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">👶 Regresión (versión fácil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Flexiona las rodillas con pies apoyados en el suelo • Sube la mesa o sube el agarre para reducir la inclinación del cuerpo
+                        </p>
+                      </div>
+                      <div className="bg-primary/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2">🚀 Progresión (más difícil):</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Remo invertido con pies elevados en silla • Remo invertido a una mano • Australian pull-ups en barra baja • Camino hacia las dominadas (avanzado)
+                        </p>
+                      </div>
+                      <div className="bg-destructive/10 p-4 rounded-lg">
+                        <h4 className="font-semibold mb-2 flex items-center gap-2">
+                          <AlertCircle className="w-4 h-4" />
+                          Errores comunes:
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          Caderas hundidas o elevadas • No retraer escápulas (tirar solo con brazos) • Mesa o agarre poco firme (verifica seguridad antes de empezar)
+                        </p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
                 </Accordion>
               </div>
             </div>
