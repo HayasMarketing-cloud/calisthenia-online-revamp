@@ -46,7 +46,7 @@ const locations = [
 const levels = [
   {
     badge: "Nivel 1",
-    emoji: "🌱",
+    emoji: "​",
     title: "PRINCIPIANTE",
     description: "Empieza desde cero con ejercicios básicos y progresiones adaptadas",
     features: [

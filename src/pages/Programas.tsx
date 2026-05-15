@@ -471,7 +471,7 @@ const Programas = () => {
             {/* Principiantes e Intermedios */}
             <div className="grid md:grid-cols-2 gap-6">
               <Card className="p-8 border-l-4 border-l-primary hover:shadow-elegant transition-all">
-                <h3 className="font-bold text-xl mb-3">🌱 Principiantes</h3>
+                <h3 className="font-bold text-xl mb-3">​ Principiantes</h3>
                 <p className="text-gray-700">
                   Que quieren empezar con buen pie y evitar errores comunes
                 </p>

@@ -361,7 +361,7 @@ const RutinaHombro = () => {
               <CardContent className="p-8">
                 <div className="flex items-center gap-3 mb-6">
                   <Badge className="bg-green-500/20 text-green-700 dark:text-green-400 border-green-500/30">
-                    🌱 PRINCIPIANTES
+                    ​ PRINCIPIANTES
                   </Badge>
                 </div>
                 <p className="text-muted-foreground mb-6">

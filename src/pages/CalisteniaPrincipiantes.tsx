@@ -96,7 +96,7 @@ const CalisteniaPrincipiantes = () => {
         ]}
         title="Calistenia para"
         titleHighlight="Principiantes"
-        emoji="🌱"
+        emoji="​"
         description="¿Quieres empezar a entrenar pero no sabes por dónde comenzar? ¡Estás en el lugar correcto! Solo necesitas tu cuerpo, constancia y ganas de superarte."
         nivel="Principiante"
         duracion="30-45 min"

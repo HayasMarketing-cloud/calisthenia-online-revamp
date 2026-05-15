@@ -351,7 +351,7 @@ const RutinaPecho = () => {
             <Card>
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                  <span className="text-3xl">🌱</span>
+                  <span className="text-3xl">​</span>
                   Rutina para Principiantes
                 </h3>
                 <p className="text-muted-foreground mb-6">

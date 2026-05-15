@@ -343,7 +343,7 @@ const RutinaFullBody = () => {
                       </thead>
                       <tbody className="text-muted-foreground">
                         <tr className="border-b">
-                          <td className="py-3 px-4 font-semibold">🌱 Principiante</td>
+                          <td className="py-3 px-4 font-semibold">​ Principiante</td>
                           <td className="text-center py-3 px-4">2-3</td>
                           <td className="text-center py-3 px-4">8-12</td>
                           <td className="text-center py-3 px-4">60-90s</td>
@@ -609,7 +609,7 @@ const RutinaFullBody = () => {
             <Card className="border-green-200 dark:border-green-900">
               <CardContent className="p-8">
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="text-4xl">🌱</span>
+                  <span className="text-4xl">​</span>
                   <div>
                     <h3 className="font-bold text-2xl">Rutina Full Body para Principiantes</h3>
                     <p className="text-sm text-muted-foreground">Ideal para quienes están iniciándose en calistenia</p>
