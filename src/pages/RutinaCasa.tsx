@@ -496,7 +496,7 @@ const RutinaCasa = () => {
                     <AccordionTrigger className="hover:no-underline">
                       <div className="flex items-center gap-3">
                         <span className="text-2xl">🦵</span>
-                        <span className="font-semibold text-lg">Sentadillas (Squats)</span>
+                        <h3 className="font-semibold text-lg m-0">Sentadillas (squats) en casa</h3>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="space-y-4 pt-4">
@@ -542,7 +542,7 @@ const RutinaCasa = () => {
                     <AccordionTrigger className="hover:no-underline">
                       <div className="flex items-center gap-3">
                         <span className="text-2xl">💪</span>
-                        <span className="font-semibold text-lg">Flexiones (Push-ups)</span>
+                        <h3 className="font-semibold text-lg m-0">Flexiones (push-ups) sin material</h3>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="space-y-4 pt-4">
@@ -588,7 +588,7 @@ const RutinaCasa = () => {
                     <AccordionTrigger className="hover:no-underline">
                       <div className="flex items-center gap-3">
                         <span className="text-2xl">🏋️</span>
-                        <span className="font-semibold text-lg">Planchas (Planks)</span>
+                        <h3 className="font-semibold text-lg m-0">Plancha (plank) y variantes</h3>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="space-y-4 pt-4">
@@ -634,7 +634,7 @@ const RutinaCasa = () => {
                     <AccordionTrigger className="hover:no-underline">
                       <div className="flex items-center gap-3">
                         <span className="text-2xl">🚶</span>
-                        <span className="font-semibold text-lg">Zancadas (Lunges)</span>
+                        <h3 className="font-semibold text-lg m-0">Zancadas (lunges) en espacio reducido</h3>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="space-y-4 pt-4">
@@ -671,7 +671,7 @@ const RutinaCasa = () => {
                     <AccordionTrigger className="hover:no-underline">
                       <div className="flex items-center gap-3">
                         <span className="text-2xl">⛰️</span>
-                        <span className="font-semibold text-lg">Mountain Climbers</span>
+                        <h3 className="font-semibold text-lg m-0">Mountain climbers para core y cardio</h3>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="space-y-4 pt-4">
@@ -708,7 +708,7 @@ const RutinaCasa = () => {
                     <AccordionTrigger className="hover:no-underline">
                       <div className="flex items-center gap-3">
                         <span className="text-2xl">🐕</span>
-                        <span className="font-semibold text-lg">Bird-Dog</span>
+                        <h3 className="font-semibold text-lg m-0">Bird-dog para estabilidad lumbar</h3>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="space-y-4 pt-4">
