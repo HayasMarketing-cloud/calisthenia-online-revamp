@@ -1,57 +1,92 @@
-## Objetivo
+## Análisis Semrush · /programas/base/
 
-Convertir `/app/dashboard` en la pantalla inicial de la app móvil del alumno, replicando el layout de la imagen de referencia pero con la identidad de Calisthenia Online (naranja `--primary` + tipografía actual + tokens semánticos). Datos siempre privados por usuario gracias a las políticas RLS ya existentes.
+### Keywords YA ocupadas por otras URLs (evitar como principales)
 
-## Alcance
+Confirmado vía Semrush domain_analysis (database `es`):
 
-1. **Rediseño de `src/pages/app/Dashboard.tsx`** con cuatro bloques:
-   - **Header de la app**: logo Calisthenia Online (`src/assets`), saludo dinámico ("Buenos días/tardes/noches, NOMBRE"). Sobre un fondo con un sutil glow naranja en degradado (versión sobria de la referencia, usando `--gradient-primary` con baja opacidad — sin imágenes externas).
-   - **Plan de hoy**: tarjeta con el nombre de la sesión asignada hoy + meta (nº de bloques / ejercicios o "Día de descanso"). Botón ">" que lleva a `/app/training`. Si no hay sesión asignada, mensaje vacío amable. Enlace "Ver agenda" a la derecha (placeholder hacia `/app/training` por ahora).
-   - **Resumen semanal**: dos tarjetas compactas reutilizando los datos de `client_adherence` ya disponibles — racha actual + adherencia 7 días — con un mini gráfico tipo donut (recharts ya en stack si está; si no, SVG simple) representando "sesiones completadas vs programadas esta semana".
-   - **Conecta con otras aplicaciones** *(stub visual, sin lógica)*: tarjeta deshabilitada con icono de Apple Health / Google Fit / Garmin y texto "Próximamente". Esto deja el espacio reservado para la fase final.
+| Keyword principal | URL que ya la posee |
+|---|---|
+| calistenia online | `/` |
+| calistenia en casa / rutina calistenia en casa | `/rutina-calistenia-en-casa/` |
+| calistenia en parque(s) / barras de parques | `/calistenia-en-parque/` |
+| calistenia para principiantes / rutina full body principiante | `/calistenia-para-principiantes/` y `/la-mejor-rutina-...-fullbody-principiantes/` |
+| rutina core calistenia | `/rutina-core-calistenia/` |
+| ejercicios espalda calistenia | `/rutina-espalda-calistenia/` |
+| calistenia mujeres | `/calistenia-para-mujeres/` |
+| que es calistenia | `/blog/que-es-la-calistenia/` |
 
-2. **Datos (todo bajo RLS existente, sin nuevas tablas)**:
-   - `programs` activa del usuario → `program_weeks` → `program_days` con `scheduled_date = CURRENT_DATE` (o `day_number` mapeado por week start) → nombre de la sesión.
-   - `workout_sessions` del usuario para marcar si ya está completada hoy (cambia el CTA a "Continuar" / "Ver resumen").
-   - `client_adherence` para racha + % semanal (ya consumido).
-   - Conteo de `program_days` programados esta semana vs `workout_sessions completed` para el donut.
-   - Todas las consultas filtradas por `client_id = auth.uid()`; las RLS de `programs`, `program_weeks`, `program_days` y `workout_sessions` ya restringen el acceso al alumno propietario, así que **no se requiere migración**.
+### Hueco real para BASE (datos Semrush · es)
 
-3. **Quitar "Reservas" del nav inferior**: el `AppLayout` actual ya no tiene "Reservas" (los items son Inicio, Entreno, Progreso, Perfil). Confirmamos que no se añade. Renombrado opcional para alinear con la referencia: Inicio → Home, Entreno → Agenda… **¿lo dejamos como está o renombramos?** (ver pregunta abierta).
+El ángulo libre es **iniciación guiada para adultos +30, sedentarios, recuperar movilidad y fuerza funcional** — distinto de "calistenia para principiantes" (que es informacional). Volúmenes verificados:
 
-4. **Estilo / marca**:
-   - Tipografía: la global del proyecto (sans actual). Títulos grandes y rotundos como en la referencia (`text-3xl font-bold`).
-   - Color primario naranja existente (`hsl(16 82% 54%)`) en iconos, acentos y CTA.
-   - Tarjetas con `bg-card`, sombras suaves, esquinas `rounded-2xl`.
-   - Iconos: `lucide-react` (Activity, Zap, Calendar, Heart, etc.).
-   - Mobile-first, max-w-lg, padding seguro (`safe-area-top`).
+| Keyword candidata | Vol. | KDI | Estado |
+|---|---|---|---|
+| como empezar calistenia | 70/mo | 21 (easy) | libre |
+| calistenia desde cero | 40/mo | 28 (easy) | libre |
+| rutina de movilidad | 110/mo | 24 (easy) | libre |
+| movilidad articular | 1.900/mo | low | libre |
+| entrenamiento funcional para principiantes | 40/mo | 0 | libre |
+| calistenia iniciacion | 20/mo | 0 | libre |
+| calistenia funcional | 20/mo | 0 | libre |
+| calistenia para sedentarios | 10/mo | 0 | libre, alta intención |
+| recuperar movilidad | 10/mo | 0 | libre, alta intención |
+| plan de calistenia | 20/mo | 0 | libre |
+| programa calistenia principiantes | 20/mo | 0 | libre (long-tail comercial) |
 
-## Detalles técnicos
+Volúmenes individuales bajos, pero **suma agregada y alta intención comercial**; perfecto para una landing de programa de pago.
 
-- Sin migraciones: aprovechamos `programs`, `program_weeks`, `program_days`, `workout_sessions` y `client_adherence`, todas con RLS ya configurada (`Users can view days of their programs`, etc.).
-- Nueva query `useTodaySession` con React Query:
-  ```text
-  programs (status='active', client_id=user)
-    └─ program_weeks
-        └─ program_days where scheduled_date = today
-  ```
-  + lookup en `workout_sessions` para saber si está iniciada/completada.
-- Donut semanal: SVG inline (sin nuevas deps) o `recharts` si ya está instalado.
-- Logo: si no existe `src/assets/logo-calisthenia.*`, usar texto estilizado con el wordmark "CALISTHENIA / ONLINE" (igual que el header público) hasta que se suba el logo definitivo.
-- "Conecta con otras aplicaciones": tarjeta visual con badges (Apple Health, Google Fit, Garmin) + label "Próximamente". Sin lógica.
+---
 
-## Archivos a tocar
+### Propuesta de estructura H1/H2/H3
 
-- `src/pages/app/Dashboard.tsx` — rediseño completo.
-- `src/components/app/AppLayout.tsx` — solo si decidimos renombrar items del nav (pendiente de respuesta).
-- *(Opcional)* `src/components/app/TodayPlanCard.tsx`, `WeeklySummaryCard.tsx`, `ConnectAppsCard.tsx` para mantener el Dashboard limpio.
+**Meta title (≤60 chars):**
+`Programa de Calistenia desde Cero | Iniciación +30 Online`
 
-## Fuera de alcance (queda para después)
+**Meta description (≤160):**
+`Programa BASE: 12 semanas de calistenia desde cero online para mayores de 30, sedentarios o sin experiencia. Recupera movilidad y fuerza funcional con Nico.`
 
-- Conexión real con Apple Health / Google Fit / Garmin.
-- Página `/app/agenda` independiente.
-- Notificaciones push del plan diario.
+**H1 (único):**
+`Programa de calistenia desde cero para volver a moverte con fuerza`
+— combina "calistenia desde cero" (40/mo, KDI 28) + intención emocional.
 
-## Pregunta abierta
+**H2 (uno por sección, en este orden):**
 
-¿Renombramos los items del nav inferior para alinearlos con la referencia (Home, Agenda, Vídeos, Evolución, Perfil) o mantenemos los actuales (Inicio, Entreno, Progreso, Perfil)? Lo dejo como está salvo que indiques lo contrario.
+1. `Cómo empezar calistenia si llevas años sin entrenar` — captura "como empezar calistenia" (70/mo).
+2. `Para quién es este programa de iniciación a la calistenia` — refuerza "calistenia iniciacion" + audiencia.
+3. `Calistenia funcional para sedentarios y mayores de 30` — long-tail "calistenia para sedentarios" + "calistenia funcional".
+4. `Recupera movilidad articular y fuerza desde el primer día` — "movilidad articular" (1.900/mo) + "recuperar movilidad".
+5. `Cómo funciona el plan de calistenia de 12 semanas` — "plan de calistenia" (20/mo) + diferenciador temporal.
+6. `Entrenamiento funcional para principiantes paso a paso` — "entrenamiento funcional para principiantes" (40/mo).
+7. `Qué incluye el programa BASE` — marca + features (no SEO, comercial).
+8. `Preguntas frecuentes sobre el programa de iniciación`
+
+**H3 (apoyo dentro de cada H2):**
+
+- Bajo H1: `Sin gimnasio, sin material, sin experiencia previa`
+- Bajo H2.1: `Evaluación inicial`, `Llamada de onboarding`, `Plan adaptado a tu nivel real`
+- Bajo H2.3: `Sedentarios y teletrabajadores`, `Personas +30 que vuelven a entrenar`, `Sobrepeso o molestias de espalda`
+- Bajo H2.4: `Rutina de movilidad guiada` (captura "rutina de movilidad", 110/mo), `Fuerza funcional progresiva`, `Hábitos sostenibles`
+- Bajo H2.5: `Semana 1-4: base y movilidad`, `Semana 5-8: fuerza funcional`, `Semana 9-12: control y resistencia`
+- Bajo H2.6: `Ejercicios fundamentales`, `Progresiones por nivel`, `Revisión técnica por WhatsApp`
+
+### Reglas de canibalización
+
+- **NO usar** en H1/H2: "calistenia en casa", "calistenia en parque", "calistenia para principiantes", "rutina core", "rutina full body", "calistenia para mujeres", "qué es calistenia".
+- Si necesitas mencionarlas en el cuerpo, hazlo como **enlace interno** hacia la URL que ya posiciona (refuerza arquitectura, no compite).
+
+### Notas técnicas
+
+- Mantener un único `<h1>` (la versión actual cumple).
+- Cambiar el copy emocional actual del H1 ("Vuelve a sentirte ágil…") por la variante con keyword o, si quieres conservar el tono, ponerlo como `<p>` lead y subir el H2.1 a H1.
+- Schema `Course` ya está presente — añadir `audience.audienceType: "Adultos +30 sedentarios o sin experiencia"` para alinear con la semántica de las nuevas keywords.
+- Actualizar `og:title` para reflejar el nuevo title.
+
+### Qué implementar si apruebas
+
+1. Editar `<title>`, `<meta description>`, `og:title`/`og:description` en `src/pages/programas/Base.tsx`.
+2. Reescribir el H1 y los 8 H2 con la lista de arriba.
+3. Añadir/reordenar los H3 indicados dentro de las secciones existentes (mismo contenido, nuevos encabezados).
+4. Añadir `audienceType` al `courseSchema`.
+5. Añadir 2-3 enlaces internos contextuales hacia `/calistenia-para-principiantes/`, `/rutina-calistenia-en-casa/` y `/blog/que-es-la-calistenia/` desde el cuerpo (no desde H2).
+
+Fuente de datos: Semrush (database `es`), keyword_compare + keyword_research + domain_analysis sobre calisthenia.online.
