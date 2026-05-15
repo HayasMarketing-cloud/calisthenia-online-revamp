@@ -421,7 +421,7 @@ const RutinaCasa = () => {
           <section className="py-20 md:py-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Ejercicios Básicos de Calistenia en Casa
+                Ejercicios <span className="text-primary">básicos</span> de calistenia en casa
               </h2>
               
               <div className="max-w-4xl mx-auto">
