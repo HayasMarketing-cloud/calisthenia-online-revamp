@@ -1,10 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { BeginnerIcon, ProgressIcon, CoachIcon } from "@/components/icons/calisthenia";
 
 const paths = [
   {
-    emoji: "🌱",
+    Icon: BeginnerIcon,
     title: "Empiezo desde cero",
     description: "Nunca he entrenado o llevo poco tiempo",
     features: [
@@ -17,7 +18,7 @@ const paths = [
     variant: "outline" as const
   },
   {
-    emoji: "📈",
+    Icon: ProgressIcon,
     title: "Quiero progresar",
     description: "Entreno hace tiempo pero me estanqué",
     features: [
@@ -30,7 +31,7 @@ const paths = [
     variant: "outline" as const
   },
   {
-    emoji: "🎯",
+    Icon: CoachIcon,
     title: "Quiero un entrenador",
     description: "Necesito un plan 100% adaptado a mí",
     features: [
