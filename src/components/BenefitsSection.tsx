@@ -1,23 +1,23 @@
-import { Dumbbell, Target, Trophy, Users2 } from "lucide-react";
+import { NoEquipmentIcon, LevelAdaptIcon, MethodologyIcon, CommunityIcon } from "@/components/icons/calisthenia";
 
 const benefits = [
   {
-    icon: Dumbbell,
+    Icon: NoEquipmentIcon,
     title: "Sin Equipos, Sin Excusas",
     description: "Solo tu peso corporal. Entrena en casa, parque o donde quieras"
   },
   {
-    icon: Target,
+    Icon: LevelAdaptIcon,
     title: "Adaptado a Tu Nivel",
     description: "Desde cero hasta skills avanzados. Progresión garantizada"
   },
   {
-    icon: Trophy,
+    Icon: MethodologyIcon,
     title: "Metodología Probada",
     description: "Certificado FESWC. Más de 10 años de experiencia"
   },
   {
-    icon: Users2,
+    Icon: CommunityIcon,
     title: "Comunidad Activa",
     description: "Únete a +500 personas en tu mismo viaje"
   }
@@ -29,14 +29,14 @@ const BenefitsSection = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {benefits.map((benefit, index) => {
-            const Icon = benefit.icon;
+            const Icon = benefit.Icon;
             return (
-              <div 
+              <div
                 key={index}
-                className="text-center space-y-4 p-6 rounded-xl hover:bg-background transition-all duration-300"
+                className="group text-center space-y-4 p-6 rounded-xl hover:bg-background transition-all duration-300"
               >
-                <div className="w-16 h-16 mx-auto bg-gradient-primary rounded-xl flex items-center justify-center shadow-card">
-                  <Icon className="h-8 w-8 text-white" />
+                <div className="w-16 h-16 mx-auto rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-105 group-hover:bg-primary/15 transition-all">
+                  <Icon className="w-10 h-10" />
                 </div>
                 <h3 className="font-display font-bold text-lg text-foreground">
                   {benefit.title}
