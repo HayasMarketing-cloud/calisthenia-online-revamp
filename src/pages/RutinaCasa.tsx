@@ -971,17 +971,6 @@ const RutinaCasa = () => {
             </div>
           </section>
 
-          {/* Galería de Videos */}
-          <section id="videos" className="py-12 md:py-16 bg-muted/30 scroll-mt-24">
-            <div className="container mx-auto px-4">
-              <VideoGallery 
-                videos={videosEnCasa}
-                title="Más Videos de Entrenamiento en Casa"
-                showStats={true}
-              />
-            </div>
-          </section>
-
           {/* CTA Comunidad */}
           <CommunityCTA />
 
