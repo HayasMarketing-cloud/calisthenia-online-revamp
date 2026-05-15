@@ -1263,7 +1263,7 @@ const RutinaCasa = () => {
                   Plan de calistenia en casa: progresión <span className="text-primary">4 semanas</span>
                 </h2>
                 <p className="text-muted-foreground">
-                  De adaptación a intensidad y deload. Un mes completo de entrenamiento sin material para construir base, ganar volumen y medir tu progreso real. Si nunca has entrenado, repasa antes la <Link to="/calistenia-principiantes/" className="text-primary hover:underline font-medium underline-offset-4">guía de calistenia para principiantes</Link>.
+                  De adaptación a intensidad y deload. Un mes completo de entrenamiento sin material para construir base, ganar volumen y medir tu progreso real. Si nunca has entrenado, repasa antes la <Link to="/calistenia-principiantes/" className="text-primary hover:underline font-medium underline-offset-4">guía de calistenia para principiantes</Link>. ¿Entrenas como mujer y quieres un enfoque adaptado al ciclo y a la composición corporal? Échale un ojo a la guía de <Link to="/calistenia-mujeres/" className="text-primary hover:underline font-medium underline-offset-4">calistenia para mujeres</Link>.
                 </p>
               </div>
 
