@@ -1,72 +1,57 @@
-## Nueva página: /programas/base
+## Objetivo
 
-Landing dedicada al **Programa BASE (12 semanas)** — programa de **introducción** al entrenamiento con peso corporal. Reutiliza la plantilla y patrones visuales de `Coaching.tsx` (la página más sólida del proyecto). Se diferencia claramente de CONTROL: BASE es para empezar, CONTROL es para "volver a entrenar".
+Convertir `/app/dashboard` en la pantalla inicial de la app móvil del alumno, replicando el layout de la imagen de referencia pero con la identidad de Calisthenia Online (naranja `--primary` + tipografía actual + tokens semánticos). Datos siempre privados por usuario gracias a las políticas RLS ya existentes.
 
-### Posicionamiento corregido
+## Alcance
 
-BASE NO es "vuelve a entrenar" (eso es CONTROL). BASE es el **primer escalón**, dirigido a:
+1. **Rediseño de `src/pages/app/Dashboard.tsx`** con cuatro bloques:
+   - **Header de la app**: logo Calisthenia Online (`src/assets`), saludo dinámico ("Buenos días/tardes/noches, NOMBRE"). Sobre un fondo con un sutil glow naranja en degradado (versión sobria de la referencia, usando `--gradient-primary` con baja opacidad — sin imágenes externas).
+   - **Plan de hoy**: tarjeta con el nombre de la sesión asignada hoy + meta (nº de bloques / ejercicios o "Día de descanso"). Botón ">" que lleva a `/app/training`. Si no hay sesión asignada, mensaje vacío amable. Enlace "Ver agenda" a la derecha (placeholder hacia `/app/training` por ahora).
+   - **Resumen semanal**: dos tarjetas compactas reutilizando los datos de `client_adherence` ya disponibles — racha actual + adherencia 7 días — con un mini gráfico tipo donut (recharts ya en stack si está; si no, SVG simple) representando "sesiones completadas vs programadas esta semana".
+   - **Conecta con otras aplicaciones** *(stub visual, sin lógica)*: tarjeta deshabilitada con icono de Apple Health / Google Fit / Garmin y texto "Próximamente". Esto deja el espacio reservado para la fase final.
 
-- Personas +30 años
-- Sedentarios y teletrabajadores
-- Personas con sobrepeso
-- Gente que **nunca ha entrenado**
-- Personas con poca movilidad o molestias corporales
-- Personas que quieren empezar sin lesionarse
+2. **Datos (todo bajo RLS existente, sin nuevas tablas)**:
+   - `programs` activa del usuario → `program_weeks` → `program_days` con `scheduled_date = CURRENT_DATE` (o `day_number` mapeado por week start) → nombre de la sesión.
+   - `workout_sessions` del usuario para marcar si ya está completada hoy (cambia el CTA a "Continuar" / "Ver resumen").
+   - `client_adherence` para racha + % semanal (ya consumido).
+   - Conteo de `program_days` programados esta semana vs `workout_sessions completed` para el donut.
+   - Todas las consultas filtradas por `client_id = auth.uid()`; las RLS de `programs`, `program_weeks`, `program_days` y `workout_sessions` ya restringen el acceso al alumno propietario, así que **no se requiere migración**.
 
-Promesa central: **"Volver a sentirse ágil, fuerte y en forma sin necesidad de gimnasio."** (transformación de cansancio/rigidez/poca fuerza → movilidad/postura/energía/capacidad funcional).
+3. **Quitar "Reservas" del nav inferior**: el `AppLayout` actual ya no tiene "Reservas" (los items son Inicio, Entreno, Progreso, Perfil). Confirmamos que no se añade. Renombrado opcional para alinear con la referencia: Inicio → Home, Entreno → Agenda… **¿lo dejamos como está o renombramos?** (ver pregunta abierta).
 
-### Mejoras al contenido del equipo
+4. **Estilo / marca**:
+   - Tipografía: la global del proyecto (sans actual). Títulos grandes y rotundos como en la referencia (`text-3xl font-bold`).
+   - Color primario naranja existente (`hsl(16 82% 54%)`) en iconos, acentos y CTA.
+   - Tarjetas con `bg-card`, sombras suaves, esquinas `rounded-2xl`.
+   - Iconos: `lucide-react` (Activity, Zap, Calendar, Heart, etc.).
+   - Mobile-first, max-w-lg, padding seguro (`safe-area-top`).
 
-1. **Hero reescrito** (el original mezclaba "volver a entrenar" → confunde con CONTROL):
-   - Eyebrow: `PROGRAMA BASE · 12 semanas · Online`
-   - H1: **"Vuelve a sentirte ágil, fuerte y en forma — sin pisar un gimnasio"**
-   - Subheadline: *"Programa de iniciación a la calistenia para personas +30, sedentarias o sin experiencia previa. Recupera movilidad, gana fuerza funcional y construye hábitos sostenibles con seguimiento personalizado."*
-   - Bullets (6): entrena desde casa o donde quieras · adaptado a tu punto de partida · sin experiencia previa · seguimiento personalizado · revisión técnica por WhatsApp · sesiones de 30-45 min
-2. **Sección "Para quién es" elevada** con los 7 perfiles (+30, sedentarios, teletrabajadores, sobrepeso, sin experiencia, con molestias, principiantes) — bloque visual con iconos.
-3. **Sección "Problemas que resuelve"** (rigidez, falta de energía, dolor de espalda/cuello, sedentarismo, sobrepeso, pérdida de fuerza, falta de hábito, baja movilidad) — chips/tags visuales.
-4. **Sección "Transformación"** con bloque visual *De → A* (cansancio/rigidez/poca fuerza/mala condición → movilidad/postura/energía/capacidad funcional).
-5. **Bloque EVALUACIÓN INICIAL destacado** (alto valor percibido): card grande con los 5 puntos analizados (nivel, objetivos, experiencia, movilidad, condición) + 3 vías (formulario / llamada onboarding / fotos-vídeos opcionales).
-6. **Bloque NICO reforzado como cara visible** (foto grande, bio + frase ancla *"moverte mejor, ganar fuerza real, mejorar tu condición física y construir hábitos sostenibles"*) — porque en fitness online la confianza convierte.
-7. **Material necesario** convertido en 3 iconos visuales (Casa / Parque / Gimnasio) + nota sobre bandas elásticas.
-8. **Fusión Sección 4 + 9** (Para ti si… / Vas a conseguir…) en 2 columnas para reducir scroll.
-9. **Continuidad (sección 10)** con 2 cards enlazadas: → CONTROL (siguiente paso natural) y → ELITE (avanzado), preparando el upsell.
-10. **Testimonios** (2-3) reusando los assets de `Coaching.tsx` (Raúl, Charlie, Isabel).
-11. **FAQ con JSON-LD FAQPage** + **Course schema** (educationalLevel: Principiante) + **BreadcrumbList**.
+## Detalles técnicos
 
-### Estructura final de la página
+- Sin migraciones: aprovechamos `programs`, `program_weeks`, `program_days`, `workout_sessions` y `client_adherence`, todas con RLS ya configurada (`Users can view days of their programs`, etc.).
+- Nueva query `useTodaySession` con React Query:
+  ```text
+  programs (status='active', client_id=user)
+    └─ program_weeks
+        └─ program_days where scheduled_date = today
+  ```
+  + lookup en `workout_sessions` para saber si está iniciada/completada.
+- Donut semanal: SVG inline (sin nuevas deps) o `recharts` si ya está instalado.
+- Logo: si no existe `src/assets/logo-calisthenia.*`, usar texto estilizado con el wordmark "CALISTHENIA / ONLINE" (igual que el header público) hasta que se suba el logo definitivo.
+- "Conecta con otras aplicaciones": tarjeta visual con badges (Apple Health, Google Fit, Garmin) + label "Próximamente". Sin lógica.
 
-```
-Header
-├── Breadcrumb (Inicio › Programas › BASE)
-├── HERO (eyebrow + H1 reescrito + subheadline + 6 bullets + 2 CTAs)
-├── PARA QUIÉN ES (7 perfiles con iconos)
-├── PROBLEMAS QUE RESUELVE (8 chips visuales)
-├── TRANSFORMACIÓN (bloque De → A)
-├── QUÉ ES BASE (texto + 5 pilares de las 12 semanas)
-├── CÓMO FUNCIONA (4 pasos con iconos)
-├── EVALUACIÓN INICIAL (bloque destacado, alto valor percibido)
-├── QUÉ INCLUYE (lista grande con checks)
-├── MATERIAL NECESARIO (3 iconos: Casa / Parque / Gimnasio)
-├── Testimonios (3 cards)
-├── SOBRE NICO (foto + bio + frase ancla)
-├── CONTINUIDAD (cards → CONTROL / → ELITE)
-├── FAQ (Accordion + JSON-LD FAQPage)
-├── CTA FINAL (banner con 2 CTAs)
-Footer
-```
+## Archivos a tocar
 
-### Detalles técnicos
+- `src/pages/app/Dashboard.tsx` — rediseño completo.
+- `src/components/app/AppLayout.tsx` — solo si decidimos renombrar items del nav (pendiente de respuesta).
+- *(Opcional)* `src/components/app/TodayPlanCard.tsx`, `WeeklySummaryCard.tsx`, `ConnectAppsCard.tsx` para mantener el Dashboard limpio.
 
-- **Archivo nuevo**: `src/pages/programas/Base.tsx`.
-- **Ruta en `src/App.tsx`**: `<Route path="/programas/base/" element={<Base />} />` (barra final, coherente con el resto).
-- **Helmet**: title `Programa BASE de Calistenia | Iniciación 12 semanas | Calisthenia Online`, description optimizada (<160), canonical `https://calisthenia.online/programas/base/`, og:* completos.
-- **JSON-LD**: `Course` (Principiante) + `FAQPage` + `BreadcrumbList` mediante `StructuredData` y helpers de `src/lib/schemas.ts`.
-- **Prerender SEO**: añadir `/programas/base/` a `src/lib/prerender-routes.ts` para sitemap y prerender estático.
-- **Header**: componente existente (ya optimizado). No tocar navegación principal en este scope.
-- **Diseño**: solo tokens semánticos (`bg-background`, `text-primary`, `bg-card`, etc.), nada hardcodeado. Hover WhatsApp `#25D366`.
-- **WhatsApp**: reusar patrón `WhatsAppIcon` + `buildWhatsAppUrl` de `Coaching.tsx` con mensaje específico de BASE.
-- **Idioma**: español de España (sin voseo).
+## Fuera de alcance (queda para después)
 
-### Pregunta antes de implementar
+- Conexión real con Apple Health / Google Fit / Garmin.
+- Página `/app/agenda` independiente.
+- Notificaciones push del plan diario.
 
-¿El **CTA "Reservar llamada de onboarding"** debe usar el mismo formulario GHL que `/programa-cuerpo-atletico-en-casa/` (formId `sbWhGZBx1i4npEeAZgKy`) o tienes uno específico para BASE? Si no me dices nada, reutilizo el mismo y lo dejo en una constante al inicio del archivo para cambiarlo en 1 línea.
+## Pregunta abierta
+
+¿Renombramos los items del nav inferior para alinearlos con la referencia (Home, Agenda, Vídeos, Evolución, Perfil) o mantenemos los actuales (Inicio, Entreno, Progreso, Perfil)? Lo dejo como está salvo que indiques lo contrario.
