@@ -12,6 +12,8 @@ import TrialCTA from "@/components/seo/TrialCTA";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
 import { generateFAQSchema } from "@/lib/schemas";
 import { Sparkles, Heart, Shield, TrendingUp, CheckCircle, AlertCircle, Calendar, Target, Flame, Users } from "lucide-react";
@@ -26,6 +28,76 @@ const TOC_ITEMS = [
   { id: "ciclo", label: "Ciclo menstrual" },
   { id: "errores", label: "Errores comunes" },
   { id: "faq", label: "FAQ" },
+];
+
+const WEEKS_PLAN = [
+  {
+    id: "semana-1",
+    label: "Semana 1",
+    phase: "Adaptación y técnica",
+    rpe: "RPE 6 / 10",
+    goal: "Aprender la técnica básica y crear el hábito de 3 sesiones full body sin material.",
+    coachNote: "Prioriza técnica sobre repeticiones. Si una flexión completa te cuesta, apoya rodillas y baja en 3 segundos.",
+    exercises: [
+      { name: "Sentadillas al aire", sets: "3", reps: "10", rest: "60s" },
+      { name: "Flexiones de rodillas", sets: "3", reps: "6", rest: "60s" },
+      { name: "Puente de glúteo", sets: "3", reps: "12", rest: "45s" },
+      { name: "Remo invertido (mesa)", sets: "3", reps: "8", rest: "75s" },
+      { name: "Plancha frontal", sets: "3", reps: "20s", rest: "45s" },
+      { name: "Bird-dog", sets: "3", reps: "8/lado", rest: "45s" },
+    ],
+  },
+  {
+    id: "semana-2",
+    label: "Semana 2",
+    phase: "Volumen base",
+    rpe: "RPE 7 / 10",
+    goal: "Subir volumen total: más series y nuevos patrones (zancadas + hollow).",
+    coachNote: "Mantén tempo 3-1-2 (3s bajando, 1s pausa, 2s subiendo). Si pierdes técnica, vuelve a las reps anteriores.",
+    exercises: [
+      { name: "Sentadillas al aire", sets: "4", reps: "12", rest: "60s" },
+      { name: "Flexiones de rodillas", sets: "4", reps: "8", rest: "60s" },
+      { name: "Zancadas estáticas", sets: "3", reps: "10/pierna", rest: "60s" },
+      { name: "Puente de glúteo", sets: "4", reps: "15", rest: "45s" },
+      { name: "Remo invertido (mesa)", sets: "4", reps: "10", rest: "60s" },
+      { name: "Plancha frontal", sets: "3", reps: "30s", rest: "45s" },
+      { name: "Hollow hold", sets: "3", reps: "15s", rest: "45s" },
+    ],
+  },
+  {
+    id: "semana-3",
+    label: "Semana 3",
+    phase: "Intensidad y progresión",
+    rpe: "RPE 8 / 10",
+    goal: "Variantes más exigentes y menos descanso para forzar adaptación.",
+    coachNote: "Acerca cada serie al fallo técnico (RIR 1-2). Si llevas regla, baja una serie de cada ejercicio.",
+    exercises: [
+      { name: "Sentadilla búlgara asistida", sets: "4", reps: "8/pierna", rest: "60s" },
+      { name: "Flexiones completas (negativas si hace falta)", sets: "4", reps: "6-8", rest: "60s" },
+      { name: "Hip thrust a una pierna", sets: "3", reps: "10/pierna", rest: "60s" },
+      { name: "Remo invertido pies elevados", sets: "4", reps: "10", rest: "60s" },
+      { name: "Plancha lateral", sets: "3", reps: "25s/lado", rest: "45s" },
+      { name: "Zancada caminando", sets: "3", reps: "12/pierna", rest: "60s" },
+      { name: "Mountain climbers", sets: "3", reps: "30s", rest: "30s" },
+    ],
+  },
+  {
+    id: "semana-4",
+    label: "Semana 4",
+    phase: "Consolidación + test",
+    rpe: "RPE 7 + máximas",
+    goal: "Asentar progreso y medir: 2 sesiones suaves + 1 test final para comparar con la semana 1.",
+    coachNote: "El test es la foto fija de tus ganancias. Anota cada cifra: vas a sorprenderte de cuánto has crecido en 4 semanas.",
+    exercises: [
+      { name: "Sentadillas al aire", sets: "4", reps: "10", rest: "60s" },
+      { name: "Flexiones (rodillas o completas)", sets: "4", reps: "10", rest: "60s" },
+      { name: "Hip thrust", sets: "4", reps: "10", rest: "60s" },
+      { name: "Remo invertido", sets: "4", reps: "10", rest: "60s" },
+      { name: "Burpees suaves", sets: "3", reps: "8", rest: "60s" },
+      { name: "Plancha (máximo)", sets: "1", reps: "AMRAP", rest: "—" },
+      { name: "Test: máx. flexiones + sentadillas en 60s", sets: "1", reps: "AMRAP", rest: "—" },
+    ],
+  },
 ];
 
 const faqs = [
@@ -60,6 +132,18 @@ const faqs = [
   {
     question: "¿Cuántos días a la semana entrenar calistenia siendo mujer?",
     answer: "Entrena calistenia 3 días por semana si eres principiante, 4-5 días si eres intermedia y 5-6 días si eres avanzada. La división recomendada para principiantes es full body 3 veces por semana; en intermedio puedes alternar tren superior y tren inferior; en avanzado, dividir empuje, tracción y piernas. Reserva siempre 1-2 días de descanso completo o activo para permitir la recuperación hormonal y muscular.",
+  },
+  {
+    question: "¿Puedo hacer calistenia durante el embarazo o el postparto?",
+    answer: "Durante el embarazo puedes hacer calistenia adaptada (sentadillas, remo invertido, plancha lateral, movilidad y respiración) siempre con luz verde médica y evitando ejercicios en supino prolongado a partir del segundo trimestre. En el postparto, espera a la revisión de suelo pélvico (8-12 semanas en parto vaginal, más en cesárea) antes de retomar core directo o impactos. Empieza por respiración hipopresiva, glúteo suave y caminar, y progresa de forma gradual con un profesional.",
+  },
+  {
+    question: "¿La calistenia tonifica piernas y glúteos sin ponerlos voluminosos?",
+    answer: "Sí. Las sentadillas, zancadas, hip thrust y sentadilla búlgara con peso corporal son los mejores ejercicios para tonificar piernas y glúteos sin volumen excesivo. Trabajas en rangos de 10-15 repeticiones con tempo controlado, lo que activa la musculatura en su rango completo y genera un efecto de definición y firmeza, no de hipertrofia masiva.",
+  },
+  {
+    question: "¿Es normal sentir más cansancio entrenando con la regla?",
+    answer: "Sí, es normal. En los primeros días de menstruación bajan los niveles de estrógeno y progesterona, lo que reduce la energía y aumenta la sensación de fatiga. No es debilidad: es fisiología. Bajar una serie por ejercicio, aumentar descansos y priorizar movilidad suave esos días te permite seguir entrenando sin frustrarte y respetando tu cuerpo.",
   },
 ];
 
@@ -418,40 +502,88 @@ const CalisteniaMujeres = () => {
                   </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  {[
-                    {
-                      week: "Semana 1 — Adaptación",
-                      focus: "Aprender la técnica",
-                      detail: "3 sesiones full body de 25 min. 3x10 sentadillas, 3x6 flexiones rodillas, 3x10 puente glúteo, 3x30s plancha, 3x8 bird-dog/lado. Descanso completo 48h entre sesiones.",
-                    },
-                    {
-                      week: "Semana 2 — Volumen",
-                      focus: "Sumar repeticiones",
-                      detail: "3 sesiones de 30 min. Suma 2 reps a cada ejercicio y 10s a la plancha. Añade zancadas 3x8/pierna y remo invertido 3x6.",
-                    },
-                    {
-                      week: "Semana 3 — Intensidad",
-                      focus: "Subir el listón",
-                      detail: "4 sesiones (alternando full body y core+glúteo). Pasa a flexiones completas si ya bajas con control 3 segundos. Reduce descanso a 45s entre series.",
-                    },
-                    {
-                      week: "Semana 4 — Consolidar y deload",
-                      focus: "Asentar progreso",
-                      detail: "3 sesiones suaves al 70% de intensidad para recuperar y consolidar. Mide cuántas flexiones, sentadillas y plancha haces y compáralo con la semana 1.",
-                    },
-                  ].map((w, i) => (
-                    <Card key={i} className="border-primary/20">
-                      <CardContent className="p-6">
-                        <Badge className="mb-3 bg-primary/10 text-primary hover:bg-primary/20 border-primary/20">
-                          {w.focus}
-                        </Badge>
-                        <h3 className="font-bold text-xl mb-3">{w.week}</h3>
-                        <p className="text-sm text-muted-foreground">{w.detail}</p>
-                      </CardContent>
-                    </Card>
+                <Card className="border-primary/10 bg-background/60 mb-6">
+                  <CardContent className="p-5 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+                    <div>
+                      <p className="font-bold mb-1">Frecuencia</p>
+                      <p className="text-muted-foreground">3 días/semana (lun · mié · vie)</p>
+                    </div>
+                    <div>
+                      <p className="font-bold mb-1">Duración</p>
+                      <p className="text-muted-foreground">25-35 min por sesión</p>
+                    </div>
+                    <div>
+                      <p className="font-bold mb-1">Tempo</p>
+                      <p className="text-muted-foreground">3-1-2 (bajada-pausa-subida)</p>
+                    </div>
+                    <div>
+                      <p className="font-bold mb-1">Calentamiento</p>
+                      <p className="text-muted-foreground">5 min movilidad + activación</p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Tabs defaultValue="semana-1" className="w-full">
+                  <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 h-auto gap-2 bg-transparent p-0">
+                    {WEEKS_PLAN.map((w) => (
+                      <TabsTrigger
+                        key={w.id}
+                        value={w.id}
+                        className="flex flex-col items-start gap-1 p-4 h-auto data-[state=active]:bg-primary data-[state=active]:text-primary-foreground border border-border rounded-xl"
+                      >
+                        <span className="text-xs font-bold uppercase tracking-wider opacity-80">
+                          {w.label}
+                        </span>
+                        <span className="font-display font-bold text-base text-left">{w.phase}</span>
+                      </TabsTrigger>
+                    ))}
+                  </TabsList>
+
+                  {WEEKS_PLAN.map((w) => (
+                    <TabsContent key={w.id} value={w.id} className="mt-6">
+                      <Card className="border-primary/20">
+                        <CardContent className="p-6 md:p-8 space-y-5">
+                          <div className="flex flex-wrap items-center gap-3">
+                            <Badge className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/15">
+                              {w.phase}
+                            </Badge>
+                            <Badge variant="outline">{w.rpe}</Badge>
+                          </div>
+                          <p className="text-base text-muted-foreground leading-relaxed">
+                            <strong className="text-foreground">Objetivo:</strong> {w.goal}
+                          </p>
+                          <div className="overflow-x-auto rounded-lg border border-border">
+                            <Table>
+                              <TableHeader>
+                                <TableRow className="bg-muted/60 hover:bg-muted/60">
+                                  <TableHead>Ejercicio</TableHead>
+                                  <TableHead className="text-center">Series</TableHead>
+                                  <TableHead className="text-center">Reps</TableHead>
+                                  <TableHead className="text-center">Descanso</TableHead>
+                                </TableRow>
+                              </TableHeader>
+                              <TableBody>
+                                {w.exercises.map((ex) => (
+                                  <TableRow key={ex.name}>
+                                    <TableCell className="font-medium">{ex.name}</TableCell>
+                                    <TableCell className="text-center">{ex.sets}</TableCell>
+                                    <TableCell className="text-center">{ex.reps}</TableCell>
+                                    <TableCell className="text-center text-muted-foreground">{ex.rest}</TableCell>
+                                  </TableRow>
+                                ))}
+                              </TableBody>
+                            </Table>
+                          </div>
+                          <div className="rounded-lg bg-primary/5 border border-primary/20 p-4">
+                            <p className="text-sm text-muted-foreground">
+                              <strong className="text-primary">Nota del coach:</strong> {w.coachNote}
+                            </p>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </TabsContent>
                   ))}
-                </div>
+                </Tabs>
 
                 <div className="max-w-4xl mx-auto mt-10">
                   <TrialCTA variant="inline" utmMedium="calistenia-mujeres-plan" />
@@ -526,6 +658,10 @@ const CalisteniaMujeres = () => {
                     { t: "No registrar repeticiones ni series", d: "Sin medir no progresas. Anota cada sesión: repeticiones, descanso y sensación. La sobrecarga progresiva es la clave de todo." },
                     { t: "Saltarse el trabajo de tracción", d: "Sin remos invertidos ni dominadas asistidas, la postura se resiente y la espalda se queda débil. Tracción cada semana, sí o sí." },
                     { t: "No descansar lo suficiente", d: "Más no es mejor. Sin 1-2 días de descanso completo o activo, no recuperas y aumentan lesiones y fatiga hormonal." },
+                    { t: "Saltarse el calentamiento", d: "5 minutos de movilidad articular y activación de glúteos previenen lesiones y mejoran la calidad de cada serie. No es opcional." },
+                    { t: "Obsesionarse con la báscula", d: "El peso fluctúa por agua, ciclo y glucógeno. Mide cintura, fotos mensuales y repeticiones: son indicadores mucho más fiables del progreso." },
+                    { t: "Compararte con entrenamientos masculinos", d: "La fuerza relativa, recuperación y respuesta hormonal son distintas. Sigue una progresión adaptada a ti, no copies rutinas pensadas para hombres." },
+                    { t: "Ignorar el ciclo menstrual", d: "Entrenar igual los 28 días te lleva al estancamiento. Adapta intensidad y volumen a cada fase para rendir mejor sin quemarte." },
                   ].map((e, i) => (
                     <Card key={i} className="border-l-4 border-destructive">
                       <CardContent className="p-6">
