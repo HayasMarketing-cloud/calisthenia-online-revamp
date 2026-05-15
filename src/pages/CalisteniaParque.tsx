@@ -980,68 +980,32 @@ const CalisteniaParque = () => {
           </section>
 
           {/* FAQ Section */}
-          <section className="py-16">
+          <section id="faq" className="py-16 scroll-mt-24">
             <div className="container mx-auto px-4">
-              <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Preguntas Frecuentes
+              <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-10">
+                Preguntas frecuentes sobre <span className="text-primary">calistenia en parque</span>
               </h2>
               <div className="max-w-4xl mx-auto">
-                <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="faq-1">
-                    <AccordionTrigger>¿Dónde encuentro parques de calistenia cerca de mí?</AccordionTrigger>
-                    <AccordionContent>
-                      Puedes buscar en Google Maps con términos como "parque calistenia", "street workout park" o "outdoor gym". También existen apps especializadas como Calisteniapp o comunidades en Instagram donde comparten ubicaciones de parques.
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <AccordionItem value="faq-2">
-                    <AccordionTrigger>¿Es seguro entrenar en parques públicos?</AccordionTrigger>
-                    <AccordionContent>
-                      Sí, la mayoría de los parques de calistenia son seguros. Si tienes dudas sobre la zona, entrena en horarios con más gente (mañanas o tardes). Los parques suelen tener buena iluminación y están en áreas transitadas.
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <AccordionItem value="faq-3">
-                    <AccordionTrigger>¿Qué hago si todas las barras están ocupadas?</AccordionTrigger>
-                    <AccordionContent>
-                      Puedes pedir educadamente compartir el espacio (la comunidad suele ser muy receptiva), hacer calentamiento extra mientras esperas, o trabajar ejercicios en el suelo como flexiones y plancha. También puedes ir en horarios menos concurridos.
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <AccordionItem value="faq-4">
-                    <AccordionTrigger>¿Puedo entrenar en parques en invierno?</AccordionTrigger>
-                    <AccordionContent>
-                      Sí, con la ropa adecuada y guantes para proteger tus manos del frío. De hecho, el frío puede ser beneficioso para algunos aspectos del entrenamiento. Solo asegúrate de calentar bien antes de empezar y escucha a tu cuerpo.
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <AccordionItem value="faq-5">
-                    <AccordionTrigger>¿Necesito ser fuerte para empezar?</AccordionTrigger>
-                    <AccordionContent>
-                      No en absoluto. Los parques tienen equipamiento para todos los niveles. Puedes empezar con ejercicios asistidos y progresiones simples. La belleza de la calistenia es que avanzas a tu propio ritmo.
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <AccordionItem value="faq-6">
-                    <AccordionTrigger>¿Cuánto tiempo tardaré en ver resultados?</AccordionTrigger>
-                    <AccordionContent>
-                      Con entrenamiento constante, verás mejoras en fuerza en 4-6 semanas. Los cambios físicos visibles suelen aparecer en 8-12 semanas. La clave está en la consistencia y una buena alimentación.
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <AccordionItem value="faq-7">
-                    <AccordionTrigger>¿Es mejor entrenar solo o en grupo?</AccordionTrigger>
-                    <AccordionContent>
-                      Ambos tienen ventajas. Entrenar en grupo te da motivación y apoyo social. Entrenar solo permite más concentración y flexibilidad de horarios. Lo ideal es combinar ambos enfoques según tus preferencias y disponibilidad.
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <AccordionItem value="faq-8">
-                    <AccordionTrigger>¿Qué hago si llueve o hace mal tiempo?</AccordionTrigger>
-                    <AccordionContent>
-                      Puedes entrenar en casa con rutinas de peso corporal (flexiones, sentadillas, core), buscar estructuras cubiertas en tu zona, o simplemente tomar ese día como descanso activo con movilidad y estiramientos.
-                    </AccordionContent>
-                  </AccordionItem>
+                <Accordion type="single" collapsible defaultValue="faq-0" className="space-y-3">
+                  {parqueFAQs.map((faq, index) => (
+                    <AccordionItem
+                      key={index}
+                      value={`faq-${index}`}
+                      className="bg-background rounded-xl px-6 border border-primary/10 shadow-card hover:shadow-elegant transition-shadow"
+                    >
+                      <AccordionTrigger className="font-display font-bold text-left hover:text-primary hover:no-underline py-5 text-base md:text-lg">
+                        <span className="flex items-center gap-3">
+                          <span className="flex items-center justify-center w-7 h-7 rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0">
+                            {index + 1}
+                          </span>
+                          {faq.question}
+                        </span>
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground leading-relaxed pb-5 pl-10">
+                        {faq.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
                 </Accordion>
               </div>
             </div>
