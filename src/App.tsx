@@ -30,6 +30,7 @@ import RutinaHombro from "./pages/RutinaHombro";
 import RutinaCasa from "./pages/RutinaCasa";
 import CalisteniaParque from "./pages/CalisteniaParque";
 import CalisteniaPrincipiantes from "./pages/CalisteniaPrincipiantes";
+import CalisteniaMujeres from "./pages/CalisteniaMujeres";
 import CallisteniaNivelAvanzado from "./pages/CallisteniaNivelAvanzado";
 import Contacto from "./pages/Contacto";
 import Blog from "./pages/Blog";
@@ -81,6 +82,7 @@ const App = () => (
           <Route path="/rutina-calistenia-en-casa/" element={<RutinaCasa />} />
           <Route path="/calistenia-en-parque/" element={<CalisteniaParque />} />
           <Route path="/calistenia-principiantes/" element={<CalisteniaPrincipiantes />} />
+          <Route path="/calistenia-mujeres/" element={<CalisteniaMujeres />} />
           <Route path="/calistenia-nivel-avanzado/" element={<CallisteniaNivelAvanzado />} />
           <Route path="/contacto/" element={<Contacto />} />
           <Route path="/blog/" element={<Blog />} />
