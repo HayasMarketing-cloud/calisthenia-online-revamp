@@ -60,7 +60,7 @@ const QueEsLaCalistenia = () => {
                 <p className="text-lg leading-relaxed text-foreground">
                   A diferencia del entrenamiento con máquinas, la calistenia te permite entrenar en cualquier 
                   lugar, sin necesidad de equipamiento costoso. Solo necesitas tu cuerpo, determinación y 
-                  constancia para transformar tu físico y mejorar tu salud.
+                  constancia para transformar tu físico y mejorar tu salud. Si quieres pasar a la práctica, empieza por la <Link to="/calistenia-principiantes/" className="text-primary hover:underline font-medium underline-offset-4">guía de calistenia para principiantes</Link> o por la <Link to="/rutina-calistenia-en-casa/" className="text-primary hover:underline font-medium underline-offset-4">rutina de calistenia en casa</Link>.
                 </p>
               </section>
 
@@ -121,7 +121,7 @@ const QueEsLaCalistenia = () => {
                     <p className="text-lg leading-relaxed text-foreground">
                       Uno de sus grandes atractivos es que puede practicarse en <strong>parques</strong> o 
                       <strong>espacios al aire libre</strong> 🌳, sin necesidad de material costoso, 
-                      lo que la hace <strong>accesible</strong> y fomenta la <strong>creación de comunidad</strong>.
+                      lo que la hace <strong>accesible</strong> y fomenta la <strong>creación de comunidad</strong>. Descubre cómo entrenar en un <Link to="/calistenia-en-parque/" className="text-primary hover:underline font-medium underline-offset-4">parque de calistenia</Link> o sigue una <Link to="/rutina-full-body/" className="text-primary hover:underline font-medium underline-offset-4">rutina full body</Link> para empezar.
                     </p>
                   </div>
 

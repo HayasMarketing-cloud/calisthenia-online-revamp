@@ -132,7 +132,7 @@ const CalisteniaPrincipiantes = () => {
             Ejercicios de Calistenia para Principiantes
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Si estás dando tus primeros pasos, aquí tienes una rutina básica con ejercicios que puedes hacer en casa, en el parque o donde quieras. Solo necesitas tu cuerpo y actitud.
+            Si estás dando tus primeros pasos, aquí tienes una rutina básica con ejercicios que puedes hacer en casa, en el parque o donde quieras. Solo necesitas tu cuerpo y actitud. Si prefieres entrenar entre cuatro paredes, sigue la <Link to="/rutina-calistenia-en-casa/" className="text-primary hover:underline font-medium underline-offset-4">rutina de calistenia en casa</Link>; si tienes barras cerca, prueba la <Link to="/calistenia-en-parque/" className="text-primary hover:underline font-medium underline-offset-4">calistenia en parque</Link>.
           </p>
 
           <div className="max-w-5xl mx-auto space-y-6">
@@ -275,7 +275,7 @@ const CalisteniaPrincipiantes = () => {
             Consejos para Progresar
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Sigue estos consejos fundamentales para construir una base sólida y progresar de forma segura en la calistenia.
+            Sigue estos consejos fundamentales para construir una base sólida y progresar de forma segura en la calistenia. Cuando domines lo básico, da el salto a una <Link to="/rutina-full-body/" className="text-primary hover:underline font-medium underline-offset-4">rutina full body de calistenia</Link>, prueba la <Link to="/calistenia-nivel-avanzado/" className="text-primary hover:underline font-medium underline-offset-4">calistenia de nivel avanzado</Link> o sigue uno de nuestros <Link to="/programas/" className="text-primary hover:underline font-medium underline-offset-4">programas de calistenia</Link>.
           </p>
 
           <div className="max-w-4xl mx-auto space-y-6">
@@ -413,7 +413,7 @@ const CalisteniaPrincipiantes = () => {
             Errores Comunes que Debes Evitar
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Aprende de estos errores frecuentes en principiantes para acelerar tu progreso y evitar frustraciones.
+            Aprende de estos errores frecuentes en principiantes para acelerar tu progreso y evitar frustraciones, sobre todo cuando combines distintos enfoques como la <Link to="/rutina-piernas-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">rutina de piernas</Link> o la <Link to="/rutina-core-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">rutina de core</Link>.
           </p>
 
           <div className="max-w-5xl mx-auto space-y-6">
