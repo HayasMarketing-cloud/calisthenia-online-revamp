@@ -694,10 +694,10 @@ const RutinaCasa = () => {
           <CommunityCTA />
 
           {/* Cómo Diseñar tu Rutina Semanal */}
-          <section className="py-20 md:py-24">
+          <section id="planificacion" className="py-20 md:py-24 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Cómo Diseñar tu Rutina Semanal en Casa
+                Cómo diseñar tu rutina semanal en <span className="text-primary">casa</span>
               </h2>
               
               <div className="max-w-5xl mx-auto space-y-8">
