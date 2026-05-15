@@ -27,7 +27,7 @@ export default defineConfig(({ mode }) => ({
           // Wait for react-helmet-async to flush head tags after hydration
           inject: { prerendered: true },
         },
-        postProcess(renderedRoute: { route: string; html: string }) {
+        postProcess(renderedRoute: { route: string }) {
           // Ensure trailing-slash routes write to /path/index.html (matches our route definitions)
           if (
             renderedRoute.route.length > 1 &&
@@ -35,7 +35,6 @@ export default defineConfig(({ mode }) => ({
           ) {
             renderedRoute.route += "/";
           }
-          return renderedRoute;
         },
       }),
   ].filter(Boolean),
