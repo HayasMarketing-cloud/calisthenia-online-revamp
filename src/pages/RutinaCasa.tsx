@@ -129,6 +129,50 @@ const RutinaCasa = () => {
 
   const faqSchema = generateFAQSchema(faqs);
 
+  // VideoObject + ItemList schemas para la galería de videos de YouTube
+  const galleryUploadDateFallback = "2024-01-15T09:00:00+01:00";
+  const galleryVideoSchemas = videosEnCasa.map((video) => ({
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: video.titulo,
+    description: video.descripcion,
+    thumbnailUrl: [
+      `https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`,
+      `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`,
+    ],
+    uploadDate: galleryUploadDateFallback,
+    duration: video.duracion,
+    contentUrl: `https://www.youtube.com/watch?v=${video.id}`,
+    embedUrl: `https://www.youtube.com/embed/${video.id}`,
+    interactionStatistic: {
+      "@type": "InteractionCounter",
+      interactionType: { "@type": "WatchAction" },
+      userInteractionCount: video.vistas,
+    },
+  }));
+
+  const galleryItemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Más Videos de Entrenamiento de Calistenia en Casa",
+    itemListOrder: "https://schema.org/ItemListOrderDescending",
+    numberOfItems: videosEnCasa.length,
+    itemListElement: videosEnCasa.map((video, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `https://www.youtube.com/watch?v=${video.id}`,
+      item: {
+        "@type": "VideoObject",
+        name: video.titulo,
+        description: video.descripcion,
+        thumbnailUrl: `https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`,
+        uploadDate: galleryUploadDateFallback,
+        duration: video.duracion,
+        embedUrl: `https://www.youtube.com/embed/${video.id}`,
+      },
+    })),
+  };
+
   const exercisePlanSchema = generateExercisePlanSchema({
     name: "Tabla Calistenia en Casa: Plan Semanal Sin Equipamiento",
     description: "Tabla y plan semanal de calistenia en casa con 5 sesiones (empuje, piernas, tracción, core+HIIT y full body) y 2 días de descanso. Sin equipamiento, adaptable a principiantes, intermedios y avanzados.",
@@ -207,7 +251,7 @@ const RutinaCasa = () => {
         <link rel="canonical" href="https://calisthenia.online/rutina-calistenia-en-casa/" />
       </Helmet>
 
-      <StructuredData data={[...schemas.allSchemas, faqSchema, exercisePlanSchema]} />
+      <StructuredData data={[...schemas.allSchemas, faqSchema, exercisePlanSchema, galleryItemListSchema, ...galleryVideoSchemas]} />
 
       <div className="min-h-screen flex flex-col">
         <Header />
