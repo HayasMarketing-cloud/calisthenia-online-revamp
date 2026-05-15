@@ -434,17 +434,16 @@ const RutinaCasa = () => {
                     <CardHeader>
                       <CardTitle className="flex items-center gap-3">
                         <Home className="w-6 h-6 text-primary" />
-                        Elección del Espacio
+                        Elección del espacio
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <p className="text-muted-foreground">
-                        Necesitas un mínimo de <strong>2x2 metros</strong> de espacio libre de obstáculos para permitir movimientos amplios y seguros.
+                        Necesitas un mínimo de <strong>2x2 metros</strong> libre de obstáculos para realizar movimientos amplios y seguros.
                       </p>
                       <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
                         <li>Superficie plana y estable</li>
-                        <li>Buena ventilación</li>
-                        <li>Iluminación adecuada</li>
+                        <li>Buena ventilación e iluminación</li>
                         <li>Sin muebles cerca</li>
                       </ul>
                     </CardContent>
@@ -454,18 +453,86 @@ const RutinaCasa = () => {
                     <CardHeader>
                       <CardTitle className="flex items-center gap-3">
                         <CheckCircle className="w-6 h-6 text-primary" />
-                        Equipo Básico Opcional
+                        Equipo básico opcional
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <p className="text-muted-foreground">
-                        Aunque no son necesarios, estos elementos pueden mejorar tu comodidad:
+                        No son necesarios, pero mejoran tu comodidad:
                       </p>
                       <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
                         <li><strong>Esterilla</strong>: comodidad en ejercicios de suelo</li>
                         <li><strong>Silla o banco</strong>: para fondos de tríceps</li>
-                        <li><strong>Toalla</strong>: para higiene y soporte</li>
+                        <li><strong>Toalla</strong>: higiene y soporte para remos invertidos</li>
                         <li><strong>Botella de agua</strong>: hidratación constante</li>
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                <Card className="border-primary/20">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-3">
+                      <Shield className="w-8 h-8 text-primary" />
+                      Escuchar al cuerpo y prevenir lesiones
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <p className="text-muted-foreground">
+                      Prestar atención a las señales que envía tu cuerpo es esencial para prevenir lesiones. El dolor es un indicador que no debe ignorarse.
+                    </p>
+                    <div className="bg-destructive/10 p-4 rounded-lg">
+                      <h4 className="font-semibold mb-3 flex items-center gap-2">
+                        <AlertCircle className="w-5 h-5" />
+                        Señales de sobreentrenamiento
+                      </h4>
+                      <ul className="grid md:grid-cols-2 gap-2 text-sm text-muted-foreground">
+                        <li>• Fatiga constante y falta de energía</li>
+                        <li>• Insomnio o mala calidad del sueño</li>
+                        <li>• Caída del rendimiento físico</li>
+                        <li>• Dolores musculares persistentes</li>
+                        <li>• Irritabilidad o cambios de humor</li>
+                        <li>• Pérdida de motivación para entrenar</li>
+                      </ul>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-3">
+                        <CheckCircle className="w-6 h-6 text-primary" />
+                        Técnica antes que cantidad
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <p className="text-muted-foreground">
+                        Una ejecución perfecta con menos repeticiones es siempre mejor que muchas con mala forma.
+                      </p>
+                      <ul className="space-y-2 text-sm text-muted-foreground list-disc list-inside">
+                        <li>Domina el movimiento básico primero</li>
+                        <li>Aumenta la dificultad gradualmente</li>
+                        <li>Si pierdes la forma, detente y descansa</li>
+                      </ul>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-3">
+                        <Activity className="w-6 h-6 text-primary" />
+                        Descanso activo y recuperación
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <p className="text-muted-foreground">
+                        La recuperación es cuando el cuerpo se fortalece. Incluye días de descanso activo en tu rutina.
+                      </p>
+                      <ul className="space-y-2 text-sm text-muted-foreground list-disc list-inside">
+                        <li>Caminatas suaves de 20-30 minutos</li>
+                        <li>Sesiones de estiramientos o yoga</li>
+                        <li>Movilidad articular ligera</li>
                       </ul>
                     </CardContent>
                   </Card>
