@@ -52,10 +52,10 @@ const StickyTOC = ({ items }: StickyTOCProps) => {
         </ul>
       </nav>
 
-      {/* Desktop sticky TOC */}
-      <aside className="hidden lg:block">
-        <div className="sticky top-24">
-          <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3">
+      {/* Desktop floating TOC */}
+      <aside className="hidden xl:block fixed left-4 top-1/2 -translate-y-1/2 z-30 max-w-[200px]">
+        <div className="bg-background/80 backdrop-blur border border-border/60 rounded-xl p-4 shadow-card">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground mb-3">
             En esta página
           </p>
           <ul className="space-y-1 border-l border-border">
@@ -63,7 +63,7 @@ const StickyTOC = ({ items }: StickyTOCProps) => {
               <li key={it.id}>
                 <a
                   href={`#${it.id}`}
-                  className={`block pl-4 -ml-px py-1.5 text-sm border-l-2 transition-colors ${
+                  className={`block pl-3 -ml-px py-1 text-xs border-l-2 transition-colors ${
                     activeId === it.id
                       ? "border-primary text-primary font-semibold"
                       : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
