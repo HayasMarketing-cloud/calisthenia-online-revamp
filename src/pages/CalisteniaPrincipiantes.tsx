@@ -119,7 +119,7 @@ const CalisteniaPrincipiantes = () => {
               ¿Quieres empezar a entrenar pero no sabes por dónde comenzar? ¡Estás en el lugar correcto! La <strong>calistenia para principiantes</strong> es la puerta de entrada a un estilo de vida más fuerte, ágil y saludable. No necesitas pesas, ni máquinas… solo tu cuerpo, constancia y ganas de superarte.
             </p>
             <p className="text-xl text-muted-foreground leading-relaxed mt-4">
-              En Calisthenia.online te acompañamos desde cero, paso a paso, para que construyas una base sólida y disfrutes el proceso desde el primer día.
+              En Calisthenia.online te acompañamos desde cero, paso a paso, para que construyas una base sólida y disfrutes el proceso desde el primer día. Si buscas un enfoque adaptado, también tenemos una guía específica de <Link to="/calistenia-mujeres/" className="text-primary hover:underline font-medium underline-offset-4">calistenia para mujeres</Link> con rutina en casa, plan de 4 semanas y mitos desmontados.
             </p>
           </div>
         </div>
