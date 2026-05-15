@@ -65,7 +65,9 @@ const QuickPathSelector = () => {
               className="group hover:shadow-2xl transition-all hover:-translate-y-1 border-2 border-transparent hover:border-primary/20"
             >
               <CardContent className="p-8 text-center space-y-6">
-                <div className="text-6xl mb-2">{path.emoji}</div>
+                <div className="w-20 h-20 mx-auto rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-105 group-hover:bg-primary/15 transition-all">
+                  <path.Icon className="w-12 h-12" />
+                </div>
                 <h3 className="font-bold text-2xl">{path.title}</h3>
                 <p className="text-muted-foreground">{path.description}</p>
                 <ul className="text-sm text-left space-y-2 pb-2">
