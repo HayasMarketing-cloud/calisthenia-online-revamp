@@ -223,38 +223,36 @@ const RutinaCasa = () => {
           </section>
 
           {/* ¿Qué es la Calistenia en Casa? */}
-          <section className="py-16">
+          <section className="py-20 md:py-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                ¿Qué es la Calistenia para Principiantes en Casa?
+                ¿Qué es la calistenia para principiantes en <span className="text-primary">casa</span>?
               </h2>
-              
-              <div className="max-w-4xl mx-auto">
-                <Card className="border-primary/20 hover:shadow-elegant transition-all duration-300">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-3">
-                      <Target className="w-8 h-8 text-primary" />
-                      Entrenamiento con Peso Corporal
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4 text-muted-foreground">
-                    <p>
-                      La <strong>calistenia en casa</strong> es un método de entrenamiento que utiliza el propio peso del cuerpo como herramienta principal. 
-                      Movimientos como flexiones, sentadillas y dominadas te permiten trabajar diversos grupos musculares de manera efectiva sin necesidad de equipos adicionales.
-                    </p>
-                    <p>
-                      La eficacia de este entrenamiento radica en su capacidad para activar la musculatura y mejorar la funcionalidad del cuerpo. 
-                      Puedes entrenar en cualquier espacio de tu hogar, desde tu habitación hasta el salón, solo necesitas aproximadamente 2 metros cuadrados.
-                    </p>
-                    <div className="bg-muted/50 p-4 rounded-lg mt-4">
-                      <p className="text-sm font-semibold text-foreground mb-2">💡 Diferencia vs Gimnasio Tradicional:</p>
-                      <p className="text-sm">
-                        Mientras el gimnasio requiere máquinas y pesas, la calistenia convierte tu cuerpo en tu propia resistencia. 
-                        Esto no solo ahorra dinero, sino que también desarrolla fuerza funcional más aplicable a movimientos del día a día.
-                      </p>
+
+              <div className="max-w-6xl mx-auto grid lg:grid-cols-5 gap-8 items-start">
+                <div className="lg:col-span-3 space-y-4 text-muted-foreground text-lg leading-relaxed">
+                  <div className="inline-flex items-center gap-3 mb-2">
+                    <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+                      <Target className="w-6 h-6 text-primary" />
                     </div>
-                  </CardContent>
-                </Card>
+                    <span className="font-display font-bold text-xl text-foreground">Entrenamiento con peso corporal</span>
+                  </div>
+                  <p>
+                    La <strong className="text-foreground">calistenia en casa</strong> es un método de entrenamiento que utiliza el propio peso del cuerpo como herramienta principal.
+                    Movimientos como flexiones, sentadillas y dominadas te permiten trabajar diversos grupos musculares sin necesidad de equipos adicionales.
+                  </p>
+                  <p>
+                    Su eficacia radica en activar la musculatura y mejorar la funcionalidad del cuerpo.
+                    Puedes entrenar en cualquier espacio de tu hogar: solo necesitas aproximadamente 2 metros cuadrados.
+                  </p>
+                </div>
+                <aside className="lg:col-span-2 bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 rounded-2xl p-6">
+                  <p className="text-sm font-bold text-primary uppercase tracking-wider mb-3">Diferencia vs gimnasio</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Mientras el gimnasio requiere máquinas y pesas, la calistenia convierte tu cuerpo en tu propia resistencia.
+                    Esto no solo ahorra dinero, sino que desarrolla <strong className="text-foreground">fuerza funcional</strong> más aplicable a movimientos del día a día.
+                  </p>
+                </aside>
               </div>
             </div>
           </section>
