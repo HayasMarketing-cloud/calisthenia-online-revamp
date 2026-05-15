@@ -485,6 +485,10 @@ const Programas = () => {
                 </p>
               </Card>
             </div>
+
+            <p className="text-center text-muted-foreground mt-10 max-w-3xl mx-auto">
+              ¿Eres mujer y buscas un enfoque adaptado? Tenemos una guía específica de <Link to="/calistenia-mujeres/" className="text-primary hover:underline font-medium underline-offset-4">calistenia para mujeres</Link> con rutina en casa, plan progresivo de 4 semanas y entrenamiento adaptado al ciclo menstrual.
+            </p>
           </div>
         </div>
       </section>
