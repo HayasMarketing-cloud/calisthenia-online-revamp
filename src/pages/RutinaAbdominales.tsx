@@ -502,7 +502,7 @@ const RutinaAbdominales = () => {
                       </thead>
                       <tbody className="text-muted-foreground">
                         <tr className="border-b">
-                          <td className="py-3 px-4 font-semibold">🌱 Principiante</td>
+                          <td className="py-3 px-4 font-semibold">​ Principiante</td>
                           <td className="text-center py-3 px-4">2-3</td>
                           <td className="text-center py-3 px-4">8-12</td>
                           <td className="text-center py-3 px-4">60-90s</td>
