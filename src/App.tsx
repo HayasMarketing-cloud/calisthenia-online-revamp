@@ -43,6 +43,7 @@ import ExercisesManager from "./pages/admin/ExercisesManager";
 import ProgramTemplates from "./pages/admin/ProgramTemplates";
 import ProgramTemplateEditor from "./pages/admin/ProgramTemplateEditor";
 import LeadsManager from "./pages/admin/LeadsManager";
+import AdminVideoLibrary from "./pages/admin/AdminVideoLibrary";
 import Auth from "./pages/Auth";
 import QueEsLaCalistenia from "./pages/blog/QueEsLaCalistenia";
 import NotFound from "./pages/NotFound";
@@ -101,6 +102,7 @@ const App = () => (
             <Route path="/admin/blog/:id" element={<ProtectedRoute requireAdmin><BlogEditor /></ProtectedRoute>} />
             <Route path="/admin/seo-dashboard/" element={<ProtectedRoute requireAdmin><SEODashboard /></ProtectedRoute>} />
             <Route path="/admin/media-library/" element={<ProtectedRoute requireAdmin><MediaLibrary /></ProtectedRoute>} />
+            <Route path="/admin/videos/" element={<ProtectedRoute requireAdmin><AdminVideoLibrary /></ProtectedRoute>} />
             <Route path="/admin/blog/" element={<ProtectedRoute requireAdmin><BlogManager /></ProtectedRoute>} />
             <Route path="/admin/blog/nuevo/" element={<ProtectedRoute requireAdmin><BlogEditor /></ProtectedRoute>} />
             <Route path="/admin/blog/editar/:id/" element={<ProtectedRoute requireAdmin><BlogEditor /></ProtectedRoute>} />

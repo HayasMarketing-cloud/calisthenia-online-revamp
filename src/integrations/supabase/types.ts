@@ -899,6 +899,36 @@ export type Database = {
         }
         Relationships: []
       }
+      video_page_usage: {
+        Row: {
+          created_at: string
+          notes: string | null
+          page_path: string
+          section: string
+          source: string
+          updated_at: string
+          video_id: string
+        }
+        Insert: {
+          created_at?: string
+          notes?: string | null
+          page_path: string
+          section?: string
+          source?: string
+          updated_at?: string
+          video_id: string
+        }
+        Update: {
+          created_at?: string
+          notes?: string | null
+          page_path?: string
+          section?: string
+          source?: string
+          updated_at?: string
+          video_id?: string
+        }
+        Relationships: []
+      }
       workout_sessions: {
         Row: {
           client_id: string
@@ -943,6 +973,60 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      youtube_videos: {
+        Row: {
+          comment_count: number
+          created_at: string
+          description: string | null
+          duration: string | null
+          last_synced_at: string
+          like_count: number
+          notes: string | null
+          published_at: string | null
+          source: string
+          tags: string[]
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+          video_id: string
+          view_count: number
+        }
+        Insert: {
+          comment_count?: number
+          created_at?: string
+          description?: string | null
+          duration?: string | null
+          last_synced_at?: string
+          like_count?: number
+          notes?: string | null
+          published_at?: string | null
+          source?: string
+          tags?: string[]
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+          video_id: string
+          view_count?: number
+        }
+        Update: {
+          comment_count?: number
+          created_at?: string
+          description?: string | null
+          duration?: string | null
+          last_synced_at?: string
+          like_count?: number
+          notes?: string | null
+          published_at?: string | null
+          source?: string
+          tags?: string[]
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+          video_id?: string
+          view_count?: number
+        }
+        Relationships: []
       }
     }
     Views: {
