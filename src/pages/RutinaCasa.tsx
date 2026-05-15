@@ -132,22 +132,52 @@ const RutinaCasa = () => {
         
         <main className="flex-grow pt-20">
           {/* Hero Section */}
-          <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-            <div 
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${entrenaCase})` }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background"></div>
-            </div>
-            
-            <div className="relative z-10 container mx-auto px-4 text-center">
-              <Home className="w-16 h-16 mx-auto mb-6 text-primary" />
-              <h1 className="font-display font-bold text-4xl md:text-6xl mb-6">
-                Rutina de Calistenia en Casa
-              </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-                Entrena desde cualquier lugar sin necesidad de equipamiento. Tu cuerpo es tu gimnasio.
-              </p>
+          <section className="relative min-h-[600px] lg:min-h-[80vh] flex items-center overflow-hidden">
+            <img
+              src={entrenaCase}
+              alt="Atleta entrenando calistenia en casa sin equipamiento"
+              width={1600}
+              height={900}
+              fetchPriority="high"
+              decoding="async"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/85 to-secondary/30 md:via-secondary/70" />
+            <div className="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent" />
+
+            <div className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10 py-20 md:py-28">
+              <div className="max-w-3xl">
+                <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 md:mb-8 bg-primary/10 border border-primary/30 rounded-full backdrop-blur-sm">
+                  <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
+                  <span className="text-[10px] md:text-xs font-bold tracking-[0.15em] text-primary uppercase">
+                    Rutina en casa · Sin material
+                  </span>
+                </div>
+
+                <h1 className="font-display font-extrabold text-4xl md:text-6xl lg:text-7xl text-white leading-[1.1] mb-6 md:mb-8 tracking-tight">
+                  Rutina de calistenia <br className="hidden md:block" />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">en casa</span>
+                </h1>
+
+                <p className="text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed max-w-2xl mb-10 md:mb-12">
+                  Entrena desde cualquier lugar sin material. Tu cuerpo es tu gimnasio: rutinas, ejercicios y planificación semanal para empezar hoy mismo.
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                  <Button size="lg" asChild className="text-lg px-8 py-6 rounded-xl font-bold shadow-xl">
+                    <a href="#video-rutina">
+                      Ver rutina completa
+                      <ArrowRight className="ml-2" />
+                    </a>
+                  </Button>
+                  <Button size="lg" variant="outline" asChild className="text-lg px-8 py-6 rounded-xl font-bold bg-white/5 backdrop-blur-md border-white/20 text-white hover:bg-white/10">
+                    <a href="#planificacion">
+                      Encuentra tu nivel
+                      <ChevronDown className="ml-2" />
+                    </a>
+                  </Button>
+                </div>
+              </div>
             </div>
           </section>
 
