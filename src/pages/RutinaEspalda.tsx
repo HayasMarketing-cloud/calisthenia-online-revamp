@@ -143,7 +143,7 @@ const RutinaEspalda = () => {
               Ejercicios de espalda en casa sin material
             </h2>
             <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-              Si entrenas en casa y no tienes barra ni gomas, estos cuatro ejercicios cubren toda la espalda usando solo el suelo, una puerta y una toalla resistente.
+              Si entrenas en casa y no tienes barra ni gomas, estos cuatro ejercicios cubren toda la espalda usando solo el suelo, una puerta y una toalla resistente. Para una sesión más completa puedes combinarlos con la <Link to="/rutina-calistenia-en-casa/" className="text-primary hover:underline font-medium underline-offset-4">rutina de calistenia en casa</Link> o con una <Link to="/rutina-full-body/" className="text-primary hover:underline font-medium underline-offset-4">rutina full body</Link>.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -454,7 +454,7 @@ const RutinaEspalda = () => {
             Preguntas frecuentes sobre ejercicios de espalda calistenia
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Las dudas que más me encuentro como entrenador de calistenia.
+            Las dudas que más me encuentro como entrenador de calistenia. Si vas empezando, complementa esta rutina con la <Link to="/calistenia-principiantes/" className="text-primary hover:underline font-medium underline-offset-4">guía de calistenia para principiantes</Link>; y si quieres acelerar tu progreso, échale un ojo a nuestros <Link to="/programas/" className="text-primary hover:underline font-medium underline-offset-4">programas de calistenia</Link> o entrena al aire libre en un <Link to="/calistenia-en-parque/" className="text-primary hover:underline font-medium underline-offset-4">parque de calistenia</Link>.
           </p>
 
           <div className="max-w-4xl mx-auto space-y-4">

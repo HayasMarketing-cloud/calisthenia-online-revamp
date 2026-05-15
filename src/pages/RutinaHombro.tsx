@@ -134,7 +134,7 @@ const RutinaHombro = () => {
             Anatomía y Función de los Deltoides
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            El deltoides es uno de los músculos más importantes del hombro, responsable de múltiples movimientos y funciones esenciales.
+            El deltoides es uno de los músculos más importantes del hombro, responsable de múltiples movimientos y funciones esenciales, y se entrena en sinergia con la <Link to="/rutina-pecho-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">rutina de pecho</Link>, la <Link to="/rutina-espalda-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">rutina de espalda con calistenia</Link> y los <Link to="/rutina-brazos-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">brazos</Link>.
           </p>
           
           <div className="max-w-4xl mx-auto space-y-8">
@@ -507,7 +507,7 @@ const RutinaHombro = () => {
             Errores Frecuentes y Consejos para Optimizar tu Rutina
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            El entrenamiento de hombros requiere atención y compromiso. Identificar errores comunes es el primer paso para superarlos.
+            El entrenamiento de hombros requiere atención y compromiso. Identificar errores comunes es el primer paso para superarlos. Si vas empezando, repasa la <Link to="/calistenia-principiantes/" className="text-primary hover:underline font-medium underline-offset-4">guía de calistenia para principiantes</Link>; si quieres una progresión guiada, descubre nuestros <Link to="/programas/" className="text-primary hover:underline font-medium underline-offset-4">programas de calistenia</Link>.
           </p>
 
           <div className="max-w-5xl mx-auto">
