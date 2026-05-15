@@ -44,6 +44,14 @@ interface ExerciseForm {
   difficulty_level: string;
   equipment_needed: string;
   category: string;
+  // SEO
+  seo_slug: string;
+  primary_keyword: string;
+  aliases: string;
+  seo_description: string;
+  monthly_volume: string;
+  is_public_seo: boolean;
+  public_order: string;
 }
 
 const emptyForm: ExerciseForm = {
@@ -54,6 +62,13 @@ const emptyForm: ExerciseForm = {
   difficulty_level: 'beginner',
   equipment_needed: '',
   category: '',
+  seo_slug: '',
+  primary_keyword: '',
+  aliases: '',
+  seo_description: '',
+  monthly_volume: '',
+  is_public_seo: false,
+  public_order: '',
 };
 
 const ExercisesManager = () => {
