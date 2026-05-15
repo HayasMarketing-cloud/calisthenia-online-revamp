@@ -379,6 +379,83 @@ const ExercisesManager = () => {
               <Label>Equipamiento (separado por comas)</Label>
               <Input value={form.equipment_needed} onChange={e => setForm(p => ({ ...p, equipment_needed: e.target.value }))} placeholder="Ej: barra, paralelas" />
             </div>
+
+            {/* SEO Fields */}
+            <div className="border-t pt-4 space-y-4">
+              <div className="flex items-center gap-2">
+                <Globe className="h-4 w-4 text-primary" />
+                <h3 className="font-semibold text-sm">SEO público</h3>
+              </div>
+
+              <div className="flex items-center justify-between rounded-md border p-3">
+                <div className="space-y-0.5">
+                  <Label className="text-sm">Mostrar en web pública</Label>
+                  <p className="text-xs text-muted-foreground">Aparece en tablas SEO de páginas públicas</p>
+                </div>
+                <Switch
+                  checked={form.is_public_seo}
+                  onCheckedChange={v => setForm(p => ({ ...p, is_public_seo: v }))}
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="space-y-2">
+                  <Label>Keyword principal</Label>
+                  <Input
+                    value={form.primary_keyword}
+                    onChange={e => setForm(p => ({ ...p, primary_keyword: e.target.value }))}
+                    placeholder="Ej: dominadas pronas"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label>Volumen mensual</Label>
+                  <Input
+                    type="number"
+                    min="0"
+                    value={form.monthly_volume}
+                    onChange={e => setForm(p => ({ ...p, monthly_volume: e.target.value }))}
+                    placeholder="Ej: 1300"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label>SEO slug</Label>
+                  <Input
+                    value={form.seo_slug}
+                    onChange={e => setForm(p => ({ ...p, seo_slug: e.target.value }))}
+                    placeholder="dominadas-pronas"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label>Orden público</Label>
+                  <Input
+                    type="number"
+                    min="0"
+                    value={form.public_order}
+                    onChange={e => setForm(p => ({ ...p, public_order: e.target.value }))}
+                    placeholder="Ej: 1"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label>Aliases / sinónimos (separados por comas)</Label>
+                <Input
+                  value={form.aliases}
+                  onChange={e => setForm(p => ({ ...p, aliases: e.target.value }))}
+                  placeholder="Ej: pull ups, dominadas agarre prono"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label>Descripción SEO</Label>
+                <Textarea
+                  value={form.seo_description}
+                  onChange={e => setForm(p => ({ ...p, seo_description: e.target.value }))}
+                  placeholder="Descripción optimizada para meta y rich snippets"
+                  rows={2}
+                />
+              </div>
+            </div>
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => { setDialogOpen(false); setForm(emptyForm); }}>Cancelar</Button>
