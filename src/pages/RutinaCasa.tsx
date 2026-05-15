@@ -17,8 +17,25 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import StructuredData from "@/components/seo/StructuredData";
+import WeeklyPlanTabs from "@/components/seo/WeeklyPlanTabs";
+import StickyTOC from "@/components/seo/StickyTOC";
+import TrialCTA from "@/components/seo/TrialCTA";
 import { useRoutineSchemas } from "@/hooks/useRoutineSchemas";
 import { generateFAQSchema, generateExercisePlanSchema } from "@/lib/schemas";
+
+const TOC_ITEMS = [
+  { id: "que-es", label: "Qué es" },
+  { id: "beneficios", label: "Beneficios" },
+  { id: "video-rutina", label: "Vídeo guiado" },
+  { id: "calentamiento", label: "Calentamiento" },
+  { id: "ejercicios", label: "Ejercicios" },
+  { id: "videos", label: "Más vídeos" },
+  { id: "tabla-rutina", label: "Tabla semanal" },
+  { id: "planificacion", label: "Plan 4 semanas" },
+  { id: "progresion", label: "Progresión" },
+  { id: "faq", label: "FAQ" },
+  { id: "cta-trial", label: "Prueba gratis" },
+];
 
 export const faqs = [
   {
@@ -263,8 +280,13 @@ const RutinaCasa = () => {
             />
           </div>
 
+          {/* Sticky Table of Contents */}
+          <div className="container mx-auto px-4">
+            <StickyTOC items={TOC_ITEMS} />
+          </div>
+
           {/* Por Qué Entrenar en Casa */}
-          <section id="que-es" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
+          <section id="que-es" className="py-12 md:py-16 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Qué es la calistenia en <span className="text-primary">casa</span> y por qué funciona
@@ -315,7 +337,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* Beneficios de la Calistenia en Casa */}
-          <section id="beneficios" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
+          <section id="beneficios" className="py-12 md:py-16 scroll-mt-24 border-t border-border/40">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Beneficios de entrenar calistenia en <span className="text-primary">casa</span>
@@ -348,7 +370,7 @@ const RutinaCasa = () => {
 
           {/* Video Principal Estructurado */}
           <div id="video-rutina" className="relative -top-20"></div>
-          <section className="py-20 md:py-24">
+          <section className="py-12 md:py-16">
             <div className="container mx-auto px-4">
               <VideoWithStructure
                 videoId={mainVideoId}
@@ -388,7 +410,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* Preparación para el Entrenamiento Funcional en Casa */}
-          <section id="calentamiento" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
+          <section id="calentamiento" className="py-12 md:py-16 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Calentamiento y prevención de <span className="text-primary">lesiones</span>
@@ -542,7 +564,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* Ejercicios Básicos de Calistenia en Casa */}
-          <section id="ejercicios" className="py-20 md:py-24 scroll-mt-24">
+          <section id="ejercicios" className="py-12 md:py-16 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Ejercicios de calistenia en casa para <span className="text-primary">principiantes</span>
@@ -950,7 +972,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* Galería de Videos */}
-          <section id="videos" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
+          <section id="videos" className="py-12 md:py-16 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
               <VideoGallery 
                 videos={videosEnCasa}
@@ -964,7 +986,7 @@ const RutinaCasa = () => {
           <CommunityCTA />
 
           {/* Tabla Rutina Semanal Detallada */}
-          <section id="tabla-rutina" className="py-20 md:py-24 scroll-mt-24">
+          <section id="tabla-rutina" className="py-12 md:py-16 scroll-mt-24 bg-gradient-to-b from-primary/5 via-background to-background">
             <div className="container mx-auto px-4">
               <div className="max-w-5xl mx-auto">
                 <div className="text-center mb-12">
@@ -1197,119 +1219,31 @@ const RutinaCasa = () => {
           </section>
 
           {/* Cómo Diseñar tu Rutina Semanal */}
-          <section id="planificacion" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
-
+          <section id="planificacion" className="py-12 md:py-16 bg-muted/40 scroll-mt-24">
             <div className="container mx-auto px-4">
-              <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Plan de calistenia en casa: cómo organizar tu <span className="text-primary">semana</span>
-              </h2>
-              
-              <div className="max-w-5xl mx-auto space-y-8">
-                <Card className="border-primary/20 hover:shadow-elegant transition-all duration-300">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-3">
-                      <Calendar className="w-8 h-8 text-primary" />
-                      Planificación Según tu Nivel
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid md:grid-cols-3 gap-6">
-                      <div className="bg-muted/50 p-6 rounded-lg">
-                        <h4 className="font-semibold text-lg mb-3 text-primary">Principiantes</h4>
-                        <ul className="space-y-2 text-sm text-muted-foreground">
-                          <li><strong>Frecuencia:</strong> 3 días/semana</li>
-                          <li><strong>Duración:</strong> 20-30 minutos</li>
-                          <li><strong>Enfoque:</strong> Técnica y adaptación</li>
-                          <li><strong>Descanso:</strong> 48h entre sesiones</li>
-                        </ul>
-                        <div className="mt-4 p-3 bg-background rounded text-xs">
-                          <p className="font-semibold mb-1">Ejemplo semanal:</p>
-                          <p>Lun: Full Body</p>
-                          <p>Mié: Full Body</p>
-                          <p>Vie: Full Body</p>
-                        </div>
-                      </div>
+              <div className="text-center mb-8 max-w-3xl mx-auto">
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider mb-3">
+                  <Calendar className="w-3.5 h-3.5" />
+                  Plan progresivo · 4 semanas
+                </span>
+                <h2 className="font-display font-bold text-3xl md:text-4xl mb-3">
+                  Plan de calistenia en casa: progresión <span className="text-primary">4 semanas</span>
+                </h2>
+                <p className="text-muted-foreground">
+                  De adaptación a intensidad y deload. Un mes completo de entrenamiento sin material para construir base, ganar volumen y medir tu progreso real.
+                </p>
+              </div>
 
-                      <div className="bg-muted/50 p-6 rounded-lg">
-                        <h4 className="font-semibold text-lg mb-3 text-primary">Intermedios</h4>
-                        <ul className="space-y-2 text-sm text-muted-foreground">
-                          <li><strong>Frecuencia:</strong> 4-5 días/semana</li>
-                          <li><strong>Duración:</strong> 30-45 minutos</li>
-                          <li><strong>Enfoque:</strong> División muscular</li>
-                          <li><strong>Descanso:</strong> 24-48h por grupo</li>
-                        </ul>
-                        <div className="mt-4 p-3 bg-background rounded text-xs">
-                          <p className="font-semibold mb-1">Ejemplo semanal:</p>
-                          <p>Lun: Tren Superior</p>
-                          <p>Mar: Tren Inferior</p>
-                          <p>Jue: Core + HIIT</p>
-                          <p>Vie: Full Body</p>
-                        </div>
-                      </div>
+              <WeeklyPlanTabs />
 
-                      <div className="bg-muted/50 p-6 rounded-lg">
-                        <h4 className="font-semibold text-lg mb-3 text-primary">Avanzados</h4>
-                        <ul className="space-y-2 text-sm text-muted-foreground">
-                          <li><strong>Frecuencia:</strong> 5-6 días/semana</li>
-                          <li><strong>Duración:</strong> 45-60 minutos</li>
-                          <li><strong>Enfoque:</strong> Especialización</li>
-                          <li><strong>Descanso:</strong> Activo o completo</li>
-                        </ul>
-                        <div className="mt-4 p-3 bg-background rounded text-xs">
-                          <p className="font-semibold mb-1">Ejemplo semanal:</p>
-                          <p>Lun: Empuje</p>
-                          <p>Mar: Tracción</p>
-                          <p>Mié: Piernas</p>
-                          <p>Jue: Core + Skills</p>
-                          <p>Vie: HIIT</p>
-                          <p>Sáb: Full Body</p>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-3">
-                      <Clock className="w-8 h-8 text-primary" />
-                      Estructura de una Sesión Efectiva
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div className="flex items-start gap-4 p-4 bg-muted/50 rounded-lg">
-                        <div className="bg-primary text-primary-foreground font-bold rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">1</div>
-                        <div>
-                          <h4 className="font-semibold mb-1">Calentamiento (5-10 min)</h4>
-                          <p className="text-sm text-muted-foreground">Movilidad articular + estiramientos dinámicos + activación cardiovascular</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start gap-4 p-4 bg-muted/50 rounded-lg">
-                        <div className="bg-primary text-primary-foreground font-bold rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">2</div>
-                        <div>
-                          <h4 className="font-semibold mb-1">Ejercicios Principales (20-40 min)</h4>
-                          <p className="text-sm text-muted-foreground">4-6 ejercicios de calistenia enfocados en tu objetivo del día</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start gap-4 p-4 bg-muted/50 rounded-lg">
-                        <div className="bg-primary text-primary-foreground font-bold rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">3</div>
-                        <div>
-                          <h4 className="font-semibold mb-1">Estiramiento (5 min)</h4>
-                          <p className="text-sm text-muted-foreground">Estiramientos estáticos para los grupos musculares trabajados</p>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+              <div className="max-w-4xl mx-auto mt-10">
+                <TrialCTA variant="inline" utmMedium="plan-4-semanas" />
               </div>
             </div>
           </section>
 
           {/* Progresión sin Equipamiento */}
-          <section id="progresion" className="py-20 md:py-24 scroll-mt-24">
+          <section id="progresion" className="py-12 md:py-16 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Progresión en calistenia en casa sin <span className="text-primary">equipamiento</span>
@@ -1412,7 +1346,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* FAQ Section */}
-          <section id="faq" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
+          <section id="faq" className="py-12 md:py-16 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Preguntas frecuentes sobre <span className="text-primary">calistenia en casa</span>
@@ -1445,33 +1379,9 @@ const RutinaCasa = () => {
           </section>
 
           {/* CTA Final */}
-          <section id="cta-trial" className="py-20 md:py-24 scroll-mt-24">
+          <section id="cta-trial" className="py-12 md:py-16 scroll-mt-24 bg-gradient-to-b from-background via-primary/5 to-background">
             <div className="container mx-auto px-4">
-              <div className="max-w-4xl mx-auto">
-                <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-secondary via-secondary to-primary/30 p-10 md:p-16 text-center shadow-elegant">
-                  <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-primary/20 blur-3xl" />
-                  <div className="relative z-10">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 bg-primary/10 border border-primary/30 rounded-full backdrop-blur-sm">
-                      <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
-                      <span className="text-[10px] md:text-xs font-bold tracking-[0.15em] text-primary uppercase">
-                        Plan personalizado
-                      </span>
-                    </div>
-                    <h2 className="font-display font-extrabold text-3xl md:text-5xl text-white mb-4 leading-tight">
-                      ¿Quieres un plan <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">100% adaptado</span> a ti?
-                    </h2>
-                    <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto mb-8">
-                      Descubre nuestros programas de entrenamiento adaptados a tus objetivos y nivel.
-                    </p>
-                    <Button size="lg" asChild className="text-lg px-8 py-6 rounded-xl font-bold shadow-xl">
-                      <Link to="/programas/">
-                        Ver programas de entrenamiento
-                        <ArrowRight className="ml-2" />
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              </div>
+              <TrialCTA variant="full" utmMedium="cta-final" />
             </div>
           </section>
         </main>
