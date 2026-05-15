@@ -264,7 +264,7 @@ const RutinaCasa = () => {
           </div>
 
           {/* Por Qué Entrenar en Casa */}
-          <section id="que-es" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
+          <section id="que-es" className="py-12 md:py-16 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Qué es la calistenia en <span className="text-primary">casa</span> y por qué funciona
@@ -315,7 +315,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* Beneficios de la Calistenia en Casa */}
-          <section id="beneficios" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
+          <section id="beneficios" className="py-12 md:py-16 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Beneficios de entrenar calistenia en <span className="text-primary">casa</span>
@@ -348,7 +348,7 @@ const RutinaCasa = () => {
 
           {/* Video Principal Estructurado */}
           <div id="video-rutina" className="relative -top-20"></div>
-          <section className="py-20 md:py-24">
+          <section className="py-12 md:py-16">
             <div className="container mx-auto px-4">
               <VideoWithStructure
                 videoId={mainVideoId}
@@ -388,7 +388,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* Preparación para el Entrenamiento Funcional en Casa */}
-          <section id="calentamiento" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
+          <section id="calentamiento" className="py-12 md:py-16 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Calentamiento y prevención de <span className="text-primary">lesiones</span>
@@ -542,7 +542,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* Ejercicios Básicos de Calistenia en Casa */}
-          <section id="ejercicios" className="py-20 md:py-24 scroll-mt-24">
+          <section id="ejercicios" className="py-12 md:py-16 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Ejercicios de calistenia en casa para <span className="text-primary">principiantes</span>
@@ -950,7 +950,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* Galería de Videos */}
-          <section id="videos" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
+          <section id="videos" className="py-12 md:py-16 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
               <VideoGallery 
                 videos={videosEnCasa}
@@ -964,7 +964,7 @@ const RutinaCasa = () => {
           <CommunityCTA />
 
           {/* Tabla Rutina Semanal Detallada */}
-          <section id="tabla-rutina" className="py-20 md:py-24 scroll-mt-24">
+          <section id="tabla-rutina" className="py-12 md:py-16 scroll-mt-24">
             <div className="container mx-auto px-4">
               <div className="max-w-5xl mx-auto">
                 <div className="text-center mb-12">
@@ -1197,7 +1197,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* Cómo Diseñar tu Rutina Semanal */}
-          <section id="planificacion" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
+          <section id="planificacion" className="py-12 md:py-16 bg-muted/30 scroll-mt-24">
 
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
@@ -1309,7 +1309,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* Progresión sin Equipamiento */}
-          <section id="progresion" className="py-20 md:py-24 scroll-mt-24">
+          <section id="progresion" className="py-12 md:py-16 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Progresión en calistenia en casa sin <span className="text-primary">equipamiento</span>
@@ -1412,7 +1412,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* FAQ Section */}
-          <section id="faq" className="py-20 md:py-24 bg-muted/30 scroll-mt-24">
+          <section id="faq" className="py-12 md:py-16 bg-muted/30 scroll-mt-24">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
                 Preguntas frecuentes sobre <span className="text-primary">calistenia en casa</span>
@@ -1445,7 +1445,7 @@ const RutinaCasa = () => {
           </section>
 
           {/* CTA Final */}
-          <section id="cta-trial" className="py-20 md:py-24 scroll-mt-24">
+          <section id="cta-trial" className="py-12 md:py-16 scroll-mt-24">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-secondary via-secondary to-primary/30 p-10 md:p-16 text-center shadow-elegant">
