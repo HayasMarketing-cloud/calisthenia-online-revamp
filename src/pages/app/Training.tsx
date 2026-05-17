@@ -85,7 +85,7 @@ const Training = () => {
     setShowCheckin(true);
   }, []);
 
-  const handleCheckinSubmit = useCallback(async (data: { difficulty: number; energy: number; comment: string }) => {
+  const handleCheckinSubmit = useCallback(async (data: import('@/components/app/SessionCheckinDialog').CheckinPayload) => {
     const sid = activeSessionId;
     if (!sid) return;
 
@@ -102,7 +102,11 @@ const Training = () => {
       difficulty_rating: data.difficulty,
       energy_rating: data.energy,
       comment: data.comment || null,
-    });
+      session_feeling: data.session_feeling,
+      pain_level: data.pain_level,
+      pain_location: data.pain_location,
+      duration_minutes_real: data.duration_minutes_real,
+    } as never);
 
     // Recalculate adherence
     await supabase.rpc('recalculate_adherence', { p_client_id: user!.id });
