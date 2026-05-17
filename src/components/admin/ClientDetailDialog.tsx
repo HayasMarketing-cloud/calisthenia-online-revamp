@@ -11,6 +11,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Loader2, User, Dumbbell, Heart, TrendingUp, Calendar, MessageSquare, Target, ClipboardList, Wrench, Video } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 import { es } from 'date-fns/locale';
+import { WeeklyReviewForm, AdjustmentForm, GoalForm, TechniqueReviewForm } from './CoachClientForms';
 
 interface ClientDetailDialogProps {
   open: boolean;
