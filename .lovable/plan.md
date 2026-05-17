@@ -14,7 +14,7 @@
 | **Fase 1** — Tablas nuevas + VIEW | ✅ | 6 tablas + VIEW `client_engagement_metrics` + bucket `technique-videos` + RLS |
 | **Bloque A** — Operativa coach completa | ✅ | Formularios coach, cron jobs, KPIs y filtros en CoachPanel |
 | **Bloque B** — Motivación alumno | ⬜ | Rachas, badges, hitos, gráfica de adherencia/objetivos en área privada |
-| **Fase 2** — Versionado + overrides | 🟡 | Tablas creadas (`program_template_versions`, `program_day_overrides`); falta UI |
+| **Fase 2** — Versionado + overrides | ✅ | Tablas + RPC + UI completas (versiones, snapshot, overrides en CoachDialog y aplicación en Training) |
 | **Fase 3** — Multi-coach | ⬜ | Diferida hasta segundo profesor |
 
 ---
@@ -70,11 +70,11 @@ Objetivo: que el alumno BASE perciba avance y vuelva a la app sin necesidad de e
   - Requiere también `goal_progress_history` (propuesta B del plan original)
 - **B.5** Toast/celebración al completar sesión con racha activa
 
-### Fase 2 — UI de versionado y overrides
-- **C.1** Vista de versiones en `/admin/programs/templates/:id/versions` con diff resumido
-- **C.2** Botón "Snapshot versión actual" antes de editar plantilla
-- **C.3** Modal "Personalizar día" en `ClientDetailDialog` → inserta en `program_day_overrides`
-- **C.4** `Training.tsx` (alumno): resolver override activo al cargar día de entrenamiento
+### Fase 2 — UI de versionado y overrides ✅
+- **C.1** `/admin/programs/:id/versions` lista versiones con resumen y JSON viewer
+- **C.2** Botón "Snapshot" + acceso a "Versiones" desde el editor de plantilla
+- **C.3** Tab "Overrides" en `ClientDetailDialog`: skip/note/swap/change/add/remove con caducidad y toggle activo
+- **C.4** `useTodayTraining` resuelve overrides activos no caducados y los aplica al día (incluido día reasignado, nota visible y ejercicios añadidos sin registro en DB)
 
 ### Bloque D — Mejoras de coaching (baja prioridad)
 - **D.1** Bandeja de "Revisiones semanales pendientes" en CoachPanel (alumnos activos sin `weekly_review` esta semana)

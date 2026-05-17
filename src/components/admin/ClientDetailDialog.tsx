@@ -8,10 +8,11 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress as ProgressBar } from '@/components/ui/progress';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { Loader2, User, Dumbbell, Heart, TrendingUp, Calendar, MessageSquare, Target, ClipboardList, Wrench, Video } from 'lucide-react';
+import { Loader2, User, Dumbbell, Heart, TrendingUp, Calendar, MessageSquare, Target, ClipboardList, Wrench, Video, Settings2 } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { WeeklyReviewForm, AdjustmentForm, GoalForm, TechniqueReviewForm } from './CoachClientForms';
+import ProgramDayOverridesTab from './ProgramDayOverridesTab';
 
 interface ClientDetailDialogProps {
   open: boolean;
@@ -225,6 +226,7 @@ const ClientDetailDialog = ({ open, onOpenChange, clientId, clientName }: Client
                 <TabsTrigger value="revisiones" className="text-xs"><ClipboardList className="h-3 w-3 mr-1" />Revisiones</TabsTrigger>
                 <TabsTrigger value="ajustes" className="text-xs"><Wrench className="h-3 w-3 mr-1" />Ajustes</TabsTrigger>
                 <TabsTrigger value="tecnica" className="text-xs"><Video className="h-3 w-3 mr-1" />Técnica</TabsTrigger>
+                <TabsTrigger value="overrides" className="text-xs"><Settings2 className="h-3 w-3 mr-1" />Overrides</TabsTrigger>
               </TabsList>
 
               <TabsContent value="resumen" className="space-y-5 mt-0">
@@ -523,6 +525,11 @@ const ClientDetailDialog = ({ open, onOpenChange, clientId, clientName }: Client
                     </Card>
                   ))
                 )}
+              </TabsContent>
+
+              {/* OVERRIDES */}
+              <TabsContent value="overrides" className="mt-0">
+                <ProgramDayOverridesTab clientId={clientId} />
               </TabsContent>
             </Tabs>
           )}

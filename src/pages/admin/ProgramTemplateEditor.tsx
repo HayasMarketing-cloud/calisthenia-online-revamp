@@ -12,7 +12,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem } from '@/components/ui/command';
-import { Loader2, Plus, Trash2, Calendar, Dumbbell, Moon, ChevronsUpDown, Check, Youtube } from 'lucide-react';
+import { Loader2, Plus, Trash2, Calendar, Dumbbell, Moon, ChevronsUpDown, Check, Youtube, History, Camera } from 'lucide-react';
+import { toast as sonnerToast } from 'sonner';
 
 // Extracts an 11-char YouTube video ID from a URL or returns the trimmed input if it already looks like an ID
 const parseYouTubeId = (input: string): string | null => {
@@ -261,12 +262,35 @@ const ProgramTemplateEditor = () => {
           </BreadcrumbList>
         </Breadcrumb>
 
-        <div>
-          <h1 className="text-2xl font-bold text-foreground">{program.name}</h1>
-          <p className="text-sm text-muted-foreground">{program.description || 'Sin descripción'}</p>
-          <div className="flex gap-2 mt-2">
-            <Badge variant="secondary">{program.duration_weeks} semanas</Badge>
-            <Badge variant="outline">{program.difficulty_level}</Badge>
+        <div className="flex items-start justify-between gap-4 flex-wrap">
+          <div>
+            <h1 className="text-2xl font-bold text-foreground">{program.name}</h1>
+            <p className="text-sm text-muted-foreground">{program.description || 'Sin descripción'}</p>
+            <div className="flex gap-2 mt-2">
+              <Badge variant="secondary">{program.duration_weeks} semanas</Badge>
+              <Badge variant="outline">{program.difficulty_level}</Badge>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={async () => {
+                const { error } = await supabase.rpc('create_template_version', {
+                  p_template_id: id!,
+                  p_change_notes: null,
+                });
+                if (error) sonnerToast.error(error.message);
+                else sonnerToast.success('Snapshot creado');
+              }}
+            >
+              <Camera className="h-4 w-4 mr-1" /> Snapshot
+            </Button>
+            <Button variant="outline" size="sm" asChild>
+              <Link to={`/admin/programs/${id}/versions`}>
+                <History className="h-4 w-4 mr-1" /> Versiones
+              </Link>
+            </Button>
           </div>
         </div>
 
