@@ -314,7 +314,14 @@ const Dashboard = () => {
                       <Flame className="h-4 w-4 text-primary" />
                     </div>
                     <div>
-                      <p className="text-lg font-bold text-foreground leading-none">{streak}</p>
+                      <p className="text-lg font-bold text-foreground leading-none">
+                        {streak}
+                        {longestStreak > streak && (
+                          <span className="text-xs font-normal text-muted-foreground ml-1.5">
+                            · récord {longestStreak}
+                          </span>
+                        )}
+                      </p>
                       <p className="text-xs text-muted-foreground">Racha actual</p>
                     </div>
                   </div>
