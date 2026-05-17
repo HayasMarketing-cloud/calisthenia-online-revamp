@@ -1465,6 +1465,7 @@ export type Database = {
         Args: { p_change_notes?: string; p_template_id: string }
         Returns: string
       }
+      generate_engagement_alerts: { Args: never; Returns: undefined }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -1476,6 +1477,7 @@ export type Database = {
         Args: { p_client_id: string }
         Returns: undefined
       }
+      snapshot_weekly_adherence: { Args: never; Returns: undefined }
     }
     Enums: {
       activity_level: "sedentary" | "light_active" | "active" | "very_active"
