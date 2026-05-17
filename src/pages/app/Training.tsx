@@ -106,7 +106,7 @@ const Training = () => {
       pain_level: data.pain_level,
       pain_location: data.pain_location,
       duration_minutes_real: data.duration_minutes_real,
-    } as never);
+    });
 
     // Recalculate adherence
     await supabase.rpc('recalculate_adherence', { p_client_id: user!.id });
