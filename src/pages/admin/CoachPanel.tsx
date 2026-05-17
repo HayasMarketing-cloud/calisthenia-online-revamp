@@ -403,6 +403,14 @@ const CoachPanel = () => {
               <div className="text-2xl font-bold text-foreground">{pendingReviews ?? 0}</div>
             </CardContent>
           </Card>
+          <Card className={pendingReviewClients > 0 ? 'border-orange-500/40' : undefined}>
+            <CardContent className="p-4">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
+                <ClipboardList className="h-3.5 w-3.5 text-orange-500" /> Sin revisión sem.
+              </div>
+              <div className="text-2xl font-bold text-foreground">{pendingReviewClients}</div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Alerts panel */}
