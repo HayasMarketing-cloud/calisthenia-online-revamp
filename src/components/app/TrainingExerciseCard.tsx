@@ -24,22 +24,22 @@ const TrainingExerciseCard = ({ item, index, completed, onToggle, disabled }: Pr
   };
 
   return (
-    <Card className={`transition-all duration-300 ${completed ? 'opacity-60 border-primary/30' : ''}`}>
+    <Card className={`transition-all duration-300 border-2 ${completed ? 'opacity-60 border-primary/40 bg-primary/5' : 'border-border hover:border-primary/30 shadow-sm'}`}>
       <CardContent className="p-4">
         <div className="flex items-start gap-3">
           <Checkbox
             checked={completed}
             onCheckedChange={() => onToggle(item.id)}
             disabled={disabled}
-            className="mt-1"
+            className="mt-1 h-6 w-6"
           />
           <div className="flex-1 min-w-0">
-            <div className="flex items-start gap-3 mb-2">
+            <div className="flex items-start gap-3 mb-3">
               {/* Thumbnail */}
               <button
                 type="button"
                 onClick={openVideo}
-                className="relative flex-shrink-0 w-20 h-14 rounded-md overflow-hidden bg-muted group"
+                className="relative flex-shrink-0 w-28 h-20 rounded-lg overflow-hidden bg-muted group shadow-sm"
                 aria-label={videoId ? 'Ver vídeo del ejercicio' : 'Sin vídeo disponible'}
                 disabled={!videoId}
               >
@@ -52,22 +52,22 @@ const TrainingExerciseCard = ({ item, index, completed, onToggle, disabled }: Pr
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors">
-                      <Play className="h-5 w-5 text-white fill-white" />
+                      <Play className="h-7 w-7 text-white fill-white" />
                     </div>
                   </>
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">
-                    <Dumbbell className="h-5 w-5 text-muted-foreground" />
+                    <Dumbbell className="h-6 w-6 text-muted-foreground" />
                   </div>
                 )}
               </button>
 
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold text-primary bg-primary/10 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0">
+                  <span className="text-sm font-bold text-primary-foreground bg-primary rounded-full w-7 h-7 flex items-center justify-center flex-shrink-0">
                     {index + 1}
                   </span>
-                  <h3 className={`font-semibold text-sm leading-tight ${completed ? 'line-through text-muted-foreground' : 'text-foreground'}`}>
+                  <h3 className={`font-bold text-base sm:text-lg leading-tight ${completed ? 'line-through text-muted-foreground' : 'text-foreground'}`}>
                     {item.exercise.name}
                   </h3>
                 </div>
@@ -78,7 +78,7 @@ const TrainingExerciseCard = ({ item, index, completed, onToggle, disabled }: Pr
             {item.exercise.muscle_groups && item.exercise.muscle_groups.length > 0 && (
               <div className="flex flex-wrap gap-1 mb-2">
                 {item.exercise.muscle_groups.map((mg) => (
-                  <Badge key={mg} variant="secondary" className="text-[10px] px-1.5 py-0">
+                  <Badge key={mg} variant="secondary" className="text-xs px-2 py-0.5">
                     {mg}
                   </Badge>
                 ))}
@@ -88,25 +88,25 @@ const TrainingExerciseCard = ({ item, index, completed, onToggle, disabled }: Pr
             {/* Sets / Reps / Rest */}
             <div className="flex flex-wrap gap-2 mb-2">
               {item.sets && (
-                <span className="text-xs bg-secondary/50 px-2 py-0.5 rounded">
+                <span className="text-sm font-semibold bg-secondary/70 text-secondary-foreground px-2.5 py-1 rounded-md">
                   {item.sets} series
                 </span>
               )}
               {item.reps && (
-                <span className="text-xs bg-secondary/50 px-2 py-0.5 rounded">
+                <span className="text-sm font-semibold bg-secondary/70 text-secondary-foreground px-2.5 py-1 rounded-md">
                   {item.reps} reps
                 </span>
               )}
               {item.rest_seconds && (
-                <span className="text-xs bg-secondary/50 px-2 py-0.5 rounded flex items-center gap-1">
-                  <Clock className="h-3 w-3" /> {item.rest_seconds}s
+                <span className="text-sm font-semibold bg-secondary/70 text-secondary-foreground px-2.5 py-1 rounded-md flex items-center gap-1">
+                  <Clock className="h-3.5 w-3.5" /> {item.rest_seconds}s
                 </span>
               )}
             </div>
 
             {/* Notes */}
             {item.notes && (
-              <p className="text-xs text-muted-foreground mb-2">{item.notes}</p>
+              <p className="text-sm text-muted-foreground mb-2">{item.notes}</p>
             )}
 
             {/* Video button */}
@@ -114,10 +114,10 @@ const TrainingExerciseCard = ({ item, index, completed, onToggle, disabled }: Pr
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-xs h-7 px-2 gap-1"
+                className="text-xs h-8 px-2 gap-1"
                 onClick={openVideo}
               >
-                <Play className="h-3 w-3" />
+                <Play className="h-3.5 w-3.5" />
                 Ver técnica
               </Button>
             )}
