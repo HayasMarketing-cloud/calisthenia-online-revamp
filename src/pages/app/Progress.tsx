@@ -4,9 +4,23 @@ import { useAuth } from '@/hooks/useAuth';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress as ProgressBar } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { BarChart3, Flame, Target, Activity, CalendarDays, ClipboardList, Video, MessageSquare } from 'lucide-react';
+import { BarChart3, Flame, Target, Activity, CalendarDays, ClipboardList, Video, MessageSquare, Trophy, Award } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 import { es } from 'date-fns/locale';
+import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, Cell } from 'recharts';
+
+const milestoneLabels: Record<string, { label: string; icon: string }> = {
+  streak_7: { label: 'Racha 7 días', icon: '🔥' },
+  streak_30: { label: 'Racha 30 días', icon: '🔥🔥' },
+  streak_90: { label: 'Racha 90 días', icon: '🏆' },
+  best_streak: { label: 'Nueva mejor racha', icon: '⚡' },
+  adherence_80: { label: 'Adherencia ≥80%', icon: '💪' },
+  first_session: { label: 'Primera sesión', icon: '🎯' },
+  goal_completed: { label: 'Objetivo completado', icon: '🏅' },
+  sessions_10: { label: '10 sesiones', icon: '✨' },
+  sessions_50: { label: '50 sesiones', icon: '🌟' },
+  sessions_100: { label: '100 sesiones', icon: '👑' },
+};
 
 const goalLabels: Record<string, string> = {
   weight_loss: 'Pérdida de peso',
