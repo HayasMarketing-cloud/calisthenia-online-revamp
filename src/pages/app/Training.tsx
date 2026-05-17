@@ -111,10 +111,23 @@ const Training = () => {
     // Recalculate adherence
     await supabase.rpc('recalculate_adherence', { p_client_id: user!.id });
 
+    // Leer racha actualizada para celebración
+    const { data: adh } = await supabase
+      .from('client_adherence')
+      .select('current_streak, longest_streak')
+      .eq('client_id', user!.id)
+      .maybeSingle();
+
     setShowCheckin(false);
     queryClient.invalidateQueries({ queryKey: ['today-training'] });
     queryClient.invalidateQueries({ queryKey: ['client-adherence'] });
-    toast({ title: '¡Sesión completada! 🎉', description: 'Tu progreso ha sido registrado.' });
+    queryClient.invalidateQueries({ queryKey: ['client-milestones'] });
+
+    const streak = adh?.current_streak ?? 0;
+    const isRecord = adh && adh.current_streak >= (adh.longest_streak ?? 0) && streak > 1;
+    let description = 'Tu progreso ha sido registrado.';
+    if (streak >= 2) description = `¡Racha de ${streak} días${isRecord ? ' — nuevo récord 🏆' : ' 🔥'}!`;
+    toast({ title: '¡Sesión completada! 🎉', description });
   }, [activeSessionId, user, queryClient]);
 
   // Loading

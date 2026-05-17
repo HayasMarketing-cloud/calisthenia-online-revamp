@@ -15,6 +15,7 @@ import {
   Smartphone,
 } from 'lucide-react';
 import GoalsWidget from '@/components/app/GoalsWidget';
+import PinnedGoalWidget from '@/components/app/PinnedGoalWidget';
 
 const greeting = () => {
   const h = new Date().getHours();
@@ -165,6 +166,7 @@ const Dashboard = () => {
   });
 
   const streak = adherence?.current_streak ?? 0;
+  const longestStreak = adherence?.longest_streak ?? 0;
   const pct7d = adherence?.adherence_pct_7d ? Math.round(Number(adherence.adherence_pct_7d)) : 0;
   const programmed = week?.programmed ?? 0;
   const completed = week?.completed ?? 0;
@@ -313,7 +315,14 @@ const Dashboard = () => {
                       <Flame className="h-4 w-4 text-primary" />
                     </div>
                     <div>
-                      <p className="text-lg font-bold text-foreground leading-none">{streak}</p>
+                      <p className="text-lg font-bold text-foreground leading-none">
+                        {streak}
+                        {longestStreak > streak && (
+                          <span className="text-xs font-normal text-muted-foreground ml-1.5">
+                            · récord {longestStreak}
+                          </span>
+                        )}
+                      </p>
                       <p className="text-xs text-muted-foreground">Racha actual</p>
                     </div>
                   </div>
@@ -331,6 +340,9 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         </section>
+
+        {/* Objetivo destacado */}
+        <PinnedGoalWidget />
 
         {/* Objetivos del alumno */}
         <GoalsWidget />
