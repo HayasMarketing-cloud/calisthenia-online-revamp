@@ -72,6 +72,35 @@ const Progress = () => {
     enabled: !!user,
   });
 
+  const { data: weekly } = useQuery({
+    queryKey: ['client-adherence-weekly', user?.id],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from('client_adherence_weekly')
+        .select('*')
+        .eq('client_id', user!.id)
+        .order('week_start_date', { ascending: false })
+        .limit(12);
+      return data || [];
+    },
+    enabled: !!user,
+  });
+
+  const { data: milestones } = useQuery({
+    queryKey: ['client-milestones', user?.id],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from('client_milestones')
+        .select('*')
+        .eq('client_id', user!.id)
+        .eq('is_archived', false)
+        .order('achieved_at', { ascending: false })
+        .limit(20);
+      return data || [];
+    },
+    enabled: !!user,
+  });
+
   const { data: goals } = useQuery({
     queryKey: ['client-goals-progress', user?.id],
     queryFn: async () => {
