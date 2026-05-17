@@ -87,6 +87,50 @@ const CoachPanel = () => {
     enabled: !!user,
   });
 
+  // Fetch active coach alerts (not dismissed)
+  const { data: alerts } = useQuery({
+    queryKey: ['coach-alerts'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('coach_alerts')
+        .select('id, client_id, alert_type, message, created_at, is_read')
+        .eq('is_dismissed', false)
+        .order('created_at', { ascending: false })
+        .limit(20);
+      if (error) throw error;
+      return data;
+    },
+    enabled: !!user,
+  });
+
+  // Pending technique reviews (waiting for coach feedback)
+  const { data: pendingReviews } = useQuery({
+    queryKey: ['coach-pending-reviews'],
+    queryFn: async () => {
+      const { count, error } = await supabase
+        .from('technique_reviews')
+        .select('id', { count: 'exact', head: true })
+        .eq('status', 'pending');
+      if (error) throw error;
+      return count ?? 0;
+    },
+    enabled: !!user,
+  });
+
+  // Dismiss alert
+  const dismissAlertMutation = useMutation({
+    mutationFn: async (alertId: string) => {
+      const { error } = await supabase
+        .from('coach_alerts')
+        .update({ is_dismissed: true, is_read: true })
+        .eq('id', alertId);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['coach-alerts'] });
+    },
+  });
+
   // Clone template and assign to client
   const assignMutation = useMutation({
     mutationFn: async ({ clientId, templateId }: { clientId: string; templateId: string }) => {
