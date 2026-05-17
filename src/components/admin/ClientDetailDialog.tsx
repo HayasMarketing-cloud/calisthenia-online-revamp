@@ -86,7 +86,8 @@ const ClientDetailDialog = ({ open, onOpenChange, clientId, clientName }: Client
           id, started_at, completed_at, status,
           program_day_id,
           session_checkins (
-            difficulty_rating, energy_rating, completed_workout, comment
+            difficulty_rating, energy_rating, completed_workout, comment,
+            session_feeling, pain_level, pain_location, rpe, duration_minutes_real, created_at
           )
         `)
         .eq('client_id', clientId)
