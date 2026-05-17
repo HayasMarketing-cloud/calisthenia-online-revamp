@@ -11,7 +11,20 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { toast } from 'sonner';
 import { Loader2, ChevronRight, ChevronLeft } from 'lucide-react';
 
-const TOTAL_STEPS = 4;
+const TOTAL_STEPS = 5;
+
+const GOAL_TYPES = [
+  { value: 'pull_ups', label: 'Dominadas', unit: 'reps' },
+  { value: 'push_ups', label: 'Flexiones', unit: 'reps' },
+  { value: 'squats', label: 'Sentadillas', unit: 'reps' },
+  { value: 'weight_loss', label: 'Perder peso', unit: 'kg' },
+  { value: 'hipertrofia', label: 'Ganar músculo', unit: 'kg' },
+  { value: 'mobility', label: 'Movilidad', unit: '' },
+  { value: 'autonomy', label: 'Autonomía', unit: '' },
+  { value: 'oposiciones', label: 'Oposiciones', unit: 'pts' },
+  { value: 'resistencia', label: 'Resistencia', unit: 'min' },
+  { value: 'custom', label: 'Otro', unit: '' },
+] as const;
 
 const Onboarding = () => {
   const { user } = useAuth();
