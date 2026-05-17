@@ -462,14 +462,6 @@ const ClientDetailDialog = ({ open, onOpenChange, clientId, clientName }: Client
                           </span>
                           <div className="flex items-center gap-2">
                             {!r.client_visible && <Badge variant="outline" className="text-[10px]">Privada</Badge>}
-                            <Button
-                              size="sm"
-                              variant="ghost"
-                              className="h-7 px-2 text-xs"
-                              onClick={() => openWeeklyReviewPrint(clientName, r)}
-                            >
-                              <Printer className="h-3 w-3 mr-1" /> PDF
-                            </Button>
                           </div>
                         </div>
                         {r.summary && <p className="text-xs text-foreground">{r.summary}</p>}
