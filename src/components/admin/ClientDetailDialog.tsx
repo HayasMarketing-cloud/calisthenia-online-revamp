@@ -111,6 +111,82 @@ const ClientDetailDialog = ({ open, onOpenChange, clientId, clientName }: Client
     enabled: open && dayIds.length > 0,
   });
 
+  // Goals
+  const { data: goals } = useQuery({
+    queryKey: ['coach-client-goals', clientId],
+    queryFn: async () => {
+      const { data } = await supabase.from('goal_progress').select('*').eq('client_id', clientId)
+        .order('is_active', { ascending: false }).order('updated_at', { ascending: false });
+      return data || [];
+    },
+    enabled: open && !!clientId,
+  });
+
+  const { data: weekly } = useQuery({
+    queryKey: ['coach-client-adherence-weekly', clientId],
+    queryFn: async () => {
+      const { data } = await supabase.from('client_adherence_weekly').select('*')
+        .eq('client_id', clientId).order('week_start_date', { ascending: false }).limit(12);
+      return data || [];
+    },
+    enabled: open && !!clientId,
+  });
+
+  const { data: engagement } = useQuery({
+    queryKey: ['coach-client-engagement', clientId],
+    queryFn: async () => {
+      const { data } = await supabase.from('client_engagement_metrics').select('*')
+        .eq('client_id', clientId).maybeSingle();
+      return data;
+    },
+    enabled: open && !!clientId,
+  });
+
+  const { data: reviews } = useQuery({
+    queryKey: ['coach-client-reviews', clientId],
+    queryFn: async () => {
+      const { data } = await supabase.from('weekly_reviews').select('*')
+        .eq('client_id', clientId).order('week_start_date', { ascending: false }).limit(10);
+      return data || [];
+    },
+    enabled: open && !!clientId,
+  });
+
+  const { data: adjustments } = useQuery({
+    queryKey: ['coach-client-adjustments', clientId],
+    queryFn: async () => {
+      const { data } = await supabase.from('program_adjustments').select('*')
+        .eq('client_id', clientId).order('applied_at', { ascending: false }).limit(15);
+      return data || [];
+    },
+    enabled: open && !!clientId,
+  });
+
+  const { data: technique } = useQuery({
+    queryKey: ['coach-client-technique', clientId],
+    queryFn: async () => {
+      const { data } = await supabase.from('technique_reviews').select('*')
+        .eq('client_id', clientId).order('created_at', { ascending: false }).limit(15);
+      return data || [];
+    },
+    enabled: open && !!clientId,
+  });
+
+  const goalLabels: Record<string, string> = {
+    weight_loss: 'Pérdida de peso', pull_ups: 'Dominadas', push_ups: 'Flexiones',
+    squats: 'Sentadillas', mobility: 'Movilidad', autonomy: 'Autonomía',
+    oposiciones: 'Oposiciones', hipertrofia: 'Hipertrofia', resistencia: 'Resistencia', custom: 'Personalizado',
+  };
+  const adjustmentLabels: Record<string, string> = {
+    volume: 'Volumen', intensity: 'Intensidad', exercise_swap: 'Cambio de ejercicio',
+    rest_day: 'Día de descanso', progression: 'Progresión', regression: 'Regresión',
+    mobility: 'Movilidad', other: 'Otro',
+  };
+  const calcGoalPct = (s: number | null, c: number | null, t: number | null) => {
+    if (s == null || c == null || t == null || t === s) return 0;
+    return Math.max(0, Math.min(100, Math.round(((c - s) / (t - s)) * 100)));
+  };
+
   const difficultyEmojis = ['', '😊', '🙂', '😐', '😤', '🥵'];
   const energyEmojis = ['', '😴', '😑', '⚡', '🔥', '💥'];
 
