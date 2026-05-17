@@ -446,6 +446,7 @@ const ClientDetailDialog = ({ open, onOpenChange, clientId, clientName }: Client
 
               {/* REVISIONES SEMANALES */}
               <TabsContent value="revisiones" className="space-y-3 mt-0">
+                <WeeklyReviewForm clientId={clientId} />
                 {!reviews || reviews.length === 0 ? (
                   <EmptyState icon={ClipboardList} text="Sin revisiones semanales" />
                 ) : (
