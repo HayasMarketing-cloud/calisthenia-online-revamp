@@ -375,7 +375,7 @@ const ProgramTemplateEditor = () => {
                                   : "bg-amber-500/10 border-2 border-dashed border-amber-500/50"
                               )}
                             >
-                              {/* Top row: number + thumb + title + actions */}
+                              {/* Top row: number + thumb + actions */}
                               <div className="flex items-start gap-3">
                                 <span className="text-muted-foreground font-bold text-sm pt-1 flex-shrink-0">{i + 1}.</span>
                                 {hasVideo ? (
@@ -383,7 +383,7 @@ const ProgramTemplateEditor = () => {
                                     href={`https://www.youtube.com/watch?v=${videoId}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="relative flex-shrink-0 w-24 aspect-video rounded-md overflow-hidden bg-black group"
+                                    className="relative flex-shrink-0 w-24 aspect-video rounded-md overflow-hidden bg-black"
                                     title="Ver técnica en YouTube"
                                   >
                                     <img
@@ -392,34 +392,19 @@ const ProgramTemplateEditor = () => {
                                       loading="lazy"
                                       className="w-full h-full object-cover"
                                     />
-                                    <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition-colors">
-                                      <div className="bg-red-600 rounded-full w-7 h-7 flex items-center justify-center">
-                                        <svg className="w-3.5 h-3.5 text-white fill-white ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                      </div>
-                                    </div>
                                   </a>
                                 ) : (
                                   <button
                                     type="button"
                                     onClick={openVideoEditor}
                                     title="Añadir vídeo de YouTube"
-                                    className="relative flex-shrink-0 w-24 aspect-video rounded-md border-2 border-dashed border-amber-500/60 bg-amber-500/10 hover:bg-amber-500/20 flex flex-col items-center justify-center gap-0.5 transition-colors group"
+                                    className="relative flex-shrink-0 w-24 aspect-video rounded-md border-2 border-dashed border-amber-500/60 bg-amber-500/10 hover:bg-amber-500/20 flex flex-col items-center justify-center gap-0.5 transition-colors"
                                   >
                                     <Plus className="h-4 w-4 text-amber-700 dark:text-amber-400" />
                                     <span className="text-[10px] font-semibold text-amber-700 dark:text-amber-400 leading-none">Vídeo</span>
                                   </button>
                                 )}
-                                <div className="flex-1 min-w-0">
-                                  <p className="font-semibold text-sm sm:text-base text-foreground leading-tight break-words">
-                                    {ex.exercise?.name || 'Ejercicio desconocido'}
-                                  </p>
-                                  {!hasVideo && (
-                                    <Badge variant="outline" className="mt-1 text-[10px] py-0 px-1.5 h-4 border-amber-500/60 text-amber-700 dark:text-amber-400 bg-amber-500/10">
-                                      Sin vídeo
-                                    </Badge>
-                                  )}
-                                </div>
-                                <div className="flex items-center gap-1 flex-shrink-0">
+                                <div className="flex items-center gap-1 flex-shrink-0 ml-auto">
                                   <Button
                                     size="sm"
                                     variant="ghost"
@@ -435,29 +420,41 @@ const ProgramTemplateEditor = () => {
                                 </div>
                               </div>
 
-                              {/* Stats row — full width, prominent */}
+                              {/* Title — full width, no truncate */}
+                              <div className="mt-3">
+                                <p className="font-bold text-base sm:text-lg text-foreground leading-tight break-words">
+                                  {ex.exercise?.name || 'Ejercicio desconocido'}
+                                </p>
+                                {!hasVideo && (
+                                  <Badge variant="outline" className="mt-1.5 text-[10px] py-0 px-1.5 h-4 border-amber-500/60 text-amber-700 dark:text-amber-400 bg-amber-500/10">
+                                    Sin vídeo
+                                  </Badge>
+                                )}
+                              </div>
+
+                              {/* Stats row — full width, prominent, black bg */}
                               <div className="grid grid-cols-3 gap-2 mt-3">
-                                <div className="rounded-md bg-secondary/60 px-2 py-2 text-center">
-                                  <div className="text-base sm:text-lg font-bold text-foreground leading-none">
+                                <div className="rounded-md bg-foreground px-2 py-2.5 text-center">
+                                  <div className="text-lg sm:text-xl font-extrabold text-background leading-none">
                                     {ex.sets ?? '—'}
                                   </div>
-                                  <div className="text-[10px] uppercase tracking-wide text-muted-foreground mt-1 font-semibold">
+                                  <div className="text-[10px] uppercase tracking-wider text-background/80 mt-1 font-bold">
                                     Series
                                   </div>
                                 </div>
-                                <div className="rounded-md bg-secondary/60 px-2 py-2 text-center">
-                                  <div className="text-base sm:text-lg font-bold text-foreground leading-none break-words">
+                                <div className="rounded-md bg-foreground px-2 py-2.5 text-center">
+                                  <div className="text-lg sm:text-xl font-extrabold text-background leading-none break-words">
                                     {ex.reps ?? '—'}
                                   </div>
-                                  <div className="text-[10px] uppercase tracking-wide text-muted-foreground mt-1 font-semibold">
+                                  <div className="text-[10px] uppercase tracking-wider text-background/80 mt-1 font-bold">
                                     Reps
                                   </div>
                                 </div>
-                                <div className="rounded-md bg-secondary/60 px-2 py-2 text-center">
-                                  <div className="text-base sm:text-lg font-bold text-foreground leading-none">
+                                <div className="rounded-md bg-foreground px-2 py-2.5 text-center">
+                                  <div className="text-lg sm:text-xl font-extrabold text-background leading-none">
                                     {ex.rest_seconds ? `${ex.rest_seconds}s` : '—'}
                                   </div>
-                                  <div className="text-[10px] uppercase tracking-wide text-muted-foreground mt-1 font-semibold">
+                                  <div className="text-[10px] uppercase tracking-wider text-background/80 mt-1 font-bold">
                                     Descanso
                                   </div>
                                 </div>
