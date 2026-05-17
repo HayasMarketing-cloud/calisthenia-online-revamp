@@ -369,20 +369,21 @@ const ProgramTemplateEditor = () => {
                             <div
                               key={ex.id}
                               className={cn(
-                                "flex items-center justify-between rounded-lg px-3 py-3 sm:py-2.5 text-sm transition-colors",
+                                "rounded-lg p-3 transition-colors",
                                 hasVideo
                                   ? "bg-card border border-border"
                                   : "bg-amber-500/10 border-2 border-dashed border-amber-500/50"
                               )}
                             >
-                              <div className="flex items-center gap-3 min-w-0">
-                                <span className="text-muted-foreground font-bold text-sm w-5 flex-shrink-0">{i + 1}.</span>
+                              {/* Top row: number + thumb + title + actions */}
+                              <div className="flex items-start gap-3">
+                                <span className="text-muted-foreground font-bold text-sm pt-1 flex-shrink-0">{i + 1}.</span>
                                 {hasVideo ? (
                                   <a
                                     href={`https://www.youtube.com/watch?v=${videoId}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="relative flex-shrink-0 w-24 sm:w-20 aspect-video rounded-md overflow-hidden bg-black group"
+                                    className="relative flex-shrink-0 w-24 aspect-video rounded-md overflow-hidden bg-black group"
                                     title="Ver técnica en YouTube"
                                   >
                                     <img
@@ -402,52 +403,78 @@ const ProgramTemplateEditor = () => {
                                     type="button"
                                     onClick={openVideoEditor}
                                     title="Añadir vídeo de YouTube"
-                                    className="relative flex-shrink-0 w-24 sm:w-20 aspect-video rounded-md border-2 border-dashed border-amber-500/60 bg-amber-500/10 hover:bg-amber-500/20 flex flex-col items-center justify-center gap-0.5 transition-colors group"
+                                    className="relative flex-shrink-0 w-24 aspect-video rounded-md border-2 border-dashed border-amber-500/60 bg-amber-500/10 hover:bg-amber-500/20 flex flex-col items-center justify-center gap-0.5 transition-colors group"
                                   >
                                     <Plus className="h-4 w-4 text-amber-700 dark:text-amber-400" />
                                     <span className="text-[10px] font-semibold text-amber-700 dark:text-amber-400 leading-none">Vídeo</span>
                                   </button>
                                 )}
-                                <div className="min-w-0">
-                                  <div className="flex items-center gap-2 flex-wrap">
-                                    <p className="font-semibold text-sm sm:text-base text-foreground truncate">{ex.exercise?.name || 'Ejercicio desconocido'}</p>
-                                    {!hasVideo && (
-                                      <Badge variant="outline" className="text-[10px] py-0 px-1.5 h-4 border-amber-500/60 text-amber-700 dark:text-amber-400 bg-amber-500/10">
-                                        Sin vídeo
-                                      </Badge>
-                                    )}
-                                  </div>
-                                  <div className="flex gap-3 text-xs sm:text-sm text-muted-foreground mt-1 font-medium">
-                                    {ex.sets && <span>{ex.sets} series</span>}
-                                    {ex.reps && <span>{ex.reps} reps</span>}
-                                    {ex.rest_seconds && <span>{ex.rest_seconds}s descanso</span>}
-                                  </div>
-                                  {ex.notes && <p className="text-xs text-muted-foreground italic mt-0.5">{ex.notes}</p>}
+                                <div className="flex-1 min-w-0">
+                                  <p className="font-semibold text-sm sm:text-base text-foreground leading-tight break-words">
+                                    {ex.exercise?.name || 'Ejercicio desconocido'}
+                                  </p>
                                   {!hasVideo && (
-                                    <button
-                                      type="button"
-                                      onClick={openVideoEditor}
-                                      className="inline-flex items-center gap-1 text-[11px] text-amber-700 dark:text-amber-400 hover:underline mt-1"
-                                    >
-                                      <Youtube className="h-3 w-3" /> Asignar vídeo de YouTube
-                                    </button>
+                                    <Badge variant="outline" className="mt-1 text-[10px] py-0 px-1.5 h-4 border-amber-500/60 text-amber-700 dark:text-amber-400 bg-amber-500/10">
+                                      Sin vídeo
+                                    </Badge>
                                   )}
                                 </div>
+                                <div className="flex items-center gap-1 flex-shrink-0">
+                                  <Button
+                                    size="sm"
+                                    variant="ghost"
+                                    className={cn("h-8 w-8 p-0", !hasVideo && "text-amber-600 hover:text-amber-700")}
+                                    title={hasVideo ? "Editar vídeo de YouTube" : "Añadir vídeo de YouTube"}
+                                    onClick={openVideoEditor}
+                                  >
+                                    <Youtube className="h-4 w-4" />
+                                  </Button>
+                                  <Button size="sm" variant="ghost" className="text-destructive h-8 w-8 p-0" onClick={() => removeExMutation.mutate(ex.id)}>
+                                    <Trash2 className="h-4 w-4" />
+                                  </Button>
+                                </div>
                               </div>
-                              <div className="flex items-center gap-1 flex-shrink-0">
-                                <Button
-                                  size="sm"
-                                  variant="ghost"
-                                  className={cn("h-7 w-7 p-0", !hasVideo && "text-amber-600 hover:text-amber-700")}
-                                  title={hasVideo ? "Editar vídeo de YouTube" : "Añadir vídeo de YouTube"}
+
+                              {/* Stats row — full width, prominent */}
+                              <div className="grid grid-cols-3 gap-2 mt-3">
+                                <div className="rounded-md bg-secondary/60 px-2 py-2 text-center">
+                                  <div className="text-base sm:text-lg font-bold text-foreground leading-none">
+                                    {ex.sets ?? '—'}
+                                  </div>
+                                  <div className="text-[10px] uppercase tracking-wide text-muted-foreground mt-1 font-semibold">
+                                    Series
+                                  </div>
+                                </div>
+                                <div className="rounded-md bg-secondary/60 px-2 py-2 text-center">
+                                  <div className="text-base sm:text-lg font-bold text-foreground leading-none break-words">
+                                    {ex.reps ?? '—'}
+                                  </div>
+                                  <div className="text-[10px] uppercase tracking-wide text-muted-foreground mt-1 font-semibold">
+                                    Reps
+                                  </div>
+                                </div>
+                                <div className="rounded-md bg-secondary/60 px-2 py-2 text-center">
+                                  <div className="text-base sm:text-lg font-bold text-foreground leading-none">
+                                    {ex.rest_seconds ? `${ex.rest_seconds}s` : '—'}
+                                  </div>
+                                  <div className="text-[10px] uppercase tracking-wide text-muted-foreground mt-1 font-semibold">
+                                    Descanso
+                                  </div>
+                                </div>
+                              </div>
+
+                              {ex.notes && (
+                                <p className="text-xs text-muted-foreground italic mt-2">{ex.notes}</p>
+                              )}
+                              {!hasVideo && (
+                                <button
+                                  type="button"
                                   onClick={openVideoEditor}
+                                  className="inline-flex items-center gap-1 text-xs text-amber-700 dark:text-amber-400 hover:underline mt-2 font-medium"
                                 >
-                                  <Youtube className="h-3.5 w-3.5" />
-                                </Button>
-                                <Button size="sm" variant="ghost" className="text-destructive h-7 w-7 p-0" onClick={() => removeExMutation.mutate(ex.id)}>
-                                  <Trash2 className="h-3 w-3" />
-                                </Button>
-                              </div>
+                                  <Youtube className="h-3.5 w-3.5" /> Asignar vídeo de YouTube
+                                </button>
+                              )}
                             </div>
                             );
                           })}
