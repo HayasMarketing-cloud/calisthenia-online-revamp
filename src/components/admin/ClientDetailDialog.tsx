@@ -352,10 +352,26 @@ const ClientDetailDialog = ({ open, onOpenChange, clientId, clientName }: Client
                               {statusBadge(session.status)}
                             </div>
                             {checkin && (
-                              <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
                                 <span>Dificultad: {difficultyEmojis[checkin.difficulty_rating] || checkin.difficulty_rating}</span>
                                 <span>Energía: {energyEmojis[checkin.energy_rating] || checkin.energy_rating}</span>
+                                {checkin.session_feeling && (
+                                  <span>{feelingLabels[checkin.session_feeling] || checkin.session_feeling}</span>
+                                )}
+                                {checkin.rpe != null && <span>RPE {checkin.rpe}/10</span>}
+                                {checkin.duration_minutes_real != null && (
+                                  <span>⏱ {checkin.duration_minutes_real} min</span>
+                                )}
                                 {!checkin.completed_workout && <Badge variant="destructive" className="text-[10px]">No completó</Badge>}
+                              </div>
+                            )}
+                            {checkin?.pain_level != null && checkin.pain_level >= 4 && (
+                              <div className="flex items-center gap-1.5 text-xs text-orange-600 dark:text-orange-400">
+                                <Heart className="h-3 w-3" />
+                                <span>
+                                  Dolor {checkin.pain_level}/10
+                                  {checkin.pain_location ? ` · ${checkin.pain_location}` : ''}
+                                </span>
                               </div>
                             )}
                             {checkin?.comment && (
