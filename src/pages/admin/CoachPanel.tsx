@@ -264,6 +264,13 @@ const CoachPanel = () => {
     .filter(c => {
       if (statusFilter === 'all') return true;
       const status = c.adherence?.status || 'new';
+      if (statusFilter === 'priority') {
+        // En riesgo / inactivo, o con programa activo sin revisión esta semana
+        return status === 'at_risk' || status === 'inactive' || (!!c.activeProgram && !c.hasReviewThisWeek);
+      }
+      if (statusFilter === 'pending_review') {
+        return !!c.activeProgram && !c.hasReviewThisWeek;
+      }
       return status === statusFilter;
     })
     .filter(c => {
@@ -300,6 +307,7 @@ const CoachPanel = () => {
   const totalClients = clients?.length || 0;
   const activeClients = (clients || []).filter(c => c.adherence?.status === 'active').length;
   const atRiskClients = (clients || []).filter(c => c.adherence?.status === 'at_risk' || c.adherence?.status === 'inactive').length;
+  const pendingReviewClients = (clients || []).filter(c => !!c.activeProgram && !c.hasReviewThisWeek).length;
   const avgAdherence7d = totalClients > 0
     ? Math.round(
         (clients || []).reduce((sum, c) => sum + Number(c.adherence?.adherence_pct_7d || 0), 0) / totalClients
