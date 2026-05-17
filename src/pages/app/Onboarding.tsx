@@ -145,6 +145,7 @@ const Onboarding = () => {
           {step === 2 && '🏃 Tu nivel actual'}
           {step === 3 && '💪 Baseline'}
           {step === 4 && '📅 Disponibilidad'}
+          {step === 5 && '🏁 Objetivo destacado'}
         </h1>
         <p className="text-muted-foreground mb-6 text-sm">Paso {step} de {TOTAL_STEPS}</p>
 
