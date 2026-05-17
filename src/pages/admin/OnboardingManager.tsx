@@ -182,6 +182,7 @@ const OnboardingManager = () => {
                     <TableHead>Nivel</TableHead>
                     <TableHead>Días/sem</TableHead>
                     <TableHead>Lugar</TableHead>
+                    <TableHead>Programa</TableHead>
                     <TableHead>Actualizado</TableHead>
                     <TableHead className="text-right">Acciones</TableHead>
                   </TableRow>
@@ -208,6 +209,21 @@ const OnboardingManager = () => {
                       </TableCell>
                       <TableCell className="text-sm text-muted-foreground">
                         {c.training_location || '—'}
+                      </TableCell>
+                      <TableCell className="text-sm">
+                        {c.program ? (
+                          <Link
+                            to={`/admin/programs/${c.program.id}`}
+                            className="inline-flex items-center gap-1.5 text-primary hover:underline"
+                          >
+                            <span className="truncate max-w-[180px]">{c.program.name}</span>
+                            <Badge variant={c.program.status === 'active' ? 'default' : 'outline'} className="text-[10px]">
+                              {c.program.status === 'active' ? 'Activo' : 'Borrador'}
+                            </Badge>
+                          </Link>
+                        ) : (
+                          <span className="text-xs text-muted-foreground">Sin asignar</span>
+                        )}
                       </TableCell>
                       <TableCell className="text-xs text-muted-foreground">
                         {c.updated_at ? format(new Date(c.updated_at), 'dd/MM/yyyy') : '—'}
