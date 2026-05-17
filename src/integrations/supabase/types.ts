@@ -209,6 +209,42 @@ export type Database = {
           },
         ]
       }
+      client_adherence_weekly: {
+        Row: {
+          assigned_sessions: number
+          client_id: string
+          completed_sessions: number
+          completion_rate: number
+          created_at: string
+          feedback_rate: number
+          id: string
+          inactivity_days: number
+          week_start_date: string
+        }
+        Insert: {
+          assigned_sessions?: number
+          client_id: string
+          completed_sessions?: number
+          completion_rate?: number
+          created_at?: string
+          feedback_rate?: number
+          id?: string
+          inactivity_days?: number
+          week_start_date: string
+        }
+        Update: {
+          assigned_sessions?: number
+          client_id?: string
+          completed_sessions?: number
+          completion_rate?: number
+          created_at?: string
+          feedback_rate?: number
+          id?: string
+          inactivity_days?: number
+          week_start_date?: string
+        }
+        Relationships: []
+      }
       client_profiles: {
         Row: {
           activity_level: Database["public"]["Enums"]["activity_level"] | null
@@ -480,6 +516,54 @@ export type Database = {
           },
         ]
       }
+      goal_progress: {
+        Row: {
+          client_id: string
+          created_at: string
+          current_value: number | null
+          custom_label: string | null
+          goal_type: Database["public"]["Enums"]["goal_type"]
+          id: string
+          is_active: boolean
+          notes: string | null
+          start_value: number | null
+          target_date: string | null
+          target_value: number | null
+          unit: string | null
+          updated_at: string
+        }
+        Insert: {
+          client_id: string
+          created_at?: string
+          current_value?: number | null
+          custom_label?: string | null
+          goal_type: Database["public"]["Enums"]["goal_type"]
+          id?: string
+          is_active?: boolean
+          notes?: string | null
+          start_value?: number | null
+          target_date?: string | null
+          target_value?: number | null
+          unit?: string | null
+          updated_at?: string
+        }
+        Update: {
+          client_id?: string
+          created_at?: string
+          current_value?: number | null
+          custom_label?: string | null
+          goal_type?: Database["public"]["Enums"]["goal_type"]
+          id?: string
+          is_active?: boolean
+          notes?: string | null
+          start_value?: number | null
+          target_date?: string | null
+          target_value?: number | null
+          unit?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           age: number
@@ -531,6 +615,48 @@ export type Database = {
           display_name?: string | null
           id?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      program_adjustments: {
+        Row: {
+          adjustment_type: Database["public"]["Enums"]["adjustment_type"]
+          affected_exercise_id: string | null
+          applied_at: string
+          client_id: string
+          coach_id: string | null
+          created_at: string
+          id: string
+          new_value: string | null
+          old_value: string | null
+          program_id: string | null
+          reason: string | null
+        }
+        Insert: {
+          adjustment_type: Database["public"]["Enums"]["adjustment_type"]
+          affected_exercise_id?: string | null
+          applied_at?: string
+          client_id: string
+          coach_id?: string | null
+          created_at?: string
+          id?: string
+          new_value?: string | null
+          old_value?: string | null
+          program_id?: string | null
+          reason?: string | null
+        }
+        Update: {
+          adjustment_type?: Database["public"]["Enums"]["adjustment_type"]
+          affected_exercise_id?: string | null
+          applied_at?: string
+          client_id?: string
+          coach_id?: string | null
+          created_at?: string
+          id?: string
+          new_value?: string | null
+          old_value?: string | null
+          program_id?: string | null
+          reason?: string | null
         }
         Relationships: []
       }
@@ -622,6 +748,48 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      program_phases: {
+        Row: {
+          created_at: string
+          end_week: number
+          id: string
+          name: string
+          notes: string | null
+          objective: string | null
+          order_index: number
+          phase_type: Database["public"]["Enums"]["phase_type"]
+          program_id: string
+          start_week: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          end_week: number
+          id?: string
+          name: string
+          notes?: string | null
+          objective?: string | null
+          order_index?: number
+          phase_type?: Database["public"]["Enums"]["phase_type"]
+          program_id: string
+          start_week: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          end_week?: number
+          id?: string
+          name?: string
+          notes?: string | null
+          objective?: string | null
+          order_index?: number
+          phase_type?: Database["public"]["Enums"]["phase_type"]
+          program_id?: string
+          start_week?: number
+          updated_at?: string
+        }
+        Relationships: []
       }
       program_weeks: {
         Row: {
@@ -949,6 +1117,57 @@ export type Database = {
           },
         ]
       }
+      technique_reviews: {
+        Row: {
+          client_id: string
+          client_notes: string | null
+          coach_feedback: string | null
+          coach_id: string | null
+          created_at: string
+          exercise_id: string | null
+          id: string
+          recommendations: string | null
+          reviewed_at: string | null
+          score: number | null
+          status: string
+          updated_at: string
+          video_storage_path: string | null
+          video_url: string | null
+        }
+        Insert: {
+          client_id: string
+          client_notes?: string | null
+          coach_feedback?: string | null
+          coach_id?: string | null
+          created_at?: string
+          exercise_id?: string | null
+          id?: string
+          recommendations?: string | null
+          reviewed_at?: string | null
+          score?: number | null
+          status?: string
+          updated_at?: string
+          video_storage_path?: string | null
+          video_url?: string | null
+        }
+        Update: {
+          client_id?: string
+          client_notes?: string | null
+          coach_feedback?: string | null
+          coach_id?: string | null
+          created_at?: string
+          exercise_id?: string | null
+          id?: string
+          recommendations?: string | null
+          reviewed_at?: string | null
+          score?: number | null
+          status?: string
+          updated_at?: string
+          video_storage_path?: string | null
+          video_url?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -997,6 +1216,48 @@ export type Database = {
           source?: string
           updated_at?: string
           video_id?: string
+        }
+        Relationships: []
+      }
+      weekly_reviews: {
+        Row: {
+          client_id: string
+          client_visible: boolean
+          coach_id: string | null
+          created_at: string
+          id: string
+          improvement_areas: string | null
+          next_steps: string | null
+          strengths: string | null
+          summary: string | null
+          updated_at: string
+          week_start_date: string
+        }
+        Insert: {
+          client_id: string
+          client_visible?: boolean
+          coach_id?: string | null
+          created_at?: string
+          id?: string
+          improvement_areas?: string | null
+          next_steps?: string | null
+          strengths?: string | null
+          summary?: string | null
+          updated_at?: string
+          week_start_date: string
+        }
+        Update: {
+          client_id?: string
+          client_visible?: boolean
+          coach_id?: string | null
+          created_at?: string
+          id?: string
+          improvement_areas?: string | null
+          next_steps?: string | null
+          strengths?: string | null
+          summary?: string | null
+          updated_at?: string
+          week_start_date?: string
         }
         Relationships: []
       }
@@ -1101,7 +1362,28 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      client_engagement_metrics: {
+        Row: {
+          adherence_rate: number | null
+          client_id: string | null
+          days_inactive: number | null
+          feedback_rate: number | null
+          risk_score: number | null
+          sessions_completed_30d: number | null
+          sessions_completed_7d: number | null
+          sessions_missed_30d: number | null
+          sessions_missed_7d: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "client_profiles_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Functions: {
       has_role: {
@@ -1124,6 +1406,15 @@ export type Database = {
         | "low_engagement"
         | "at_risk"
         | "inactive"
+      adjustment_type:
+        | "volume"
+        | "intensity"
+        | "exercise_swap"
+        | "rest_day"
+        | "progression"
+        | "regression"
+        | "mobility"
+        | "other"
       alert_type:
         | "inactive_2_3_days"
         | "inactive_4plus_days"
@@ -1141,6 +1432,17 @@ export type Database = {
         | "resistencia"
         | "pliometria"
         | "flexibilidad"
+      goal_type:
+        | "weight_loss"
+        | "pull_ups"
+        | "push_ups"
+        | "squats"
+        | "mobility"
+        | "autonomy"
+        | "oposiciones"
+        | "hipertrofia"
+        | "resistencia"
+        | "custom"
       journey_stage_type:
         | "base"
         | "control"
@@ -1156,6 +1458,15 @@ export type Database = {
         | "core"
         | "locomotion"
         | "isometric"
+      phase_type:
+        | "preparacion"
+        | "fuerza"
+        | "hipertrofia"
+        | "tecnica"
+        | "deload"
+        | "evaluacion"
+        | "mantenimiento"
+        | "custom"
       program_status: "draft" | "active" | "completed" | "paused" | "cancelled"
       session_feeling_type: "great" | "good" | "hard" | "too_hard" | "painful"
       session_status: "in_progress" | "completed" | "skipped"
@@ -1294,6 +1605,16 @@ export const Constants = {
         "at_risk",
         "inactive",
       ],
+      adjustment_type: [
+        "volume",
+        "intensity",
+        "exercise_swap",
+        "rest_day",
+        "progression",
+        "regression",
+        "mobility",
+        "other",
+      ],
       alert_type: [
         "inactive_2_3_days",
         "inactive_4plus_days",
@@ -1313,6 +1634,18 @@ export const Constants = {
         "pliometria",
         "flexibilidad",
       ],
+      goal_type: [
+        "weight_loss",
+        "pull_ups",
+        "push_ups",
+        "squats",
+        "mobility",
+        "autonomy",
+        "oposiciones",
+        "hipertrofia",
+        "resistencia",
+        "custom",
+      ],
       journey_stage_type: [
         "base",
         "control",
@@ -1329,6 +1662,16 @@ export const Constants = {
         "core",
         "locomotion",
         "isometric",
+      ],
+      phase_type: [
+        "preparacion",
+        "fuerza",
+        "hipertrofia",
+        "tecnica",
+        "deload",
+        "evaluacion",
+        "mantenimiento",
+        "custom",
       ],
       program_status: ["draft", "active", "completed", "paused", "cancelled"],
       session_feeling_type: ["great", "good", "hard", "too_hard", "painful"],
