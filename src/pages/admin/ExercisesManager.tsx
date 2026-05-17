@@ -35,6 +35,16 @@ const EXERCISE_CATEGORIES = [
   { value: 'flexibilidad', label: 'Flexibilidad' },
 ];
 
+const MOVEMENT_PATTERNS = [
+  { value: 'push', label: 'Empuje' },
+  { value: 'pull', label: 'Tracción' },
+  { value: 'squat', label: 'Sentadilla' },
+  { value: 'hinge', label: 'Bisagra' },
+  { value: 'core', label: 'Core' },
+  { value: 'locomotion', label: 'Locomoción' },
+  { value: 'isometric', label: 'Isométrico' },
+];
+
 interface ExerciseForm {
   id?: string;
   name: string;
@@ -44,6 +54,13 @@ interface ExerciseForm {
   difficulty_level: string;
   equipment_needed: string;
   category: string;
+  // Coach
+  movement_pattern: string;
+  coach_tips: string;
+  common_errors: string;
+  default_sets: string;
+  default_reps: string;
+  default_rest_seconds: string;
   // SEO
   seo_slug: string;
   primary_keyword: string;
@@ -62,6 +79,12 @@ const emptyForm: ExerciseForm = {
   difficulty_level: 'beginner',
   equipment_needed: '',
   category: '',
+  movement_pattern: '',
+  coach_tips: '',
+  common_errors: '',
+  default_sets: '',
+  default_reps: '',
+  default_rest_seconds: '',
   seo_slug: '',
   primary_keyword: '',
   aliases: '',
@@ -103,6 +126,12 @@ const ExercisesManager = () => {
         difficulty_level: data.difficulty_level as 'beginner' | 'intermediate' | 'advanced',
         equipment_needed: data.equipment_needed ? data.equipment_needed.split(',').map(s => s.trim()) : null,
         category: (data.category || null) as any,
+        movement_pattern: (data.movement_pattern || null) as any,
+        coach_tips: data.coach_tips.trim() || null,
+        common_errors: data.common_errors.trim() || null,
+        default_sets: data.default_sets ? parseInt(data.default_sets, 10) : null,
+        default_reps: data.default_reps.trim() || null,
+        default_rest_seconds: data.default_rest_seconds ? parseInt(data.default_rest_seconds, 10) : null,
         seo_slug: data.seo_slug.trim() || null,
         primary_keyword: data.primary_keyword.trim() || null,
         aliases: data.aliases ? data.aliases.split(',').map(s => s.trim()).filter(Boolean) : [],
@@ -155,6 +184,12 @@ const ExercisesManager = () => {
       difficulty_level: ex.difficulty_level || 'beginner',
       equipment_needed: (ex.equipment_needed || []).join(', '),
       category: ex.category || '',
+      movement_pattern: ex.movement_pattern || '',
+      coach_tips: ex.coach_tips || '',
+      common_errors: ex.common_errors || '',
+      default_sets: ex.default_sets != null ? String(ex.default_sets) : '',
+      default_reps: ex.default_reps || '',
+      default_rest_seconds: ex.default_rest_seconds != null ? String(ex.default_rest_seconds) : '',
       seo_slug: ex.seo_slug || '',
       primary_keyword: ex.primary_keyword || '',
       aliases: (ex.aliases || []).join(', '),
@@ -378,6 +413,72 @@ const ExercisesManager = () => {
             <div className="space-y-2">
               <Label>Equipamiento (separado por comas)</Label>
               <Input value={form.equipment_needed} onChange={e => setForm(p => ({ ...p, equipment_needed: e.target.value }))} placeholder="Ej: barra, paralelas" />
+            </div>
+
+            {/* Coach fields */}
+            <div className="border-t pt-4 space-y-4">
+              <h3 className="font-semibold text-sm">Coaching</h3>
+
+              <div className="space-y-2">
+                <Label>Patrón de movimiento</Label>
+                <Select value={form.movement_pattern} onValueChange={v => setForm(p => ({ ...p, movement_pattern: v }))}>
+                  <SelectTrigger><SelectValue placeholder="Selecciona patrón" /></SelectTrigger>
+                  <SelectContent>
+                    {MOVEMENT_PATTERNS.map(p => <SelectItem key={p.value} value={p.value}>{p.label}</SelectItem>)}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label>Tips del coach</Label>
+                <Textarea
+                  value={form.coach_tips}
+                  onChange={e => setForm(p => ({ ...p, coach_tips: e.target.value }))}
+                  placeholder="Notas técnicas, claves de ejecución..."
+                  rows={3}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label>Errores comunes</Label>
+                <Textarea
+                  value={form.common_errors}
+                  onChange={e => setForm(p => ({ ...p, common_errors: e.target.value }))}
+                  placeholder="Errores frecuentes a corregir"
+                  rows={2}
+                />
+              </div>
+
+              <div className="grid grid-cols-3 gap-3">
+                <div className="space-y-2">
+                  <Label>Series</Label>
+                  <Input
+                    type="number"
+                    min="0"
+                    value={form.default_sets}
+                    onChange={e => setForm(p => ({ ...p, default_sets: e.target.value }))}
+                    placeholder="3"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label>Reps</Label>
+                  <Input
+                    value={form.default_reps}
+                    onChange={e => setForm(p => ({ ...p, default_reps: e.target.value }))}
+                    placeholder="8-12"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label>Descanso (s)</Label>
+                  <Input
+                    type="number"
+                    min="0"
+                    value={form.default_rest_seconds}
+                    onChange={e => setForm(p => ({ ...p, default_rest_seconds: e.target.value }))}
+                    placeholder="90"
+                  />
+                </div>
+              </div>
             </div>
 
             {/* SEO Fields */}

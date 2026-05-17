@@ -222,6 +222,8 @@ export type Database = {
           health_conditions: string | null
           height_cm: number | null
           id: string
+          journey_stage: Database["public"]["Enums"]["journey_stage_type"]
+          last_activity_at: string | null
           lifestyle_description: string | null
           long_term_goal: string | null
           max_pull_ups: number | null
@@ -247,6 +249,8 @@ export type Database = {
           health_conditions?: string | null
           height_cm?: number | null
           id: string
+          journey_stage?: Database["public"]["Enums"]["journey_stage_type"]
+          last_activity_at?: string | null
           lifestyle_description?: string | null
           long_term_goal?: string | null
           max_pull_ups?: number | null
@@ -272,6 +276,8 @@ export type Database = {
           health_conditions?: string | null
           height_cm?: number | null
           id?: string
+          journey_stage?: Database["public"]["Enums"]["journey_stage_type"]
+          last_activity_at?: string | null
           lifestyle_description?: string | null
           long_term_goal?: string | null
           max_pull_ups?: number | null
@@ -354,17 +360,27 @@ export type Database = {
         Row: {
           aliases: string[] | null
           category: Database["public"]["Enums"]["exercise_category"] | null
+          coach_tips: string | null
+          common_errors: string | null
           created_at: string
           created_by: string | null
+          default_reps: string | null
+          default_rest_seconds: number | null
+          default_sets: number | null
           description: string | null
           difficulty_level:
             | Database["public"]["Enums"]["difficulty_level"]
             | null
+          easier_variation_id: string | null
           equipment_needed: string[] | null
+          harder_variation_id: string | null
           id: string
           is_active: boolean | null
           is_public_seo: boolean
           monthly_volume: number | null
+          movement_pattern:
+            | Database["public"]["Enums"]["movement_pattern_type"]
+            | null
           muscle_groups: string[] | null
           name: string
           primary_keyword: string | null
@@ -377,17 +393,27 @@ export type Database = {
         Insert: {
           aliases?: string[] | null
           category?: Database["public"]["Enums"]["exercise_category"] | null
+          coach_tips?: string | null
+          common_errors?: string | null
           created_at?: string
           created_by?: string | null
+          default_reps?: string | null
+          default_rest_seconds?: number | null
+          default_sets?: number | null
           description?: string | null
           difficulty_level?:
             | Database["public"]["Enums"]["difficulty_level"]
             | null
+          easier_variation_id?: string | null
           equipment_needed?: string[] | null
+          harder_variation_id?: string | null
           id?: string
           is_active?: boolean | null
           is_public_seo?: boolean
           monthly_volume?: number | null
+          movement_pattern?:
+            | Database["public"]["Enums"]["movement_pattern_type"]
+            | null
           muscle_groups?: string[] | null
           name: string
           primary_keyword?: string | null
@@ -400,17 +426,27 @@ export type Database = {
         Update: {
           aliases?: string[] | null
           category?: Database["public"]["Enums"]["exercise_category"] | null
+          coach_tips?: string | null
+          common_errors?: string | null
           created_at?: string
           created_by?: string | null
+          default_reps?: string | null
+          default_rest_seconds?: number | null
+          default_sets?: number | null
           description?: string | null
           difficulty_level?:
             | Database["public"]["Enums"]["difficulty_level"]
             | null
+          easier_variation_id?: string | null
           equipment_needed?: string[] | null
+          harder_variation_id?: string | null
           id?: string
           is_active?: boolean | null
           is_public_seo?: boolean
           monthly_volume?: number | null
+          movement_pattern?:
+            | Database["public"]["Enums"]["movement_pattern_type"]
+            | null
           muscle_groups?: string[] | null
           name?: string
           primary_keyword?: string | null
@@ -426,6 +462,20 @@ export type Database = {
             columns: ["created_by"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exercises_easier_variation_id_fkey"
+            columns: ["easier_variation_id"]
+            isOneToOne: false
+            referencedRelation: "exercises"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exercises_harder_variation_id_fkey"
+            columns: ["harder_variation_id"]
+            isOneToOne: false
+            referencedRelation: "exercises"
             referencedColumns: ["id"]
           },
         ]
@@ -798,8 +848,15 @@ export type Database = {
           completed_workout: boolean
           created_at: string
           difficulty_rating: number
+          duration_minutes_real: number | null
           energy_rating: number
           id: string
+          pain_level: number | null
+          pain_location: string | null
+          rpe: number | null
+          session_feeling:
+            | Database["public"]["Enums"]["session_feeling_type"]
+            | null
           session_id: string
         }
         Insert: {
@@ -807,8 +864,15 @@ export type Database = {
           completed_workout: boolean
           created_at?: string
           difficulty_rating: number
+          duration_minutes_real?: number | null
           energy_rating: number
           id?: string
+          pain_level?: number | null
+          pain_location?: string | null
+          rpe?: number | null
+          session_feeling?:
+            | Database["public"]["Enums"]["session_feeling_type"]
+            | null
           session_id: string
         }
         Update: {
@@ -816,8 +880,15 @@ export type Database = {
           completed_workout?: boolean
           created_at?: string
           difficulty_rating?: number
+          duration_minutes_real?: number | null
           energy_rating?: number
           id?: string
+          pain_level?: number | null
+          pain_location?: string | null
+          rpe?: number | null
+          session_feeling?:
+            | Database["public"]["Enums"]["session_feeling_type"]
+            | null
           session_id?: string
         }
         Relationships: [
@@ -1047,7 +1118,12 @@ export type Database = {
     }
     Enums: {
       activity_level: "sedentary" | "light_active" | "active" | "very_active"
-      adherence_status: "new" | "active" | "at_risk" | "inactive"
+      adherence_status:
+        | "new"
+        | "active"
+        | "low_engagement"
+        | "at_risk"
+        | "inactive"
       alert_type:
         | "inactive_2_3_days"
         | "inactive_4plus_days"
@@ -1065,7 +1141,23 @@ export type Database = {
         | "resistencia"
         | "pliometria"
         | "flexibilidad"
+      journey_stage_type:
+        | "base"
+        | "control"
+        | "elite"
+        | "renewal"
+        | "annual_plan"
+        | "inactive"
+      movement_pattern_type:
+        | "push"
+        | "pull"
+        | "squat"
+        | "hinge"
+        | "core"
+        | "locomotion"
+        | "isometric"
       program_status: "draft" | "active" | "completed" | "paused" | "cancelled"
+      session_feeling_type: "great" | "good" | "hard" | "too_hard" | "painful"
       session_status: "in_progress" | "completed" | "skipped"
     }
     CompositeTypes: {
@@ -1195,7 +1287,13 @@ export const Constants = {
   public: {
     Enums: {
       activity_level: ["sedentary", "light_active", "active", "very_active"],
-      adherence_status: ["new", "active", "at_risk", "inactive"],
+      adherence_status: [
+        "new",
+        "active",
+        "low_engagement",
+        "at_risk",
+        "inactive",
+      ],
       alert_type: [
         "inactive_2_3_days",
         "inactive_4plus_days",
@@ -1215,7 +1313,25 @@ export const Constants = {
         "pliometria",
         "flexibilidad",
       ],
+      journey_stage_type: [
+        "base",
+        "control",
+        "elite",
+        "renewal",
+        "annual_plan",
+        "inactive",
+      ],
+      movement_pattern_type: [
+        "push",
+        "pull",
+        "squat",
+        "hinge",
+        "core",
+        "locomotion",
+        "isometric",
+      ],
       program_status: ["draft", "active", "completed", "paused", "cancelled"],
+      session_feeling_type: ["great", "good", "hard", "too_hard", "painful"],
       session_status: ["in_progress", "completed", "skipped"],
     },
   },
