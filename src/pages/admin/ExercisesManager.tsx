@@ -415,6 +415,72 @@ const ExercisesManager = () => {
               <Input value={form.equipment_needed} onChange={e => setForm(p => ({ ...p, equipment_needed: e.target.value }))} placeholder="Ej: barra, paralelas" />
             </div>
 
+            {/* Coach fields */}
+            <div className="border-t pt-4 space-y-4">
+              <h3 className="font-semibold text-sm">Coaching</h3>
+
+              <div className="space-y-2">
+                <Label>Patrón de movimiento</Label>
+                <Select value={form.movement_pattern} onValueChange={v => setForm(p => ({ ...p, movement_pattern: v }))}>
+                  <SelectTrigger><SelectValue placeholder="Selecciona patrón" /></SelectTrigger>
+                  <SelectContent>
+                    {MOVEMENT_PATTERNS.map(p => <SelectItem key={p.value} value={p.value}>{p.label}</SelectItem>)}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label>Tips del coach</Label>
+                <Textarea
+                  value={form.coach_tips}
+                  onChange={e => setForm(p => ({ ...p, coach_tips: e.target.value }))}
+                  placeholder="Notas técnicas, claves de ejecución..."
+                  rows={3}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label>Errores comunes</Label>
+                <Textarea
+                  value={form.common_errors}
+                  onChange={e => setForm(p => ({ ...p, common_errors: e.target.value }))}
+                  placeholder="Errores frecuentes a corregir"
+                  rows={2}
+                />
+              </div>
+
+              <div className="grid grid-cols-3 gap-3">
+                <div className="space-y-2">
+                  <Label>Series</Label>
+                  <Input
+                    type="number"
+                    min="0"
+                    value={form.default_sets}
+                    onChange={e => setForm(p => ({ ...p, default_sets: e.target.value }))}
+                    placeholder="3"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label>Reps</Label>
+                  <Input
+                    value={form.default_reps}
+                    onChange={e => setForm(p => ({ ...p, default_reps: e.target.value }))}
+                    placeholder="8-12"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label>Descanso (s)</Label>
+                  <Input
+                    type="number"
+                    min="0"
+                    value={form.default_rest_seconds}
+                    onChange={e => setForm(p => ({ ...p, default_rest_seconds: e.target.value }))}
+                    placeholder="90"
+                  />
+                </div>
+              </div>
+            </div>
+
             {/* SEO Fields */}
             <div className="border-t pt-4 space-y-4">
               <div className="flex items-center gap-2">
