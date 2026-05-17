@@ -25,14 +25,32 @@ const OnboardingManager = () => {
   const { data, isLoading } = useQuery({
     queryKey: ['admin-onboarding'],
     queryFn: async () => {
-      const [{ data: profiles }, { data: clientProfiles }, { data: roles }] = await Promise.all([
+      const [{ data: profiles }, { data: clientProfiles }, { data: roles }, { data: programs }] = await Promise.all([
         supabase.from('profiles').select('id, display_name, created_at').order('created_at', { ascending: false }),
         supabase.from('client_profiles').select('*'),
         supabase.from('user_roles').select('user_id, role'),
+        supabase
+          .from('programs')
+          .select('id, name, status, start_date, client_id')
+          .eq('is_template', false)
+          .in('status', ['active', 'draft']),
       ]);
 
       const adminIds = new Set((roles || []).filter(r => r.role === 'admin').map(r => r.user_id));
       const byId = new Map((clientProfiles || []).map(cp => [cp.id, cp]));
+      // Pick most relevant program per client (active > draft, most recent start_date)
+      const programByClient = new Map<string, { id: string; name: string; status: string; start_date: string | null }>();
+      (programs || [])
+        .slice()
+        .sort((a, b) => {
+          if (a.status !== b.status) return a.status === 'active' ? -1 : 1;
+          return (b.start_date || '').localeCompare(a.start_date || '');
+        })
+        .forEach(p => {
+          if (p.client_id && !programByClient.has(p.client_id)) {
+            programByClient.set(p.client_id, p);
+          }
+        });
 
       return (profiles || [])
         .filter(p => !adminIds.has(p.id))
@@ -50,6 +68,7 @@ const OnboardingManager = () => {
             training_days_per_week: cp?.training_days_per_week,
             training_location: cp?.training_location,
             updated_at: cp?.updated_at,
+            program: programByClient.get(p.id) || null,
           };
         });
     },
@@ -163,6 +182,7 @@ const OnboardingManager = () => {
                     <TableHead>Nivel</TableHead>
                     <TableHead>Días/sem</TableHead>
                     <TableHead>Lugar</TableHead>
+                    <TableHead>Programa</TableHead>
                     <TableHead>Actualizado</TableHead>
                     <TableHead className="text-right">Acciones</TableHead>
                   </TableRow>
@@ -189,6 +209,21 @@ const OnboardingManager = () => {
                       </TableCell>
                       <TableCell className="text-sm text-muted-foreground">
                         {c.training_location || '—'}
+                      </TableCell>
+                      <TableCell className="text-sm">
+                        {c.program ? (
+                          <Link
+                            to={`/admin/programs/${c.program.id}`}
+                            className="inline-flex items-center gap-1.5 text-primary hover:underline"
+                          >
+                            <span className="truncate max-w-[180px]">{c.program.name}</span>
+                            <Badge variant={c.program.status === 'active' ? 'default' : 'outline'} className="text-[10px]">
+                              {c.program.status === 'active' ? 'Activo' : 'Borrador'}
+                            </Badge>
+                          </Link>
+                        ) : (
+                          <span className="text-xs text-muted-foreground">Sin asignar</span>
+                        )}
                       </TableCell>
                       <TableCell className="text-xs text-muted-foreground">
                         {c.updated_at ? format(new Date(c.updated_at), 'dd/MM/yyyy') : '—'}
