@@ -358,7 +358,167 @@ const ClientDetailDialog = ({ open, onOpenChange, clientId, clientName }: Client
                   )}
                 </CardContent>
               </Card>
-            </div>
+              </TabsContent>
+
+              {/* OBJETIVOS */}
+              <TabsContent value="objetivos" className="space-y-3 mt-0">
+                {!goals || goals.length === 0 ? (
+                  <EmptyState icon={Target} text="Sin objetivos registrados" />
+                ) : (
+                  goals.map((g) => {
+                    const label = g.custom_label || goalLabels[g.goal_type] || 'Objetivo';
+                    const pct = calcGoalPct(
+                      g.start_value != null ? Number(g.start_value) : null,
+                      g.current_value != null ? Number(g.current_value) : null,
+                      g.target_value != null ? Number(g.target_value) : null
+                    );
+                    return (
+                      <Card key={g.id}>
+                        <CardContent className="p-3 space-y-2">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <span className="text-sm font-semibold text-foreground">{label}</span>
+                              {!g.is_active && <Badge variant="outline" className="text-[10px]">Inactivo</Badge>}
+                            </div>
+                            <span className="text-xs text-muted-foreground">
+                              {g.current_value ?? '—'} / {g.target_value ?? '—'} {g.unit || ''}
+                            </span>
+                          </div>
+                          <ProgressBar value={pct} className="h-2" />
+                          {g.target_date && (
+                            <p className="text-[11px] text-muted-foreground">
+                              Objetivo: {format(parseISO(g.target_date), "d MMM yyyy", { locale: es })}
+                            </p>
+                          )}
+                          {g.notes && <p className="text-xs text-muted-foreground italic">{g.notes}</p>}
+                        </CardContent>
+                      </Card>
+                    );
+                  })
+                )}
+              </TabsContent>
+
+              {/* ADHERENCIA */}
+              <TabsContent value="adherencia" className="space-y-3 mt-0">
+                <Card>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm">Engagement actual</CardTitle>
+                  </CardHeader>
+                  <CardContent className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <MetricBox label="Sesiones 7d" value={`${engagement?.sessions_completed_7d ?? 0}`} />
+                    <MetricBox label="Sesiones 30d" value={`${engagement?.sessions_completed_30d ?? 0}`} />
+                    <MetricBox label="Adherencia" value={engagement?.adherence_rate != null ? `${Math.round(Number(engagement.adherence_rate))}%` : '—'} />
+                    <MetricBox label="Feedback" value={engagement?.feedback_rate != null ? `${Math.round(Number(engagement.feedback_rate))}%` : '—'} />
+                    <MetricBox label="Días inactivo" value={`${engagement?.days_inactive ?? '—'}`} />
+                    <MetricBox label="Risk score" value={`${engagement?.risk_score ?? 0}`} />
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm">Histórico semanal</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    {!weekly || weekly.length === 0 ? (
+                      <p className="text-sm text-muted-foreground text-center py-4">Sin registros semanales aún</p>
+                    ) : (
+                      <div className="space-y-2">
+                        {weekly.map((w) => (
+                          <div key={w.id} className="space-y-1">
+                            <div className="flex items-center justify-between text-xs">
+                              <span className="font-medium text-foreground">
+                                Semana del {format(parseISO(w.week_start_date), 'd MMM yy', { locale: es })}
+                              </span>
+                              <span className="text-muted-foreground">
+                                {w.completed_sessions}/{w.assigned_sessions} · {Math.round(Number(w.completion_rate || 0))}% · {w.inactivity_days}d inactivo
+                              </span>
+                            </div>
+                            <ProgressBar value={Number(w.completion_rate || 0)} className="h-1.5" />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </TabsContent>
+
+              {/* REVISIONES SEMANALES */}
+              <TabsContent value="revisiones" className="space-y-3 mt-0">
+                {!reviews || reviews.length === 0 ? (
+                  <EmptyState icon={ClipboardList} text="Sin revisiones semanales" />
+                ) : (
+                  reviews.map((r) => (
+                    <Card key={r.id}>
+                      <CardContent className="p-3 space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-semibold text-foreground">
+                            Semana del {format(parseISO(r.week_start_date), "d 'de' MMMM yyyy", { locale: es })}
+                          </span>
+                          {!r.client_visible && <Badge variant="outline" className="text-[10px]">Privada</Badge>}
+                        </div>
+                        {r.summary && <p className="text-xs text-foreground">{r.summary}</p>}
+                        {r.strengths && <p className="text-xs"><span className="font-medium">Fortalezas:</span> <span className="text-muted-foreground">{r.strengths}</span></p>}
+                        {r.improvement_areas && <p className="text-xs"><span className="font-medium">A mejorar:</span> <span className="text-muted-foreground">{r.improvement_areas}</span></p>}
+                        {r.next_steps && <p className="text-xs"><span className="font-medium">Próximos pasos:</span> <span className="text-muted-foreground">{r.next_steps}</span></p>}
+                      </CardContent>
+                    </Card>
+                  ))
+                )}
+              </TabsContent>
+
+              {/* AJUSTES */}
+              <TabsContent value="ajustes" className="space-y-2 mt-0">
+                {!adjustments || adjustments.length === 0 ? (
+                  <EmptyState icon={Wrench} text="Sin ajustes registrados" />
+                ) : (
+                  adjustments.map((a) => (
+                    <div key={a.id} className="border rounded-lg p-3 space-y-1">
+                      <div className="flex items-center justify-between">
+                        <Badge variant="secondary" className="text-xs">{adjustmentLabels[a.adjustment_type] || a.adjustment_type}</Badge>
+                        <span className="text-[11px] text-muted-foreground">
+                          {format(new Date(a.applied_at), 'd MMM yyyy', { locale: es })}
+                        </span>
+                      </div>
+                      {a.reason && <p className="text-xs text-foreground">{a.reason}</p>}
+                      {(a.old_value || a.new_value) && (
+                        <p className="text-xs text-muted-foreground">
+                          {a.old_value || '—'} → <span className="font-medium text-foreground">{a.new_value || '—'}</span>
+                        </p>
+                      )}
+                    </div>
+                  ))
+                )}
+              </TabsContent>
+
+              {/* TÉCNICA */}
+              <TabsContent value="tecnica" className="space-y-3 mt-0">
+                {!technique || technique.length === 0 ? (
+                  <EmptyState icon={Video} text="Sin revisiones de técnica" />
+                ) : (
+                  technique.map((t) => (
+                    <Card key={t.id}>
+                      <CardContent className="p-3 space-y-1.5">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-medium text-foreground">
+                            {format(new Date(t.created_at), "d MMM yyyy", { locale: es })}
+                          </span>
+                          <Badge variant={t.status === 'reviewed' ? 'default' : 'outline'} className="text-[10px]">
+                            {t.status === 'reviewed' ? 'Revisado' : t.status === 'pending' ? 'Pendiente' : 'Archivado'}
+                          </Badge>
+                        </div>
+                        {t.client_notes && <p className="text-xs text-muted-foreground italic">"{t.client_notes}"</p>}
+                        {t.coach_feedback && <p className="text-xs"><span className="font-medium">Feedback:</span> {t.coach_feedback}</p>}
+                        {t.score != null && <p className="text-xs">Puntuación: <span className="font-medium">{t.score}/10</span></p>}
+                        {t.video_url && (
+                          <a href={t.video_url} target="_blank" rel="noopener noreferrer" className="text-xs text-primary underline">
+                            Ver video
+                          </a>
+                        )}
+                      </CardContent>
+                    </Card>
+                  ))
+                )}
+              </TabsContent>
+            </Tabs>
           )}
         </ScrollArea>
       </DialogContent>
