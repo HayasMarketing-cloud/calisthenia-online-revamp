@@ -341,6 +341,9 @@ const Dashboard = () => {
           </Card>
         </section>
 
+        {/* Objetivo destacado */}
+        <PinnedGoalWidget />
+
         {/* Objetivos del alumno */}
         <GoalsWidget />
 
