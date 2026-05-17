@@ -213,11 +213,11 @@ const Progress = () => {
         </CardContent>
       </Card>
 
-      {/* Adherencia semanal */}
+      {/* Adherencia semanal — gráfica histórica */}
       <Card className="rounded-2xl">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
-            <CalendarDays className="h-4 w-4 text-primary" /> Adherencia semanal
+            <CalendarDays className="h-4 w-4 text-primary" /> Evolución de adherencia
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -229,20 +229,83 @@ const Progress = () => {
               </p>
             </div>
           ) : (
-            <div className="space-y-3">
-              {weekly.map((w) => {
-                const pct = Number(w.completion_rate || 0);
+            <>
+              <div className="h-44 w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart
+                    data={[...weekly].reverse().map(w => ({
+                      week: format(parseISO(w.week_start_date), 'd MMM', { locale: es }),
+                      pct: Math.round(Number(w.completion_rate || 0)),
+                      completed: w.completed_sessions,
+                      assigned: w.assigned_sessions,
+                    }))}
+                    margin={{ top: 8, right: 8, left: -20, bottom: 0 }}
+                  >
+                    <XAxis dataKey="week" tick={{ fontSize: 10 }} stroke="hsl(var(--muted-foreground))" />
+                    <YAxis tick={{ fontSize: 10 }} stroke="hsl(var(--muted-foreground))" domain={[0, 100]} tickFormatter={v => `${v}%`} />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: 'hsl(var(--card))',
+                        border: '1px solid hsl(var(--border))',
+                        borderRadius: 8,
+                        fontSize: 12,
+                      }}
+                      formatter={(value, _name, item) => {
+                        const p = item.payload as { completed: number; assigned: number };
+                        return [`${value}% (${p.completed}/${p.assigned})`, 'Adherencia'];
+                      }}
+                    />
+                    <Bar dataKey="pct" radius={[6, 6, 0, 0]}>
+                      {[...weekly].reverse().map((w, i) => {
+                        const p = Number(w.completion_rate || 0);
+                        const color =
+                          p >= 80 ? 'hsl(var(--primary))' :
+                          p >= 50 ? 'hsl(38 92% 50%)' :
+                          'hsl(0 70% 60%)';
+                        return <Cell key={i} fill={color} />;
+                      })}
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+              <p className="text-[11px] text-muted-foreground text-center mt-2">
+                Últimas {weekly.length} semanas
+              </p>
+            </>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Hitos conseguidos */}
+      <Card className="rounded-2xl">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm flex items-center gap-2">
+            <Trophy className="h-4 w-4 text-primary" /> Mis logros
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          {!milestones || milestones.length === 0 ? (
+            <div className="text-center py-4">
+              <Award className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
+              <p className="text-sm text-muted-foreground">
+                Completa sesiones y objetivos para desbloquear tus primeros logros.
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-2">
+              {milestones.map(m => {
+                const meta = milestoneLabels[m.milestone_type] || { label: m.label || m.milestone_type, icon: '⭐' };
                 return (
-                  <div key={w.id} className="space-y-1">
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="font-medium text-foreground">
-                        Semana del {format(parseISO(w.week_start_date), 'd MMM', { locale: es })}
-                      </span>
-                      <span className="text-muted-foreground">
-                        {w.completed_sessions}/{w.assigned_sessions} · {Math.round(pct)}%
-                      </span>
+                  <div key={m.id} className="flex items-center gap-3 p-2.5 rounded-lg bg-muted/50 border border-border/50">
+                    <span className="text-xl shrink-0">{meta.icon}</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-foreground truncate">
+                        {m.label || meta.label}
+                      </p>
+                      <p className="text-[11px] text-muted-foreground">
+                        {format(new Date(m.achieved_at), "d 'de' MMMM yyyy", { locale: es })}
+                      </p>
                     </div>
-                    <ProgressBar value={pct} className="h-1.5" />
                   </div>
                 );
               })}
