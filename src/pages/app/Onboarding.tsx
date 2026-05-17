@@ -103,6 +103,21 @@ const Onboarding = () => {
         });
       }
 
+      // Create initial structured goal (optional)
+      if (form.initial_goal_type) {
+        await supabase.from('goal_progress').insert({
+          client_id: user.id,
+          goal_type: form.initial_goal_type as any,
+          custom_label: form.initial_goal_label || null,
+          start_value: form.initial_goal_start ? parseFloat(form.initial_goal_start) : null,
+          current_value: form.initial_goal_start ? parseFloat(form.initial_goal_start) : null,
+          target_value: form.initial_goal_target ? parseFloat(form.initial_goal_target) : null,
+          unit: form.initial_goal_unit || null,
+          target_date: form.initial_goal_date || null,
+          is_active: true,
+        });
+      }
+
       toast.success('¡Perfil completado! Bienvenido 💪');
       // Set cache directly to avoid race condition with AppRoute guard
       queryClient.setQueryData(['client-profile', user.id], { id: user.id });
