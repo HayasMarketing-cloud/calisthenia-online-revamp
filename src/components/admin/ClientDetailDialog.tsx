@@ -364,6 +364,7 @@ const ClientDetailDialog = ({ open, onOpenChange, clientId, clientName }: Client
 
               {/* OBJETIVOS */}
               <TabsContent value="objetivos" className="space-y-3 mt-0">
+                <GoalForm clientId={clientId} />
                 {!goals || goals.length === 0 ? (
                   <EmptyState icon={Target} text="Sin objetivos registrados" />
                 ) : (
