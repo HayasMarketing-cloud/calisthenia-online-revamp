@@ -28,6 +28,9 @@ const CoachPanel = () => {
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const [search, setSearch] = useState('');
+  const [statusFilter, setStatusFilter] = useState<string>('all');
+  const [programFilter, setProgramFilter] = useState<string>('all');
+  const [sortBy, setSortBy] = useState<string>('name_asc');
   const [assignDialog, setAssignDialog] = useState<{ open: boolean; clientId: string; clientName: string }>({ open: false, clientId: '', clientName: '' });
   const [selectedTemplate, setSelectedTemplate] = useState('');
   const [detailDialog, setDetailDialog] = useState<{ open: boolean; clientId: string; clientName: string }>({ open: false, clientId: '', clientName: '' });
