@@ -443,14 +443,64 @@ const CoachPanel = () => {
           </Card>
         )}
 
-        <div className="relative max-w-sm">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            placeholder="Buscar alumno..."
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            className="pl-10"
-          />
+        <div className="flex flex-wrap gap-2 items-center">
+          <div className="relative flex-1 min-w-[200px] max-w-sm">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              placeholder="Buscar alumno..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+          <Select value={statusFilter} onValueChange={setStatusFilter}>
+            <SelectTrigger className="w-[160px]">
+              <SelectValue placeholder="Estado" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Todos los estados</SelectItem>
+              <SelectItem value="active">Activos</SelectItem>
+              <SelectItem value="at_risk">En riesgo</SelectItem>
+              <SelectItem value="inactive">Inactivos</SelectItem>
+              <SelectItem value="new">Nuevos</SelectItem>
+            </SelectContent>
+          </Select>
+          <Select value={programFilter} onValueChange={setProgramFilter}>
+            <SelectTrigger className="w-[170px]">
+              <SelectValue placeholder="Programa" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Todos</SelectItem>
+              <SelectItem value="with">Con programa</SelectItem>
+              <SelectItem value="without">Sin programa</SelectItem>
+            </SelectContent>
+          </Select>
+          <Select value={sortBy} onValueChange={setSortBy}>
+            <SelectTrigger className="w-[200px]">
+              <SelectValue placeholder="Ordenar" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="name_asc">Nombre (A-Z)</SelectItem>
+              <SelectItem value="name_desc">Nombre (Z-A)</SelectItem>
+              <SelectItem value="adherence_desc">Más adherencia</SelectItem>
+              <SelectItem value="adherence_asc">Menos adherencia</SelectItem>
+              <SelectItem value="streak_desc">Mayor racha</SelectItem>
+              <SelectItem value="last_session">Sesión más reciente</SelectItem>
+              <SelectItem value="recent">Alta más reciente</SelectItem>
+            </SelectContent>
+          </Select>
+          {(statusFilter !== 'all' || programFilter !== 'all' || search) && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => { setSearch(''); setStatusFilter('all'); setProgramFilter('all'); }}
+            >
+              Limpiar
+            </Button>
+          )}
+          <span className="text-xs text-muted-foreground ml-auto">
+            {filteredClients.length} / {clients?.length || 0}
+          </span>
         </div>
 
         {/* Client table */}
