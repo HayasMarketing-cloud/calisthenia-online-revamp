@@ -561,7 +561,16 @@ const CoachPanel = () => {
                     const cfg = statusConfig[status] || statusConfig.new;
                     return (
                       <TableRow key={client.id}>
-                        <TableCell className="font-medium">{client.display_name || 'Sin nombre'}</TableCell>
+                        <TableCell className="font-medium">
+                          <div className="flex items-center gap-2">
+                            <span>{client.display_name || 'Sin nombre'}</span>
+                            {client.activeProgram && !client.hasReviewThisWeek && (
+                              <Badge variant="outline" className="text-[10px] border-orange-500/40 text-orange-600 dark:text-orange-400 gap-1">
+                                <ClipboardList className="h-3 w-3" /> sin revisión
+                              </Badge>
+                            )}
+                          </div>
+                        </TableCell>
                         <TableCell>
                           <Badge variant={cfg.variant}>{cfg.label}</Badge>
                         </TableCell>
