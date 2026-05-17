@@ -142,7 +142,17 @@ const AdminHub = () => {
               <Link key={section.path} to={section.path}>
                 <Card className="h-full hover:border-primary/50 hover:shadow-md transition-all cursor-pointer">
                   <CardHeader className="pb-2">
-                    <Icon className="h-8 w-8 text-primary mb-2" />
+                    <div className="flex items-start justify-between mb-2">
+                      <Icon className="h-8 w-8 text-primary" />
+                      <div className="flex flex-col items-end gap-1">
+                        <Badge variant="outline" className={`text-[10px] px-1.5 py-0 ${phaseStyles[section.phase]}`}>
+                          {section.phase}
+                        </Badge>
+                        <Badge variant="outline" className={`text-[10px] px-1.5 py-0 ${statusStyles[section.status]}`}>
+                          {statusLabel[section.status]}
+                        </Badge>
+                      </div>
+                    </div>
                     <CardTitle className="text-base">{section.title}</CardTitle>
                     <CardDescription className="text-xs">{section.description}</CardDescription>
                   </CardHeader>
