@@ -457,11 +457,21 @@ const ClientDetailDialog = ({ open, onOpenChange, clientId, clientName }: Client
                   reviews.map((r) => (
                     <Card key={r.id}>
                       <CardContent className="p-3 space-y-2">
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between gap-2">
                           <span className="text-sm font-semibold text-foreground">
                             Semana del {format(parseISO(r.week_start_date), "d 'de' MMMM yyyy", { locale: es })}
                           </span>
-                          {!r.client_visible && <Badge variant="outline" className="text-[10px]">Privada</Badge>}
+                          <div className="flex items-center gap-2">
+                            {!r.client_visible && <Badge variant="outline" className="text-[10px]">Privada</Badge>}
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              className="h-7 px-2 text-xs"
+                              onClick={() => openWeeklyReviewPrint(clientName, r)}
+                            >
+                              <Printer className="h-3 w-3 mr-1" /> PDF
+                            </Button>
+                          </div>
                         </div>
                         {r.summary && <p className="text-xs text-foreground">{r.summary}</p>}
                         {r.strengths && <p className="text-xs"><span className="font-medium">Fortalezas:</span> <span className="text-muted-foreground">{r.strengths}</span></p>}
