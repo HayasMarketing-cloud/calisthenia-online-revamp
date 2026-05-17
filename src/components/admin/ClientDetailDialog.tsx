@@ -496,6 +496,7 @@ const ClientDetailDialog = ({ open, onOpenChange, clientId, clientName }: Client
 
               {/* TÉCNICA */}
               <TabsContent value="tecnica" className="space-y-3 mt-0">
+                <TechniqueReviewForm clientId={clientId} />
                 {!technique || technique.length === 0 ? (
                   <EmptyState icon={Video} text="Sin revisiones de técnica" />
                 ) : (
