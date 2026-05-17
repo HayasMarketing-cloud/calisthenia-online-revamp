@@ -304,10 +304,108 @@ const CoachPanel = () => {
                 Vista alumno
               </Link>
             </Button>
-          </div>
         </div>
 
-        {/* Search */}
+        {/* KPIs */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+          <Card>
+            <CardContent className="p-4">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
+                <Users className="h-3.5 w-3.5" /> Alumnos
+              </div>
+              <div className="text-2xl font-bold text-foreground">{totalClients}</div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-4">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
+                <CheckCircle2 className="h-3.5 w-3.5 text-green-600" /> Activos
+              </div>
+              <div className="text-2xl font-bold text-foreground">{activeClients}</div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-4">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
+                <AlertTriangle className="h-3.5 w-3.5 text-orange-500" /> En riesgo
+              </div>
+              <div className="text-2xl font-bold text-foreground">{atRiskClients}</div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-4">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
+                <TrendingUp className="h-3.5 w-3.5 text-primary" /> Adherencia 7d
+              </div>
+              <div className="text-2xl font-bold text-foreground">{avgAdherence7d}%</div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-4">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
+                <Activity className="h-3.5 w-3.5 text-blue-500" /> Técnicas pendientes
+              </div>
+              <div className="text-2xl font-bold text-foreground">{pendingReviews ?? 0}</div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Alerts panel */}
+        {openAlerts > 0 && (
+          <Card className="border-orange-500/30 bg-orange-500/5">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-base flex items-center gap-2">
+                <BellRing className="h-4 w-4 text-orange-500" />
+                Alertas activas ({openAlerts})
+              </CardTitle>
+              <CardDescription>
+                Generadas automáticamente cada día a las 08:00. Descártalas cuando estén gestionadas.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-2 max-h-80 overflow-y-auto">
+              {(alerts || []).map(alert => (
+                <div
+                  key={alert.id}
+                  className="flex items-start justify-between gap-3 p-3 rounded-md bg-background border border-border"
+                >
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
+                      <button
+                        type="button"
+                        className="font-medium text-sm text-foreground hover:text-primary truncate text-left"
+                        onClick={() =>
+                          setDetailDialog({
+                            open: true,
+                            clientId: alert.client_id,
+                            clientName: clientNameById(alert.client_id),
+                          })
+                        }
+                      >
+                        {clientNameById(alert.client_id)}
+                      </button>
+                      <Badge variant="outline" className="text-xs">
+                        {alertTypeLabels[alert.alert_type] || alert.alert_type}
+                      </Badge>
+                      <span className="text-xs text-muted-foreground">
+                        {format(new Date(alert.created_at), 'dd/MM HH:mm')}
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">{alert.message}</p>
+                  </div>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => dismissAlertMutation.mutate(alert.id)}
+                    disabled={dismissAlertMutation.isPending}
+                  >
+                    <X className="h-3.5 w-3.5" />
+                  </Button>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        )}
+
         <div className="relative max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
