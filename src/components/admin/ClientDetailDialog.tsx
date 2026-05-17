@@ -215,8 +215,18 @@ const ClientDetailDialog = ({ open, onOpenChange, clientId, clientName }: Client
               <Loader2 className="h-6 w-6 animate-spin text-primary" />
             </div>
           ) : (
-            <div className="space-y-5 pt-2">
-              {/* Onboarding Data */}
+            <Tabs defaultValue="resumen" className="pt-2">
+              <TabsList className="w-full justify-start overflow-x-auto flex-nowrap h-auto p-1 mb-3">
+                <TabsTrigger value="resumen" className="text-xs">Resumen</TabsTrigger>
+                <TabsTrigger value="objetivos" className="text-xs"><Target className="h-3 w-3 mr-1" />Objetivos</TabsTrigger>
+                <TabsTrigger value="adherencia" className="text-xs"><TrendingUp className="h-3 w-3 mr-1" />Adherencia</TabsTrigger>
+                <TabsTrigger value="revisiones" className="text-xs"><ClipboardList className="h-3 w-3 mr-1" />Revisiones</TabsTrigger>
+                <TabsTrigger value="ajustes" className="text-xs"><Wrench className="h-3 w-3 mr-1" />Ajustes</TabsTrigger>
+                <TabsTrigger value="tecnica" className="text-xs"><Video className="h-3 w-3 mr-1" />Técnica</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="resumen" className="space-y-5 mt-0">
+                {/* Onboarding Data */}
               {clientProfile && (
                 <Card>
                   <CardHeader className="pb-2">
