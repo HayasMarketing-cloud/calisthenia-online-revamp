@@ -66,20 +66,6 @@ const Progress = () => {
         .select('*')
         .eq('client_id', user!.id)
         .order('week_start_date', { ascending: false })
-        .limit(8);
-      return data || [];
-    },
-    enabled: !!user,
-  });
-
-  const { data: weekly } = useQuery({
-    queryKey: ['client-adherence-weekly', user?.id],
-    queryFn: async () => {
-      const { data } = await supabase
-        .from('client_adherence_weekly')
-        .select('*')
-        .eq('client_id', user!.id)
-        .order('week_start_date', { ascending: false })
         .limit(12);
       return data || [];
     },
