@@ -15,6 +15,7 @@ import {
   Smartphone,
 } from 'lucide-react';
 import GoalsWidget from '@/components/app/GoalsWidget';
+import PinnedGoalWidget from '@/components/app/PinnedGoalWidget';
 
 const greeting = () => {
   const h = new Date().getHours();
