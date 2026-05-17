@@ -295,29 +295,43 @@ const ProgramTemplateEditor = () => {
         </div>
 
         {/* Weeks accordion */}
-        <Accordion type="multiple" className="space-y-3">
+        <Accordion type="multiple" className="space-y-4">
           {(weeks || []).map(week => (
-            <AccordionItem key={week.id} value={week.id} className="border rounded-lg px-4">
-              <AccordionTrigger className="hover:no-underline">
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-primary" />
-                  <span className="font-semibold">Semana {week.week_number}</span>
-                  <Badge variant="outline" className="text-[10px] ml-2">{week.days.length} días</Badge>
+            <AccordionItem
+              key={week.id}
+              value={week.id}
+              className="border-2 border-border rounded-xl px-4 sm:px-5 bg-card shadow-sm data-[state=open]:border-primary/40 data-[state=open]:shadow-md"
+            >
+              <AccordionTrigger className="hover:no-underline py-4">
+                <div className="flex items-center gap-3">
+                  <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <Calendar className="h-5 w-5 text-primary" />
+                  </div>
+                  <span className="text-lg sm:text-xl font-bold text-foreground">Semana {week.week_number}</span>
+                  <Badge variant="secondary" className="text-xs font-semibold ml-1">{week.days.length} días</Badge>
                 </div>
               </AccordionTrigger>
-              <AccordionContent className="space-y-3 pt-2">
+              <AccordionContent className="space-y-4 pt-2 pb-4">
                 {week.days.map(day => (
-                  <Card key={day.id} className={day.is_rest_day ? 'border-dashed opacity-70' : ''}>
-                    <CardHeader className="py-3 px-4 flex flex-row items-center justify-between">
-                      <div className="flex items-center gap-2">
+                  <Card
+                    key={day.id}
+                    className={cn(
+                      "overflow-hidden shadow-sm",
+                      day.is_rest_day
+                        ? 'border-dashed border-2 bg-muted/30'
+                        : 'border-l-4 border-l-primary border-y border-r border-border bg-background'
+                    )}
+                  >
+                    <CardHeader className="py-3 px-4 flex flex-row items-center justify-between gap-2 bg-muted/40 border-b">
+                      <div className="flex items-center gap-2 min-w-0">
                         {day.is_rest_day ? (
-                          <Moon className="h-4 w-4 text-muted-foreground" />
+                          <Moon className="h-5 w-5 text-muted-foreground flex-shrink-0" />
                         ) : (
-                          <Dumbbell className="h-4 w-4 text-primary" />
+                          <Dumbbell className="h-5 w-5 text-primary flex-shrink-0" />
                         )}
-                        <CardTitle className="text-sm">
+                        <CardTitle className="text-base sm:text-lg font-bold">
                           {day.name || `Día ${day.day_number}`}
-                          {day.is_rest_day && <span className="text-muted-foreground ml-2">(Descanso)</span>}
+                          {day.is_rest_day && <span className="text-muted-foreground ml-2 font-normal text-sm">(Descanso)</span>}
                         </CardTitle>
                       </div>
                       <div className="flex items-center gap-1">
