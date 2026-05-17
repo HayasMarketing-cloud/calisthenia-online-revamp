@@ -11,6 +11,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Loader2, User, Dumbbell, Heart, TrendingUp, Calendar, MessageSquare, Target, ClipboardList, Wrench, Video } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 import { es } from 'date-fns/locale';
+import { WeeklyReviewForm, AdjustmentForm, GoalForm, TechniqueReviewForm } from './CoachClientForms';
 
 interface ClientDetailDialogProps {
   open: boolean;
@@ -363,6 +364,7 @@ const ClientDetailDialog = ({ open, onOpenChange, clientId, clientName }: Client
 
               {/* OBJETIVOS */}
               <TabsContent value="objetivos" className="space-y-3 mt-0">
+                <GoalForm clientId={clientId} />
                 {!goals || goals.length === 0 ? (
                   <EmptyState icon={Target} text="Sin objetivos registrados" />
                 ) : (
@@ -444,6 +446,7 @@ const ClientDetailDialog = ({ open, onOpenChange, clientId, clientName }: Client
 
               {/* REVISIONES SEMANALES */}
               <TabsContent value="revisiones" className="space-y-3 mt-0">
+                <WeeklyReviewForm clientId={clientId} />
                 {!reviews || reviews.length === 0 ? (
                   <EmptyState icon={ClipboardList} text="Sin revisiones semanales" />
                 ) : (
@@ -468,6 +471,7 @@ const ClientDetailDialog = ({ open, onOpenChange, clientId, clientName }: Client
 
               {/* AJUSTES */}
               <TabsContent value="ajustes" className="space-y-2 mt-0">
+                <AdjustmentForm clientId={clientId} />
                 {!adjustments || adjustments.length === 0 ? (
                   <EmptyState icon={Wrench} text="Sin ajustes registrados" />
                 ) : (
@@ -492,6 +496,7 @@ const ClientDetailDialog = ({ open, onOpenChange, clientId, clientName }: Client
 
               {/* TÉCNICA */}
               <TabsContent value="tecnica" className="space-y-3 mt-0">
+                <TechniqueReviewForm clientId={clientId} />
                 {!technique || technique.length === 0 ? (
                   <EmptyState icon={Video} text="Sin revisiones de técnica" />
                 ) : (
