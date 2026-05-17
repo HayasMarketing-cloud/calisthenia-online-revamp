@@ -452,7 +452,7 @@ const ProgramTemplateEditor = () => {
                                 </div>
                                 <div className="rounded-md bg-foreground px-2 py-2.5 text-center">
                                   <div className="text-lg sm:text-xl font-extrabold text-background leading-none">
-                                    {ex.rest_seconds ? `${ex.rest_seconds}s` : '—'}
+                                    {ex.rest_seconds ? `${ex.rest_seconds}s` : 'Sin'}
                                   </div>
                                   <div className="text-[10px] uppercase tracking-wider text-background/80 mt-1 font-bold">
                                     Descanso
