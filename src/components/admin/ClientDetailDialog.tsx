@@ -471,6 +471,7 @@ const ClientDetailDialog = ({ open, onOpenChange, clientId, clientName }: Client
 
               {/* AJUSTES */}
               <TabsContent value="ajustes" className="space-y-2 mt-0">
+                <AdjustmentForm clientId={clientId} />
                 {!adjustments || adjustments.length === 0 ? (
                   <EmptyState icon={Wrench} text="Sin ajustes registrados" />
                 ) : (
