@@ -436,7 +436,7 @@ const ProgramTemplateEditor = () => {
                               <div className="grid grid-cols-3 gap-2 mt-3">
                                 <div className="rounded-md bg-foreground px-2 py-2.5 text-center">
                                   <div className="text-lg sm:text-xl font-extrabold text-background leading-none">
-                                    {ex.sets ?? '—'}
+                                    {ex.sets ?? 'Sin'}
                                   </div>
                                   <div className="text-[10px] uppercase tracking-wider text-background/80 mt-1 font-bold">
                                     Series
@@ -444,7 +444,7 @@ const ProgramTemplateEditor = () => {
                                 </div>
                                 <div className="rounded-md bg-foreground px-2 py-2.5 text-center">
                                   <div className="text-lg sm:text-xl font-extrabold text-background leading-none break-words">
-                                    {ex.reps ?? '—'}
+                                    {ex.reps ?? 'Sin'}
                                   </div>
                                   <div className="text-[10px] uppercase tracking-wider text-background/80 mt-1 font-bold">
                                     Reps
