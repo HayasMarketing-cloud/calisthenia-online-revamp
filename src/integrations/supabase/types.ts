@@ -245,6 +245,42 @@ export type Database = {
         }
         Relationships: []
       }
+      client_milestones: {
+        Row: {
+          achieved_at: string
+          client_id: string
+          created_at: string
+          id: string
+          is_archived: boolean
+          label: string | null
+          metadata: Json | null
+          milestone_type: Database["public"]["Enums"]["milestone_type"]
+          value: number | null
+        }
+        Insert: {
+          achieved_at?: string
+          client_id: string
+          created_at?: string
+          id?: string
+          is_archived?: boolean
+          label?: string | null
+          metadata?: Json | null
+          milestone_type: Database["public"]["Enums"]["milestone_type"]
+          value?: number | null
+        }
+        Update: {
+          achieved_at?: string
+          client_id?: string
+          created_at?: string
+          id?: string
+          is_archived?: boolean
+          label?: string | null
+          metadata?: Json | null
+          milestone_type?: Database["public"]["Enums"]["milestone_type"]
+          value?: number | null
+        }
+        Relationships: []
+      }
       client_profiles: {
         Row: {
           activity_level: Database["public"]["Enums"]["activity_level"] | null
@@ -265,6 +301,7 @@ export type Database = {
           max_pull_ups: number | null
           max_push_ups: number | null
           max_squats: number | null
+          pinned_goal_id: string | null
           session_duration_minutes: number | null
           short_term_goal: string | null
           training_days_per_week: number | null
@@ -292,6 +329,7 @@ export type Database = {
           max_pull_ups?: number | null
           max_push_ups?: number | null
           max_squats?: number | null
+          pinned_goal_id?: string | null
           session_duration_minutes?: number | null
           short_term_goal?: string | null
           training_days_per_week?: number | null
@@ -319,6 +357,7 @@ export type Database = {
           max_pull_ups?: number | null
           max_push_ups?: number | null
           max_squats?: number | null
+          pinned_goal_id?: string | null
           session_duration_minutes?: number | null
           short_term_goal?: string | null
           training_days_per_week?: number | null
@@ -561,6 +600,30 @@ export type Database = {
           target_value?: number | null
           unit?: string | null
           updated_at?: string
+        }
+        Relationships: []
+      }
+      goal_progress_history: {
+        Row: {
+          client_id: string
+          goal_id: string
+          id: string
+          recorded_at: string
+          value: number
+        }
+        Insert: {
+          client_id: string
+          goal_id: string
+          id?: string
+          recorded_at?: string
+          value: number
+        }
+        Update: {
+          client_id?: string
+          goal_id?: string
+          id?: string
+          recorded_at?: string
+          value?: number
         }
         Relationships: []
       }
@@ -1531,6 +1594,17 @@ export type Database = {
         | "renewal"
         | "annual_plan"
         | "inactive"
+      milestone_type:
+        | "streak_7"
+        | "streak_30"
+        | "streak_90"
+        | "best_streak"
+        | "adherence_80"
+        | "first_session"
+        | "goal_completed"
+        | "sessions_10"
+        | "sessions_50"
+        | "sessions_100"
       movement_pattern_type:
         | "push"
         | "pull"
@@ -1742,6 +1816,18 @@ export const Constants = {
         "renewal",
         "annual_plan",
         "inactive",
+      ],
+      milestone_type: [
+        "streak_7",
+        "streak_30",
+        "streak_90",
+        "best_streak",
+        "adherence_80",
+        "first_session",
+        "goal_completed",
+        "sessions_10",
+        "sessions_50",
+        "sessions_100",
       ],
       movement_pattern_type: [
         "push",
