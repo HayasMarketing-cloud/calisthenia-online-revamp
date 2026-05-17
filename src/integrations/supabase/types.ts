@@ -711,6 +711,51 @@ export type Database = {
           },
         ]
       }
+      program_day_overrides: {
+        Row: {
+          applied_at: string
+          client_id: string
+          created_at: string
+          created_by: string | null
+          expires_at: string | null
+          id: string
+          is_active: boolean
+          override_type: Database["public"]["Enums"]["override_type"]
+          payload_jsonb: Json
+          program_day_id: string
+          reason: string | null
+          updated_at: string
+        }
+        Insert: {
+          applied_at?: string
+          client_id: string
+          created_at?: string
+          created_by?: string | null
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean
+          override_type: Database["public"]["Enums"]["override_type"]
+          payload_jsonb?: Json
+          program_day_id: string
+          reason?: string | null
+          updated_at?: string
+        }
+        Update: {
+          applied_at?: string
+          client_id?: string
+          created_at?: string
+          created_by?: string | null
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean
+          override_type?: Database["public"]["Enums"]["override_type"]
+          payload_jsonb?: Json
+          program_day_id?: string
+          reason?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       program_days: {
         Row: {
           day_number: number
@@ -788,6 +833,36 @@ export type Database = {
           program_id?: string
           start_week?: number
           updated_at?: string
+        }
+        Relationships: []
+      }
+      program_template_versions: {
+        Row: {
+          change_notes: string | null
+          created_at: string
+          created_by: string | null
+          id: string
+          snapshot_jsonb: Json
+          template_id: string
+          version_number: number
+        }
+        Insert: {
+          change_notes?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          snapshot_jsonb: Json
+          template_id: string
+          version_number: number
+        }
+        Update: {
+          change_notes?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          snapshot_jsonb?: Json
+          template_id?: string
+          version_number?: number
         }
         Relationships: []
       }
@@ -1386,6 +1461,10 @@ export type Database = {
       }
     }
     Functions: {
+      create_template_version: {
+        Args: { p_change_notes?: string; p_template_id: string }
+        Returns: string
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -1458,6 +1537,14 @@ export type Database = {
         | "core"
         | "locomotion"
         | "isometric"
+      override_type:
+        | "skip_day"
+        | "swap_exercise"
+        | "change_sets_reps"
+        | "add_exercise"
+        | "remove_exercise"
+        | "custom_note"
+        | "reschedule"
       phase_type:
         | "preparacion"
         | "fuerza"
@@ -1662,6 +1749,15 @@ export const Constants = {
         "core",
         "locomotion",
         "isometric",
+      ],
+      override_type: [
+        "skip_day",
+        "swap_exercise",
+        "change_sets_reps",
+        "add_exercise",
+        "remove_exercise",
+        "custom_note",
+        "reschedule",
       ],
       phase_type: [
         "preparacion",
