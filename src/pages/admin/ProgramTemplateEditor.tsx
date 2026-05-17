@@ -295,29 +295,43 @@ const ProgramTemplateEditor = () => {
         </div>
 
         {/* Weeks accordion */}
-        <Accordion type="multiple" className="space-y-3">
+        <Accordion type="multiple" className="space-y-4">
           {(weeks || []).map(week => (
-            <AccordionItem key={week.id} value={week.id} className="border rounded-lg px-4">
-              <AccordionTrigger className="hover:no-underline">
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-primary" />
-                  <span className="font-semibold">Semana {week.week_number}</span>
-                  <Badge variant="outline" className="text-[10px] ml-2">{week.days.length} días</Badge>
+            <AccordionItem
+              key={week.id}
+              value={week.id}
+              className="border-2 border-border rounded-xl px-4 sm:px-5 bg-card shadow-sm data-[state=open]:border-primary/40 data-[state=open]:shadow-md"
+            >
+              <AccordionTrigger className="hover:no-underline py-4">
+                <div className="flex items-center gap-3">
+                  <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <Calendar className="h-5 w-5 text-primary" />
+                  </div>
+                  <span className="text-lg sm:text-xl font-bold text-foreground">Semana {week.week_number}</span>
+                  <Badge variant="secondary" className="text-xs font-semibold ml-1">{week.days.length} días</Badge>
                 </div>
               </AccordionTrigger>
-              <AccordionContent className="space-y-3 pt-2">
+              <AccordionContent className="space-y-4 pt-2 pb-4">
                 {week.days.map(day => (
-                  <Card key={day.id} className={day.is_rest_day ? 'border-dashed opacity-70' : ''}>
-                    <CardHeader className="py-3 px-4 flex flex-row items-center justify-between">
-                      <div className="flex items-center gap-2">
+                  <Card
+                    key={day.id}
+                    className={cn(
+                      "overflow-hidden shadow-sm",
+                      day.is_rest_day
+                        ? 'border-dashed border-2 bg-muted/30'
+                        : 'border-l-4 border-l-primary border-y border-r border-border bg-background'
+                    )}
+                  >
+                    <CardHeader className="py-3 px-4 flex flex-row items-center justify-between gap-2 bg-muted/40 border-b">
+                      <div className="flex items-center gap-2 min-w-0">
                         {day.is_rest_day ? (
-                          <Moon className="h-4 w-4 text-muted-foreground" />
+                          <Moon className="h-5 w-5 text-muted-foreground flex-shrink-0" />
                         ) : (
-                          <Dumbbell className="h-4 w-4 text-primary" />
+                          <Dumbbell className="h-5 w-5 text-primary flex-shrink-0" />
                         )}
-                        <CardTitle className="text-sm">
+                        <CardTitle className="text-base sm:text-lg font-bold">
                           {day.name || `Día ${day.day_number}`}
-                          {day.is_rest_day && <span className="text-muted-foreground ml-2">(Descanso)</span>}
+                          {day.is_rest_day && <span className="text-muted-foreground ml-2 font-normal text-sm">(Descanso)</span>}
                         </CardTitle>
                       </div>
                       <div className="flex items-center gap-1">
@@ -355,20 +369,20 @@ const ProgramTemplateEditor = () => {
                             <div
                               key={ex.id}
                               className={cn(
-                                "flex items-center justify-between rounded-md px-3 py-2 text-sm transition-colors",
+                                "flex items-center justify-between rounded-lg px-3 py-3 sm:py-2.5 text-sm transition-colors",
                                 hasVideo
-                                  ? "bg-muted/50"
-                                  : "bg-amber-500/5 border border-dashed border-amber-500/40"
+                                  ? "bg-card border border-border"
+                                  : "bg-amber-500/10 border-2 border-dashed border-amber-500/50"
                               )}
                             >
                               <div className="flex items-center gap-3 min-w-0">
-                                <span className="text-muted-foreground text-xs w-5 flex-shrink-0">{i + 1}.</span>
+                                <span className="text-muted-foreground font-bold text-sm w-5 flex-shrink-0">{i + 1}.</span>
                                 {hasVideo ? (
                                   <a
                                     href={`https://www.youtube.com/watch?v=${videoId}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="relative flex-shrink-0 w-20 aspect-video rounded overflow-hidden bg-black group"
+                                    className="relative flex-shrink-0 w-24 sm:w-20 aspect-video rounded-md overflow-hidden bg-black group"
                                     title="Ver técnica en YouTube"
                                   >
                                     <img
@@ -378,8 +392,8 @@ const ProgramTemplateEditor = () => {
                                       className="w-full h-full object-cover"
                                     />
                                     <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition-colors">
-                                      <div className="bg-red-600 rounded-full w-6 h-6 flex items-center justify-center">
-                                        <svg className="w-3 h-3 text-white fill-white ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                      <div className="bg-red-600 rounded-full w-7 h-7 flex items-center justify-center">
+                                        <svg className="w-3.5 h-3.5 text-white fill-white ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                                       </div>
                                     </div>
                                   </a>
@@ -388,22 +402,22 @@ const ProgramTemplateEditor = () => {
                                     type="button"
                                     onClick={openVideoEditor}
                                     title="Añadir vídeo de YouTube"
-                                    className="relative flex-shrink-0 w-20 aspect-video rounded border border-dashed border-amber-500/60 bg-amber-500/10 hover:bg-amber-500/20 flex flex-col items-center justify-center gap-0.5 transition-colors group"
+                                    className="relative flex-shrink-0 w-24 sm:w-20 aspect-video rounded-md border-2 border-dashed border-amber-500/60 bg-amber-500/10 hover:bg-amber-500/20 flex flex-col items-center justify-center gap-0.5 transition-colors group"
                                   >
-                                    <Plus className="h-3.5 w-3.5 text-amber-700 dark:text-amber-400" />
-                                    <span className="text-[9px] font-medium text-amber-700 dark:text-amber-400 leading-none">Vídeo</span>
+                                    <Plus className="h-4 w-4 text-amber-700 dark:text-amber-400" />
+                                    <span className="text-[10px] font-semibold text-amber-700 dark:text-amber-400 leading-none">Vídeo</span>
                                   </button>
                                 )}
                                 <div className="min-w-0">
                                   <div className="flex items-center gap-2 flex-wrap">
-                                    <p className="font-medium truncate">{ex.exercise?.name || 'Ejercicio desconocido'}</p>
+                                    <p className="font-semibold text-sm sm:text-base text-foreground truncate">{ex.exercise?.name || 'Ejercicio desconocido'}</p>
                                     {!hasVideo && (
-                                      <Badge variant="outline" className="text-[9px] py-0 px-1.5 h-4 border-amber-500/60 text-amber-700 dark:text-amber-400 bg-amber-500/10">
+                                      <Badge variant="outline" className="text-[10px] py-0 px-1.5 h-4 border-amber-500/60 text-amber-700 dark:text-amber-400 bg-amber-500/10">
                                         Sin vídeo
                                       </Badge>
                                     )}
                                   </div>
-                                  <div className="flex gap-3 text-xs text-muted-foreground mt-0.5">
+                                  <div className="flex gap-3 text-xs sm:text-sm text-muted-foreground mt-1 font-medium">
                                     {ex.sets && <span>{ex.sets} series</span>}
                                     {ex.reps && <span>{ex.reps} reps</span>}
                                     {ex.rest_seconds && <span>{ex.rest_seconds}s descanso</span>}
