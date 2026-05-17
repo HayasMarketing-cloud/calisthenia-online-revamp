@@ -76,11 +76,11 @@ Objetivo: que el alumno BASE perciba avance y vuelva a la app sin necesidad de e
 - **C.3** Tab "Overrides" en `ClientDetailDialog`: skip/note/swap/change/add/remove con caducidad y toggle activo
 - **C.4** `useTodayTraining` resuelve overrides activos no caducados y los aplica al día (incluido día reasignado, nota visible y ejercicios añadidos sin registro en DB)
 
-### Bloque D — Mejoras de coaching (baja prioridad)
-- **D.1** Bandeja de "Revisiones semanales pendientes" en CoachPanel (alumnos activos sin `weekly_review` esta semana)
-- **D.2** Filtro "Prioridad coach" (preset que combina en riesgo + sin feedback en 7d)
-- **D.3** Exportar PDF de revisión semanal para enviar por WhatsApp
-- **D.4** `OnboardingManager`: step para definir objetivo inicial (insert en `goal_progress`)
+### Bloque D — Mejoras de coaching ✅
+- **D.1** KPI + filtro + badge "sin revisión" en CoachPanel (alumnos activos sin `weekly_review` esta semana, ISO week)
+- **D.2** Preset "Prioridad coach" (en riesgo + inactivo + activos con programa y sin feedback semanal)
+- **D.3** Botón PDF en cada revisión semanal (ventana de impresión A4 con estilo, listo para guardar/enviar por WhatsApp)
+- **D.4** Step 5 opcional en onboarding: objetivo estructurado en `goal_progress` con tipo + valor + target + fecha → se fija automáticamente como `pinned_goal_id`
 
 ### Fase 3 — Multi-coach (diferida)
 - Tabla `coaches`, refactor RLS con cláusula "coach asignado", UI de asignación

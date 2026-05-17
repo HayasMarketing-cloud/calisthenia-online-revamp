@@ -11,7 +11,20 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { toast } from 'sonner';
 import { Loader2, ChevronRight, ChevronLeft } from 'lucide-react';
 
-const TOTAL_STEPS = 4;
+const TOTAL_STEPS = 5;
+
+const GOAL_TYPES = [
+  { value: 'pull_ups', label: 'Dominadas', unit: 'reps' },
+  { value: 'push_ups', label: 'Flexiones', unit: 'reps' },
+  { value: 'squats', label: 'Sentadillas', unit: 'reps' },
+  { value: 'weight_loss', label: 'Perder peso', unit: 'kg' },
+  { value: 'hipertrofia', label: 'Ganar músculo', unit: 'kg' },
+  { value: 'mobility', label: 'Movilidad', unit: '' },
+  { value: 'autonomy', label: 'Autonomía', unit: '' },
+  { value: 'oposiciones', label: 'Oposiciones', unit: 'pts' },
+  { value: 'resistencia', label: 'Resistencia', unit: 'min' },
+  { value: 'custom', label: 'Otro', unit: '' },
+] as const;
 
 const Onboarding = () => {
   const { user } = useAuth();
@@ -39,6 +52,12 @@ const Onboarding = () => {
     date_of_birth: '',
     weight_kg: '',
     height_cm: '',
+    initial_goal_type: '' as string,
+    initial_goal_label: '',
+    initial_goal_start: '',
+    initial_goal_target: '',
+    initial_goal_unit: '',
+    initial_goal_date: '',
   });
 
   const update = (key: string, value: string | boolean) => {
@@ -84,6 +103,25 @@ const Onboarding = () => {
         });
       }
 
+      // Create initial structured goal (optional) and pin it
+      if (form.initial_goal_type) {
+        const { data: goalRow } = await supabase.from('goal_progress').insert({
+          client_id: user.id,
+          goal_type: form.initial_goal_type as any,
+          custom_label: form.initial_goal_label || null,
+          start_value: form.initial_goal_start ? parseFloat(form.initial_goal_start) : null,
+          current_value: form.initial_goal_start ? parseFloat(form.initial_goal_start) : null,
+          target_value: form.initial_goal_target ? parseFloat(form.initial_goal_target) : null,
+          unit: form.initial_goal_unit || null,
+          target_date: form.initial_goal_date || null,
+          is_active: true,
+        }).select('id').maybeSingle();
+
+        if (goalRow?.id) {
+          await supabase.from('client_profiles').update({ pinned_goal_id: goalRow.id }).eq('id', user.id);
+        }
+      }
+
       toast.success('¡Perfil completado! Bienvenido 💪');
       // Set cache directly to avoid race condition with AppRoute guard
       queryClient.setQueryData(['client-profile', user.id], { id: user.id });
@@ -111,6 +149,7 @@ const Onboarding = () => {
           {step === 2 && '🏃 Tu nivel actual'}
           {step === 3 && '💪 Baseline'}
           {step === 4 && '📅 Disponibilidad'}
+          {step === 5 && '🏁 Objetivo destacado'}
         </h1>
         <p className="text-muted-foreground mb-6 text-sm">Paso {step} de {TOTAL_STEPS}</p>
 
@@ -232,6 +271,84 @@ const Onboarding = () => {
                 </Select>
               </div>
             </div>
+          </div>
+        )}
+
+        {/* Step 5: Initial featured goal (optional) */}
+        {step === 5 && (
+          <div className="space-y-4">
+            <p className="text-sm text-muted-foreground">
+              Define un objetivo concreto que podamos medir y celebrar contigo. Es opcional — puedes saltarlo y añadirlo después.
+            </p>
+            <div>
+              <Label>Tipo de objetivo</Label>
+              <Select
+                value={form.initial_goal_type}
+                onValueChange={v => {
+                  const preset = GOAL_TYPES.find(g => g.value === v);
+                  setForm(prev => ({ ...prev, initial_goal_type: v, initial_goal_unit: preset?.unit || prev.initial_goal_unit }));
+                }}
+              >
+                <SelectTrigger><SelectValue placeholder="Selecciona o salta este paso" /></SelectTrigger>
+                <SelectContent>
+                  {GOAL_TYPES.map(g => (
+                    <SelectItem key={g.value} value={g.value}>{g.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            {form.initial_goal_type === 'custom' && (
+              <div>
+                <Label>Nombre del objetivo</Label>
+                <Input
+                  value={form.initial_goal_label}
+                  onChange={e => update('initial_goal_label', e.target.value)}
+                  placeholder="Ej: Bandera humana"
+                />
+              </div>
+            )}
+            {form.initial_goal_type && (
+              <>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label>Valor actual</Label>
+                    <Input
+                      type="number"
+                      value={form.initial_goal_start}
+                      onChange={e => update('initial_goal_start', e.target.value)}
+                      placeholder="0"
+                    />
+                  </div>
+                  <div>
+                    <Label>Objetivo</Label>
+                    <Input
+                      type="number"
+                      value={form.initial_goal_target}
+                      onChange={e => update('initial_goal_target', e.target.value)}
+                      placeholder="10"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label>Unidad</Label>
+                    <Input
+                      value={form.initial_goal_unit}
+                      onChange={e => update('initial_goal_unit', e.target.value)}
+                      placeholder="reps, kg, min..."
+                    />
+                  </div>
+                  <div>
+                    <Label>Fecha límite</Label>
+                    <Input
+                      type="date"
+                      value={form.initial_goal_date}
+                      onChange={e => update('initial_goal_date', e.target.value)}
+                    />
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         )}
 

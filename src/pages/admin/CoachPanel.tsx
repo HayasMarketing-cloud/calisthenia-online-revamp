@@ -14,7 +14,7 @@ import { Loader2, Users, Copy, Calendar, Search, AlertCircle, Eye, ClipboardList
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import AdminBreadcrumbs from '@/components/admin/AdminBreadcrumbs';
-import { format, addWeeks, addDays } from 'date-fns';
+import { format, addWeeks, addDays, startOfWeek } from 'date-fns';
 import ClientDetailDialog from '@/components/admin/ClientDetailDialog';
 
 const statusConfig: Record<string, { label: string; variant: 'default' | 'secondary' | 'destructive' | 'outline' }> = {
@@ -35,9 +35,11 @@ const CoachPanel = () => {
   const [selectedTemplate, setSelectedTemplate] = useState('');
   const [detailDialog, setDetailDialog] = useState<{ open: boolean; clientId: string; clientName: string }>({ open: false, clientId: '', clientName: '' });
 
-  // Fetch all clients (profiles + adherence + active program)
+  const weekStartIso = format(startOfWeek(new Date(), { weekStartsOn: 1 }), 'yyyy-MM-dd');
+
+  // Fetch all clients (profiles + adherence + active program + this-week review)
   const { data: clients, isLoading } = useQuery({
-    queryKey: ['coach-clients'],
+    queryKey: ['coach-clients', weekStartIso],
     queryFn: async () => {
       const { data: profiles, error } = await supabase
         .from('profiles')
@@ -62,7 +64,14 @@ const CoachPanel = () => {
         .from('user_roles')
         .select('user_id, role');
 
+      // Get weekly reviews for current ISO week
+      const { data: weeklyReviews } = await supabase
+        .from('weekly_reviews')
+        .select('client_id')
+        .eq('week_start_date', weekStartIso);
+
       const adminIds = new Set((roles || []).filter(r => r.role === 'admin').map(r => r.user_id));
+      const reviewedIds = new Set((weeklyReviews || []).map(w => w.client_id));
 
       return (profiles || [])
         .filter(p => !adminIds.has(p.id))
@@ -70,6 +79,7 @@ const CoachPanel = () => {
           ...p,
           adherence: (adherenceData || []).find(a => a.client_id === p.id),
           activeProgram: (activePrograms || []).find(ap => ap.client_id === p.id),
+          hasReviewThisWeek: reviewedIds.has(p.id),
         }));
     },
     enabled: !!user,
@@ -254,6 +264,13 @@ const CoachPanel = () => {
     .filter(c => {
       if (statusFilter === 'all') return true;
       const status = c.adherence?.status || 'new';
+      if (statusFilter === 'priority') {
+        // En riesgo / inactivo, o con programa activo sin revisión esta semana
+        return status === 'at_risk' || status === 'inactive' || (!!c.activeProgram && !c.hasReviewThisWeek);
+      }
+      if (statusFilter === 'pending_review') {
+        return !!c.activeProgram && !c.hasReviewThisWeek;
+      }
       return status === statusFilter;
     })
     .filter(c => {
@@ -290,6 +307,7 @@ const CoachPanel = () => {
   const totalClients = clients?.length || 0;
   const activeClients = (clients || []).filter(c => c.adherence?.status === 'active').length;
   const atRiskClients = (clients || []).filter(c => c.adherence?.status === 'at_risk' || c.adherence?.status === 'inactive').length;
+  const pendingReviewClients = (clients || []).filter(c => !!c.activeProgram && !c.hasReviewThisWeek).length;
   const avgAdherence7d = totalClients > 0
     ? Math.round(
         (clients || []).reduce((sum, c) => sum + Number(c.adherence?.adherence_pct_7d || 0), 0) / totalClients
@@ -344,7 +362,7 @@ const CoachPanel = () => {
         </div>
 
         {/* KPIs */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
@@ -383,6 +401,14 @@ const CoachPanel = () => {
                 <Activity className="h-3.5 w-3.5 text-blue-500" /> Técnicas pendientes
               </div>
               <div className="text-2xl font-bold text-foreground">{pendingReviews ?? 0}</div>
+            </CardContent>
+          </Card>
+          <Card className={pendingReviewClients > 0 ? 'border-orange-500/40' : undefined}>
+            <CardContent className="p-4">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
+                <ClipboardList className="h-3.5 w-3.5 text-orange-500" /> Sin revisión sem.
+              </div>
+              <div className="text-2xl font-bold text-foreground">{pendingReviewClients}</div>
             </CardContent>
           </Card>
         </div>
@@ -459,6 +485,8 @@ const CoachPanel = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">Todos los estados</SelectItem>
+              <SelectItem value="priority">⚡ Prioridad coach</SelectItem>
+              <SelectItem value="pending_review">Sin revisión semanal</SelectItem>
               <SelectItem value="active">Activos</SelectItem>
               <SelectItem value="at_risk">En riesgo</SelectItem>
               <SelectItem value="inactive">Inactivos</SelectItem>
@@ -533,7 +561,16 @@ const CoachPanel = () => {
                     const cfg = statusConfig[status] || statusConfig.new;
                     return (
                       <TableRow key={client.id}>
-                        <TableCell className="font-medium">{client.display_name || 'Sin nombre'}</TableCell>
+                        <TableCell className="font-medium">
+                          <div className="flex items-center gap-2">
+                            <span>{client.display_name || 'Sin nombre'}</span>
+                            {client.activeProgram && !client.hasReviewThisWeek && (
+                              <Badge variant="outline" className="text-[10px] border-orange-500/40 text-orange-600 dark:text-orange-400 gap-1">
+                                <ClipboardList className="h-3 w-3" /> sin revisión
+                              </Badge>
+                            )}
+                          </div>
+                        </TableCell>
                         <TableCell>
                           <Badge variant={cfg.variant}>{cfg.label}</Badge>
                         </TableCell>

@@ -8,11 +8,13 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress as ProgressBar } from '@/components/ui/progress';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { Loader2, User, Dumbbell, Heart, TrendingUp, Calendar, MessageSquare, Target, ClipboardList, Wrench, Video, Settings2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Loader2, User, Dumbbell, Heart, TrendingUp, Calendar, MessageSquare, Target, ClipboardList, Wrench, Video, Settings2, Printer } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { WeeklyReviewForm, AdjustmentForm, GoalForm, TechniqueReviewForm } from './CoachClientForms';
 import ProgramDayOverridesTab from './ProgramDayOverridesTab';
+import { openWeeklyReviewPrint } from '@/lib/printWeeklyReview';
 
 interface ClientDetailDialogProps {
   open: boolean;
@@ -455,11 +457,21 @@ const ClientDetailDialog = ({ open, onOpenChange, clientId, clientName }: Client
                   reviews.map((r) => (
                     <Card key={r.id}>
                       <CardContent className="p-3 space-y-2">
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between gap-2">
                           <span className="text-sm font-semibold text-foreground">
                             Semana del {format(parseISO(r.week_start_date), "d 'de' MMMM yyyy", { locale: es })}
                           </span>
-                          {!r.client_visible && <Badge variant="outline" className="text-[10px]">Privada</Badge>}
+                          <div className="flex items-center gap-2">
+                            {!r.client_visible && <Badge variant="outline" className="text-[10px]">Privada</Badge>}
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              className="h-7 px-2 text-xs"
+                              onClick={() => openWeeklyReviewPrint(clientName, r)}
+                            >
+                              <Printer className="h-3 w-3 mr-1" /> PDF
+                            </Button>
+                          </div>
                         </div>
                         {r.summary && <p className="text-xs text-foreground">{r.summary}</p>}
                         {r.strengths && <p className="text-xs"><span className="font-medium">Fortalezas:</span> <span className="text-muted-foreground">{r.strengths}</span></p>}
