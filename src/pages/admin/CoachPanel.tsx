@@ -485,6 +485,8 @@ const CoachPanel = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">Todos los estados</SelectItem>
+              <SelectItem value="priority">⚡ Prioridad coach</SelectItem>
+              <SelectItem value="pending_review">Sin revisión semanal</SelectItem>
               <SelectItem value="active">Activos</SelectItem>
               <SelectItem value="at_risk">En riesgo</SelectItem>
               <SelectItem value="inactive">Inactivos</SelectItem>
