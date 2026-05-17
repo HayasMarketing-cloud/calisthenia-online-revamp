@@ -165,6 +165,7 @@ const Dashboard = () => {
   });
 
   const streak = adherence?.current_streak ?? 0;
+  const longestStreak = adherence?.longest_streak ?? 0;
   const pct7d = adherence?.adherence_pct_7d ? Math.round(Number(adherence.adherence_pct_7d)) : 0;
   const programmed = week?.programmed ?? 0;
   const completed = week?.completed ?? 0;
