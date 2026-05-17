@@ -35,9 +35,11 @@ const CoachPanel = () => {
   const [selectedTemplate, setSelectedTemplate] = useState('');
   const [detailDialog, setDetailDialog] = useState<{ open: boolean; clientId: string; clientName: string }>({ open: false, clientId: '', clientName: '' });
 
-  // Fetch all clients (profiles + adherence + active program)
+  const weekStartIso = format(startOfWeek(new Date(), { weekStartsOn: 1 }), 'yyyy-MM-dd');
+
+  // Fetch all clients (profiles + adherence + active program + this-week review)
   const { data: clients, isLoading } = useQuery({
-    queryKey: ['coach-clients'],
+    queryKey: ['coach-clients', weekStartIso],
     queryFn: async () => {
       const { data: profiles, error } = await supabase
         .from('profiles')
@@ -62,7 +64,14 @@ const CoachPanel = () => {
         .from('user_roles')
         .select('user_id, role');
 
+      // Get weekly reviews for current ISO week
+      const { data: weeklyReviews } = await supabase
+        .from('weekly_reviews')
+        .select('client_id')
+        .eq('week_start_date', weekStartIso);
+
       const adminIds = new Set((roles || []).filter(r => r.role === 'admin').map(r => r.user_id));
+      const reviewedIds = new Set((weeklyReviews || []).map(w => w.client_id));
 
       return (profiles || [])
         .filter(p => !adminIds.has(p.id))
@@ -70,6 +79,7 @@ const CoachPanel = () => {
           ...p,
           adherence: (adherenceData || []).find(a => a.client_id === p.id),
           activeProgram: (activePrograms || []).find(ap => ap.client_id === p.id),
+          hasReviewThisWeek: reviewedIds.has(p.id),
         }));
     },
     enabled: !!user,
