@@ -9,12 +9,11 @@ import { Progress as ProgressBar } from '@/components/ui/progress';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Loader2, User, Dumbbell, Heart, TrendingUp, Calendar, MessageSquare, Target, ClipboardList, Wrench, Video, Settings2, Printer } from 'lucide-react';
+import { Loader2, User, Dumbbell, Heart, TrendingUp, Calendar, MessageSquare, Target, ClipboardList, Wrench, Video, Settings2 } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { WeeklyReviewForm, AdjustmentForm, GoalForm, TechniqueReviewForm } from './CoachClientForms';
 import ProgramDayOverridesTab from './ProgramDayOverridesTab';
-import { openWeeklyReviewPrint } from '@/lib/printWeeklyReview';
 
 interface ClientDetailDialogProps {
   open: boolean;
