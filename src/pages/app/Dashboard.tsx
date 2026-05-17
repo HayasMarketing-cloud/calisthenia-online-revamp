@@ -14,6 +14,7 @@ import {
   Watch,
   Smartphone,
 } from 'lucide-react';
+import GoalsWidget from '@/components/app/GoalsWidget';
 
 const greeting = () => {
   const h = new Date().getHours();
