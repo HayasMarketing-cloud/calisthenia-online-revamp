@@ -52,6 +52,12 @@ const Onboarding = () => {
     date_of_birth: '',
     weight_kg: '',
     height_cm: '',
+    initial_goal_type: '' as string,
+    initial_goal_label: '',
+    initial_goal_start: '',
+    initial_goal_target: '',
+    initial_goal_unit: '',
+    initial_goal_date: '',
   });
 
   const update = (key: string, value: string | boolean) => {
