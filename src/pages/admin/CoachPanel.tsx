@@ -304,6 +304,7 @@ const CoachPanel = () => {
                 Vista alumno
               </Link>
             </Button>
+          </div>
         </div>
 
         {/* KPIs */}
