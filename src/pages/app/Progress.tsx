@@ -72,7 +72,50 @@ const Progress = () => {
     enabled: !!user,
   });
 
-  return (
+  // Weekly reviews (solo las marcadas client_visible = true por RLS)
+  const { data: reviews } = useQuery({
+    queryKey: ['client-weekly-reviews', user?.id],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from('weekly_reviews')
+        .select('*')
+        .eq('client_id', user!.id)
+        .order('week_start_date', { ascending: false })
+        .limit(8);
+      return data || [];
+    },
+    enabled: !!user,
+  });
+
+  // Technique reviews del alumno
+  const { data: technique } = useQuery({
+    queryKey: ['client-technique-reviews', user?.id],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from('technique_reviews')
+        .select('id, exercise_id, video_url, client_notes, coach_feedback, score, recommendations, status, reviewed_at, created_at')
+        .eq('client_id', user!.id)
+        .order('created_at', { ascending: false })
+        .limit(15);
+      return data || [];
+    },
+    enabled: !!user,
+  });
+
+  // Nombres de ejercicios referenciados
+  const exerciseIds = Array.from(new Set((technique || []).map(t => t.exercise_id).filter(Boolean) as string[]));
+  const { data: exerciseNames } = useQuery({
+    queryKey: ['exercises-by-id', exerciseIds],
+    queryFn: async () => {
+      if (!exerciseIds.length) return {} as Record<string, string>;
+      const { data } = await supabase.from('exercises').select('id, name').in('id', exerciseIds);
+      const map: Record<string, string> = {};
+      (data || []).forEach(e => { map[e.id] = e.name; });
+      return map;
+    },
+    enabled: exerciseIds.length > 0,
+  });
+
     <div className="px-4 py-6 max-w-lg mx-auto space-y-6">
       <h1 className="text-2xl font-bold text-foreground">Mi progreso</h1>
 
