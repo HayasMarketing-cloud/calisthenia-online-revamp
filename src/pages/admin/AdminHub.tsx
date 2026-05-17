@@ -1,70 +1,117 @@
 import { Link } from 'react-router-dom';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { Users, Dumbbell, FileText, BarChart3, Image, ClipboardList, UserPlus, Video, Smartphone } from 'lucide-react';
 import {
   Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 
-const adminSections = [
+type Phase = 'Fase 0' | 'Fase 1' | 'Fase 2' | 'Fase 3' | 'Estable';
+type Status = 'live' | 'in-progress' | 'pending';
+
+const phaseStyles: Record<Phase, string> = {
+  'Fase 0': 'bg-muted text-muted-foreground border-muted',
+  'Fase 1': 'bg-primary/10 text-primary border-primary/30',
+  'Fase 2': 'bg-accent/20 text-accent-foreground border-accent/40',
+  'Fase 3': 'bg-secondary text-secondary-foreground border-secondary',
+  'Estable': 'bg-muted text-muted-foreground border-muted',
+};
+
+const statusStyles: Record<Status, string> = {
+  live: 'bg-green-500/10 text-green-700 dark:text-green-400 border-green-500/30',
+  'in-progress': 'bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-500/30',
+  pending: 'bg-red-500/10 text-red-700 dark:text-red-400 border-red-500/30',
+};
+
+const statusLabel: Record<Status, string> = {
+  live: 'Activo',
+  'in-progress': 'En curso',
+  pending: 'Pendiente',
+};
+
+const adminSections: Array<{
+  title: string; description: string; icon: typeof Users; path: string;
+  phase: Phase; status: Status;
+}> = [
   {
     title: 'Panel de Coach',
-    description: 'Lista de alumnos, asignar programas y ver detalle',
+    description: 'Lista de alumnos, KPIs de engagement, alertas y detalle por alumno',
     icon: Users,
     path: '/admin/coach/',
+    phase: 'Fase 1',
+    status: 'in-progress',
   },
   {
     title: 'Onboarding alumnos',
     description: 'Datos recibidos del formulario inicial y gestión del cuestionario',
     icon: ClipboardList,
     path: '/admin/onboarding/',
+    phase: 'Fase 1',
+    status: 'live',
   },
   {
     title: 'Vista alumno (app)',
     description: 'Abre la pantalla de inicio del área privada del alumno',
     icon: Smartphone,
     path: '/app/dashboard',
+    phase: 'Fase 1',
+    status: 'live',
   },
   {
     title: 'Ejercicios',
     description: 'Alta, edición y baja de ejercicios con vídeos',
     icon: Dumbbell,
     path: '/admin/exercises/',
+    phase: 'Fase 0',
+    status: 'live',
   },
   {
     title: 'Plantillas de programa',
-    description: 'Crea y edita plantillas con semanas, días y ejercicios',
+    description: 'Crea y edita plantillas con semanas, días y ejercicios. Versionado y overrides',
     icon: ClipboardList,
     path: '/admin/programs/',
+    phase: 'Fase 2',
+    status: 'in-progress',
   },
   {
     title: 'Blog',
     description: 'Gestiona artículos del blog',
     icon: FileText,
     path: '/admin/blog/',
+    phase: 'Estable',
+    status: 'live',
   },
   {
     title: 'SEO Dashboard',
     description: 'Analiza y optimiza el SEO de las páginas',
     icon: BarChart3,
     path: '/admin/seo-dashboard/',
+    phase: 'Estable',
+    status: 'live',
   },
   {
     title: 'Media Library',
     description: 'Gestiona imágenes y archivos multimedia',
     icon: Image,
     path: '/admin/media-library/',
+    phase: 'Estable',
+    status: 'live',
   },
   {
     title: 'Leads',
     description: 'Consulta y exporta los leads capturados',
     icon: UserPlus,
     path: '/admin/leads/',
+    phase: 'Estable',
+    status: 'live',
   },
   {
     title: 'Biblioteca de vídeos',
     description: 'Catálogo del canal y páginas donde se usa cada vídeo',
     icon: Video,
     path: '/admin/videos/',
+    phase: 'Estable',
+    status: 'live',
   },
 ];
 
