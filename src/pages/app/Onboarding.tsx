@@ -103,9 +103,9 @@ const Onboarding = () => {
         });
       }
 
-      // Create initial structured goal (optional)
+      // Create initial structured goal (optional) and pin it
       if (form.initial_goal_type) {
-        await supabase.from('goal_progress').insert({
+        const { data: goalRow } = await supabase.from('goal_progress').insert({
           client_id: user.id,
           goal_type: form.initial_goal_type as any,
           custom_label: form.initial_goal_label || null,
@@ -115,7 +115,11 @@ const Onboarding = () => {
           unit: form.initial_goal_unit || null,
           target_date: form.initial_goal_date || null,
           is_active: true,
-        });
+        }).select('id').maybeSingle();
+
+        if (goalRow?.id) {
+          await supabase.from('client_profiles').update({ pinned_goal_id: goalRow.id }).eq('id', user.id);
+        }
       }
 
       toast.success('¡Perfil completado! Bienvenido 💪');
