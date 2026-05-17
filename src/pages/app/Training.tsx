@@ -212,6 +212,13 @@ const Training = () => {
         <p className="text-sm text-muted-foreground mt-1">{today.programName}</p>
       </div>
 
+      {today.overrideNote && (
+        <div className="rounded-md border border-primary/30 bg-primary/5 px-3 py-2 text-sm text-foreground">
+          <span className="font-medium">Nota de tu coach: </span>
+          <span className="text-muted-foreground">{today.overrideNote}</span>
+        </div>
+      )}
+
       {/* Progress bar (only when session is active) */}
       {isSessionActive && (
         <div className="space-y-1">
