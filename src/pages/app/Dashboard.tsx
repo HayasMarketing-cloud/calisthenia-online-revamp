@@ -14,6 +14,7 @@ import {
   Watch,
   Smartphone,
 } from 'lucide-react';
+import GoalsWidget from '@/components/app/GoalsWidget';
 
 const greeting = () => {
   const h = new Date().getHours();
@@ -330,6 +331,9 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         </section>
+
+        {/* Objetivos del alumno */}
+        <GoalsWidget />
 
         {/* Conecta con otras aplicaciones */}
         <section>
