@@ -116,6 +116,7 @@ const Progress = () => {
     enabled: exerciseIds.length > 0,
   });
 
+  return (
     <div className="px-4 py-6 max-w-lg mx-auto space-y-6">
       <h1 className="text-2xl font-bold text-foreground">Mi progreso</h1>
 
