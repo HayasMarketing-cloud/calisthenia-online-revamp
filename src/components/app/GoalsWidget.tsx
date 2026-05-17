@@ -1,9 +1,10 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Target } from 'lucide-react';
+import { Target, Pin, PinOff } from 'lucide-react';
+import { toast } from 'sonner';
 
 const goalLabels: Record<string, string> = {
   weight_loss: 'Pérdida de peso',
@@ -27,6 +28,7 @@ const calcPct = (start: number | null, current: number | null, target: number | 
 
 const GoalsWidget = () => {
   const { user } = useAuth();
+  const queryClient = useQueryClient();
 
   const { data: goals } = useQuery({
     queryKey: ['client-goals', user?.id],
@@ -42,7 +44,39 @@ const GoalsWidget = () => {
     enabled: !!user,
   });
 
+  const { data: profile } = useQuery({
+    queryKey: ['client-profile-pinned', user?.id],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from('client_profiles')
+        .select('pinned_goal_id')
+        .eq('id', user!.id)
+        .maybeSingle();
+      return data;
+    },
+    enabled: !!user,
+  });
+
+  const pinMutation = useMutation({
+    mutationFn: async (goalId: string | null) => {
+      const { error } = await supabase
+        .from('client_profiles')
+        .update({ pinned_goal_id: goalId })
+        .eq('id', user!.id);
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['client-profile-pinned'] });
+      queryClient.invalidateQueries({ queryKey: ['pinned-goal'] });
+      queryClient.invalidateQueries({ queryKey: ['pinned-goal-history'] });
+      toast.success('Objetivo destacado actualizado');
+    },
+    onError: () => toast.error('No se pudo actualizar el objetivo destacado'),
+  });
+
   if (!goals || goals.length === 0) return null;
+
+  const pinnedId = profile?.pinned_goal_id;
 
   return (
     <section>
@@ -56,6 +90,7 @@ const GoalsWidget = () => {
               g.current_value != null ? Number(g.current_value) : null,
               g.target_value != null ? Number(g.target_value) : null
             );
+            const isPinned = pinnedId === g.id;
             return (
               <div key={g.id} className="space-y-1.5">
                 <div className="flex items-center justify-between gap-3">
@@ -63,9 +98,24 @@ const GoalsWidget = () => {
                     <Target className="h-4 w-4 text-primary shrink-0" />
                     <span className="text-sm font-semibold text-foreground truncate">{label}</span>
                   </div>
-                  <span className="text-xs text-muted-foreground shrink-0">
-                    {g.current_value ?? '—'} / {g.target_value ?? '—'} {g.unit || ''}
-                  </span>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <span className="text-xs text-muted-foreground">
+                      {g.current_value ?? '—'} / {g.target_value ?? '—'} {g.unit || ''}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => pinMutation.mutate(isPinned ? null : g.id)}
+                      disabled={pinMutation.isPending}
+                      className="p-1 rounded hover:bg-muted transition-colors"
+                      aria-label={isPinned ? 'Quitar destacado' : 'Destacar objetivo'}
+                      title={isPinned ? 'Quitar destacado' : 'Destacar objetivo'}
+                    >
+                      {isPinned
+                        ? <Pin className="h-3.5 w-3.5 text-primary fill-primary" />
+                        : <PinOff className="h-3.5 w-3.5 text-muted-foreground" />
+                      }
+                    </button>
+                  </div>
                 </div>
                 <Progress value={pct} className="h-2" />
               </div>
