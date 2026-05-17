@@ -249,9 +249,42 @@ const CoachPanel = () => {
     },
   });
 
-  const filteredClients = (clients || []).filter(c =>
-    (c.display_name || '').toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredClients = (clients || [])
+    .filter(c => (c.display_name || '').toLowerCase().includes(search.toLowerCase()))
+    .filter(c => {
+      if (statusFilter === 'all') return true;
+      const status = c.adherence?.status || 'new';
+      return status === statusFilter;
+    })
+    .filter(c => {
+      if (programFilter === 'all') return true;
+      if (programFilter === 'with') return !!c.activeProgram;
+      if (programFilter === 'without') return !c.activeProgram;
+      return true;
+    })
+    .sort((a, b) => {
+      switch (sortBy) {
+        case 'name_asc':
+          return (a.display_name || '').localeCompare(b.display_name || '');
+        case 'name_desc':
+          return (b.display_name || '').localeCompare(a.display_name || '');
+        case 'adherence_desc':
+          return Number(b.adherence?.adherence_pct_7d || 0) - Number(a.adherence?.adherence_pct_7d || 0);
+        case 'adherence_asc':
+          return Number(a.adherence?.adherence_pct_7d || 0) - Number(b.adherence?.adherence_pct_7d || 0);
+        case 'streak_desc':
+          return (b.adherence?.current_streak || 0) - (a.adherence?.current_streak || 0);
+        case 'recent':
+          return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+        case 'last_session': {
+          const aLast = a.adherence?.last_session_at ? new Date(a.adherence.last_session_at).getTime() : 0;
+          const bLast = b.adherence?.last_session_at ? new Date(b.adherence.last_session_at).getTime() : 0;
+          return bLast - aLast;
+        }
+        default:
+          return 0;
+      }
+    });
 
   // KPIs aggregated
   const totalClients = clients?.length || 0;
