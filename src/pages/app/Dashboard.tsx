@@ -332,6 +332,9 @@ const Dashboard = () => {
           </Card>
         </section>
 
+        {/* Objetivos del alumno */}
+        <GoalsWidget />
+
         {/* Conecta con otras aplicaciones */}
         <section>
           <h2 className="text-2xl font-bold text-foreground mb-4">
