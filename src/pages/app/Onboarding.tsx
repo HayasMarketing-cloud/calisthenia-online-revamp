@@ -270,6 +270,84 @@ const Onboarding = () => {
           </div>
         )}
 
+        {/* Step 5: Initial featured goal (optional) */}
+        {step === 5 && (
+          <div className="space-y-4">
+            <p className="text-sm text-muted-foreground">
+              Define un objetivo concreto que podamos medir y celebrar contigo. Es opcional — puedes saltarlo y añadirlo después.
+            </p>
+            <div>
+              <Label>Tipo de objetivo</Label>
+              <Select
+                value={form.initial_goal_type}
+                onValueChange={v => {
+                  const preset = GOAL_TYPES.find(g => g.value === v);
+                  setForm(prev => ({ ...prev, initial_goal_type: v, initial_goal_unit: preset?.unit || prev.initial_goal_unit }));
+                }}
+              >
+                <SelectTrigger><SelectValue placeholder="Selecciona o salta este paso" /></SelectTrigger>
+                <SelectContent>
+                  {GOAL_TYPES.map(g => (
+                    <SelectItem key={g.value} value={g.value}>{g.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            {form.initial_goal_type === 'custom' && (
+              <div>
+                <Label>Nombre del objetivo</Label>
+                <Input
+                  value={form.initial_goal_label}
+                  onChange={e => update('initial_goal_label', e.target.value)}
+                  placeholder="Ej: Bandera humana"
+                />
+              </div>
+            )}
+            {form.initial_goal_type && (
+              <>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label>Valor actual</Label>
+                    <Input
+                      type="number"
+                      value={form.initial_goal_start}
+                      onChange={e => update('initial_goal_start', e.target.value)}
+                      placeholder="0"
+                    />
+                  </div>
+                  <div>
+                    <Label>Objetivo</Label>
+                    <Input
+                      type="number"
+                      value={form.initial_goal_target}
+                      onChange={e => update('initial_goal_target', e.target.value)}
+                      placeholder="10"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label>Unidad</Label>
+                    <Input
+                      value={form.initial_goal_unit}
+                      onChange={e => update('initial_goal_unit', e.target.value)}
+                      placeholder="reps, kg, min..."
+                    />
+                  </div>
+                  <div>
+                    <Label>Fecha límite</Label>
+                    <Input
+                      type="date"
+                      value={form.initial_goal_date}
+                      onChange={e => update('initial_goal_date', e.target.value)}
+                    />
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        )}
+
         {/* Navigation */}
         <div className="mt-auto pt-8 flex gap-3">
           {step > 1 && (
