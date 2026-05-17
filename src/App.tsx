@@ -98,6 +98,9 @@ const App = () => (
             <Route path="/admin/" element={<ProtectedRoute requireAdmin><AdminHub /></ProtectedRoute>} />
             <Route path="/admin/exercises/" element={<ProtectedRoute requireAdmin><ExercisesManager /></ProtectedRoute>} />
             <Route path="/admin/programs/" element={<ProtectedRoute requireAdmin><ProgramTemplates /></ProtectedRoute>} />
+            <Route path="/admin/programs/templates" element={<ProtectedRoute requireAdmin><ProgramTemplates /></ProtectedRoute>} />
+            <Route path="/admin/programs/templates/:id" element={<ProtectedRoute requireAdmin><ProgramTemplateEditor /></ProtectedRoute>} />
+            <Route path="/admin/programs/templates/:id/versions" element={<ProtectedRoute requireAdmin><ProgramTemplateVersions /></ProtectedRoute>} />
             <Route path="/admin/programs/:id" element={<ProtectedRoute requireAdmin><ProgramTemplateEditor /></ProtectedRoute>} />
             <Route path="/admin/programs/:id/versions" element={<ProtectedRoute requireAdmin><ProgramTemplateVersions /></ProtectedRoute>} />
             <Route path="/admin/leads/" element={<ProtectedRoute requireAdmin><LeadsManager /></ProtectedRoute>} />
