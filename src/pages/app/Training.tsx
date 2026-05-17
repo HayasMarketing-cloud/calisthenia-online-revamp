@@ -67,10 +67,10 @@ const Training = () => {
       return next;
     });
 
-    // Log to DB (fire and forget)
+    // Log to DB (fire and forget) — skip synthetic exercises added by overrides
     const isNowCompleted = !completedExercises.has(exerciseId);
-    if (isNowCompleted) {
-      const item = today?.exercises.find(e => e.id === exerciseId);
+    const item = today?.exercises.find(e => e.id === exerciseId);
+    if (isNowCompleted && item && !item.isOverrideAdded && !exerciseId.startsWith('override-')) {
       await supabase.from('session_exercise_logs').insert({
         session_id: sid,
         program_day_exercise_id: exerciseId,
@@ -156,7 +156,7 @@ const Training = () => {
     );
   }
 
-  // Rest day
+  // Rest day (incluye skipped por override)
   if (today.isRestDay) {
     return (
       <div className="px-4 py-6 max-w-lg mx-auto space-y-6">
@@ -164,9 +164,13 @@ const Training = () => {
         <Card>
           <CardContent className="p-8 text-center">
             <BedDouble className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-            <h2 className="text-lg font-semibold mb-2">Día de descanso 😴</h2>
+            <h2 className="text-lg font-semibold mb-2">
+              {today.skippedByOverride ? 'Día reasignado 🛌' : 'Día de descanso 😴'}
+            </h2>
             <p className="text-sm text-muted-foreground">
-              Hoy toca recuperar. Hidrátate, estira y descansa para volver más fuerte mañana.
+              {today.skippedByOverride
+                ? (today.overrideReason || 'Tu coach ha marcado hoy como descanso.')
+                : 'Hoy toca recuperar. Hidrátate, estira y descansa para volver más fuerte mañana.'}
             </p>
           </CardContent>
         </Card>
