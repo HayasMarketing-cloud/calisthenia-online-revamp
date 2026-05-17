@@ -4,7 +4,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress as ProgressBar } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { BarChart3, Flame, Target, Activity, CalendarDays } from 'lucide-react';
+import { BarChart3, Flame, Target, Activity, CalendarDays, ClipboardList, Video, MessageSquare } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 import { es } from 'date-fns/locale';
 
@@ -70,6 +70,50 @@ const Progress = () => {
       return data || [];
     },
     enabled: !!user,
+  });
+
+  // Weekly reviews (solo las marcadas client_visible = true por RLS)
+  const { data: reviews } = useQuery({
+    queryKey: ['client-weekly-reviews', user?.id],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from('weekly_reviews')
+        .select('*')
+        .eq('client_id', user!.id)
+        .order('week_start_date', { ascending: false })
+        .limit(8);
+      return data || [];
+    },
+    enabled: !!user,
+  });
+
+  // Technique reviews del alumno
+  const { data: technique } = useQuery({
+    queryKey: ['client-technique-reviews', user?.id],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from('technique_reviews')
+        .select('id, exercise_id, video_url, client_notes, coach_feedback, score, recommendations, status, reviewed_at, created_at')
+        .eq('client_id', user!.id)
+        .order('created_at', { ascending: false })
+        .limit(15);
+      return data || [];
+    },
+    enabled: !!user,
+  });
+
+  // Nombres de ejercicios referenciados
+  const exerciseIds = Array.from(new Set((technique || []).map(t => t.exercise_id).filter(Boolean) as string[]));
+  const { data: exerciseNames } = useQuery({
+    queryKey: ['exercises-by-id', exerciseIds],
+    queryFn: async () => {
+      if (!exerciseIds.length) return {} as Record<string, string>;
+      const { data } = await supabase.from('exercises').select('id, name').in('id', exerciseIds);
+      const map: Record<string, string> = {};
+      (data || []).forEach(e => { map[e.id] = e.name; });
+      return map;
+    },
+    enabled: exerciseIds.length > 0,
   });
 
   return (
@@ -196,6 +240,118 @@ const Progress = () => {
           </CardContent>
         </Card>
       )}
+
+      {/* Revisiones semanales del coach */}
+      <Card className="rounded-2xl">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm flex items-center gap-2">
+            <ClipboardList className="h-4 w-4 text-primary" /> Notas del coach
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          {!reviews || reviews.length === 0 ? (
+            <p className="text-sm text-muted-foreground text-center py-4">
+              Tu coach aún no ha publicado ninguna revisión semanal.
+            </p>
+          ) : (
+            <div className="space-y-3">
+              {reviews.map((r) => (
+                <div key={r.id} className="border rounded-lg p-3 space-y-1.5">
+                  <p className="text-xs font-semibold text-foreground">
+                    Semana del {format(parseISO(r.week_start_date), "d 'de' MMMM yyyy", { locale: es })}
+                  </p>
+                  {r.summary && <p className="text-xs text-foreground">{r.summary}</p>}
+                  {r.strengths && (
+                    <p className="text-xs"><span className="font-medium text-foreground">Fortalezas:</span> <span className="text-muted-foreground">{r.strengths}</span></p>
+                  )}
+                  {r.improvement_areas && (
+                    <p className="text-xs"><span className="font-medium text-foreground">A mejorar:</span> <span className="text-muted-foreground">{r.improvement_areas}</span></p>
+                  )}
+                  {r.next_steps && (
+                    <p className="text-xs"><span className="font-medium text-foreground">Próximos pasos:</span> <span className="text-muted-foreground">{r.next_steps}</span></p>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Feedback de técnica */}
+      <Card className="rounded-2xl">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm flex items-center gap-2">
+            <Video className="h-4 w-4 text-primary" /> Feedback de técnica
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          {!technique || technique.length === 0 ? (
+            <p className="text-sm text-muted-foreground text-center py-4">
+              Aún no has enviado videos de técnica para revisar.
+            </p>
+          ) : (
+            <div className="space-y-3">
+              {technique.map((t) => {
+                const exName = t.exercise_id && exerciseNames ? exerciseNames[t.exercise_id] : null;
+                const statusVariant =
+                  t.status === 'reviewed' ? 'default' :
+                  t.status === 'archived' ? 'outline' : 'secondary';
+                const statusLabel =
+                  t.status === 'reviewed' ? 'Revisado' :
+                  t.status === 'archived' ? 'Archivado' : 'Pendiente';
+                return (
+                  <div key={t.id} className="border rounded-lg p-3 space-y-1.5">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="min-w-0">
+                        <p className="text-xs font-semibold text-foreground truncate">
+                          {exName || 'Ejercicio'}
+                        </p>
+                        <p className="text-[11px] text-muted-foreground">
+                          Enviado {format(new Date(t.created_at), "d MMM yyyy", { locale: es })}
+                          {t.reviewed_at && ` · Revisado ${format(new Date(t.reviewed_at), "d MMM", { locale: es })}`}
+                        </p>
+                      </div>
+                      <Badge variant={statusVariant} className="text-[10px] shrink-0">{statusLabel}</Badge>
+                    </div>
+
+                    {t.client_notes && (
+                      <div className="flex items-start gap-1.5 text-xs text-muted-foreground">
+                        <MessageSquare className="h-3 w-3 mt-0.5 shrink-0" />
+                        <span className="italic">"{t.client_notes}"</span>
+                      </div>
+                    )}
+
+                    {t.coach_feedback && (
+                      <div className="bg-muted rounded p-2 text-xs text-foreground">
+                        <span className="font-medium">Coach:</span> {t.coach_feedback}
+                      </div>
+                    )}
+
+                    {t.recommendations && (
+                      <p className="text-xs text-foreground">
+                        <span className="font-medium">Recomendaciones:</span> {t.recommendations}
+                      </p>
+                    )}
+
+                    <div className="flex items-center justify-between text-[11px] pt-1">
+                      {t.score != null ? (
+                        <span className="text-muted-foreground">
+                          Puntuación: <span className="font-semibold text-foreground">{t.score}/10</span>
+                        </span>
+                      ) : <span />}
+                      {t.video_url && (
+                        <a href={t.video_url} target="_blank" rel="noopener noreferrer" className="text-primary underline">
+                          Ver video
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 };
