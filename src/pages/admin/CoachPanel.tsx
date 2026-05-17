@@ -28,6 +28,9 @@ const CoachPanel = () => {
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const [search, setSearch] = useState('');
+  const [statusFilter, setStatusFilter] = useState<string>('all');
+  const [programFilter, setProgramFilter] = useState<string>('all');
+  const [sortBy, setSortBy] = useState<string>('name_asc');
   const [assignDialog, setAssignDialog] = useState<{ open: boolean; clientId: string; clientName: string }>({ open: false, clientId: '', clientName: '' });
   const [selectedTemplate, setSelectedTemplate] = useState('');
   const [detailDialog, setDetailDialog] = useState<{ open: boolean; clientId: string; clientName: string }>({ open: false, clientId: '', clientName: '' });
@@ -246,9 +249,42 @@ const CoachPanel = () => {
     },
   });
 
-  const filteredClients = (clients || []).filter(c =>
-    (c.display_name || '').toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredClients = (clients || [])
+    .filter(c => (c.display_name || '').toLowerCase().includes(search.toLowerCase()))
+    .filter(c => {
+      if (statusFilter === 'all') return true;
+      const status = c.adherence?.status || 'new';
+      return status === statusFilter;
+    })
+    .filter(c => {
+      if (programFilter === 'all') return true;
+      if (programFilter === 'with') return !!c.activeProgram;
+      if (programFilter === 'without') return !c.activeProgram;
+      return true;
+    })
+    .sort((a, b) => {
+      switch (sortBy) {
+        case 'name_asc':
+          return (a.display_name || '').localeCompare(b.display_name || '');
+        case 'name_desc':
+          return (b.display_name || '').localeCompare(a.display_name || '');
+        case 'adherence_desc':
+          return Number(b.adherence?.adherence_pct_7d || 0) - Number(a.adherence?.adherence_pct_7d || 0);
+        case 'adherence_asc':
+          return Number(a.adherence?.adherence_pct_7d || 0) - Number(b.adherence?.adherence_pct_7d || 0);
+        case 'streak_desc':
+          return (b.adherence?.current_streak || 0) - (a.adherence?.current_streak || 0);
+        case 'recent':
+          return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+        case 'last_session': {
+          const aLast = a.adherence?.last_session_at ? new Date(a.adherence.last_session_at).getTime() : 0;
+          const bLast = b.adherence?.last_session_at ? new Date(b.adherence.last_session_at).getTime() : 0;
+          return bLast - aLast;
+        }
+        default:
+          return 0;
+      }
+    });
 
   // KPIs aggregated
   const totalClients = clients?.length || 0;
@@ -407,14 +443,64 @@ const CoachPanel = () => {
           </Card>
         )}
 
-        <div className="relative max-w-sm">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            placeholder="Buscar alumno..."
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            className="pl-10"
-          />
+        <div className="flex flex-wrap gap-2 items-center">
+          <div className="relative flex-1 min-w-[200px] max-w-sm">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              placeholder="Buscar alumno..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+          <Select value={statusFilter} onValueChange={setStatusFilter}>
+            <SelectTrigger className="w-[160px]">
+              <SelectValue placeholder="Estado" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Todos los estados</SelectItem>
+              <SelectItem value="active">Activos</SelectItem>
+              <SelectItem value="at_risk">En riesgo</SelectItem>
+              <SelectItem value="inactive">Inactivos</SelectItem>
+              <SelectItem value="new">Nuevos</SelectItem>
+            </SelectContent>
+          </Select>
+          <Select value={programFilter} onValueChange={setProgramFilter}>
+            <SelectTrigger className="w-[170px]">
+              <SelectValue placeholder="Programa" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Todos</SelectItem>
+              <SelectItem value="with">Con programa</SelectItem>
+              <SelectItem value="without">Sin programa</SelectItem>
+            </SelectContent>
+          </Select>
+          <Select value={sortBy} onValueChange={setSortBy}>
+            <SelectTrigger className="w-[200px]">
+              <SelectValue placeholder="Ordenar" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="name_asc">Nombre (A-Z)</SelectItem>
+              <SelectItem value="name_desc">Nombre (Z-A)</SelectItem>
+              <SelectItem value="adherence_desc">Más adherencia</SelectItem>
+              <SelectItem value="adherence_asc">Menos adherencia</SelectItem>
+              <SelectItem value="streak_desc">Mayor racha</SelectItem>
+              <SelectItem value="last_session">Sesión más reciente</SelectItem>
+              <SelectItem value="recent">Alta más reciente</SelectItem>
+            </SelectContent>
+          </Select>
+          {(statusFilter !== 'all' || programFilter !== 'all' || search) && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => { setSearch(''); setStatusFilter('all'); setProgramFilter('all'); }}
+            >
+              Limpiar
+            </Button>
+          )}
+          <span className="text-xs text-muted-foreground ml-auto">
+            {filteredClients.length} / {clients?.length || 0}
+          </span>
         </div>
 
         {/* Client table */}
