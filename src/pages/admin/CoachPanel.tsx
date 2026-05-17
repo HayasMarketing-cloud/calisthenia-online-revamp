@@ -250,6 +250,28 @@ const CoachPanel = () => {
     (c.display_name || '').toLowerCase().includes(search.toLowerCase())
   );
 
+  // KPIs aggregated
+  const totalClients = clients?.length || 0;
+  const activeClients = (clients || []).filter(c => c.adherence?.status === 'active').length;
+  const atRiskClients = (clients || []).filter(c => c.adherence?.status === 'at_risk' || c.adherence?.status === 'inactive').length;
+  const avgAdherence7d = totalClients > 0
+    ? Math.round(
+        (clients || []).reduce((sum, c) => sum + Number(c.adherence?.adherence_pct_7d || 0), 0) / totalClients
+      )
+    : 0;
+  const openAlerts = alerts?.length || 0;
+
+  const alertTypeLabels: Record<string, string> = {
+    low_engagement: 'Bajo engagement',
+    at_risk: 'En riesgo',
+    inactive: 'Inactivo',
+    missed_sessions: 'Sesiones perdidas',
+    no_feedback: 'Sin feedback',
+  };
+
+  const clientNameById = (id: string) =>
+    (clients || []).find(c => c.id === id)?.display_name || 'Alumno';
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
