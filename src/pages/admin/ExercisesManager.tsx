@@ -35,6 +35,16 @@ const EXERCISE_CATEGORIES = [
   { value: 'flexibilidad', label: 'Flexibilidad' },
 ];
 
+const MOVEMENT_PATTERNS = [
+  { value: 'push', label: 'Empuje' },
+  { value: 'pull', label: 'Tracción' },
+  { value: 'squat', label: 'Sentadilla' },
+  { value: 'hinge', label: 'Bisagra' },
+  { value: 'core', label: 'Core' },
+  { value: 'locomotion', label: 'Locomoción' },
+  { value: 'isometric', label: 'Isométrico' },
+];
+
 interface ExerciseForm {
   id?: string;
   name: string;
@@ -44,6 +54,13 @@ interface ExerciseForm {
   difficulty_level: string;
   equipment_needed: string;
   category: string;
+  // Coach
+  movement_pattern: string;
+  coach_tips: string;
+  common_errors: string;
+  default_sets: string;
+  default_reps: string;
+  default_rest_seconds: string;
   // SEO
   seo_slug: string;
   primary_keyword: string;
@@ -62,6 +79,12 @@ const emptyForm: ExerciseForm = {
   difficulty_level: 'beginner',
   equipment_needed: '',
   category: '',
+  movement_pattern: '',
+  coach_tips: '',
+  common_errors: '',
+  default_sets: '',
+  default_reps: '',
+  default_rest_seconds: '',
   seo_slug: '',
   primary_keyword: '',
   aliases: '',
