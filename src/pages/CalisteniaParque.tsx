@@ -206,7 +206,7 @@ const CalisteniaParque = () => {
           <section className="py-16 bg-muted/30">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Por Qué Entrenar en Parques
+                Por qué entrenar calistenia en el parque
               </h2>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
