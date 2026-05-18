@@ -141,13 +141,13 @@ const CalisteniaParque = () => {
   return (
     <>
       <Helmet>
-        <title>Calistenia en Parque: Tipos de Barras y Guía Completa 2025</title>
+        <title>Calistenia parque: entrena gratis al aire libre (guía 2026)</title>
         <meta
           name="description"
           content="Entrena gratis al aire libre: tipos de barras, parques cerca de ti y rutina paso a paso para empezar hoy. Tu gimnasio está a la vuelta de la esquina."
         />
         <meta name="keywords" content="calistenia parque, barras de parques, parque de calistenia, parques calistenia cerca de mi, tipos de barras, parque de barras" />
-        <meta property="og:title" content="Calistenia en Parque: Tipos de Barras y Guía Completa" />
+        <meta property="og:title" content="Calistenia parque: entrena gratis al aire libre" />
         <meta property="og:description" content="Tipos de barras de parques, cómo encontrar tu parque y ejercicios paso a paso para entrenar al aire libre." />
         <meta property="og:url" content="https://calisthenia.online/calistenia-en-parque/" />
         <meta property="og:type" content="article" />
@@ -166,7 +166,7 @@ const CalisteniaParque = () => {
               items={[
                 { label: "Inicio", href: "/" },
                 { label: "Lugar", href: "/#entrenar" },
-                { label: "Calistenia en Parque", href: "/calistenia-en-parque/" }
+                { label: "Calistenia parque", href: "/calistenia-en-parque/" }
               ]}
             />
           </div>
@@ -183,7 +183,7 @@ const CalisteniaParque = () => {
             <div className="relative z-10 container mx-auto px-4 text-center">
               <TreePine className="w-16 h-16 mx-auto mb-6 text-primary" />
               <h1 className="font-display font-bold text-4xl md:text-6xl mb-6">
-                Calistenia Parques
+                Calistenia parque: entrena gratis al aire libre
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
                 Descubre cómo empezar en calistenia usando parques públicos. Entrena gratis con barras, paralelas y equipamiento urbano.

@@ -3,8 +3,8 @@ import RoutineBreadcrumbs from "./RoutineBreadcrumbs";
 
 interface RoutineHeroProps {
   breadcrumbs: Array<{ label: string; href: string }>;
-  title: string;
-  titleHighlight: string;
+  title?: string;
+  titleHighlight?: string;
   emoji?: string;
   description: string;
   nivel?: string;
@@ -12,6 +12,7 @@ interface RoutineHeroProps {
   lugar?: string;
   gradientFrom?: string;
   gradientTo?: string;
+  fullH1?: string;
 }
 
 const RoutineHero = ({
@@ -24,7 +25,8 @@ const RoutineHero = ({
   duracion,
   lugar,
   gradientFrom = "from-primary/10",
-  gradientTo = "to-background"
+  gradientTo = "to-background",
+  fullH1,
 }: RoutineHeroProps) => {
   return (
     <section className={`pt-24 pb-16 bg-gradient-to-br ${gradientFrom} ${gradientTo}`}>
@@ -33,7 +35,11 @@ const RoutineHero = ({
         
         <div className="max-w-4xl mx-auto mt-8">
           <h1 className="font-display font-bold text-4xl lg:text-6xl mb-6 text-center">
-            {title} <span className="text-primary">{titleHighlight}</span> {emoji}
+            {fullH1 ? fullH1 : (
+              <>
+                {title} <span className="text-primary">{titleHighlight}</span> {emoji}
+              </>
+            )}
           </h1>
           
           <div className="flex flex-wrap gap-3 mb-6 justify-center">
