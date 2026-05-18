@@ -152,8 +152,8 @@ const CalisteniaParque = () => {
         <meta property="og:url" content="https://calisthenia.online/calistenia-en-parque/" />
         <meta property="og:type" content="article" />
         <meta property="og:image" content="https://calisthenia.online/og/hero-calistenia-parque.webp" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
+        <meta property="og:image:width" content="1600" />
+        <meta property="og:image:height" content="873" />
         <meta property="og:image:alt" content="Parque de calistenia al aire libre con barras de dominadas y paralelas" />
         <meta property="og:locale" content="es_ES" />
         <meta property="og:site_name" content="Calisthenia Online" />
