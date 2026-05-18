@@ -165,7 +165,7 @@ const RutinaCore = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto mb-12 text-center">
             <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">
-              Core Ejercicios: <span className="text-primary">Fortalece tu Centro</span> Paso a Paso
+              Ejercicios de la <span className="text-primary">rutina de core</span>: fortalece tu centro paso a paso
             </h2>
             <p className="text-lg text-muted-foreground">
               Aquí tienes una excelente selección de ejercicios para trabajar el centro desde distintos ángulos y niveles. Si vas empezando, repasa primero la <Link to="/calistenia-principiantes/" className="text-primary hover:underline font-medium underline-offset-4">guía de calistenia para principiantes</Link>; y si buscas progresión guiada, descubre nuestros <Link to="/programas/" className="text-primary hover:underline font-medium underline-offset-4">programas de calistenia</Link>.
