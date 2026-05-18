@@ -144,7 +144,7 @@ const CalisteniaParque = () => {
         <title>Calistenia parque: entrena gratis al aire libre (guía 2026)</title>
         <meta
           name="description"
-          content="Entrena gratis al aire libre: tipos de barras, parques cerca de ti y rutina paso a paso para empezar hoy. Tu gimnasio está a la vuelta de la esquina."
+          content="Guía completa de calistenia parque: tipos de barras, parques cercanos y rutina paso a paso. Entrena gratis al aire libre. ¡Empieza hoy!"
         />
         <meta name="keywords" content="calistenia parque, barras de parques, parque de calistenia, parques calistenia cerca de mi, tipos de barras, parque de barras" />
         <meta property="og:title" content="Calistenia parque: entrena gratis al aire libre" />

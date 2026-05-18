@@ -72,7 +72,7 @@ const RutinaCore = () => {
     <>
       <Helmet>
         <title>Rutina core calistenia: abdomen marcado y zona media fuerte</title>
-        <meta name="description" content="Abdomen marcado y zona media de acero con esta rutina core de calistenia. Ejercicios funcionales, progresiones y plan semanal. ¡Empieza ahora sin material!" />
+        <meta name="description" content="Rutina core calistenia para abdomen marcado y zona media fuerte. Ejercicios funcionales, progresiones y plan semanal. ¡Empieza ahora gratis!" />
         <meta name="keywords" content="rutina core, core ejercicios, que es el core, estabilización core, fuerza funcional, transverso abdominal, plancha core, entrenamiento funcional" />
         <link rel="canonical" href="https://calisthenia.online/rutina-core-calistenia/" />
         

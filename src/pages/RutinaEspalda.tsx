@@ -67,7 +67,7 @@ const RutinaEspalda = () => {
     <div className="min-h-screen">
       <Helmet>
         <title>Ejercicios de espalda calistenia: espalda fuerte y ancha en casa</title>
-        <meta name="description" content="Construye una espalda fuerte y ancha con calistenia: dominadas, remo invertido y face pulls. Rutina semanal lista para casa o parque. ¡Empieza hoy gratis!" />
+        <meta name="description" content="Ejercicios de espalda calistenia para casa y parque: dominadas, remo invertido y face pulls. Rutina semanal lista con progresiones. ¡Empieza hoy gratis!" />
         <meta name="keywords" content="ejercicios espalda calistenia, ejercicios espalda en casa, ejercicios de espalda en casa, ejercicios espalda con barra, ejercicios espalda sin material, dominadas, remo invertido, ejercicios para dorsales en casa, rutina espalda calistenia" />
         <link rel="canonical" href="https://calisthenia.online/rutina-espalda-calistenia/" />
 
