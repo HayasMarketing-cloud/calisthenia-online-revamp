@@ -77,8 +77,8 @@ const RutinaEspalda = () => {
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://calisthenia.online/rutina-espalda-calistenia/" />
         <meta property="og:image" content="https://calisthenia.online/og/calisthenia-espalda.webp" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
+        <meta property="og:image:width" content="400" />
+        <meta property="og:image:height" content="400" />
         <meta property="og:image:alt" content="Rutina de ejercicios de espalda con calistenia: dominadas y remo invertido" />
         <meta property="og:locale" content="es_ES" />
         <meta property="og:site_name" content="Calisthenia Online" />
