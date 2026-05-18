@@ -116,7 +116,7 @@ const RutinaCore = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto mb-12 text-center">
             <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">
-              La importancia de un <span className="text-primary">core fuerte</span> en tu entrenamiento
+              Por qué necesitas una <span className="text-primary">rutina de core</span> en tu entrenamiento
             </h2>
             <p className="text-lg text-muted-foreground">
               Tener un centro sólido es imprescindible para tu rendimiento y bienestar. Un core bien desarrollado no solo aporta estética, también cumple un papel esencial en tu día a día y en tu entrenamiento, sea una <Link to="/rutina-abdominales-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">rutina de abdominales</Link>, una <Link to="/rutina-piernas-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">rutina de piernas</Link> o una <Link to="/rutina-full-body/" className="text-primary hover:underline font-medium underline-offset-4">rutina full body</Link>.
