@@ -297,7 +297,7 @@ const RutinaEspalda = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4 text-center">
-              Rutina de espalda calistenia para principiantes
+              Rutina con ejercicios de espalda calistenia para principiantes
             </h2>
             <p className="text-center text-muted-foreground mb-10">
               Sesión completa de 35-40 minutos, 2 veces por semana (lunes y jueves, por ejemplo). Apta para empezar desde cero, sin material salvo una banda elástica y un sitio donde colgarse.
