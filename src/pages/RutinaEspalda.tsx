@@ -368,7 +368,7 @@ const RutinaEspalda = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4 text-center">
-              Programación semanal: cuántos días, series y repeticiones
+              Programación semanal de ejercicios de espalda: días, series y repeticiones
             </h2>
             <p className="text-center text-muted-foreground mb-10">
               Para una espalda fuerte y simétrica con calistenia basta con <strong>2 sesiones por semana</strong> bien estructuradas. Estas son las pautas que aplico a mis clientes según objetivo.
