@@ -194,7 +194,7 @@ const RutinaEspalda = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4 text-center">
-              Ejercicios de espalda con barra: dominadas y remo invertido
+              Ejercicios de espalda calistenia con barra: dominadas y remo invertido
             </h2>
             <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
               Si tienes acceso a una barra de dominadas (en casa o en un parque de calistenia), estos son los ejercicios que dan más resultado por minuto invertido.
