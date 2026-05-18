@@ -144,7 +144,7 @@ const CalisteniaParque = () => {
         <title>Calistenia en Parque: Tipos de Barras y Guía Completa 2025</title>
         <meta
           name="description"
-          content="Guía de calistenia en parque: qué es un parque de calistenia, tipos de barras de parques, cómo encontrar uno cerca de ti, ejercicios y rutina para empezar."
+          content="Entrena gratis al aire libre: tipos de barras, parques cerca de ti y rutina paso a paso para empezar hoy. Tu gimnasio está a la vuelta de la esquina."
         />
         <meta name="keywords" content="calistenia parque, barras de parques, parque de calistenia, parques calistenia cerca de mi, tipos de barras, parque de barras" />
         <meta property="og:title" content="Calistenia en Parque: Tipos de Barras y Guía Completa" />

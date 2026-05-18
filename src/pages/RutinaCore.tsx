@@ -72,7 +72,7 @@ const RutinaCore = () => {
     <>
       <Helmet>
         <title>Rutina Core Calistenia: Fortalece tu Centro con Ejercicios Funcionales | Calistenia Online</title>
-        <meta name="description" content="Rutina core completa con ejercicios de calistenia para fortalecer tu zona media. Mejora estabilización, postura y previene lesiones con planificación semanal efectiva." />
+        <meta name="description" content="Abdomen marcado y zona media de acero con esta rutina core de calistenia. Ejercicios funcionales, progresiones y plan semanal. ¡Empieza ahora sin material!" />
         <meta name="keywords" content="rutina core, core ejercicios, que es el core, estabilización core, fuerza funcional, transverso abdominal, plancha core, entrenamiento funcional" />
         <link rel="canonical" href="https://calisthenia.online/rutina-core-calistenia/" />
         
