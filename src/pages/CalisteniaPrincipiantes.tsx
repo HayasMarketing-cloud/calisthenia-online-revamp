@@ -23,16 +23,16 @@ const CalisteniaPrincipiantes = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Calistenia para Principiantes: Guía Completa desde Cero | Nicolás Reyero</title>
-        <meta name="description" content="¿Quieres empezar en calistenia? Guía completa para principiantes con ejercicios básicos, rutinas y progresiones desde cero. No necesitas equipos, solo tu cuerpo." />
-        <meta name="keywords" content="calistenia principiantes, ejercicios calistenia básicos, empezar calistenia, entrenar sin equipos, flexiones principiantes, sentadillas básicas" />
-        <link rel="canonical" href="https://calistenia.online/calistenia-principiantes" />
+        <title>Calistenia para Principiantes: Guía Completa desde Cero</title>
+        <meta name="description" content="Calistenia para principiantes paso a paso: ejercicios básicos, rutina semanal y progresiones desde cero. Sin equipamiento, solo tu cuerpo. Empieza hoy." />
+        <meta name="keywords" content="calistenia para principiantes, ejercicios de calistenia para principiantes, empezar en calistenia, calistenia desde cero, rutina calistenia principiantes" />
+        <link rel="canonical" href="https://calisthenia.online/calistenia-principiantes/" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Calistenia para Principiantes: Guía Completa desde Cero" />
-        <meta property="og:description" content="Empieza tu viaje en la calistenia desde cero. Ejercicios básicos, progresiones y rutinas para principiantes sin necesidad de equipos." />
+        <meta property="og:description" content="Calistenia para principiantes paso a paso: ejercicios básicos, rutina semanal y progresiones desde cero. Empieza sin equipamiento." />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content="https://calistenia.online/calistenia-principiantes" />
+        <meta property="og:url" content="https://calisthenia.online/calistenia-principiantes/" />
         
         {/* Schema.org structured data */}
         <script type="application/ld+json">
@@ -116,7 +116,7 @@ const CalisteniaPrincipiantes = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto prose prose-lg">
             <p className="text-xl text-muted-foreground leading-relaxed">
-              ¿Quieres empezar a entrenar pero no sabes por dónde comenzar? ¡Estás en el lugar correcto! La <strong>calistenia para principiantes</strong> es la puerta de entrada a un estilo de vida más fuerte, ágil y saludable. No necesitas pesas, ni máquinas… solo tu cuerpo, constancia y ganas de superarte.
+              La <strong>calistenia para principiantes</strong> es la forma más sencilla de empezar a entrenar desde cero: solo necesitas tu cuerpo, unos minutos al día y un plan claro. En esta guía encontrarás los ejercicios básicos, una rutina semanal y las progresiones para construir fuerza, control y movilidad sin pisar un gimnasio.
             </p>
             <p className="text-xl text-muted-foreground leading-relaxed mt-4">
               En Calisthenia.online te acompañamos desde cero, paso a paso, para que construyas una base sólida y disfrutes el proceso desde el primer día. Si buscas un enfoque adaptado, también tenemos una guía específica de <Link to="/calistenia-mujeres/" className="text-primary hover:underline font-medium underline-offset-4">calistenia para mujeres</Link> con rutina en casa, plan de 4 semanas y mitos desmontados.
