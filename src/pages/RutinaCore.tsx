@@ -77,10 +77,19 @@ const RutinaCore = () => {
         <link rel="canonical" href="https://calisthenia.online/rutina-core-calistenia/" />
         
         <meta property="og:title" content="Rutina core calistenia: abdomen marcado y zona media fuerte" />
-        <meta property="og:description" content="Fortalece tu core con ejercicios funcionales. Mejora estabilización, postura y previene lesiones." />
+        <meta property="og:description" content="Ejercicios funcionales, progresiones y plan semanal para un core fuerte y un abdomen marcado. ¡Empieza gratis hoy!" />
         <meta property="og:image" content="https://calisthenia.online/assets/calisthenia-core.webp" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Rutina de core con calistenia para abdomen marcado y zona media fuerte" />
         <meta property="og:url" content="https://calisthenia.online/rutina-core-calistenia/" />
         <meta property="og:type" content="article" />
+        <meta property="og:locale" content="es_ES" />
+        <meta property="og:site_name" content="Calisthenia Online" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Rutina core calistenia: abdomen marcado y zona media fuerte" />
+        <meta name="twitter:description" content="Ejercicios funcionales, progresiones y plan semanal para un core fuerte. ¡Empieza gratis!" />
+        <meta name="twitter:image" content="https://calisthenia.online/assets/calisthenia-core.webp" />
       </Helmet>
 
       <StructuredData data={schemas.allSchemas} />

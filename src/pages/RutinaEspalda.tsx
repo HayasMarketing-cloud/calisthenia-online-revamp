@@ -73,9 +73,20 @@ const RutinaEspalda = () => {
 
         {/* Open Graph */}
         <meta property="og:title" content="Ejercicios de espalda calistenia: espalda fuerte y ancha en casa" />
-        <meta property="og:description" content="Dominadas, remo invertido y ejercicios de espalda calistenia para casa o parque. Tabla canónica de ejercicios, rutina semanal y guía técnica." />
+        <meta property="og:description" content="Dominadas, remo invertido y face pulls: rutina semanal completa para una espalda en V en casa o en el parque. ¡Empieza gratis!" />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://calisthenia.online/rutina-espalda-calistenia/" />
+        <meta property="og:image" content="https://calisthenia.online/assets/calisthenia-espalda.webp" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Rutina de ejercicios de espalda con calistenia: dominadas y remo invertido" />
+        <meta property="og:locale" content="es_ES" />
+        <meta property="og:site_name" content="Calisthenia Online" />
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Ejercicios de espalda calistenia: espalda fuerte y ancha en casa" />
+        <meta name="twitter:description" content="Dominadas, remo invertido y face pulls: rutina semanal para una espalda en V. ¡Empieza gratis!" />
+        <meta name="twitter:image" content="https://calisthenia.online/assets/calisthenia-espalda.webp" />
       </Helmet>
 
       <StructuredData data={schemas.allSchemas} />

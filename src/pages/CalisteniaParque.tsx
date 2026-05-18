@@ -147,10 +147,20 @@ const CalisteniaParque = () => {
           content="Guía completa de calistenia parque: tipos de barras, parques cercanos y rutina paso a paso. Entrena gratis al aire libre. ¡Empieza hoy!"
         />
         <meta name="keywords" content="calistenia parque, barras de parques, parque de calistenia, parques calistenia cerca de mi, tipos de barras, parque de barras" />
-        <meta property="og:title" content="Calistenia parque: entrena gratis al aire libre" />
-        <meta property="og:description" content="Tipos de barras de parques, cómo encontrar tu parque y ejercicios paso a paso para entrenar al aire libre." />
+        <meta property="og:title" content="Calistenia parque: entrena gratis al aire libre (guía 2026)" />
+        <meta property="og:description" content="Tipos de barras, cómo encontrar tu parque de calistenia y rutina paso a paso. Entrena al aire libre sin pagar gimnasio. ¡Empieza hoy!" />
         <meta property="og:url" content="https://calisthenia.online/calistenia-en-parque/" />
         <meta property="og:type" content="article" />
+        <meta property="og:image" content="https://calisthenia.online/assets/hero-calistenia-parque.webp" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Parque de calistenia al aire libre con barras de dominadas y paralelas" />
+        <meta property="og:locale" content="es_ES" />
+        <meta property="og:site_name" content="Calisthenia Online" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Calistenia parque: entrena gratis al aire libre" />
+        <meta name="twitter:description" content="Tipos de barras, dónde entrenar y rutina paso a paso para tu parque de calistenia." />
+        <meta name="twitter:image" content="https://calisthenia.online/assets/hero-calistenia-parque.webp" />
         <link rel="canonical" href="https://calisthenia.online/calistenia-en-parque/" />
       </Helmet>
       <StructuredData data={[faqSchema, breadcrumbSchema, tiposBarrasItemList]} />
