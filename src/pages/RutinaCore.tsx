@@ -71,12 +71,12 @@ const RutinaCore = () => {
   return (
     <>
       <Helmet>
-        <title>Rutina Core Calistenia: Fortalece tu Centro con Ejercicios Funcionales | Calistenia Online</title>
+        <title>Rutina core calistenia: abdomen marcado y zona media fuerte</title>
         <meta name="description" content="Abdomen marcado y zona media de acero con esta rutina core de calistenia. Ejercicios funcionales, progresiones y plan semanal. ¡Empieza ahora sin material!" />
         <meta name="keywords" content="rutina core, core ejercicios, que es el core, estabilización core, fuerza funcional, transverso abdominal, plancha core, entrenamiento funcional" />
         <link rel="canonical" href="https://calisthenia.online/rutina-core-calistenia/" />
         
-        <meta property="og:title" content="Rutina Core Calistenia: Ejercicios para Fortalecer tu Centro" />
+        <meta property="og:title" content="Rutina core calistenia: abdomen marcado y zona media fuerte" />
         <meta property="og:description" content="Fortalece tu core con ejercicios funcionales. Mejora estabilización, postura y previene lesiones." />
         <meta property="og:image" content="https://calisthenia.online/assets/calisthenia-core.webp" />
         <meta property="og:url" content="https://calisthenia.online/rutina-core-calistenia/" />
@@ -94,9 +94,7 @@ const RutinaCore = () => {
           { label: "Rutinas", href: "/programas/" },
           { label: "Rutina Core", href: "/rutina-core-calistenia/" }
         ]}
-        title="Rutina de"
-        titleHighlight="Core"
-        emoji="Calistenia 💪"
+        fullH1="Rutina core con calistenia: abdomen marcado y zona media fuerte"
         description="Una rutina bien diseñada para el core es clave para transformar tu estilo de vida. Al fortalecer el centro del cuerpo no solo mejoras el aspecto estético, sino que aumentas tu funcionalidad global, mejoras la postura y te proteges de lesiones."
         nivel="Todos los Niveles"
         duracion="15-40 min"

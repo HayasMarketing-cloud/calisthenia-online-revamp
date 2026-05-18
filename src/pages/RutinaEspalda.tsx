@@ -66,13 +66,13 @@ const RutinaEspalda = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Ejercicios de espalda calistenia: rutina completa en casa y parque | Nicolás Reyero</title>
+        <title>Ejercicios de espalda calistenia: espalda fuerte y ancha en casa</title>
         <meta name="description" content="Construye una espalda fuerte y ancha con calistenia: dominadas, remo invertido y face pulls. Rutina semanal lista para casa o parque. ¡Empieza hoy gratis!" />
         <meta name="keywords" content="ejercicios espalda calistenia, ejercicios espalda en casa, ejercicios de espalda en casa, ejercicios espalda con barra, ejercicios espalda sin material, dominadas, remo invertido, ejercicios para dorsales en casa, rutina espalda calistenia" />
         <link rel="canonical" href="https://calisthenia.online/rutina-espalda-calistenia/" />
 
         {/* Open Graph */}
-        <meta property="og:title" content="Ejercicios de espalda calistenia: rutina completa en casa y parque" />
+        <meta property="og:title" content="Ejercicios de espalda calistenia: espalda fuerte y ancha en casa" />
         <meta property="og:description" content="Dominadas, remo invertido y ejercicios de espalda calistenia para casa o parque. Tabla canónica de ejercicios, rutina semanal y guía técnica." />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://calisthenia.online/rutina-espalda-calistenia/" />
@@ -89,9 +89,7 @@ const RutinaEspalda = () => {
           { label: "Rutinas", href: "/programas/" },
           { label: "Ejercicios de espalda calistenia", href: "/rutina-espalda-calistenia/" }
         ]}
-        title="Ejercicios de espalda"
-        titleHighlight="calistenia"
-        emoji="🦾"
+        fullH1="Ejercicios de espalda con calistenia: espalda fuerte y ancha"
         description="Rutina completa de espalda con calistenia: en casa o en el parque, con barra o sin material. Dominadas, remo invertido y trabajo escapular para una espalda fuerte y postura sana."
         nivel="Todos los niveles"
         duracion="35-50 min"
