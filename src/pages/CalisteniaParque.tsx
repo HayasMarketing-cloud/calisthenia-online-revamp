@@ -504,7 +504,7 @@ const CalisteniaParque = () => {
           <section className="py-16 bg-muted/30">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-12">
-                Cómo Empezar en Calistenia en Parques
+                Cómo empezar a hacer calistenia en el parque
               </h2>
               
               <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
