@@ -560,7 +560,7 @@ const CalisteniaParque = () => {
           <section className="py-16">
             <div className="container mx-auto px-4">
               <h2 className="font-display font-bold text-3xl md:text-4xl text-center mb-4">
-                Ejercicios Esenciales para Empezar
+                Ejercicios esenciales de calistenia en parque para empezar
               </h2>
               <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
                 Domina estos movimientos fundamentales para construir una base sólida en calistenia
