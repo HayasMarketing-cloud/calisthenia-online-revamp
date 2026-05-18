@@ -79,8 +79,8 @@ const RutinaCore = () => {
         <meta property="og:title" content="Rutina core calistenia: abdomen marcado y zona media fuerte" />
         <meta property="og:description" content="Ejercicios funcionales, progresiones y plan semanal para un core fuerte y un abdomen marcado. ¡Empieza gratis hoy!" />
         <meta property="og:image" content="https://calisthenia.online/og/calisthenia-core.webp" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
+        <meta property="og:image:width" content="400" />
+        <meta property="og:image:height" content="400" />
         <meta property="og:image:alt" content="Rutina de core con calistenia para abdomen marcado y zona media fuerte" />
         <meta property="og:url" content="https://calisthenia.online/rutina-core-calistenia/" />
         <meta property="og:type" content="article" />
