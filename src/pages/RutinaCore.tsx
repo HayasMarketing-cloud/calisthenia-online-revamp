@@ -671,7 +671,7 @@ const RutinaCore = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto mb-12 text-center">
             <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">
-              Variaciones y <span className="text-primary">Ejercicios Complementarios</span>
+              Variaciones avanzadas de la <span className="text-primary">rutina de core</span> y ejercicios complementarios
             </h2>
             <p className="text-lg text-muted-foreground">
               Un centro fuerte va más allá del abdomen: involucra glúteos, espalda baja, estabilidad de pelvis.
