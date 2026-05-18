@@ -727,7 +727,7 @@ const RutinaCore = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto mb-12 text-center">
             <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">
-              Preguntas Frecuentes sobre <span className="text-primary">Entrenamiento de Core</span>
+              Preguntas frecuentes sobre la <span className="text-primary">rutina de core con calistenia</span>
             </h2>
           </div>
 
