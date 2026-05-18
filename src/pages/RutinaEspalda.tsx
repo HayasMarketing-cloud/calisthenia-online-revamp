@@ -253,7 +253,7 @@ const RutinaEspalda = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4 text-center">
-              Cómo entrenar dorsales en casa con calistenia
+              Cómo entrenar dorsales con calistenia (en casa y en parque)
             </h2>
             <p className="text-center text-muted-foreground mb-10">
               Para que el dorsal crezca solo necesitas dos cosas: <strong>tracción vertical</strong> (algo que se parezca a una dominada) y <strong>tracción horizontal</strong> (algo que se parezca a un remo). Combina las dos cada semana y el resto da igual.
