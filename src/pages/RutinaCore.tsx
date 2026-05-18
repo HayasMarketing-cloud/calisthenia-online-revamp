@@ -379,7 +379,7 @@ const RutinaCore = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto mb-12 text-center">
             <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">
-              Planificación Semanal de <span className="text-primary">Core Funcional</span>
+              <span className="text-primary">Rutina de core</span> semanal: planificación paso a paso
             </h2>
             <p className="text-lg text-muted-foreground">
               Diseñar una rutina para casa y adaptarla a tu nivel hace que el entrenamiento del centro sea práctico, eficiente y accesible.
