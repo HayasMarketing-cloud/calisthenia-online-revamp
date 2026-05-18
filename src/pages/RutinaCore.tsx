@@ -116,7 +116,7 @@ const RutinaCore = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto mb-12 text-center">
             <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">
-              La importancia de un <span className="text-primary">core fuerte</span> en tu entrenamiento
+              Por qué necesitas una <span className="text-primary">rutina de core</span> en tu entrenamiento
             </h2>
             <p className="text-lg text-muted-foreground">
               Tener un centro sólido es imprescindible para tu rendimiento y bienestar. Un core bien desarrollado no solo aporta estética, también cumple un papel esencial en tu día a día y en tu entrenamiento, sea una <Link to="/rutina-abdominales-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">rutina de abdominales</Link>, una <Link to="/rutina-piernas-calistenia/" className="text-primary hover:underline font-medium underline-offset-4">rutina de piernas</Link> o una <Link to="/rutina-full-body/" className="text-primary hover:underline font-medium underline-offset-4">rutina full body</Link>.
@@ -165,7 +165,7 @@ const RutinaCore = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto mb-12 text-center">
             <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">
-              Core Ejercicios: <span className="text-primary">Fortalece tu Centro</span> Paso a Paso
+              Ejercicios de la <span className="text-primary">rutina de core</span>: fortalece tu centro paso a paso
             </h2>
             <p className="text-lg text-muted-foreground">
               Aquí tienes una excelente selección de ejercicios para trabajar el centro desde distintos ángulos y niveles. Si vas empezando, repasa primero la <Link to="/calistenia-principiantes/" className="text-primary hover:underline font-medium underline-offset-4">guía de calistenia para principiantes</Link>; y si buscas progresión guiada, descubre nuestros <Link to="/programas/" className="text-primary hover:underline font-medium underline-offset-4">programas de calistenia</Link>.
@@ -379,7 +379,7 @@ const RutinaCore = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto mb-12 text-center">
             <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">
-              Planificación Semanal de <span className="text-primary">Core Funcional</span>
+              <span className="text-primary">Rutina de core</span> semanal: planificación paso a paso
             </h2>
             <p className="text-lg text-muted-foreground">
               Diseñar una rutina para casa y adaptarla a tu nivel hace que el entrenamiento del centro sea práctico, eficiente y accesible.
@@ -542,7 +542,7 @@ const RutinaCore = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto mb-12 text-center">
             <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">
-              Maximiza tus <span className="text-primary">Resultados</span> en el Entrenamiento de Core
+              Maximiza los <span className="text-primary">resultados</span> de tu rutina de core
             </h2>
             <p className="text-lg text-muted-foreground">
               Para lograr un centro funcional y fuerte, no basta con hacer ejercicios: también hay que combinar entrenamiento con estilo de vida.
@@ -671,7 +671,7 @@ const RutinaCore = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto mb-12 text-center">
             <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">
-              Variaciones y <span className="text-primary">Ejercicios Complementarios</span>
+              Variaciones avanzadas de la <span className="text-primary">rutina de core</span> y ejercicios complementarios
             </h2>
             <p className="text-lg text-muted-foreground">
               Un centro fuerte va más allá del abdomen: involucra glúteos, espalda baja, estabilidad de pelvis.
@@ -727,7 +727,7 @@ const RutinaCore = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto mb-12 text-center">
             <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">
-              Preguntas Frecuentes sobre <span className="text-primary">Entrenamiento de Core</span>
+              Preguntas frecuentes sobre la <span className="text-primary">rutina de core con calistenia</span>
             </h2>
           </div>
 

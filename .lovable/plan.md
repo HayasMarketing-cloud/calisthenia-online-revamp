@@ -1,146 +1,82 @@
-# Plan: 10 Single Redirect Rules en Cloudflare (plan Free)
+## Objetivo
 
-## Estrategia
+Reforzar la intención de búsqueda de la keyword principal de cada página en los H2/H3, sin canibalizar las otras URLs de la web (espalda, parque, core, principiantes, full body, abdominales, brazos, piernas, casa).
 
-Cloudflare Free permite **10 Single Redirect Rules**, pero cada regla puede agrupar **muchas URLs origen** hacia un mismo destino usando la expresión:
+## Reglas que aplico
 
-```
-(http.host eq "calisthenia.online" and http.request.uri.path in {"/url-1/" "/url-2/" "/url-3/"})
-```
+- 1 H1 por página (ya optimizado, no se toca).
+- La keyword principal aparece **literal o en variante muy cercana** en al menos 3 H2 de cada página, repartida (no toda al inicio).
+- En el resto de H2/H3 uso variantes semánticas (sinónimos, long-tails de intención informacional) para cubrir más SERP sin repetir.
+- **Cero canibalización**: si un H2 va a contener "espalda", "parque" o "core" como sustantivo principal, solo lo dejo en la página que rankea para esa keyword. En las otras, lo enlazo (interno) en lugar de titularlo.
+- H3 de ejercicios concretos (Dominadas, Plancha, Bird Dog…) se mantienen, son entidades.
 
-→ 1 destino = 1 regla, con N URLs origen dentro. Así caben los 40+ redirects de `public/_redirects` en 10 reglas reales en el edge (301 reales, no client-side).
+---
 
-Las URLs sobrantes que no entren en las 10 reglas se mantienen en `RedirectHandler.tsx` (fallback React) — son las de menor valor SEO (sin tráfico en GSC).
+## 1) `/rutina-espalda-calistenia/` — keyword: **ejercicios de espalda calistenia** (140/mo)
 
-## Las 10 reglas
+H2 actuales → propuestos:
 
-Orden por prioridad SEO (las 4 con tráfico confirmado en GSC van primero).
+| # | Actual | Propuesto | Motivo |
+|---|---|---|---|
+| 1 | Tabla completa de ejercicios de espalda calistenia | *(sin cambios)* | Ya contiene keyword exacta |
+| 2 | Ejercicios de espalda en casa sin material | *(sin cambios)* | Variante long-tail útil |
+| 3 | Ejercicios de espalda con barra: dominadas y remo invertido | **Ejercicios de espalda calistenia con barra: dominadas y remo invertido** | Añade keyword exacta |
+| 4 | Cómo entrenar dorsales en casa con calistenia | **Cómo entrenar dorsales con calistenia (en casa y en parque)** | Quita "casa" duplicada, expande intención |
+| 5 | Rutina de espalda calistenia para principiantes | **Rutina con ejercicios de espalda calistenia para principiantes** | Conecta rutina↔ejercicios sin canibalizar `/calistenia-principiantes/` |
+| 6 | Programación semanal: cuántos días, series y repeticiones | **Programación semanal de ejercicios de espalda: días, series y repeticiones** | Refuerza entidad |
+| 7 | Errores comunes al entrenar la espalda en calistenia | *(sin cambios)* | OK |
+| 8 | Preguntas frecuentes sobre ejercicios de espalda calistenia | *(sin cambios)* | Keyword exacta |
+| 9 | 📹 Vídeos de entrenamiento de espalda | **📹 Vídeos de ejercicios de espalda calistenia** | Refuerzo |
+| 10 | Construye una espalda en V solo con calistenia | *(sin cambios)* | CTA, OK |
 
-### Regla 1 → `/rutina-pecho-calistenia/` (status 301)
-**41 impresiones GSC**
-```
-/la-rutina-perfecta-de-empuje-en-casa/
-```
+---
 
-### Regla 2 → `/calistenia-principiantes/` (301)
-**63 impresiones + 1 clic GSC**
-```
-/la-mejor-rutina-para-empezar-en-calistenia-rutina-fullbody-para-principiantes/
-/como-empezar-a-entrenar-calistenia-en-casa/
-/3-pasos-para-iniciarte-en-calistenia/
-/rutina-para-principiantes-y-no-tanto-calisteniapp-mi-nueva-colaboracion-nico-reyero/
-/ejercicios-para-empezar-en-calistenia-💪⚡️/
-```
+## 2) `/calistenia-en-parque/` — keyword: **calistenia parque** (480/mo)
 
-### Regla 3 → `/calistenia-nivel-avanzado/` (301)
-**15 impresiones GSC en /category/calistenia-nivel-intermedio/**
-```
-/category/calistenia-nivel-intermedio/
-/tuck-planche-tutorial-cero-to-full-planche/
-```
+| # | Actual | Propuesto | Motivo |
+|---|---|---|---|
+| 1 | Por Qué Entrenar en Parques | **Por qué entrenar calistenia en el parque** | Añade keyword |
+| 2 | Qué es un parque de calistenia | *(sin cambios)* | Variante semántica fuerte |
+| 3 | Tipos de barras de parques de calistenia | **Tipos de barras en un parque de calistenia** | Singular = más cerca de la keyword |
+| 4 | Cómo encontrar un parque de calistenia cerca de ti | *(sin cambios)* | Long-tail de intención local |
+| 5 | Beneficios de Entrenar en Parques de Calistenia | **Beneficios de la calistenia en el parque** | Keyword exacta |
+| 6 | Cómo Empezar en Calistenia en Parques | **Cómo empezar a hacer calistenia en el parque** | Más natural + keyword |
+| 7 | Ejercicios Esenciales para Empezar | **Ejercicios esenciales de calistenia en parque para empezar** | No canibaliza `/rutina-espalda-calistenia/` ni guías de ejercicios; intención local |
 
-### Regla 4 → `/programas/` (301)
-**Bucket con la mayor cantidad de URLs legacy (incluye /la-guia-del-entrenamiento-de-fuerza-en-casa.../ con tráfico GSC)**
-```
-/la-guia-del-entrenamiento-de-fuerza-en-casa-ejercicios-de-calistenia-para-3-meses/
-/rutinas-con-kettlebells/
-/rutinas-con-bandas-elasticas-para-calistenia/
-/rutina-de-resistencia-calistenia/
-/corrige-el-valgo-de-rodilla/
-/el-metodo-mas-rapido-de-definicion-el-hiit-y-su-evidencia-cientifica/
-/las-4-mejores-rutinas-de-calistenia-para-mejorar-en-1-semana/
-/pros-contras-gym-vs-calistenia/
-/mejora-tu-postura-con-estos-3-pasos-ep2/
-/hiperlordosis-y-3-ejercicios-que-puedes-hacer-para-corregirla/
-/3-ejercicios-para-fortalecer-el-cuello/
-/mejores-rutinas-calistenia-para-mejorar/
-/empiezo-rutina-de-flexibilidad-diaria/
-```
+H3 de los Cards (Aire Libre, Equipamiento Completo, Comunidad…) → se quedan: son atributos, no compiten.
 
-### Regla 5 → `/rutinas-de-hombro-calistenia/` (301)
-```
-/category/hombros/
-/rutina-de-fuerza-enfocada-en-hombros-handstand/
-/rutina-de-pino-facil-para-dominarlo/
-```
+---
 
-### Regla 6 → `/rutina-espalda-calistenia/` (301)
-```
-/category/espalda/
-```
+## 3) `/rutina-core-calistenia/` — keyword: **rutina core calistenia** (40) + **rutina core** (390)
 
-### Regla 7 → `/rutina-calistenia-en-casa/` (301)
-```
-/rutina-calistenia-en-casa-de-30-minutos/
-/se-pueden-hacer-dominadas-en-casa/
-```
+Riesgo: H2 actuales repiten mucho "core" pero pocas veces "rutina core". Refuerzo intención de rutina sin canibalizar `/rutina-abdominales-calistenia/`.
 
-### Regla 8 → `/calistenia-en-parque/` (301)
-```
-/entrenar-calistenia-en-el-parque/
-```
+| # | Actual | Propuesto | Motivo |
+|---|---|---|---|
+| 1 | La importancia de un core fuerte en tu entrenamiento | **Por qué necesitas una rutina de core en tu entrenamiento** | Inyecta "rutina de core" |
+| 2 | Core Ejercicios: Fortalece tu Centro Paso a Paso | **Ejercicios de la rutina de core: fortalece tu centro paso a paso** | Conecta ejercicios↔rutina |
+| 3 | Planificación Semanal de Core Funcional | **Rutina de core semanal: planificación paso a paso** | Keyword exacta + intención plan |
+| 4 | Qué es el Core: Más que Abdominales Visibles | *(sin cambios)* | Diferenciador vs abdominales — evita canibalizar `/rutina-abdominales-calistenia/` |
+| 5 | Maximiza tus Resultados en el Entrenamiento de Core | **Maximiza los resultados de tu rutina de core** | Keyword |
+| 6 | Técnica Correcta en Ejercicios de Core | *(sin cambios)* | OK, variante |
+| 7 | Variaciones y Ejercicios Complementarios | **Variaciones avanzadas de la rutina de core y ejercicios complementarios** | Keyword + nivel |
+| 8 | Preguntas Frecuentes sobre Entrenamiento de Core | **Preguntas frecuentes sobre la rutina de core con calistenia** | Long-tail completo |
+| 9 | Fortalece tu Core y Mejora tu Rendimiento *(CTA)* | *(sin cambios)* | OK |
 
-### Regla 9 → `/blog/que-es-la-calistenia/` (301)
-```
-/calistenia/
-/calistenia
-```
+---
 
-### Regla 10 → `/` (301)
-**Catch-all para legacy sin equivalente claro + categorías obsoletas**
-```
-/category/calistenia/
-/category/estiramientos/
-/guia-consigue-5-dominadas-estrictas-desde-cero/
-/como-empiezo-en-calistenia-sin-material/
-/como-organizar-rutinas-calistenia-semanales/
-/tipos-dominadas-objetivo/
-/core-y-abdomen-de-acero-sin-material-en-10/
-/rutina-de-fuerza-en-parque-para-empezar-a-entrenar/
-```
+## Cobertura final por página
 
-## Quedan en fallback (RedirectHandler.tsx / _redirects)
-
-URLs sin tráfico GSC y sin agrupación rentable. Se mantienen como redirect 301 client-side vía la tabla `redirects` de Supabase:
-
-- `/presentacion/` → `/quien-soy/`
-- `/rutina-fullbody-en-casa-de-calistenia/` → `/rutina-full-body/`
-
-(Penalización SEO marginal: son URLs con 0 impresiones en los últimos 90 días.)
-
-## Cómo crear cada regla en Cloudflare
-
-Para cada una de las 10:
-
-1. Cloudflare Dashboard → `calisthenia.online` → **Rules** → **Redirect Rules** → **Create rule**.
-2. **Rule name**: el nombre del destino (p. ej. `Legacy → /programas/`).
-3. **If incoming requests match... → Custom filter expression** (edit expression):
-   ```
-   (http.host eq "calisthenia.online" and http.request.uri.path in {"/url-1/" "/url-2/"})
-   ```
-4. **Then... → Type**: Static.
-5. **URL**: `https://calisthenia.online/destino/`
-6. **Status code**: `301`
-7. **Preserve query string**: ON.
-8. **Deploy**.
-
-## Pasos posteriores
-
-Una vez creadas las 10 reglas en Cloudflare:
-
-1. Verificar con `curl -I https://calisthenia.online/la-rutina-perfecta-de-empuje-en-casa/` que devuelve `301` y `Location: /rutina-pecho-calistenia/`.
-2. Limpiar `public/_redirects` eliminando las entradas ahora cubiertas por Cloudflare (Cloudflare actúa antes que el origen, así que duplicarlas no rompe nada, pero limpia mantenibilidad).
-3. Limpiar entradas duplicadas en la tabla `redirects` de Supabase.
-4. En **Google Search Console** → **Inspección de URL** → solicitar reindexación de las 4 URLs legacy con tráfico (las del bucket prioritario).
+- **Espalda**: "ejercicios de espalda calistenia" en 5 H2 (1, 3, 5, 8, 9) + variantes en el resto. Sin canibalizar core/parque.
+- **Parque**: "calistenia parque / calistenia en el parque / parque de calistenia" en 6 H2. Sin canibalizar espalda/core.
+- **Core**: "rutina de core" en 6 H2; "calistenia" como modificador solo en FAQ y CTA → no canibaliza `/rutina-abdominales-calistenia/` ni `/rutina-full-body/`.
 
 ## Detalles técnicos
 
-- Las reglas Single Redirect en Free plan **no soportan wildcards reales** (`*`), por eso usamos `path in {...}` con lista enumerada — funciona perfectamente y caben cientos de paths por regla.
-- Las reglas se evalúan **en el edge de Cloudflare** antes de llegar al origen Lovable → 301 reales, sin coste de render React, óptimo para SEO.
-- Si más adelante necesitas wildcards o regex, requiere plan Pro (Cloudflare Bulk Redirects o expresiones avanzadas).
-
-## Lo que NO voy a tocar (salvo confirmación)
-
-- El archivo `public/_redirects` se mantiene tal cual hasta confirmar que las reglas de Cloudflare están desplegadas y funcionando.
-- `RedirectHandler.tsx` se mantiene como fallback para `/presentacion/` y `/rutina-fullbody.../`.
-- No modifico el setup CNAME / proxy de Cloudflare.
+- Cambios solo de texto dentro de etiquetas `<h2>`/`<h3>` en:
+  - `src/pages/RutinaEspalda.tsx`
+  - `src/pages/CalisteniaParque.tsx`
+  - `src/pages/RutinaCore.tsx`
+- Mantengo el `<span className="text-primary">…</span>` envolviendo la parte con la keyword principal cuando ya existía (para conservar el estilo de highlight).
+- No toco H1, meta, OG, schema, ni componentes compartidos.
+- Tras los cambios, verificación rápida: `rg "<h2|<h3"` en los tres ficheros para confirmar jerarquía intacta.

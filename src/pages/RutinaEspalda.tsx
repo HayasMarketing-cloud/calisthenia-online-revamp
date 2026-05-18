@@ -194,7 +194,7 @@ const RutinaEspalda = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4 text-center">
-              Ejercicios de espalda con barra: dominadas y remo invertido
+              Ejercicios de espalda calistenia con barra: dominadas y remo invertido
             </h2>
             <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
               Si tienes acceso a una barra de dominadas (en casa o en un parque de calistenia), estos son los ejercicios que dan más resultado por minuto invertido.
@@ -253,7 +253,7 @@ const RutinaEspalda = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4 text-center">
-              Cómo entrenar dorsales en casa con calistenia
+              Cómo entrenar dorsales con calistenia (en casa y en parque)
             </h2>
             <p className="text-center text-muted-foreground mb-10">
               Para que el dorsal crezca solo necesitas dos cosas: <strong>tracción vertical</strong> (algo que se parezca a una dominada) y <strong>tracción horizontal</strong> (algo que se parezca a un remo). Combina las dos cada semana y el resto da igual.
@@ -297,7 +297,7 @@ const RutinaEspalda = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4 text-center">
-              Rutina de espalda calistenia para principiantes
+              Rutina con ejercicios de espalda calistenia para principiantes
             </h2>
             <p className="text-center text-muted-foreground mb-10">
               Sesión completa de 35-40 minutos, 2 veces por semana (lunes y jueves, por ejemplo). Apta para empezar desde cero, sin material salvo una banda elástica y un sitio donde colgarse.
@@ -368,7 +368,7 @@ const RutinaEspalda = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4 text-center">
-              Programación semanal: cuántos días, series y repeticiones
+              Programación semanal de ejercicios de espalda: días, series y repeticiones
             </h2>
             <p className="text-center text-muted-foreground mb-10">
               Para una espalda fuerte y simétrica con calistenia basta con <strong>2 sesiones por semana</strong> bien estructuradas. Estas son las pautas que aplico a mis clientes según objetivo.
@@ -516,7 +516,7 @@ const RutinaEspalda = () => {
           ) : (
             <div className="text-center">
               <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">
-                📹 Vídeos de entrenamiento de espalda
+                📹 Vídeos de ejercicios de espalda calistenia
               </h2>
               <p className="text-muted-foreground">
                 Próximamente añadiremos más contenido en vídeo sobre entrenamiento de espalda.
