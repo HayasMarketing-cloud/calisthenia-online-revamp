@@ -542,7 +542,7 @@ const RutinaCore = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto mb-12 text-center">
             <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">
-              Maximiza tus <span className="text-primary">Resultados</span> en el Entrenamiento de Core
+              Maximiza los <span className="text-primary">resultados</span> de tu rutina de core
             </h2>
             <p className="text-lg text-muted-foreground">
               Para lograr un centro funcional y fuerte, no basta con hacer ejercicios: también hay que combinar entrenamiento con estilo de vida.
