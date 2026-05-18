@@ -23,16 +23,16 @@ const CalisteniaPrincipiantes = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Calistenia para Principiantes: Guía Completa desde Cero | Nicolás Reyero</title>
-        <meta name="description" content="¿Quieres empezar en calistenia? Guía completa para principiantes con ejercicios básicos, rutinas y progresiones desde cero. No necesitas equipos, solo tu cuerpo." />
-        <meta name="keywords" content="calistenia principiantes, ejercicios calistenia básicos, empezar calistenia, entrenar sin equipos, flexiones principiantes, sentadillas básicas" />
-        <link rel="canonical" href="https://calistenia.online/calistenia-principiantes" />
+        <title>Calistenia para Principiantes: Guía Completa desde Cero</title>
+        <meta name="description" content="Calistenia para principiantes paso a paso: ejercicios básicos, rutina semanal y progresiones desde cero. Sin equipamiento, solo tu cuerpo. Empieza hoy." />
+        <meta name="keywords" content="calistenia para principiantes, ejercicios de calistenia para principiantes, empezar en calistenia, calistenia desde cero, rutina calistenia principiantes" />
+        <link rel="canonical" href="https://calisthenia.online/calistenia-principiantes/" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Calistenia para Principiantes: Guía Completa desde Cero" />
-        <meta property="og:description" content="Empieza tu viaje en la calistenia desde cero. Ejercicios básicos, progresiones y rutinas para principiantes sin necesidad de equipos." />
+        <meta property="og:description" content="Calistenia para principiantes paso a paso: ejercicios básicos, rutina semanal y progresiones desde cero. Empieza sin equipamiento." />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content="https://calistenia.online/calistenia-principiantes" />
+        <meta property="og:url" content="https://calisthenia.online/calistenia-principiantes/" />
         
         {/* Schema.org structured data */}
         <script type="application/ld+json">
