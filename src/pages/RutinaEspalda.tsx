@@ -516,7 +516,7 @@ const RutinaEspalda = () => {
           ) : (
             <div className="text-center">
               <h2 className="font-display font-bold text-3xl lg:text-4xl mb-4">
-                📹 Vídeos de entrenamiento de espalda
+                📹 Vídeos de ejercicios de espalda calistenia
               </h2>
               <p className="text-muted-foreground">
                 Próximamente añadiremos más contenido en vídeo sobre entrenamiento de espalda.
