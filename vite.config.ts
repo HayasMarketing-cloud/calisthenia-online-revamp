@@ -102,4 +102,21 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    chunkSizeWarningLimit: 800,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "react-vendor": ["react", "react-dom", "react-router-dom"],
+          "supabase": ["@supabase/supabase-js"],
+          "query": ["@tanstack/react-query"],
+          "charts": ["recharts"],
+          "editor": ["quill", "react-quill"],
+          "forms": ["react-hook-form", "@hookform/resolvers", "zod"],
+          "icons": ["lucide-react"],
+        },
+      },
+    },
+  },
 }));
+
