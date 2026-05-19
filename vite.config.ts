@@ -50,6 +50,7 @@ export default defineConfig(({ mode }) => ({
       },
       workbox: {
         globPatterns: ["**/*.{js,css,html,svg,png,webp,woff2}"],
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
         navigateFallback: "/app/dashboard",
         navigateFallbackDenylist: [
           /^\/(?!app\/).*/,
