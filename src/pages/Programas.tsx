@@ -266,7 +266,7 @@ const Programas = () => {
                 size="lg" 
                 variant="outline" 
                 className="group border-primary text-primary hover:bg-primary hover:text-white"
-                onClick={() => window.open('https://wa.me/34644aboramos?text=Hola%20Nico,%20quiero%20información%20sobre%20tus%20programas', '_blank')}
+                onClick={() => window.open('https://wa.me/message/D3ZNQKWSUDUVJ1', '_blank')}
               >
                 <svg 
                   className="mr-2 h-5 w-5 transition-colors group-hover:text-[#25D366]" 
