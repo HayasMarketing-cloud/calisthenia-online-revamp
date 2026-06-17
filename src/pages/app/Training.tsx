@@ -197,6 +197,8 @@ const Training = () => {
     );
   }
 
+  const isRunning = today.sessionType === 'running';
+
   return (
     <div className="px-4 py-6 max-w-lg mx-auto space-y-4">
       {/* Header */}
@@ -209,6 +211,7 @@ const Training = () => {
           <Badge variant="secondary" className="text-xs">
             {today.dayName || `Día ${today.dayNumber}`}
           </Badge>
+          {isRunning && <Badge className="text-xs">Carrera</Badge>}
         </div>
         <p className="text-sm text-muted-foreground mt-1">{today.programName}</p>
       </div>
@@ -219,6 +222,39 @@ const Training = () => {
           <span className="text-muted-foreground">{today.overrideNote}</span>
         </div>
       )}
+
+      {/* Running session view */}
+      {isRunning && today.runningWorkout && (
+        <RunningWorkoutView workout={today.runningWorkout} steps={today.runningWorkout.steps} />
+      )}
+      {isRunning && !today.runningWorkout && (
+        <Card>
+          <CardContent className="p-6 text-center">
+            <p className="text-sm text-muted-foreground">Tu coach todavía no ha definido la sesión de carrera de hoy.</p>
+          </CardContent>
+        </Card>
+      )}
+      {isRunning && (
+        <Button
+          onClick={isSessionActive ? handleFinishSession : handleStartSession}
+          disabled={starting}
+          size="lg"
+          className="w-full gap-2"
+        >
+          {starting ? <Loader2 className="h-4 w-4 animate-spin" /> : isSessionActive ? <CheckCircle2 className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+          {isSessionActive ? 'Marcar como completada' : 'Empezar sesión'}
+        </Button>
+      )}
+      {isRunning && (
+        <SessionCheckinDialog
+          open={showCheckin}
+          onClose={() => setShowCheckin(false)}
+          onSubmit={handleCheckinSubmit}
+        />
+      )}
+      {isRunning && null}
+      {!isRunning && (<></>)}
+
 
       {/* Progress bar (only when session is active) */}
       {isSessionActive && (
