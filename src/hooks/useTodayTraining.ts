@@ -81,7 +81,7 @@ export function useTodayTraining() {
       const { data: scheduledDay } = await supabase
         .from('program_days')
         .select(`
-          id, day_number, name, is_rest_day, notes,
+          id, day_number, name, is_rest_day, session_type, notes,
           program_weeks!inner(week_number, program_id)
         `)
         .eq('scheduled_date', todayStr)
@@ -103,7 +103,7 @@ export function useTodayTraining() {
         const { data: allDays } = await supabase
           .from('program_days')
           .select(`
-            id, day_number, name, is_rest_day, notes,
+            id, day_number, name, is_rest_day, session_type, notes,
             program_weeks!inner(week_number, program_id)
           `)
           .in('week_id', weekIds)
