@@ -333,16 +333,29 @@ const ProgramTemplateEditor = () => {
                       <div className="flex items-center gap-2 min-w-0">
                         {day.is_rest_day ? (
                           <Moon className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+                        ) : day.session_type === 'running' ? (
+                          <Footprints className="h-5 w-5 text-primary flex-shrink-0" />
                         ) : (
                           <Dumbbell className="h-5 w-5 text-primary flex-shrink-0" />
                         )}
                         <CardTitle className="text-base sm:text-lg font-bold">
                           {day.name || `Día ${day.day_number}`}
                           {day.is_rest_day && <span className="text-muted-foreground ml-2 font-normal text-sm">(Descanso)</span>}
+                          {!day.is_rest_day && day.session_type === 'running' && <Badge variant="secondary" className="ml-2 text-[10px]">Carrera</Badge>}
+                          {!day.is_rest_day && day.session_type === 'mobility' && <Badge variant="secondary" className="ml-2 text-[10px]">Movilidad</Badge>}
                         </CardTitle>
                       </div>
                       <div className="flex items-center gap-1">
-                        {!day.is_rest_day && (
+                        {!day.is_rest_day && day.session_type === 'running' && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => setRunningDialog({ open: true, dayId: day.id })}
+                          >
+                            <Footprints className="h-3 w-3 mr-1" /> Sesión
+                          </Button>
+                        )}
+                        {!day.is_rest_day && day.session_type !== 'running' && (
                           <Button
                             size="sm"
                             variant="outline"
