@@ -21,6 +21,15 @@ export interface TodayExercise {
   };
 }
 
+export interface TodayRunningWorkout {
+  id: string;
+  name: string;
+  total_duration_min: number | null;
+  total_distance_km: number | null;
+  notes: string | null;
+  steps: import('@/lib/runningWorkout').RunningStep[];
+}
+
 export interface TodayTrainingData {
   programName: string;
   programId: string;
@@ -29,7 +38,9 @@ export interface TodayTrainingData {
   dayNumber: number;
   weekNumber: number;
   isRestDay: boolean;
+  sessionType: 'strength' | 'running' | 'mobility' | 'mixed';
   exercises: TodayExercise[];
+  runningWorkout: TodayRunningWorkout | null;
   existingSession: {
     id: string;
     status: string | null;
