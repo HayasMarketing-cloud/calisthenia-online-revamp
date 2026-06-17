@@ -51,11 +51,14 @@ interface DayExercise {
   exercise?: ExerciseOption;
 }
 
+type SessionType = 'strength' | 'running' | 'mobility' | 'mixed';
+
 interface Day {
   id: string;
   day_number: number;
   name: string | null;
   is_rest_day: boolean | null;
+  session_type: SessionType;
   notes: string | null;
   exercises: DayExercise[];
 }
