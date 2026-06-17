@@ -223,97 +223,87 @@ const Training = () => {
         </div>
       )}
 
-      {/* Running session view */}
-      {isRunning && today.runningWorkout && (
-        <RunningWorkoutView workout={today.runningWorkout} steps={today.runningWorkout.steps} />
-      )}
-      {isRunning && !today.runningWorkout && (
-        <Card>
-          <CardContent className="p-6 text-center">
-            <p className="text-sm text-muted-foreground">Tu coach todavía no ha definido la sesión de carrera de hoy.</p>
-          </CardContent>
-        </Card>
-      )}
-      {isRunning && (
-        <Button
-          onClick={isSessionActive ? handleFinishSession : handleStartSession}
-          disabled={starting}
-          size="lg"
-          className="w-full gap-2"
-        >
-          {starting ? <Loader2 className="h-4 w-4 animate-spin" /> : isSessionActive ? <CheckCircle2 className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-          {isSessionActive ? 'Marcar como completada' : 'Empezar sesión'}
-        </Button>
-      )}
-      {isRunning && (
-        <SessionCheckinDialog
-          open={showCheckin}
-          onClose={() => setShowCheckin(false)}
-          onSubmit={handleCheckinSubmit}
-        />
-      )}
-      {isRunning && null}
-      {!isRunning && (<></>)}
-
-
-      {/* Progress bar (only when session is active) */}
-      {isSessionActive && (
-        <div className="space-y-1">
-          <div className="flex justify-between text-xs text-muted-foreground">
-            <span>{completedExercises.size}/{today.exercises.length} ejercicios</span>
-            <span>{progress}%</span>
-          </div>
-          <div className="h-2 bg-secondary rounded-full overflow-hidden">
-            <div
-              className="h-full bg-primary rounded-full transition-all duration-500"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-        </div>
-      )}
-
-      {/* Start button or exercise list */}
-      {!isSessionActive ? (
-        <Card>
-          <CardContent className="p-6 text-center space-y-4">
-            <Dumbbell className="h-10 w-10 text-primary mx-auto" />
-            <div>
-              <p className="font-semibold">{today.exercises.length} ejercicios hoy</p>
-              <p className="text-sm text-muted-foreground">
-                {today.dayName || `Día ${today.dayNumber}`} · Semana {today.weekNumber}
-              </p>
-            </div>
-            <Button onClick={handleStartSession} disabled={starting} size="lg" className="w-full gap-2">
-              {starting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Play className="h-4 w-4" />}
-              Empezar sesión
-            </Button>
-          </CardContent>
-        </Card>
-      ) : (
+      {isRunning ? (
         <>
-          {/* Exercise list */}
-          <div className="space-y-3">
-            {today.exercises.map((item, i) => (
-              <TrainingExerciseCard
-                key={item.id}
-                item={item}
-                index={i}
-                completed={completedExercises.has(item.id)}
-                onToggle={handleToggleExercise}
-              />
-            ))}
-          </div>
-
-          {/* Finish button */}
+          {today.runningWorkout ? (
+            <RunningWorkoutView workout={today.runningWorkout} steps={today.runningWorkout.steps} />
+          ) : (
+            <Card>
+              <CardContent className="p-6 text-center">
+                <p className="text-sm text-muted-foreground">Tu coach todavía no ha definido la sesión de carrera de hoy.</p>
+              </CardContent>
+            </Card>
+          )}
           <Button
-            onClick={handleFinishSession}
+            onClick={isSessionActive ? handleFinishSession : handleStartSession}
+            disabled={starting}
             size="lg"
             className="w-full gap-2"
-            variant={progress === 100 ? 'default' : 'outline'}
           >
-            <CheckCircle2 className="h-4 w-4" />
-            Terminar sesión
+            {starting ? <Loader2 className="h-4 w-4 animate-spin" /> : isSessionActive ? <CheckCircle2 className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+            {isSessionActive ? 'Marcar como completada' : 'Empezar sesión'}
           </Button>
+        </>
+      ) : (
+        <>
+          {/* Progress bar (only when session is active) */}
+          {isSessionActive && (
+            <div className="space-y-1">
+              <div className="flex justify-between text-xs text-muted-foreground">
+                <span>{completedExercises.size}/{today.exercises.length} ejercicios</span>
+                <span>{progress}%</span>
+              </div>
+              <div className="h-2 bg-secondary rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-primary rounded-full transition-all duration-500"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Start button or exercise list */}
+          {!isSessionActive ? (
+            <Card>
+              <CardContent className="p-6 text-center space-y-4">
+                <Dumbbell className="h-10 w-10 text-primary mx-auto" />
+                <div>
+                  <p className="font-semibold">{today.exercises.length} ejercicios hoy</p>
+                  <p className="text-sm text-muted-foreground">
+                    {today.dayName || `Día ${today.dayNumber}`} · Semana {today.weekNumber}
+                  </p>
+                </div>
+                <Button onClick={handleStartSession} disabled={starting} size="lg" className="w-full gap-2">
+                  {starting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Play className="h-4 w-4" />}
+                  Empezar sesión
+                </Button>
+              </CardContent>
+            </Card>
+          ) : (
+            <>
+              <div className="space-y-3">
+                {today.exercises.map((item, i) => (
+                  <TrainingExerciseCard
+                    key={item.id}
+                    item={item}
+                    index={i}
+                    completed={completedExercises.has(item.id)}
+                    onToggle={handleToggleExercise}
+                  />
+                ))}
+              </div>
+
+              <Button
+                onClick={handleFinishSession}
+                size="lg"
+                className="w-full gap-2"
+                variant={progress === 100 ? 'default' : 'outline'}
+              >
+                <CheckCircle2 className="h-4 w-4" />
+                Terminar sesión
+              </Button>
+            </>
+          )}
         </>
       )}
 
