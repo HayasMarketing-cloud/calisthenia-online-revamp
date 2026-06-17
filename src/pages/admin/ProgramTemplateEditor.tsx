@@ -530,15 +530,24 @@ const ProgramTemplateEditor = () => {
               <Label>Nombre</Label>
               <Input value={dayForm.name} onChange={e => setDayForm(p => ({ ...p, name: e.target.value }))} placeholder={`Día ${addDayDialog.nextNum}`} />
             </div>
-            <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                checked={dayForm.is_rest_day}
-                onChange={e => setDayForm(p => ({ ...p, is_rest_day: e.target.checked }))}
-                className="rounded"
-                id="rest-day-check"
-              />
-              <Label htmlFor="rest-day-check">Es día de descanso</Label>
+            <div className="space-y-2">
+              <Label>Tipo de sesión</Label>
+              <Select
+                value={dayForm.is_rest_day ? 'rest' : dayForm.session_type}
+                onValueChange={(v) => {
+                  if (v === 'rest') setDayForm(p => ({ ...p, is_rest_day: true }));
+                  else setDayForm(p => ({ ...p, is_rest_day: false, session_type: v as SessionType }));
+                }}
+              >
+                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="strength">Fuerza / Calistenia</SelectItem>
+                  <SelectItem value="running">Carrera</SelectItem>
+                  <SelectItem value="mobility">Movilidad</SelectItem>
+                  <SelectItem value="mixed">Mixto</SelectItem>
+                  <SelectItem value="rest">Descanso</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
           <DialogFooter>
@@ -550,6 +559,7 @@ const ProgramTemplateEditor = () => {
                 dayNumber: addDayDialog.nextNum,
                 name: dayForm.name,
                 isRest: dayForm.is_rest_day,
+                sessionType: dayForm.session_type,
               })}
             >
               {addDayMutation.isPending && <Loader2 className="h-4 w-4 animate-spin mr-1" />}
@@ -558,6 +568,12 @@ const ProgramTemplateEditor = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      <RunningWorkoutDialog
+        open={runningDialog.open}
+        onClose={() => setRunningDialog({ open: false, dayId: '' })}
+        programDayId={runningDialog.dayId}
+      />
 
       {/* Add Exercise Dialog */}
       <Dialog open={addExDialog.open} onOpenChange={open => !open && setAddExDialog({ open: false, dayId: '' })}>
