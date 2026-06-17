@@ -148,12 +148,13 @@ const ProgramTemplateEditor = () => {
 
   // Add day
   const addDayMutation = useMutation({
-    mutationFn: async ({ weekId, dayNumber, name, isRest }: { weekId: string; dayNumber: number; name: string; isRest: boolean }) => {
+    mutationFn: async ({ weekId, dayNumber, name, isRest, sessionType }: { weekId: string; dayNumber: number; name: string; isRest: boolean; sessionType: SessionType }) => {
       const { error } = await supabase.from('program_days').insert({
         week_id: weekId,
         day_number: dayNumber,
         name: name || `Día ${dayNumber}`,
         is_rest_day: isRest,
+        session_type: sessionType,
       });
       if (error) throw error;
     },
@@ -161,7 +162,7 @@ const ProgramTemplateEditor = () => {
       toast.success('Día añadido');
       queryClient.invalidateQueries({ queryKey: ['template-weeks', id] });
       setAddDayDialog({ open: false, weekId: '', nextNum: 1 });
-      setDayForm({ name: '', is_rest_day: false });
+      setDayForm({ name: '', is_rest_day: false, session_type: 'strength' });
     },
     onError: (err: Error) => toast.error(err.message),
   });
