@@ -35,15 +35,17 @@ const LeadCapture = () => {
     }
 
     setLoading(true);
-    const { error } = await supabase.from("leads").insert({
-      name: form.name.trim().slice(0, 100),
-      age,
-      goal: form.goal.trim().slice(0, 500),
-      phone: form.phone.trim().slice(0, 20),
+    const { data, error } = await supabase.functions.invoke("submit-lead", {
+      body: {
+        name: form.name.trim(),
+        age,
+        goal: form.goal.trim(),
+        phone: form.phone.trim(),
+      },
     });
     setLoading(false);
 
-    if (error) {
+    if (error || (data && (data as { error?: string }).error)) {
       toast({ title: "Error al enviar", description: "Inténtalo de nuevo", variant: "destructive" });
       return;
     }

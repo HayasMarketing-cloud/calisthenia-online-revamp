@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.analyze-seo]
 verify_jwt = false
+
+[functions.submit-lead]
+verify_jwt = false
