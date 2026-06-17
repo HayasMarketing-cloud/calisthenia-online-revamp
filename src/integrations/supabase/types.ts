@@ -827,6 +827,7 @@ export type Database = {
           name: string | null
           notes: string | null
           scheduled_date: string | null
+          session_type: Database["public"]["Enums"]["session_type"]
           week_id: string
         }
         Insert: {
@@ -836,6 +837,7 @@ export type Database = {
           name?: string | null
           notes?: string | null
           scheduled_date?: string | null
+          session_type?: Database["public"]["Enums"]["session_type"]
           week_id: string
         }
         Update: {
@@ -845,6 +847,7 @@ export type Database = {
           name?: string | null
           notes?: string | null
           scheduled_date?: string | null
+          session_type?: Database["public"]["Enums"]["session_type"]
           week_id?: string
         }
         Relationships: [
@@ -1045,6 +1048,110 @@ export type Database = {
             columns: ["template_id"]
             isOneToOne: false
             referencedRelation: "programs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      running_workout_steps: {
+        Row: {
+          created_at: string
+          duration_type: Database["public"]["Enums"]["running_duration_type"]
+          duration_value: number | null
+          id: string
+          notes: string | null
+          order_index: number
+          parent_step_id: string | null
+          repeat_count: number | null
+          step_type: Database["public"]["Enums"]["running_step_type"]
+          target_high: number | null
+          target_low: number | null
+          target_type: Database["public"]["Enums"]["running_target_type"]
+          workout_id: string
+        }
+        Insert: {
+          created_at?: string
+          duration_type?: Database["public"]["Enums"]["running_duration_type"]
+          duration_value?: number | null
+          id?: string
+          notes?: string | null
+          order_index?: number
+          parent_step_id?: string | null
+          repeat_count?: number | null
+          step_type: Database["public"]["Enums"]["running_step_type"]
+          target_high?: number | null
+          target_low?: number | null
+          target_type?: Database["public"]["Enums"]["running_target_type"]
+          workout_id: string
+        }
+        Update: {
+          created_at?: string
+          duration_type?: Database["public"]["Enums"]["running_duration_type"]
+          duration_value?: number | null
+          id?: string
+          notes?: string | null
+          order_index?: number
+          parent_step_id?: string | null
+          repeat_count?: number | null
+          step_type?: Database["public"]["Enums"]["running_step_type"]
+          target_high?: number | null
+          target_low?: number | null
+          target_type?: Database["public"]["Enums"]["running_target_type"]
+          workout_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "running_workout_steps_parent_step_id_fkey"
+            columns: ["parent_step_id"]
+            isOneToOne: false
+            referencedRelation: "running_workout_steps"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "running_workout_steps_workout_id_fkey"
+            columns: ["workout_id"]
+            isOneToOne: false
+            referencedRelation: "running_workouts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      running_workouts: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          notes: string | null
+          program_day_id: string
+          total_distance_km: number | null
+          total_duration_min: number | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name?: string
+          notes?: string | null
+          program_day_id: string
+          total_distance_km?: number | null
+          total_duration_min?: number | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          notes?: string | null
+          program_day_id?: string
+          total_distance_km?: number | null
+          total_duration_min?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "running_workouts_program_day_id_fkey"
+            columns: ["program_day_id"]
+            isOneToOne: true
+            referencedRelation: "program_days"
             referencedColumns: ["id"]
           },
         ]
@@ -1541,6 +1648,10 @@ export type Database = {
         Returns: undefined
       }
       snapshot_weekly_adherence: { Args: never; Returns: undefined }
+      user_owns_program_day: {
+        Args: { _day_id: string; _user_id: string }
+        Returns: boolean
+      }
     }
     Enums: {
       activity_level: "sedentary" | "light_active" | "active" | "very_active"
@@ -1631,8 +1742,12 @@ export type Database = {
         | "mantenimiento"
         | "custom"
       program_status: "draft" | "active" | "completed" | "paused" | "cancelled"
+      running_duration_type: "time" | "distance" | "open"
+      running_step_type: "warmup" | "work" | "recovery" | "cooldown" | "repeat"
+      running_target_type: "pace" | "heart_rate" | "rpe" | "none"
       session_feeling_type: "great" | "good" | "hard" | "too_hard" | "painful"
       session_status: "in_progress" | "completed" | "skipped"
+      session_type: "strength" | "running" | "mobility" | "mixed"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1858,8 +1973,12 @@ export const Constants = {
         "custom",
       ],
       program_status: ["draft", "active", "completed", "paused", "cancelled"],
+      running_duration_type: ["time", "distance", "open"],
+      running_step_type: ["warmup", "work", "recovery", "cooldown", "repeat"],
+      running_target_type: ["pace", "heart_rate", "rpe", "none"],
       session_feeling_type: ["great", "good", "hard", "too_hard", "painful"],
       session_status: ["in_progress", "completed", "skipped"],
+      session_type: ["strength", "running", "mobility", "mixed"],
     },
   },
 } as const
