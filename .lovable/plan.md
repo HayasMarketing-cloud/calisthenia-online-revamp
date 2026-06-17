@@ -1,82 +1,91 @@
-## Objetivo
+# Módulo de Running + Strava
 
-Reforzar la intención de búsqueda de la keyword principal de cada página en los H2/H3, sin canibalizar las otras URLs de la web (espalda, parque, core, principiantes, full body, abdominales, brazos, piernas, casa).
+Añadimos sesiones de carrera estructuradas a los programas existentes (calistenia + running mezclados en la misma semana) e importamos los entrenamientos reales desde Strava de cada alumno para compararlos con lo planificado.
 
-## Reglas que aplico
+## 1. Modelo de datos
 
-- 1 H1 por página (ya optimizado, no se toca).
-- La keyword principal aparece **literal o en variante muy cercana** en al menos 3 H2 de cada página, repartida (no toda al inicio).
-- En el resto de H2/H3 uso variantes semánticas (sinónimos, long-tails de intención informacional) para cubrir más SERP sin repetir.
-- **Cero canibalización**: si un H2 va a contener "espalda", "parque" o "core" como sustantivo principal, solo lo dejo en la página que rankea para esa keyword. En las otras, lo enlazo (interno) en lugar de titularlo.
-- H3 de ejercicios concretos (Dominadas, Plancha, Bird Dog…) se mantienen, son entidades.
+Extendemos las tablas de programas para que un día pueda ser una sesión de carrera estructurada por bloques.
 
----
+**`program_days`** — añadir:
+- `session_type` enum (`strength` | `running` | `mobility` | `mixed`), default `strength` para no romper datos existentes.
 
-## 1) `/rutina-espalda-calistenia/` — keyword: **ejercicios de espalda calistenia** (140/mo)
+**Nueva `running_workouts`** (1 fila por día de carrera):
+- `program_day_id` (FK)
+- `name` (ej. "Rodaje Z2 + 6×400")
+- `total_duration_min`, `total_distance_km` (estimados)
+- `notes`
 
-H2 actuales → propuestos:
+**Nueva `running_workout_steps`** (los bloques: calentamiento, series, vuelta a la calma):
+- `workout_id` (FK)
+- `order_index`
+- `step_type` enum (`warmup` | `work` | `recovery` | `cooldown` | `repeat`)
+- `repeat_count` (para grupos tipo "6×")
+- `parent_step_id` (para anidar pasos dentro de un repeat)
+- `duration_type` enum (`time` | `distance` | `open`)
+- `duration_value` (segundos o metros)
+- `target_type` enum (`pace` | `heart_rate` | `rpe` | `none`)
+- `target_low`, `target_high` (ritmo en seg/km o ppm)
+- `notes`
 
-| # | Actual | Propuesto | Motivo |
-|---|---|---|---|
-| 1 | Tabla completa de ejercicios de espalda calistenia | *(sin cambios)* | Ya contiene keyword exacta |
-| 2 | Ejercicios de espalda en casa sin material | *(sin cambios)* | Variante long-tail útil |
-| 3 | Ejercicios de espalda con barra: dominadas y remo invertido | **Ejercicios de espalda calistenia con barra: dominadas y remo invertido** | Añade keyword exacta |
-| 4 | Cómo entrenar dorsales en casa con calistenia | **Cómo entrenar dorsales con calistenia (en casa y en parque)** | Quita "casa" duplicada, expande intención |
-| 5 | Rutina de espalda calistenia para principiantes | **Rutina con ejercicios de espalda calistenia para principiantes** | Conecta rutina↔ejercicios sin canibalizar `/calistenia-principiantes/` |
-| 6 | Programación semanal: cuántos días, series y repeticiones | **Programación semanal de ejercicios de espalda: días, series y repeticiones** | Refuerza entidad |
-| 7 | Errores comunes al entrenar la espalda en calistenia | *(sin cambios)* | OK |
-| 8 | Preguntas frecuentes sobre ejercicios de espalda calistenia | *(sin cambios)* | Keyword exacta |
-| 9 | 📹 Vídeos de entrenamiento de espalda | **📹 Vídeos de ejercicios de espalda calistenia** | Refuerzo |
-| 10 | Construye una espalda en V solo con calistenia | *(sin cambios)* | CTA, OK |
+**Nueva `strava_connections`** (1 por alumno):
+- `client_id`, `strava_athlete_id`
+- `access_token`, `refresh_token`, `expires_at` (cifrados — solo lectura desde edge functions con service_role; nunca expuestos al cliente)
+- `scope`, `connected_at`, `last_sync_at`
 
----
+**Nueva `running_activities`** (entrenamiento real importado):
+- `client_id`, `strava_activity_id` (único)
+- `started_at`, `duration_sec`, `distance_m`
+- `avg_pace_sec_per_km`, `avg_hr`, `max_hr`, `elevation_gain_m`, `calories`
+- `activity_type` (run, trail_run, …)
+- `raw_jsonb` (payload completo para futura analítica)
+- `matched_program_day_id` (FK opcional — auto-match por fecha)
 
-## 2) `/calistenia-en-parque/` — keyword: **calistenia parque** (480/mo)
+RLS: el alumno solo ve lo suyo; el coach (admin) ve todo. `strava_connections.access_token` nunca seleccionable desde el cliente (policy bloquea SELECT de esa columna o se usa vista).
 
-| # | Actual | Propuesto | Motivo |
-|---|---|---|---|
-| 1 | Por Qué Entrenar en Parques | **Por qué entrenar calistenia en el parque** | Añade keyword |
-| 2 | Qué es un parque de calistenia | *(sin cambios)* | Variante semántica fuerte |
-| 3 | Tipos de barras de parques de calistenia | **Tipos de barras en un parque de calistenia** | Singular = más cerca de la keyword |
-| 4 | Cómo encontrar un parque de calistenia cerca de ti | *(sin cambios)* | Long-tail de intención local |
-| 5 | Beneficios de Entrenar en Parques de Calistenia | **Beneficios de la calistenia en el parque** | Keyword exacta |
-| 6 | Cómo Empezar en Calistenia en Parques | **Cómo empezar a hacer calistenia en el parque** | Más natural + keyword |
-| 7 | Ejercicios Esenciales para Empezar | **Ejercicios esenciales de calistenia en parque para empezar** | No canibaliza `/rutina-espalda-calistenia/` ni guías de ejercicios; intención local |
+## 2. Integración con Strava (per-user OAuth)
 
-H3 de los Cards (Aire Libre, Equipamiento Completo, Comunidad…) → se quedan: son atributos, no compiten.
+Strava no es un conector de Lovable: cada alumno autoriza su propia cuenta. Flujo:
 
----
+1. Crear app en developers.strava.com → obtener `Client ID` y `Client Secret`.
+2. Guardar `STRAVA_CLIENT_ID` y `STRAVA_CLIENT_SECRET` como secretos del backend.
+3. Edge functions nuevas:
+   - `strava-oauth-start` — devuelve URL de autorización con scopes `read,activity:read_all`.
+   - `strava-oauth-callback` — recibe `code`, lo intercambia por tokens, guarda en `strava_connections`.
+   - `strava-sync` — para el usuario actual: refresca token si expira, descarga las actividades nuevas desde `last_sync_at`, las inserta en `running_activities`, e intenta hacer match con un `program_day` de tipo `running` de ±1 día.
+   - `strava-webhook` (opcional fase 2) — recibe push de Strava cuando hay actividad nueva.
 
-## 3) `/rutina-core-calistenia/` — keyword: **rutina core calistenia** (40) + **rutina core** (390)
+## 3. UI
 
-Riesgo: H2 actuales repiten mucho "core" pero pocas veces "rutina core". Refuerzo intención de rutina sin canibalizar `/rutina-abdominales-calistenia/`.
+**Coach (`/admin/programas/...`)**
+- En el editor de día, selector de tipo de sesión (Fuerza / Carrera / …).
+- Si es Carrera, abre un constructor de bloques: añadir warm-up, series con repeticiones, recovery, cool-down. Cada bloque pide duración (tiempo o distancia) y objetivo (ritmo min/km, FC o RPE).
 
-| # | Actual | Propuesto | Motivo |
-|---|---|---|---|
-| 1 | La importancia de un core fuerte en tu entrenamiento | **Por qué necesitas una rutina de core en tu entrenamiento** | Inyecta "rutina de core" |
-| 2 | Core Ejercicios: Fortalece tu Centro Paso a Paso | **Ejercicios de la rutina de core: fortalece tu centro paso a paso** | Conecta ejercicios↔rutina |
-| 3 | Planificación Semanal de Core Funcional | **Rutina de core semanal: planificación paso a paso** | Keyword exacta + intención plan |
-| 4 | Qué es el Core: Más que Abdominales Visibles | *(sin cambios)* | Diferenciador vs abdominales — evita canibalizar `/rutina-abdominales-calistenia/` |
-| 5 | Maximiza tus Resultados en el Entrenamiento de Core | **Maximiza los resultados de tu rutina de core** | Keyword |
-| 6 | Técnica Correcta en Ejercicios de Core | *(sin cambios)* | OK, variante |
-| 7 | Variaciones y Ejercicios Complementarios | **Variaciones avanzadas de la rutina de core y ejercicios complementarios** | Keyword + nivel |
-| 8 | Preguntas Frecuentes sobre Entrenamiento de Core | **Preguntas frecuentes sobre la rutina de core con calistenia** | Long-tail completo |
-| 9 | Fortalece tu Core y Mejora tu Rendimiento *(CTA)* | *(sin cambios)* | OK |
+**Alumno (`/app/training`)**
+- Si el día es de carrera, renderiza la sesión por bloques (en lugar de la lista de ejercicios actual). Vista clara: "10' Z2 → 6 × (400 m @ 4:10/km + 1' trote) → 10' Z1".
+- Botón "Conectar Strava" en `/app/profile` (si no está conectado).
+- Tras hacer la carrera, "Sincronizar" trae la actividad y la pinta junto al plan: planificado vs real (distancia, tiempo, ritmo medio, FC media).
+- Marca el día como completado automáticamente si hay match.
 
----
+## 4. Entregables por fases
 
-## Cobertura final por página
+**Fase A — Estructura (sin Strava todavía)**
+- Migración: enum `session_type`, tablas `running_workouts`, `running_workout_steps` con RLS y GRANTs.
+- Constructor de sesiones de carrera en el editor de plantillas/programas.
+- Renderizado de sesión de carrera en `/app/training`.
+- Botón "Marcar como completada" manual.
 
-- **Espalda**: "ejercicios de espalda calistenia" en 5 H2 (1, 3, 5, 8, 9) + variantes en el resto. Sin canibalizar core/parque.
-- **Parque**: "calistenia parque / calistenia en el parque / parque de calistenia" en 6 H2. Sin canibalizar espalda/core.
-- **Core**: "rutina de core" en 6 H2; "calistenia" como modificador solo en FAQ y CTA → no canibaliza `/rutina-abdominales-calistenia/` ni `/rutina-full-body/`.
+**Fase B — Strava**
+- Tablas `strava_connections` y `running_activities` con RLS estricta sobre tokens.
+- 3 edge functions OAuth + sync.
+- Pantalla "Conectar Strava" + sincronización manual.
+- Auto-match actividad ↔ día planificado y vista comparativa planificado vs real.
 
-## Detalles técnicos
+**Fase C (opcional, más adelante)**
+- Webhook de Strava para sincronización automática.
+- Exportar la sesión a archivo `.FIT` para enviarla al reloj (esto sí requeriría Garmin u otra vía y se valoraría aparte).
 
-- Cambios solo de texto dentro de etiquetas `<h2>`/`<h3>` en:
-  - `src/pages/RutinaEspalda.tsx`
-  - `src/pages/CalisteniaParque.tsx`
-  - `src/pages/RutinaCore.tsx`
-- Mantengo el `<span className="text-primary">…</span>` envolviendo la parte con la keyword principal cuando ya existía (para conservar el estilo de highlight).
-- No toco H1, meta, OG, schema, ni componentes compartidos.
-- Tras los cambios, verificación rápida: `rg "<h2|<h3"` en los tres ficheros para confirmar jerarquía intacta.
+## Decisiones que necesito confirmar antes de implementar
+
+1. ¿Implemento las **dos fases (A y B) ahora**, o prefieres empezar solo por la Fase A y dejar Strava para un segundo paso?
+2. Para Strava necesitaré que crees una app en https://developers.strava.com/ y me pases `Client ID` + `Client Secret` (te los pediré con el formulario seguro cuando toque la Fase B).
+3. ¿Los ritmos objetivo los introduces como **rango** (ej. 4:00–4:15/km) o como **valor único**? El plan asume rango porque es lo estándar en TrainingPeaks.

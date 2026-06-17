@@ -21,6 +21,15 @@ export interface TodayExercise {
   };
 }
 
+export interface TodayRunningWorkout {
+  id: string;
+  name: string;
+  total_duration_min: number | null;
+  total_distance_km: number | null;
+  notes: string | null;
+  steps: import('@/lib/runningWorkout').RunningStep[];
+}
+
 export interface TodayTrainingData {
   programName: string;
   programId: string;
@@ -29,7 +38,9 @@ export interface TodayTrainingData {
   dayNumber: number;
   weekNumber: number;
   isRestDay: boolean;
+  sessionType: 'strength' | 'running' | 'mobility' | 'mixed';
   exercises: TodayExercise[];
+  runningWorkout: TodayRunningWorkout | null;
   existingSession: {
     id: string;
     status: string | null;
@@ -70,7 +81,7 @@ export function useTodayTraining() {
       const { data: scheduledDay } = await supabase
         .from('program_days')
         .select(`
-          id, day_number, name, is_rest_day, notes,
+          id, day_number, name, is_rest_day, session_type, notes,
           program_weeks!inner(week_number, program_id)
         `)
         .eq('scheduled_date', todayStr)
@@ -92,7 +103,7 @@ export function useTodayTraining() {
         const { data: allDays } = await supabase
           .from('program_days')
           .select(`
-            id, day_number, name, is_rest_day, notes,
+            id, day_number, name, is_rest_day, session_type, notes,
             program_weeks!inner(week_number, program_id)
           `)
           .in('week_id', weekIds)
@@ -131,9 +142,11 @@ export function useTodayTraining() {
       let overrideReason: string | null = null;
       let skippedByOverride = false;
 
-      // 5. Get exercises for today's day (only if not rest)
+      const sessionType: 'strength' | 'running' | 'mobility' | 'mixed' = dayData.session_type || 'strength';
+
+      // 5. Get exercises for today's day (only if not rest, and not a pure running session)
       let exercises: TodayExercise[] = [];
-      if (!isRestDay) {
+      if (!isRestDay && sessionType !== 'running') {
         const { data: dayExercises, error: exErr } = await supabase
           .from('program_day_exercises')
           .select(`
@@ -147,6 +160,31 @@ export function useTodayTraining() {
           ...de,
           exercise: de.exercises,
         }));
+      }
+
+      // 5b. Running workout if applicable
+      let runningWorkout: TodayRunningWorkout | null = null;
+      if (!isRestDay && sessionType === 'running') {
+        const { data: rw } = await supabase
+          .from('running_workouts')
+          .select('*')
+          .eq('program_day_id', dayData.id)
+          .maybeSingle();
+        if (rw) {
+          const { data: steps } = await supabase
+            .from('running_workout_steps')
+            .select('*')
+            .eq('workout_id', rw.id)
+            .order('order_index');
+          runningWorkout = {
+            id: rw.id,
+            name: rw.name,
+            total_duration_min: rw.total_duration_min,
+            total_distance_km: rw.total_distance_km != null ? Number(rw.total_distance_km) : null,
+            notes: rw.notes,
+            steps: (steps || []) as TodayRunningWorkout['steps'],
+          };
+        }
       }
 
       // 6. Apply overrides in order
@@ -245,7 +283,9 @@ export function useTodayTraining() {
         dayNumber: dayData.day_number,
         weekNumber: weekInfo?.week_number || 1,
         isRestDay,
+        sessionType,
         exercises,
+        runningWorkout,
         existingSession: existingSession || null,
         overrideNote,
         overrideReason,

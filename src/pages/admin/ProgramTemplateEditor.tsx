@@ -12,7 +12,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem } from '@/components/ui/command';
-import { Loader2, Plus, Trash2, Calendar, Dumbbell, Moon, ChevronsUpDown, Check, Youtube, History, Camera } from 'lucide-react';
+import { Loader2, Plus, Trash2, Calendar, Dumbbell, Moon, ChevronsUpDown, Check, Youtube, History, Camera, Footprints } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import RunningWorkoutDialog from '@/components/admin/RunningWorkoutDialog';
 import { toast as sonnerToast } from 'sonner';
 
 // Extracts an 11-char YouTube video ID from a URL or returns the trimmed input if it already looks like an ID
@@ -49,11 +51,14 @@ interface DayExercise {
   exercise?: ExerciseOption;
 }
 
+type SessionType = 'strength' | 'running' | 'mobility' | 'mixed';
+
 interface Day {
   id: string;
   day_number: number;
   name: string | null;
   is_rest_day: boolean | null;
+  session_type: SessionType;
   notes: string | null;
   exercises: DayExercise[];
 }
@@ -73,8 +78,9 @@ const ProgramTemplateEditor = () => {
   const [exForm, setExForm] = useState({ exercise_id: '', sets: 3, reps: '10', rest_seconds: 60, notes: '', custom_youtube_video_id: '' });
   const [exPickerOpen, setExPickerOpen] = useState(false);
   const [addDayDialog, setAddDayDialog] = useState<{ open: boolean; weekId: string; nextNum: number }>({ open: false, weekId: '', nextNum: 1 });
-  const [dayForm, setDayForm] = useState({ name: '', is_rest_day: false });
+  const [dayForm, setDayForm] = useState<{ name: string; is_rest_day: boolean; session_type: SessionType }>({ name: '', is_rest_day: false, session_type: 'strength' });
   const [videoEditDialog, setVideoEditDialog] = useState<{ open: boolean; exId: string; current: string; exerciseName: string; baseVideoId: string | null }>({ open: false, exId: '', current: '', exerciseName: '', baseVideoId: null });
+  const [runningDialog, setRunningDialog] = useState<{ open: boolean; dayId: string }>({ open: false, dayId: '' });
 
   // Fetch program
   const { data: program, isLoading: loadingProgram } = useQuery({
@@ -142,12 +148,13 @@ const ProgramTemplateEditor = () => {
 
   // Add day
   const addDayMutation = useMutation({
-    mutationFn: async ({ weekId, dayNumber, name, isRest }: { weekId: string; dayNumber: number; name: string; isRest: boolean }) => {
+    mutationFn: async ({ weekId, dayNumber, name, isRest, sessionType }: { weekId: string; dayNumber: number; name: string; isRest: boolean; sessionType: SessionType }) => {
       const { error } = await supabase.from('program_days').insert({
         week_id: weekId,
         day_number: dayNumber,
         name: name || `Día ${dayNumber}`,
         is_rest_day: isRest,
+        session_type: sessionType,
       });
       if (error) throw error;
     },
@@ -155,7 +162,7 @@ const ProgramTemplateEditor = () => {
       toast.success('Día añadido');
       queryClient.invalidateQueries({ queryKey: ['template-weeks', id] });
       setAddDayDialog({ open: false, weekId: '', nextNum: 1 });
-      setDayForm({ name: '', is_rest_day: false });
+      setDayForm({ name: '', is_rest_day: false, session_type: 'strength' });
     },
     onError: (err: Error) => toast.error(err.message),
   });
@@ -326,16 +333,29 @@ const ProgramTemplateEditor = () => {
                       <div className="flex items-center gap-2 min-w-0">
                         {day.is_rest_day ? (
                           <Moon className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+                        ) : day.session_type === 'running' ? (
+                          <Footprints className="h-5 w-5 text-primary flex-shrink-0" />
                         ) : (
                           <Dumbbell className="h-5 w-5 text-primary flex-shrink-0" />
                         )}
                         <CardTitle className="text-base sm:text-lg font-bold">
                           {day.name || `Día ${day.day_number}`}
                           {day.is_rest_day && <span className="text-muted-foreground ml-2 font-normal text-sm">(Descanso)</span>}
+                          {!day.is_rest_day && day.session_type === 'running' && <Badge variant="secondary" className="ml-2 text-[10px]">Carrera</Badge>}
+                          {!day.is_rest_day && day.session_type === 'mobility' && <Badge variant="secondary" className="ml-2 text-[10px]">Movilidad</Badge>}
                         </CardTitle>
                       </div>
                       <div className="flex items-center gap-1">
-                        {!day.is_rest_day && (
+                        {!day.is_rest_day && day.session_type === 'running' && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => setRunningDialog({ open: true, dayId: day.id })}
+                          >
+                            <Footprints className="h-3 w-3 mr-1" /> Sesión
+                          </Button>
+                        )}
+                        {!day.is_rest_day && day.session_type !== 'running' && (
                           <Button
                             size="sm"
                             variant="outline"
@@ -510,15 +530,24 @@ const ProgramTemplateEditor = () => {
               <Label>Nombre</Label>
               <Input value={dayForm.name} onChange={e => setDayForm(p => ({ ...p, name: e.target.value }))} placeholder={`Día ${addDayDialog.nextNum}`} />
             </div>
-            <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                checked={dayForm.is_rest_day}
-                onChange={e => setDayForm(p => ({ ...p, is_rest_day: e.target.checked }))}
-                className="rounded"
-                id="rest-day-check"
-              />
-              <Label htmlFor="rest-day-check">Es día de descanso</Label>
+            <div className="space-y-2">
+              <Label>Tipo de sesión</Label>
+              <Select
+                value={dayForm.is_rest_day ? 'rest' : dayForm.session_type}
+                onValueChange={(v) => {
+                  if (v === 'rest') setDayForm(p => ({ ...p, is_rest_day: true }));
+                  else setDayForm(p => ({ ...p, is_rest_day: false, session_type: v as SessionType }));
+                }}
+              >
+                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="strength">Fuerza / Calistenia</SelectItem>
+                  <SelectItem value="running">Carrera</SelectItem>
+                  <SelectItem value="mobility">Movilidad</SelectItem>
+                  <SelectItem value="mixed">Mixto</SelectItem>
+                  <SelectItem value="rest">Descanso</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
           <DialogFooter>
@@ -530,6 +559,7 @@ const ProgramTemplateEditor = () => {
                 dayNumber: addDayDialog.nextNum,
                 name: dayForm.name,
                 isRest: dayForm.is_rest_day,
+                sessionType: dayForm.session_type,
               })}
             >
               {addDayMutation.isPending && <Loader2 className="h-4 w-4 animate-spin mr-1" />}
@@ -538,6 +568,12 @@ const ProgramTemplateEditor = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      <RunningWorkoutDialog
+        open={runningDialog.open}
+        onClose={() => setRunningDialog({ open: false, dayId: '' })}
+        programDayId={runningDialog.dayId}
+      />
 
       {/* Add Exercise Dialog */}
       <Dialog open={addExDialog.open} onOpenChange={open => !open && setAddExDialog({ open: false, dayId: '' })}>
