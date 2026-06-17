@@ -9,6 +9,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useQueryClient } from '@tanstack/react-query';
 import { toast } from '@/hooks/use-toast';
 import TrainingExerciseCard from '@/components/app/TrainingExerciseCard';
+import RunningWorkoutView from '@/components/app/RunningWorkoutView';
 import SessionCheckinDialog from '@/components/app/SessionCheckinDialog';
 
 const Training = () => {
