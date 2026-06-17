@@ -12,7 +12,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem } from '@/components/ui/command';
-import { Loader2, Plus, Trash2, Calendar, Dumbbell, Moon, ChevronsUpDown, Check, Youtube, History, Camera } from 'lucide-react';
+import { Loader2, Plus, Trash2, Calendar, Dumbbell, Moon, ChevronsUpDown, Check, Youtube, History, Camera, Footprints } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import RunningWorkoutDialog from '@/components/admin/RunningWorkoutDialog';
 import { toast as sonnerToast } from 'sonner';
 
 // Extracts an 11-char YouTube video ID from a URL or returns the trimmed input if it already looks like an ID
