@@ -1,91 +1,47 @@
-# Módulo de Running + Strava
+## Flujo de recuperación de contraseña
 
-Añadimos sesiones de carrera estructuradas a los programas existentes (calistenia + running mezclados en la misma semana) e importamos los entrenamientos reales desde Strava de cada alumno para compararlos con lo planificado.
+Añadir el flujo completo "Olvidé mi contraseña" usando el sistema nativo de Supabase Auth + emails por defecto de Lovable Cloud.
 
-## 1. Modelo de datos
+### Páginas nuevas
 
-Extendemos las tablas de programas para que un día pueda ser una sesión de carrera estructurada por bloques.
+1. **`/forgot-password`** (`src/pages/ForgotPassword.tsx`)
+   - Formulario con un solo campo: email
+   - Llama a `supabase.auth.resetPasswordForEmail(email, { redirectTo: \`${window.location.origin}/reset-password\` })`
+   - Mensaje genérico tras envío ("Si el email existe, recibirás un enlace") para no filtrar qué emails están registrados
+   - Header + Footer, estilo coherente con `/auth`
+   - SEO: `noindex` (página utilitaria)
 
-**`program_days`** — añadir:
-- `session_type` enum (`strength` | `running` | `mobility` | `mixed`), default `strength` para no romper datos existentes.
+2. **`/reset-password`** (`src/pages/ResetPassword.tsx`)
+   - Ruta pública (no protegida)
+   - Al montar, detecta el `type=recovery` en el hash y deja que el listener `onAuthStateChange` capture el evento `PASSWORD_RECOVERY` que crea la sesión temporal
+   - Formulario con dos campos: nueva contraseña + confirmación (mínimo 6 caracteres, validación de coincidencia)
+   - Llama a `supabase.auth.updateUser({ password })`
+   - Tras éxito: toast + redirección a `/auth` (cierra sesión temporal con `signOut` previo para que el usuario inicie sesión limpia)
+   - Si se entra sin token de recovery válido: mostrar mensaje "Enlace inválido o caducado" + botón para volver a `/forgot-password`
 
-**Nueva `running_workouts`** (1 fila por día de carrera):
-- `program_day_id` (FK)
-- `name` (ej. "Rodaje Z2 + 6×400")
-- `total_duration_min`, `total_distance_km` (estimados)
-- `notes`
+### Cambios menores
 
-**Nueva `running_workout_steps`** (los bloques: calentamiento, series, vuelta a la calma):
-- `workout_id` (FK)
-- `order_index`
-- `step_type` enum (`warmup` | `work` | `recovery` | `cooldown` | `repeat`)
-- `repeat_count` (para grupos tipo "6×")
-- `parent_step_id` (para anidar pasos dentro de un repeat)
-- `duration_type` enum (`time` | `distance` | `open`)
-- `duration_value` (segundos o metros)
-- `target_type` enum (`pace` | `heart_rate` | `rpe` | `none`)
-- `target_low`, `target_high` (ritmo en seg/km o ppm)
-- `notes`
+3. **`src/pages/Auth.tsx`** — añadir enlace "¿Olvidaste tu contraseña?" debajo del campo de contraseña en la pestaña "Iniciar Sesión", apuntando a `/forgot-password`.
 
-**Nueva `strava_connections`** (1 por alumno):
-- `client_id`, `strava_athlete_id`
-- `access_token`, `refresh_token`, `expires_at` (cifrados — solo lectura desde edge functions con service_role; nunca expuestos al cliente)
-- `scope`, `connected_at`, `last_sync_at`
+4. **`src/App.tsx`** — registrar las dos rutas nuevas como públicas.
 
-**Nueva `running_activities`** (entrenamiento real importado):
-- `client_id`, `strava_activity_id` (único)
-- `started_at`, `duration_sec`, `distance_m`
-- `avg_pace_sec_per_km`, `avg_hr`, `max_hr`, `elevation_gain_m`, `calories`
-- `activity_type` (run, trail_run, …)
-- `raw_jsonb` (payload completo para futura analítica)
-- `matched_program_day_id` (FK opcional — auto-match por fecha)
+### Detalles técnicos
 
-RLS: el alumno solo ve lo suyo; el coach (admin) ve todo. `strava_connections.access_token` nunca seleccionable desde el cliente (policy bloquea SELECT de esa columna o se usa vista).
+- **Emails**: se usan los emails por defecto de Lovable Cloud (no hace falta scaffold de plantillas custom ni dominio propio). El asunto/cuerpo será el genérico de Supabase Auth en español si está configurado, o en inglés por defecto.
+- **Redirect URL**: `window.location.origin + '/reset-password'` se debe añadir como URL permitida. Lovable Cloud ya acepta el dominio del proyecto y `calisthenia.online` por defecto, así que no requiere acción adicional.
+- **Seguridad**:
+  - No revelar si un email existe (mensaje genérico).
+  - `/reset-password` valida sesión de tipo recovery antes de mostrar el formulario.
+  - Forzar `signOut` tras `updateUser` para que el usuario re-inicie sesión con la nueva contraseña.
+- **No** se toca `useAuth.ts` (el listener actual ya gestiona los cambios de sesión correctamente).
 
-## 2. Integración con Strava (per-user OAuth)
+### Archivos
 
-Strava no es un conector de Lovable: cada alumno autoriza su propia cuenta. Flujo:
+- Crear: `src/pages/ForgotPassword.tsx`, `src/pages/ResetPassword.tsx`
+- Editar: `src/App.tsx`, `src/pages/Auth.tsx`
 
-1. Crear app en developers.strava.com → obtener `Client ID` y `Client Secret`.
-2. Guardar `STRAVA_CLIENT_ID` y `STRAVA_CLIENT_SECRET` como secretos del backend.
-3. Edge functions nuevas:
-   - `strava-oauth-start` — devuelve URL de autorización con scopes `read,activity:read_all`.
-   - `strava-oauth-callback` — recibe `code`, lo intercambia por tokens, guarda en `strava_connections`.
-   - `strava-sync` — para el usuario actual: refresca token si expira, descarga las actividades nuevas desde `last_sync_at`, las inserta en `running_activities`, e intenta hacer match con un `program_day` de tipo `running` de ±1 día.
-   - `strava-webhook` (opcional fase 2) — recibe push de Strava cuando hay actividad nueva.
+### Fuera de alcance
 
-## 3. UI
-
-**Coach (`/admin/programas/...`)**
-- En el editor de día, selector de tipo de sesión (Fuerza / Carrera / …).
-- Si es Carrera, abre un constructor de bloques: añadir warm-up, series con repeticiones, recovery, cool-down. Cada bloque pide duración (tiempo o distancia) y objetivo (ritmo min/km, FC o RPE).
-
-**Alumno (`/app/training`)**
-- Si el día es de carrera, renderiza la sesión por bloques (en lugar de la lista de ejercicios actual). Vista clara: "10' Z2 → 6 × (400 m @ 4:10/km + 1' trote) → 10' Z1".
-- Botón "Conectar Strava" en `/app/profile` (si no está conectado).
-- Tras hacer la carrera, "Sincronizar" trae la actividad y la pinta junto al plan: planificado vs real (distancia, tiempo, ritmo medio, FC media).
-- Marca el día como completado automáticamente si hay match.
-
-## 4. Entregables por fases
-
-**Fase A — Estructura (sin Strava todavía)**
-- Migración: enum `session_type`, tablas `running_workouts`, `running_workout_steps` con RLS y GRANTs.
-- Constructor de sesiones de carrera en el editor de plantillas/programas.
-- Renderizado de sesión de carrera en `/app/training`.
-- Botón "Marcar como completada" manual.
-
-**Fase B — Strava**
-- Tablas `strava_connections` y `running_activities` con RLS estricta sobre tokens.
-- 3 edge functions OAuth + sync.
-- Pantalla "Conectar Strava" + sincronización manual.
-- Auto-match actividad ↔ día planificado y vista comparativa planificado vs real.
-
-**Fase C (opcional, más adelante)**
-- Webhook de Strava para sincronización automática.
-- Exportar la sesión a archivo `.FIT` para enviarla al reloj (esto sí requeriría Garmin u otra vía y se valoraría aparte).
-
-## Decisiones que necesito confirmar antes de implementar
-
-1. ¿Implemento las **dos fases (A y B) ahora**, o prefieres empezar solo por la Fase A y dejar Strava para un segundo paso?
-2. Para Strava necesitaré que crees una app en https://developers.strava.com/ y me pases `Client ID` + `Client Secret` (te los pediré con el formulario seguro cuando toque la Fase B).
-3. ¿Los ritmos objetivo los introduces como **rango** (ej. 4:00–4:15/km) o como **valor único**? El plan asume rango porque es lo estándar en TrainingPeaks.
+- Plantillas de email custom con marca (puedo añadirlas después si lo pides).
+- Política de contraseñas fuertes / HIBP (se puede activar aparte).
+- Rate limiting adicional (Supabase ya aplica el suyo).
