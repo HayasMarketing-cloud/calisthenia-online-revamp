@@ -34,6 +34,8 @@ import Contacto from "./pages/Contacto";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Auth from "./pages/Auth";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import QueEsLaCalistenia from "./pages/blog/QueEsLaCalistenia";
 import NotFound from "./pages/NotFound";
 
