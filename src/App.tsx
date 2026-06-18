@@ -34,6 +34,8 @@ import Contacto from "./pages/Contacto";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Auth from "./pages/Auth";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import QueEsLaCalistenia from "./pages/blog/QueEsLaCalistenia";
 import NotFound from "./pages/NotFound";
 
@@ -109,6 +111,8 @@ const App = () => (
             <Route path="/blog/" element={<Blog />} />
             <Route path="/blog/:slug/" element={<BlogPost />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
 
             {/* Admin Routes - Protected with authentication */}
             <Route path="/admin/" element={<ProtectedRoute requireAdmin><AdminHub /></ProtectedRoute>} />

@@ -109,6 +109,12 @@ const Auth = () => {
                     <Button type="submit" className="w-full" disabled={loading}>
                       {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
                     </Button>
+
+                    <div className="text-center text-sm">
+                      <a href="/forgot-password" className="text-primary hover:underline">
+                        ¿Olvidaste tu contraseña?
+                      </a>
+                    </div>
                   </form>
                 </TabsContent>
                 
