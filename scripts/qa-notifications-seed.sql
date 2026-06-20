@@ -17,8 +17,8 @@
 \set ON_ERROR_STOP on
 
 -- >>> EDITAR ESTAS DOS LÍNEAS <<<
-\set alumno_a '\'00000000-0000-0000-0000-000000000000\''
-\set alumno_b '\'00000000-0000-0000-0000-000000000000\''
+\set alumno_a '\'9784c6ab-e74b-49cc-b61e-efbf821adcdb\''
+\set alumno_b '\'c6ae19e2-c0bc-4845-934b-414a4ca88219\''
 
 BEGIN;
 
