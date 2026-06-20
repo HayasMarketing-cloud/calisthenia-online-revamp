@@ -3,6 +3,7 @@ import { Home, Dumbbell, User, BarChart3 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import PWAUpdatePrompt from './PWAUpdatePrompt';
 import InstallPWAPrompt from './InstallPWAPrompt';
+import NotificationsPanel from './notifications/NotificationsPanel';
 
 const navItems = [
   { to: '/app/dashboard', icon: Home, label: 'Inicio' },
@@ -18,6 +19,10 @@ const AppLayout = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <PWAUpdatePrompt />
       <InstallPWAPrompt />
+      {/* Campana flotante (solo área privada /app/) */}
+      <div className="fixed top-4 right-4 z-40">
+        <NotificationsPanel />
+      </div>
       {/* Main content */}
       <main className="flex-1 pb-20">
         <Outlet />
