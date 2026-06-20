@@ -148,4 +148,48 @@ describe('selectDashboardNudges', () => {
     // El low (streak) debe estar al final o quedar fuera
     expect(r.map((n) => n.priority)).toEqual(['high', 'medium', 'low']);
   });
+
+  // ===== Fronteras exactas =====
+  it('frontera weight: exactamente 15 días → NO dispara (umbral > 15)', () => {
+    const r = selectDashboardNudges(
+      makeState({
+        onboardingCompletedAt: new Date(baseNow.getTime() - 30 * DAY),
+        lastWeightLoggedAt: new Date(baseNow.getTime() - 15 * DAY),
+      })
+    );
+    expect(r.find((n) => n.key === 'log_weight')).toBeUndefined();
+  });
+
+  it('frontera weight: 15 días + 1 ms → dispara', () => {
+    const r = selectDashboardNudges(
+      makeState({
+        onboardingCompletedAt: new Date(baseNow.getTime() - 30 * DAY),
+        lastWeightLoggedAt: new Date(baseNow.getTime() - 15 * DAY - 1),
+      })
+    );
+    expect(r.find((n) => n.key === 'log_weight')).toBeDefined();
+  });
+
+  it('frontera 18:00 Madrid: 17:59:59 → NO plan_tomorrow', () => {
+    const r = selectDashboardNudges(
+      makeState({
+        nowMadrid: new Date('2026-06-20T17:59:59'),
+        todaySession: { id: 's1', isRest: false, status: 'completed' },
+        tomorrowSession: { id: 's2', isRest: false },
+      })
+    );
+    expect(r.find((n) => n.key === 'plan_tomorrow')).toBeUndefined();
+  });
+
+  it('frontera 18:00 Madrid: 18:00:00 exacto → SÍ plan_tomorrow', () => {
+    const r = selectDashboardNudges(
+      makeState({
+        nowMadrid: new Date('2026-06-20T18:00:00'),
+        todaySession: { id: 's1', isRest: false, status: 'completed' },
+        tomorrowSession: { id: 's2', isRest: false },
+      })
+    );
+    expect(r.find((n) => n.key === 'plan_tomorrow')).toBeDefined();
+  });
 });
+
