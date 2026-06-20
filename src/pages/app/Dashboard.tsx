@@ -205,6 +205,9 @@ const Dashboard = () => {
       </header>
 
       <main className="px-5 pb-10 max-w-lg mx-auto space-y-8 -mt-2">
+        {/* Sugerencias contextuales (nudges) */}
+        <DashboardNudges />
+
         {/* Plan de hoy */}
         <section>
           <div className="flex items-end justify-between mb-4">
