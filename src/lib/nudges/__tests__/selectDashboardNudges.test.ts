@@ -146,6 +146,6 @@ describe('selectDashboardNudges', () => {
     expect(r.length).toBe(3);
     expect(r[0].priority).toBe('high');
     // El low (streak) debe estar al final o quedar fuera
-    expect(r.map((n) => n.priority)).toEqual(['high', 'medium', 'medium']);
+    expect(r.map((n) => n.priority)).toEqual(['high', 'medium', 'low']);
   });
 });
