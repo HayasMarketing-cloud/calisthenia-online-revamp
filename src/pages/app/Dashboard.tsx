@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import GoalsWidget from '@/components/app/GoalsWidget';
 import PinnedGoalWidget from '@/components/app/PinnedGoalWidget';
+import DashboardNudges from '@/components/app/notifications/DashboardNudges';
 
 const greeting = () => {
   const h = new Date().getHours();
