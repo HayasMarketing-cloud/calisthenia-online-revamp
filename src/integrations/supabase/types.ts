@@ -654,6 +654,81 @@ export type Database = {
         }
         Relationships: []
       }
+      notifications: {
+        Row: {
+          action_payload: Json | null
+          action_route:
+            | Database["public"]["Enums"]["notification_action_route"]
+            | null
+          body: string | null
+          client_id: string
+          created_at: string
+          id: string
+          is_read: boolean
+          priority: Database["public"]["Enums"]["notification_priority"]
+          read_at: string | null
+          source_id: string | null
+          source_table: string | null
+          title: string
+          type: Database["public"]["Enums"]["notification_type"]
+        }
+        Insert: {
+          action_payload?: Json | null
+          action_route?:
+            | Database["public"]["Enums"]["notification_action_route"]
+            | null
+          body?: string | null
+          client_id: string
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          priority?: Database["public"]["Enums"]["notification_priority"]
+          read_at?: string | null
+          source_id?: string | null
+          source_table?: string | null
+          title: string
+          type: Database["public"]["Enums"]["notification_type"]
+        }
+        Update: {
+          action_payload?: Json | null
+          action_route?:
+            | Database["public"]["Enums"]["notification_action_route"]
+            | null
+          body?: string | null
+          client_id?: string
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          priority?: Database["public"]["Enums"]["notification_priority"]
+          read_at?: string | null
+          source_id?: string | null
+          source_table?: string | null
+          title?: string
+          type?: Database["public"]["Enums"]["notification_type"]
+        }
+        Relationships: []
+      }
+      nudge_dismissals: {
+        Row: {
+          client_id: string
+          dismissed_at: string
+          id: string
+          nudge_key: string
+        }
+        Insert: {
+          client_id: string
+          dismissed_at?: string
+          id?: string
+          nudge_key: string
+        }
+        Update: {
+          client_id?: string
+          dismissed_at?: string
+          id?: string
+          nudge_key?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -1724,6 +1799,9 @@ export type Database = {
         | "core"
         | "locomotion"
         | "isometric"
+      notification_action_route: "today_session" | "log_weight" | "view_reviews"
+      notification_priority: "high" | "medium" | "low"
+      notification_type: "technique_review" | "weekly_review" | "milestone"
       override_type:
         | "skip_day"
         | "swap_exercise"
@@ -1953,6 +2031,13 @@ export const Constants = {
         "locomotion",
         "isometric",
       ],
+      notification_action_route: [
+        "today_session",
+        "log_weight",
+        "view_reviews",
+      ],
+      notification_priority: ["high", "medium", "low"],
+      notification_type: ["technique_review", "weekly_review", "milestone"],
       override_type: [
         "skip_day",
         "swap_exercise",
