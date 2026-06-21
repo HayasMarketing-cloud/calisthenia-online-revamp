@@ -17,8 +17,10 @@
 \set ON_ERROR_STOP on
 
 -- >>> EDITAR ESTAS DOS LÍNEAS <<<
-\set alumno_a '\'9784c6ab-e74b-49cc-b61e-efbf821adcdb\''
-\set alumno_b '\'c6ae19e2-c0bc-4845-934b-414a4ca88219\''
+-- A: info.ruben@gmail.com  (test student A)
+-- B: nicolaasreyero@gmail.com (test student B)
+\set alumno_a '\'540d4523-0b49-4025-9fd6-79c0f806c7c0\''
+\set alumno_b '\'f8f0cdf9-e644-440f-8eaf-32d19f1352bf\''
 
 BEGIN;
 
