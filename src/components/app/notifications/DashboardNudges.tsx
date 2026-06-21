@@ -62,20 +62,21 @@ function NudgeCard({
 
   const primaryBtn = (
     <Button
-      asChild={!onAction(nudge)}
-      onClick={(e) => {
-        if (onAction(nudge)) e.preventDefault();
-      }}
+      asChild
       size={featured ? 'default' : 'sm'}
-      className={cn(
-        isPromo && 'bg-primary text-primary-foreground hover:bg-primary/90'
-      )}
+      className={cn(isPromo && 'bg-primary text-primary-foreground hover:bg-primary/90')}
     >
-      <Link to={resolveActionRoute(nudge.primaryAction.route)}>
+      <Link
+        to={resolveActionRoute(nudge.primaryAction.route)}
+        onClick={(e) => {
+          if (onAction(nudge)) e.preventDefault();
+        }}
+      >
         {nudge.primaryAction.label}
       </Link>
     </Button>
   );
+
 
   return (
     <Card className={cardClass}>
