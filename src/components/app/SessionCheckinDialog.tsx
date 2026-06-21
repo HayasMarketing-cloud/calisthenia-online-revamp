@@ -8,20 +8,15 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Slider } from '@/components/ui/slider';
 import { Loader2 } from 'lucide-react';
 
 export type SessionFeeling = 'great' | 'good' | 'hard' | 'too_hard' | 'painful';
 
 export interface CheckinPayload {
-  difficulty: number;
-  energy: number;
+  difficulty: number; // 1..10 (RPE Borg CR10)
   comment: string;
   session_feeling: SessionFeeling;
-  pain_level: number | null;
-  pain_location: string | null;
-  duration_minutes_real: number | null;
 }
 
 interface Props {
@@ -29,9 +24,6 @@ interface Props {
   onClose: () => void;
   onSubmit: (data: CheckinPayload) => Promise<void>;
 }
-
-const ratingEmojis = ['😩', '😓', '😐', '💪', '🔥'];
-const energyEmojis = ['🪫', '😴', '😐', '⚡', '🚀'];
 
 const feelingOptions: { value: SessionFeeling; emoji: string; label: string }[] = [
   { value: 'great', emoji: '🤩', label: 'Genial' },
@@ -41,14 +33,19 @@ const feelingOptions: { value: SessionFeeling; emoji: string; label: string }[] 
   { value: 'painful', emoji: '🤕', label: 'Doloroso' },
 ];
 
+const rpeHints: Record<number, string> = {
+  1: 'Muy fácil',
+  3: 'Suave',
+  5: 'Moderado',
+  7: 'Duro',
+  9: 'Muy duro',
+  10: 'Máximo',
+};
+
 const SessionCheckinDialog = ({ open, onClose, onSubmit }: Props) => {
   const [feeling, setFeeling] = useState<SessionFeeling>('good');
-  const [difficulty, setDifficulty] = useState(3);
-  const [energy, setEnergy] = useState(3);
+  const [difficulty, setDifficulty] = useState(5);
   const [comment, setComment] = useState('');
-  const [painLevel, setPainLevel] = useState<number | ''>('');
-  const [painLocation, setPainLocation] = useState('');
-  const [duration, setDuration] = useState<number | ''>('');
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async () => {
@@ -56,17 +53,15 @@ const SessionCheckinDialog = ({ open, onClose, onSubmit }: Props) => {
     try {
       await onSubmit({
         difficulty,
-        energy,
         comment,
         session_feeling: feeling,
-        pain_level: painLevel === '' ? null : Number(painLevel),
-        pain_location: painLocation.trim() || null,
-        duration_minutes_real: duration === '' ? null : Number(duration),
       });
     } finally {
       setSubmitting(false);
     }
   };
+
+  const hint = rpeHints[difficulty] || (difficulty < 5 ? 'Suave' : difficulty < 8 ? 'Moderado' : 'Duro');
 
   return (
     <Dialog open={open} onOpenChange={(o) => !o && onClose()}>
@@ -76,14 +71,15 @@ const SessionCheckinDialog = ({ open, onClose, onSubmit }: Props) => {
           <DialogDescription>Tu feedback ayuda a Nico a ajustar tu programa.</DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-5 pt-2">
-          {/* Session feeling — primary */}
+        <div className="space-y-6 pt-2">
+          {/* Sensación general — 5 caritas */}
           <div>
             <p className="text-sm font-medium mb-2">Sensación general</p>
             <div className="grid grid-cols-5 gap-1">
               {feelingOptions.map((opt) => (
                 <button
                   key={opt.value}
+                  type="button"
                   onClick={() => setFeeling(opt.value)}
                   className={`flex flex-col items-center gap-1 py-2 rounded-lg transition-all ${
                     feeling === opt.value
@@ -98,87 +94,28 @@ const SessionCheckinDialog = ({ open, onClose, onSubmit }: Props) => {
             </div>
           </div>
 
-          {/* Difficulty */}
+          {/* Dificultad — RPE 1..10 */}
           <div>
-            <p className="text-sm font-medium mb-2">Dificultad</p>
-            <div className="flex gap-2 justify-between">
-              {ratingEmojis.map((emoji, i) => (
-                <button
-                  key={i}
-                  onClick={() => setDifficulty(i + 1)}
-                  className={`text-2xl p-2 rounded-lg transition-all ${
-                    difficulty === i + 1
-                      ? 'bg-primary/20 scale-110 ring-2 ring-primary'
-                      : 'hover:bg-secondary/50'
-                  }`}
-                >
-                  {emoji}
-                </button>
-              ))}
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-sm font-medium">Dificultad (1–10)</p>
+              <span className="text-sm font-semibold text-primary">
+                {difficulty} · {hint}
+              </span>
             </div>
-          </div>
-
-          {/* Energy */}
-          <div>
-            <p className="text-sm font-medium mb-2">Nivel de energía</p>
-            <div className="flex gap-2 justify-between">
-              {energyEmojis.map((emoji, i) => (
-                <button
-                  key={i}
-                  onClick={() => setEnergy(i + 1)}
-                  className={`text-2xl p-2 rounded-lg transition-all ${
-                    energy === i + 1
-                      ? 'bg-primary/20 scale-110 ring-2 ring-primary'
-                      : 'hover:bg-secondary/50'
-                  }`}
-                >
-                  {emoji}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Duration */}
-          <div>
-            <Label htmlFor="duration" className="text-sm font-medium">
-              Duración real (min)
-            </Label>
-            <Input
-              id="duration"
-              type="number"
-              min={0}
-              max={300}
-              value={duration}
-              onChange={(e) => setDuration(e.target.value === '' ? '' : Number(e.target.value))}
-              placeholder="60"
-              className="mt-1"
-            />
-          </div>
-
-          {/* Pain (optional) */}
-          <div className="space-y-2 border-t border-border pt-4">
-            <Label htmlFor="pain" className="text-sm font-medium">
-              ¿Algo de dolor? (opcional, 0-10)
-            </Label>
-            <Input
-              id="pain"
-              type="number"
-              min={0}
+            <Slider
+              value={[difficulty]}
+              onValueChange={(v) => setDifficulty(v[0])}
+              min={1}
               max={10}
-              value={painLevel}
-              onChange={(e) => setPainLevel(e.target.value === '' ? '' : Number(e.target.value))}
-              placeholder="0 = nada"
+              step={1}
             />
-            {painLevel !== '' && Number(painLevel) > 0 && (
-              <Input
-                placeholder="Zona (hombro, lumbar...)"
-                value={painLocation}
-                onChange={(e) => setPainLocation(e.target.value)}
-              />
-            )}
+            <div className="flex justify-between text-[10px] text-muted-foreground mt-1">
+              <span>Muy fácil</span>
+              <span>Máximo</span>
+            </div>
           </div>
 
-          {/* Comment */}
+          {/* Comentario */}
           <div>
             <p className="text-sm font-medium mb-2">Comentario (opcional)</p>
             <Textarea
