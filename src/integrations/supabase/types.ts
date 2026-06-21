@@ -18,34 +18,40 @@ export type Database = {
         Row: {
           client_id: string
           created_at: string
+          hip_cm: number | null
           id: string
           max_pull_ups: number | null
           max_push_ups: number | null
           max_squats: number | null
           notes: string | null
           recorded_at: string
+          waist_cm: number | null
           weight_kg: number | null
         }
         Insert: {
           client_id: string
           created_at?: string
+          hip_cm?: number | null
           id?: string
           max_pull_ups?: number | null
           max_push_ups?: number | null
           max_squats?: number | null
           notes?: string | null
           recorded_at?: string
+          waist_cm?: number | null
           weight_kg?: number | null
         }
         Update: {
           client_id?: string
           created_at?: string
+          hip_cm?: number | null
           id?: string
           max_pull_ups?: number | null
           max_push_ups?: number | null
           max_squats?: number | null
           notes?: string | null
           recorded_at?: string
+          waist_cm?: number | null
           weight_kg?: number | null
         }
         Relationships: [
@@ -1337,7 +1343,7 @@ export type Database = {
           created_at: string
           difficulty_rating: number
           duration_minutes_real: number | null
-          energy_rating: number
+          energy_rating: number | null
           id: string
           pain_level: number | null
           pain_location: string | null
@@ -1353,7 +1359,7 @@ export type Database = {
           created_at?: string
           difficulty_rating: number
           duration_minutes_real?: number | null
-          energy_rating: number
+          energy_rating?: number | null
           id?: string
           pain_level?: number | null
           pain_location?: string | null
@@ -1369,7 +1375,7 @@ export type Database = {
           created_at?: string
           difficulty_rating?: number
           duration_minutes_real?: number | null
-          energy_rating?: number
+          energy_rating?: number | null
           id?: string
           pain_level?: number | null
           pain_location?: string | null
