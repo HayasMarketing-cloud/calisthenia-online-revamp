@@ -1343,7 +1343,7 @@ export type Database = {
           created_at: string
           difficulty_rating: number
           duration_minutes_real: number | null
-          energy_rating: number
+          energy_rating: number | null
           id: string
           pain_level: number | null
           pain_location: string | null
@@ -1359,7 +1359,7 @@ export type Database = {
           created_at?: string
           difficulty_rating: number
           duration_minutes_real?: number | null
-          energy_rating: number
+          energy_rating?: number | null
           id?: string
           pain_level?: number | null
           pain_location?: string | null
@@ -1375,7 +1375,7 @@ export type Database = {
           created_at?: string
           difficulty_rating?: number
           duration_minutes_real?: number | null
-          energy_rating?: number
+          energy_rating?: number | null
           id?: string
           pain_level?: number | null
           pain_location?: string | null

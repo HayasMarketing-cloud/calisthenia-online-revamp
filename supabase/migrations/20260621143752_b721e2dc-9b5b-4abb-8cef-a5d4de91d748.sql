@@ -1,0 +1,1 @@
+ALTER TABLE public.session_checkins ALTER COLUMN energy_rating DROP NOT NULL;
