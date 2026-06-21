@@ -112,9 +112,9 @@ export function selectDashboardNudges(state: NudgeState): Nudge[] {
           priority: 'medium',
           title: 'Mañana tienes sesión',
           body: 'Échale un vistazo para llegar con la cabeza puesta.',
-          // /app/training muestra la sesión de hoy; mañana no tiene ruta dedicada en la beta.
-          primaryAction: { label: 'Echar un vistazo', route: 'today_session' },
+          primaryAction: { label: 'Ver agenda', route: 'view_agenda' },
         });
+
       }
     }
   }
