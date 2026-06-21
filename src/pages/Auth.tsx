@@ -29,7 +29,7 @@ const Auth = () => {
         .eq('role', 'admin')
         .maybeSingle()
         .then(({ data }) => {
-          navigate(data ? '/admin/coach/' : '/');
+          navigate(data ? '/admin/coach/' : '/app/dashboard');
         });
     }
   }, [user, navigate]);
