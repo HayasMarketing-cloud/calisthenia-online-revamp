@@ -4,7 +4,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress as ProgressBar } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { BarChart3, Flame, Target, Activity, CalendarDays, ClipboardList, Video, MessageSquare, Trophy, Award } from 'lucide-react';
+import { BarChart3, Flame, Target, Activity, CalendarDays, Trophy, Award } from 'lucide-react';
 import { format, parseISO } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, Cell } from 'recharts';
