@@ -90,24 +90,38 @@ const Training = () => {
     const sid = activeSessionId;
     if (!sid) return;
 
+    const endedAt = new Date();
+
+    // Obtener started_at para calcular duración real
+    const { data: sessionRow } = await supabase
+      .from('workout_sessions')
+      .select('started_at')
+      .eq('id', sid)
+      .maybeSingle();
+
+    let durationMinutes: number | null = null;
+    if (sessionRow?.started_at) {
+      const startMs = new Date(sessionRow.started_at).getTime();
+      const diffMin = Math.max(0, Math.round((endedAt.getTime() - startMs) / 60000));
+      durationMinutes = diffMin > 0 ? diffMin : null;
+    }
+
     // Update session status
     await supabase
       .from('workout_sessions')
-      .update({ status: 'completed', completed_at: new Date().toISOString() })
+      .update({ status: 'completed', completed_at: endedAt.toISOString() })
       .eq('id', sid);
 
-    // Insert check-in
+    // Insert check-in (duración calculada automáticamente)
     await supabase.from('session_checkins').insert({
       session_id: sid,
       completed_workout: true,
       difficulty_rating: data.difficulty,
-      energy_rating: data.energy,
       comment: data.comment || null,
       session_feeling: data.session_feeling,
-      pain_level: data.pain_level,
-      pain_location: data.pain_location,
-      duration_minutes_real: data.duration_minutes_real,
+      duration_minutes_real: durationMinutes,
     });
+
 
     // Recalculate adherence
     await supabase.rpc('recalculate_adherence', { p_client_id: user!.id });
