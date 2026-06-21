@@ -67,6 +67,7 @@ const Dashboard = lazy(() => import("./pages/app/Dashboard"));
 const Training = lazy(() => import("./pages/app/Training"));
 const Progress = lazy(() => import("./pages/app/Progress"));
 const ProfilePage = lazy(() => import("./pages/app/Profile"));
+const Agenda = lazy(() => import("./pages/app/Agenda"));
 
 const queryClient = new QueryClient();
 
