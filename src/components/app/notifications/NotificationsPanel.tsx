@@ -129,11 +129,21 @@ export function NotificationsPanel() {
                       {n.title}
                     </p>
                     {n.body && (
-                      <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
+                      <p
+                        className={cn(
+                          'text-xs mt-0.5 line-clamp-2',
+                          !n.is_read ? 'text-foreground' : 'text-muted-foreground'
+                        )}
+                      >
                         {n.body}
                       </p>
                     )}
-                    <p className="text-[10px] text-muted-foreground mt-1">
+                    <p
+                      className={cn(
+                        'text-[10px] mt-1',
+                        !n.is_read ? 'text-foreground' : 'text-muted-foreground'
+                      )}
+                    >
                       {relativeTime(n.created_at)}
                     </p>
                   </div>
