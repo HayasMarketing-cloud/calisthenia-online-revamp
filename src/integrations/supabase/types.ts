@@ -18,34 +18,40 @@ export type Database = {
         Row: {
           client_id: string
           created_at: string
+          hip_cm: number | null
           id: string
           max_pull_ups: number | null
           max_push_ups: number | null
           max_squats: number | null
           notes: string | null
           recorded_at: string
+          waist_cm: number | null
           weight_kg: number | null
         }
         Insert: {
           client_id: string
           created_at?: string
+          hip_cm?: number | null
           id?: string
           max_pull_ups?: number | null
           max_push_ups?: number | null
           max_squats?: number | null
           notes?: string | null
           recorded_at?: string
+          waist_cm?: number | null
           weight_kg?: number | null
         }
         Update: {
           client_id?: string
           created_at?: string
+          hip_cm?: number | null
           id?: string
           max_pull_ups?: number | null
           max_push_ups?: number | null
           max_squats?: number | null
           notes?: string | null
           recorded_at?: string
+          waist_cm?: number | null
           weight_kg?: number | null
         }
         Relationships: [
