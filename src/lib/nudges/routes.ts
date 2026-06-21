@@ -3,14 +3,16 @@
 
 export type ActionRoute =
   | 'today_session' // /app/training
-  | 'log_weight' // /app/progress
-  | 'view_reviews' // /app/progress
+  | 'log_weight' // abre modal (no es ruta navegable real, pero se mantiene en el catálogo)
+  | 'view_reviews' // legacy (sin uso tras retirar cards de notas/técnica)
+  | 'view_agenda' // /app/agenda
   | 'public_routines'; // /rutinas/
 
 export const ACTION_ROUTE_LABELS: Record<ActionRoute, string> = {
   today_session: 'Ver sesión',
   log_weight: 'Registrar peso',
   view_reviews: 'Ver revisión',
+  view_agenda: 'Ver agenda',
   public_routines: 'Mientras tanto, mira rutinas',
 };
 
@@ -22,10 +24,12 @@ export function resolveActionRoute(
     case 'today_session':
       return '/app/training';
     case 'log_weight':
+      // Se intercepta en el componente (abre modal). Fallback navegable:
       return '/app/progress';
     case 'view_reviews':
-      // En la beta no hay deep-link a revisión individual; va a la lista.
       return '/app/progress';
+    case 'view_agenda':
+      return '/app/agenda';
     case 'public_routines':
       return '/rutinas/';
   }
