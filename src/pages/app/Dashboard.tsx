@@ -213,7 +213,7 @@ const Dashboard = () => {
           <div className="flex items-end justify-between mb-4">
             <h2 className="text-2xl font-bold text-foreground">Plan de hoy</h2>
             <Link
-              to="/app/training"
+              to="/app/agenda"
               className="text-sm text-muted-foreground hover:text-foreground"
             >
               Ver agenda
