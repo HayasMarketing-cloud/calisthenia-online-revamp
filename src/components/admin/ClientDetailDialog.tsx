@@ -195,12 +195,13 @@ const ClientDetailDialog = ({ open, onOpenChange, clientId, clientName }: Client
   const difficultyEmojis = ['', '😊', '🙂', '😐', '😤', '🥵'];
   const energyEmojis = ['', '😴', '😑', '⚡', '🔥', '💥'];
   const feelingLabels: Record<string, string> = {
-    great: '😀 Genial',
+    great: '🤩 Genial',
     good: '🙂 Bien',
-    ok: '😐 Normal',
-    tough: '😣 Duro',
-    bad: '😞 Mal',
+    hard: '😮‍💨 Costoso',
+    too_hard: '😵 Demasiado',
+    painful: '🤕 Doloroso',
   };
+
 
   const statusBadge = (status: string | null) => {
     switch (status) {
