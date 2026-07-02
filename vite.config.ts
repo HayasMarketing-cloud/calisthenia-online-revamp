@@ -37,24 +37,6 @@ export default defineConfig(({ mode }) => ({
        * still opening the private app at /app/dashboard. The service worker
        * remains scoped to /app/ via `scope`/`base` above.
        */
-      /*manifest: {
-        name: "Calisthenia Online",
-        short_name: "Calisthenia",
-        description: "Tu área de entrenamiento personal de Calisthenia Online",
-        start_url: "/app/dashboard",
-        scope: "/app/",
-        id: "/app/",
-        display: "standalone",
-        orientation: "portrait",
-        background_color: "#0F172A",
-        theme_color: "#0F172A",
-        lang: "es-ES",
-        icons: [
-          { src: "/pwa-192.png", sizes: "192x192", type: "image/png" },
-          { src: "/pwa-512.png", sizes: "512x512", type: "image/png" },
-          { src: "/pwa-512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" },
-        ],
-      },*/
       workbox: {
         globPatterns: ["**/*.{js,css,html,svg,png,webp,woff2}"],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
