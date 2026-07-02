@@ -30,7 +30,14 @@ export default defineConfig(({ mode }) => ({
       base: "/app/",
       includeAssets: ["pwa-192.png", "pwa-512.png", "apple-touch-icon.png"],
       devOptions: { enabled: false },
-      manifest: {
+      manifest: false,
+      /* Manifest is intentionally served from /site.webmanifest and linked in
+       * index.html. iOS Safari installs from the current page; keeping one
+       * root-scoped manifest lets users install from calisthenia.online while
+       * still opening the private app at /app/dashboard. The service worker
+       * remains scoped to /app/ via `scope`/`base` above.
+       */
+      /*manifest: {
         name: "Calisthenia Online",
         short_name: "Calisthenia",
         description: "Tu área de entrenamiento personal de Calisthenia Online",
@@ -47,7 +54,7 @@ export default defineConfig(({ mode }) => ({
           { src: "/pwa-512.png", sizes: "512x512", type: "image/png" },
           { src: "/pwa-512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" },
         ],
-      },
+      },*/
       workbox: {
         globPatterns: ["**/*.{js,css,html,svg,png,webp,woff2}"],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
